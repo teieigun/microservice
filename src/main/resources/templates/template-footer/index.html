@@ -1,0 +1,33 @@
+<!--
+<img th:src="${contextPath} + @{/inner/img/entrance/text_btn_play.png}">
+ -->
+<footer class="SiteFooter" id="SiteFooter">
+  <div class="ContentWrapper">
+    <p class="SiteFooter__backToTop"><a class="SiteFooter__backToTopLink" href="#top">Page Top</a></p>
+    <p class="SiteFooter__copy"><img class="SiteFooter__copyImage" th:src="${contextPath} + @{/assets/img/copy-lady.png}" alt="レディにしあがれ。"/></p>
+    <ul class="SiteFooter__bannerList">
+            <li class="SiteFooter__bannerListItem"><a class="SiteFooter__bannerLink" href="/ourstory/" target="_self"><img class="SiteFooter__bannerImage" th:src="${contextPath} + @{/assets/img/common-banner-ourstory.jpg}" alt=""/><span class="SiteFooter__bannerText">Our Story</span></a></li>
+            <li class="SiteFooter__bannerListItem"><a class="SiteFooter__bannerLink" href="/lookbook/" target="_self"><img class="SiteFooter__bannerImage" th:src="${contextPath} + @{/assets/img/navi_bnr.png}" alt=""/><span class="SiteFooter__bannerText">Lookbook</span></a></li>
+            <li class="SiteFooter__bannerListItem"><a class="SiteFooter__bannerLink" href="/science/" target="_self"><img class="SiteFooter__bannerImage"  th:src="${contextPath} + @{/assets/img/common-banner-science.jpg}" alt=""/><span class="SiteFooter__bannerText">Beauty TECHNOLOGY</span></a></li>
+          </ul>
+    <aside class="SiteFooter__social">
+      <p class="SiteFooter__socialHeading">Stay in Touch</p>
+      <ul class="SiteFooter__socialLinkList">
+        <li class="SiteFooter__socialLinkListItem"><a class="SiteFooter__socialLink" href="https://www.instagram.com/maquillage_jp/" target="_blank">
+            <svg class="SiteFooter__socialLinkIcon" aria-labelledby="icon-instagram-title" role="img">
+              <title id="icon-instagram-title">Instagram</title>
+              <use xlink:href="#icon-instagram"></use>
+            </svg></a></li>
+        <li class="SiteFooter__socialLinkListItem"><a class="SiteFooter__socialLink" href="https://twitter.com/maquillage_jp" target="_blank">
+            <svg class="SiteFooter__socialLinkIcon" aria-labelledby="icon-twitter-title" role="img">
+              <title id="icon-twitter-title">Twitter</title>
+              <use xlink:href="#icon-twitter"></use>
+            </svg></a></li>
+      </ul>
+    </aside>
+    <ul class="SiteFooter__navList">
+      <li class="SiteFooter__navItem"><a href="https://faq.wp.shiseido.co.jp/?site_domain=support" target="_blank">化粧品についてよくあるご質問</a></li>
+      <li class="SiteFooter__navItem"><a href="https://www.shiseido.co.jp/mail/lc.html" target="_blank">チャットで美容相談</a></li>
+    </ul>
+  </div>
+</footer>

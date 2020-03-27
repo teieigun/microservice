@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>学生信息检索</title>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/std.css" rel="stylesheet">
+		<script>
+			function regist(){
+				location.href = '/regist?doflg=1';
+			}
+			function updateTheLine(stId){
+				location.href = '/updateLine?StId= ' +stId + '&doflg=2';
+			}
+			function deleteTheLine(stId){
+				location.href = '/deleteLine?StId= ' +stId + '&doflg=3';
+			}
+		</script>
+	</head>
+	<body>
+
+		<br/>
+		<form method="post" th:action="@{/search}">
+		<div class="outerDiv">
+			<p>学生信息管理系统 学生信息检索</p>
+			<br/>
+		 	<table border="1">
+		 		<tbody>
+					<tr>
+					  <th>学生ID</th>
+					  <td>
+					  	<input type="text" th:name="studentId"/>※数値
+					  </td>
+					</tr>
+
+					<tr>
+					  <th>学生名</th>
+					  <td>
+					  	<input type="text" th:name="studentNm"/>※漢字
+					  </td>
+					</tr>
+
+					<tr>
+					  <th>性别</th>
+					  <td>
+					  	<input type="radio" th:value="1" th:name="sex"/>男
+					    <input type="radio" th:value="2" th:name="sex"/>女
+					  </td>
+					</tr>
+					<tr>
+						<th>年班</th>
+						<td>
+							<select th:name="grade">
+								<option value="1">1年级</option>
+						        <option value="2">2年级</option>
+								<option value="3">3年级</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th>班</th>
+						<td>
+							<select th:name="classNo">
+								<option value="1">1班</option>
+						        <option value="2">2班</option>
+							</select>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<br/>
+			<input type="submit" name="jiansuo" value="检索">
+			<input type="button" name="tijiao"  value="学生登录" onclick="regist();">
+
+			<table class="table22" border="1">
+				<tbody>
+					<tr>
+					    <th>ID</td>
+					    <th>学生名</td>
+					    <th>性别</td>
+					    <th>年龄</td>
+					    <th>住址</td>
+		                <th>年级</td>
+		                <th>班</td>
+		                <th>班主任老师</td>
+					    <th>更新</td>
+					    <th>删除</td>
+					</tr>
+					<tr th:each="listPojo, stat : ${searchResult}" th:object="${searchResult}">
+					    <td th:text="${listPojo.stId}">100</td>
+					    <td th:text="${listPojo.stNm}"></td>
+					    <td th:text="${listPojo.stSex}"></td>
+					    <td th:text="${listPojo.stAge}"></td>
+					    <td th:text="${listPojo.stAdd}"></td>
+					    <td th:text="${listPojo.stGrade+'年级'}"></td>
+					    <td th:text="${listPojo.stClass+'班'}"></td>
+					    <td th:text="${listPojo.stTeacher}"></td>
+					    <td><input type="button" name="update" value="更新"  th:attr="onclick='updateTheLine(' + ${listPojo.stId} + ');'"></td>
+					    <td><input type="button" name="delete" value="删除"  th:attr="onclick='deleteTheLine(' + ${listPojo.stId} + ');'"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</body>
+</html>

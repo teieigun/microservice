@@ -1,0 +1,97 @@
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>登录画面</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script>
+			function backRegist(doflg){
+				if(doflg == 3){
+					location.href = '/toSearch';
+				}else{
+					document.comfirmForm.action="/backRegist";
+					document.comfirmForm.submit();
+				}
+
+			}
+		</script>
+    </head>
+
+    <body>
+        <form name="comfirmForm" method="post" th:action="@{/registComfirm}">
+
+            <table  border="1"><tbody>
+                <tbody>
+                    <tr>
+                    	<td>学生ID</td>
+                        <td th:text="${registForm.userId}"></td>
+                    </tr>
+
+                    <tr>
+                    	<td>学生名</td>
+						<td th:text="${registForm.userNm}"></td>
+                    </tr>
+
+                    <tr>
+                    	<td>性别</td>
+                        <td>
+                        	<p th:text="*{isNan} ? '男' : '女'"></p>
+	                    </td>
+                    </tr>
+
+                    <tr>
+                    	<td>年龄</td>
+                        <td>
+                        	<p th:text="${registForm.age}"></p>
+	                    </td>
+                    </tr>
+
+                    <tr>
+                    	<td>年级</td>
+                    	<td th:text="${registForm.grade} + '年级'"></td>
+                    </tr>
+
+                    <tr>
+                    	<td>班</td>
+                    	<td th:text="${registForm.classNo} + '班'"></td>
+                    </tr>
+                    <tr>
+                    	<td>住址</td>
+                        <td th:text="${registForm.address}"></td>
+                    </tr>
+                    <tr>
+                    	<td>籍贯</td>
+                        <td th:text="*{shengNm}"></td>
+                    </tr>
+                    <tr>
+                    	<td>监护人</td>
+                        <td th:text="${registForm.jianhu}"></td>
+                    </tr>
+                    <tr>
+                    	<td>监护人电话</td>
+                        <td th:text="${registForm.phone}"></td>
+                    </tr>
+                    <tr>
+                    	<td>出生年月日</td>
+                        <td th:text="${registForm.stBirthday}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <input type="hidden" name="userId" th:value="${registForm.userId}"/>
+            <input type="hidden" name="userNm" th:value="${registForm.userNm}"/>
+            <input type="hidden" name="sex" th:value="${registForm.sex}"/>
+            <input type="hidden" name="age" th:value="${registForm.age}"/>
+            <input type="hidden" name="grade" th:value="${registForm.grade}"/>
+            <input type="hidden" name="classNo" th:value="${registForm.classNo}"/>
+            <input type="hidden" name="address" th:value="${registForm.address}"/>
+            <input type="hidden" name="jianhu" th:value="${registForm.jianhu}"/>
+            <input type="hidden" name="phone" th:value="${registForm.phone}"/>
+            <input type="hidden" name="zuji" th:value="${registForm.zuji}"/>
+            <input type="hidden" name="stBirthday" th:value="${registForm.stBirthday}"/>
+            <input type="hidden" name="doflg" th:value="${registForm.doflg}"/>
+
+            <br/>
+	        <input type="submit" name="regist" th:value="执行">
+	        <input type="button" name="back"  value="返回"  th:attr="onclick='backRegist(' + ${registForm.doflg} + ');'">
+        </form>
+    </body>
+</html>

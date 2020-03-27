@@ -1,0 +1,105 @@
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>登录画面</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style>
+		.redStar {color: #FF0000;}
+		</style>
+		<script>
+			function backToSearch(){
+				location.href = '/toSearch';
+			}
+		</script>
+    </head>
+
+    <body>
+        <form name="registForm" method="post" th:action="@{/registInput}">
+
+            <table border="1">
+                <tbody>
+                    <tr>
+                    	<td>学生名<span class="redStar">*</span></td>
+                        <td>
+                        	<input th:type="text" th:name="userNm" th:value="${registForm.userNm}" />
+                       	</td>
+                    </tr>
+
+                    <tr>
+                    	<td>性别<span class="redStar">*</span></td>
+                        <td>
+	                        <input th:type="radio" th:name="sex" value="1" th:checked="${registForm.sex == '1'}"/>男
+	                        <input th:type="radio" th:name="sex" value="2" th:checked="${registForm.sex == '2'}"/>女
+	                    </td>
+                    </tr>
+                    <tr>
+                    	<td>年龄<span class="redStar">*</span></td>
+                        <td>
+                        	<input type="text" name="age" th:value="${registForm.age}" />
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td>年级<span class="redStar">*</span></td>
+                        <td>
+                        	<select th:field="${registForm.grade}" th:value="${registForm.grade}" name="grade">
+                        		<option th:selected="${registForm.grade}=='1'" th:value="1">1年级</option>
+                        		<option th:selected="${registForm.grade}=='2'" th:value="2">2年级</option>
+                        		<option th:selected="${registForm.grade}=='3'" th:value="3">3年级</option>
+                        	</select>
+
+                        	<select th:field="${registForm.classNo}" th:value="${registForm.classNo}" name="classNo">
+                        		<option th:selected="${registForm.classNo}=='1'" value="1">1班</option>
+                        		<option th:selected="${registForm.classNo}=='2'" value="2">2班</option>
+                        	</select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                    	<td>住址<span class="redStar">*</span></td>
+                        <td>
+                        	<input type="text" name="address" th:value="${registForm.address}" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                    	<td>籍贯</td>
+                        <td>
+
+                        <select name="zuji">
+							<option value="">请选择供</option>
+							<option th:selected="${registForm.zuji  eq codePojo.codeId}"
+							    th:each="codePojo : ${codePojoList}"
+							    th:value="${codePojo.codeId}" th:text="${codePojo.codeNm}">
+							</option>
+						</select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td>监护人</td>
+                        <td>
+                        	<input type="text" name="jianhu" th:value="${registForm.jianhu}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td>监护人电话</td>
+                        <td>
+                        	<input type="text" name="phone" th:value="${registForm.phone}" />
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td>出生年月日</td>
+                    	<td>
+                    		<input type="date" name ="stBirthday" th:value="${registForm.stBirthday}"></input>
+                    	</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br/>
+            <input type="hidden" name="doflg" th:value="${registForm.doflg}"/>
+            <input type="hidden" name="userId" th:value="${registForm.userId}"/>
+	        <input type="submit" name="regist" value="确认">
+	        <input type="button" name="back" value="返回" onclick="backToSearch();">
+        </form>
+
+    </body>
+</html>
