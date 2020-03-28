@@ -327,19 +327,17 @@
 						<div class="col-lg-9">
 							<div class="mn-vid-sc single_video">
 								<div class="vid-1">
-									<iframe src="https://player.vimeo.com/video/399547181" width="840" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+									<iframe id="videoWindow" src="https://player.vimeo.com/video/399547181" width="840" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 								</div><!--vid-1 end-->
 								<div class="dlcon">
 									<div class="content1">
 										<div class="dlconL fl">
-
 											<!--课程目录-->
 											<div class="dlinfo dlinfo2" style="display: block;">
 													<div class="div_xlbtn">
-														<a id="1qaz" href="javascript:;" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);">01_课程介绍.mp4 <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" onclick="player('./media/01_HTML基础篇.mp4')">开始学习</button></a>
-														<a href="javascript:;" class="video_list_num" onclick="player('./media/02_CSS基础篇.mp4')" style="background-color:#F0F8FF; color: rgb(120, 125, 130);">02_IDEA介绍.mp4  <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr">开始学习</button></a>
-														<a href="javascript:;" class="video_list_num" onclick="" style="background-color:#F0F8FF; color: rgb(120, 125, 130);">03_IDEA安装.mp4  <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr">开始学习</button></a>
-
+														<div th:each="jiaoChengChapterPojo:${listJiaoChengChapterPojo}">
+															<a id="1qaz" href="#" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);"><span th:text="${jiaoChengChapterPojo.jiaoChengChapter}" /> <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" th:attr="onclick='player(\'' + ${jiaoChengChapterPojo.jiaoChengId}+ ','+${jiaoChengChapterPojo.chapterNo} + '\');'">开始学习</button></a>
+														</div>
 													</div>
 											</div>
 										</div>
@@ -431,14 +429,13 @@
 
 
 		<script src="./js/popper.js"></script>
+		<script src="./js/popper.js"></script>
 		<script src="./js/bootstrap.min.js"></script>
 		<script src="./js/video.js"></script>
 		<script src="./js/script.js"></script>
 		<script>
-			function player(name){
-				var elem = document.getElementById("my-video_html5_api");
-				elem.src = name;
-				$(".vjs-big-play-button").click();
+			function player(id,no){
+                window.location.href = '/';
 			}
 		</script>
 

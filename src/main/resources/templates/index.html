@@ -194,7 +194,7 @@
 							<span>
 								<i class="icon-home"></i>
 							</span>
-							<a href="/index" title="">首页</a>
+							<a href="#" title="">首页</a>
 						</li>
 						<li>
 							<span>
@@ -328,7 +328,7 @@
 									<div th:each="jiaoChengTblPojo:${listJiaoChengTblPojo}" class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
 										<div class="videoo">
 											<div class="vid_thumbainl">
-												<a th:href="@{/goToWatch(bigCtgCode=${jiaoChengTblPojo.bigCtgCode},smallCtgCode=${jiaoChengTblPojo.smallCtgCode})}" title="">
+												<a th:href="@{/goToWatch(jiaoChengId=${jiaoChengTblPojo.jiaoChengId})}" title="">
 													<img th:src="${jiaoChengTblPojo.jiaoChengImg}" alt="">
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
@@ -336,7 +336,7 @@
 												</a>
 											</div>
 											<div class="video_info">
-												<h3><a th:text="${jiaoChengTblPojo.jiaoChengName}" th:href="@{/goToWatch(bigCtgCode=${jiaoChengTblPojo.bigCtgCode},smallCtgCode=${jiaoChengTblPojo.smallCtgCode})}" title=""></a></h3>
+												<h3><a th:text="${jiaoChengTblPojo.jiaoChengName}" th:href="@{/goToWatch(jiaoChengId=${jiaoChengTblPojo.jiaoChengId})}" title=""></a></h3>
 												<h4><a th:text="${jiaoChengTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
 											</div>
 										</div>
