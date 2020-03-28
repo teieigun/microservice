@@ -1405,16 +1405,12 @@ video::-webkit-media-text-track-display {
     display: block;
     width: 850px;
     height: 40px;
-    background-image: url(../images/abc.jpg);
-    background-repeat: no-repeat;
-    background-position: 10px 13px;
     line-height: 40px;
     text-indent: 35px;
     margin-bottom: 8px;
 	border-radius: 12px;
 	
 }
-a:hover{background-color: red;}
 
 .dlconL {
     width: 850px;
