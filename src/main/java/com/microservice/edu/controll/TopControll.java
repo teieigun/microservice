@@ -3,6 +3,9 @@ package com.microservice.edu.controll;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.microservice.edu.dao.JiaoChengTblDao;
+import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
+import com.microservice.edu.pojo.JiaoChengTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +41,20 @@ public class TopControll {
 		return "/index";
 	}
 
-	private void getIndexInfo(Model model) throws Exception {
+    @RequestMapping(value = "/video", method = RequestMethod.GET)
+    @Transactional(readOnly = true)
+    public String searchVideoBySmallCtg(Model model, String bigCtgCode, String smallCtgCode) throws Exception {
+
+        getIndexInfo(model);
+        List<JiaoChengTblExt1Pojo> listJiaoChengTblPojo = topPageService.searchAllEnableVideoByCtg(bigCtgCode,smallCtgCode);
+
+        model.addAttribute("listJiaoChengTblPojo", listJiaoChengTblPojo);
+
+        return "/index";
+    }
+
+
+    private void getIndexInfo(Model model) throws Exception {
 		List<List<SmallCategoryTblPojo>> listListSmallCategoryTblPojo = new ArrayList<List<SmallCategoryTblPojo>>();
 
 		//轮播菜单
@@ -48,32 +64,13 @@ public class TopControll {
 				listListSmallCategoryTblPojo.add(topPageService
 						.getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
 			}
-		}
-        //获取首页视频地址，图片
+		}        //获取首页视频地址，图片
+        List<JiaoChengTblExt1Pojo> listJiaoChengTblPojo = topPageService.searchAllEnableVideo();
 
 
+        model.addAttribute("listJiaoChengTblPojo", listJiaoChengTblPojo);
 		model.addAttribute("listListSmallCategoryTblPojo", listListSmallCategoryTblPojo);
 		model.addAttribute("bigCtgList", bigCtgList);
-	}
-
-	@RequestMapping(value = "/video", method = RequestMethod.GET)
-	@Transactional(readOnly = true)
-	public String searchVideoBySmallCtg(Model model, String bigCtg, String smallCtg) throws Exception {
-
-		List<List<SmallCategoryTblPojo>> listListSmallCategoryTblPojo = new ArrayList<List<SmallCategoryTblPojo>>();
-
-		List<BigCategoryTblPojo> bigCtgList = topPageService.getPageInfoLunBoBigCtg();
-		if (bigCtgList != null && bigCtgList.size() > 0) {
-			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
-				listListSmallCategoryTblPojo.add(topPageService
-						.getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
-			}
-		}
-
-		model.addAttribute("listListSmallCategoryTblPojo", listListSmallCategoryTblPojo);
-		model.addAttribute("bigCtgList", bigCtgList);
-
-		return "/index";
 	}
 
 

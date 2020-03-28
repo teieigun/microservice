@@ -17,7 +17,6 @@ public class LoginDao {
 	 @Autowired
 	 JdbcTemplate jdbcTemplate;
 
-	@GetMapping("getLoginInfo")
 	  public List<LoginPojo> getLoginInfo(String userId,String passwd){
 
 		String sql = "SELECT ";

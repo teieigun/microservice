@@ -2,6 +2,8 @@ package com.microservice.edu.dao;
 
 import java.util.List;
 
+import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
+import com.microservice.edu.pojo.JiaoChengTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +23,6 @@ public class JiaoChengTblDao {
 	/**
 	 * 主页轮播 大分类菜单显示
 	 * */
-	@GetMapping("getAllBigCtg")
 	public List<BigCategoryTblPojo> getAllBigCtg() {
 
 		String sql = "SELECT ";
@@ -38,7 +39,6 @@ public class JiaoChengTblDao {
 	/**
 	 * 主页轮播 小分类菜单显示
 	 * */
-	@GetMapping("getBigCtgByPk")
 	public List<SmallCategoryTblPojo> getSmallCtgByPk(String bigCtgCode) {
 
 		String sql = "select ";
@@ -54,5 +54,58 @@ public class JiaoChengTblDao {
 		return list;
 	}
 
+	/**
+	 * 可以免费观看的视频
+	 * */
+	public List<JiaoChengTblExt1Pojo> getAllEnableVideo(String level) {
+
+		String sql = "SELECT ";
+		sql = sql + "     t1.JIAO_CHENG_ID as jiaoChengId ";
+		sql = sql + "   , t1.JIAO_CHENG_NAME as jiaoChengName ";
+		sql = sql + "   , t2.CTG_NAME as bitCtgName ";
+		sql = sql + "   , t1.BIG_CTG_CODE as bigCtgCode ";
+		sql = sql + "   , t1.SMALL_CTG_CODE as smallCtgCode ";
+		sql = sql + "   , t1.JIAO_CHENG_JIESHAO as jiaoChengJieshao ";
+		sql = sql + "   , t1.JIAO_CHENG_IMG as jiaoChengImg ";
+		sql = sql + "   , t1.DEL ";
+		sql = sql + "   , t1.LEVLE  ";
+		sql = sql + " FROM ";
+		sql = sql + "   jiao_cheng_tbl t1 left join big_category_tbl t2 ";
+		sql = sql + "   on t1.BIG_CTG_CODE = t2.CTG_CODE ";
+		sql = sql + " WHERE ";
+		sql = sql + "   t1.LEVLE = ? ";
+		sql = sql + " and t1.DEL = '0' ";
+
+		List<JiaoChengTblExt1Pojo> list = jdbcTemplate.query(sql, new Object[] { level },new BeanPropertyRowMapper(JiaoChengTblExt1Pojo.class));
+		return list;
+	}
+
+	/**
+	 * 可以免费观看的视频
+	 * */
+	public List<JiaoChengTblExt1Pojo> getAllEnableVideoByCtg(String level,String bigCtgCode,String smallCtgCode) {
+
+		String sql = "SELECT ";
+		sql = sql + "     t1.JIAO_CHENG_ID as jiaoChengId ";
+		sql = sql + "   , t1.JIAO_CHENG_NAME as jiaoChengName ";
+		sql = sql + "   , t2.CTG_NAME as bitCtgName ";
+		sql = sql + "   , t1.BIG_CTG_CODE as bigCtgCode ";
+		sql = sql + "   , t1.SMALL_CTG_CODE as smallCtgCode ";
+		sql = sql + "   , t1.JIAO_CHENG_JIESHAO as jiaoChengJieshao ";
+		sql = sql + "   , t1.JIAO_CHENG_IMG as jiaoChengImg ";
+		sql = sql + "   , t1.DEL ";
+		sql = sql + "   , t1.LEVLE  ";
+		sql = sql + " FROM ";
+		sql = sql + "   jiao_cheng_tbl t1 left join big_category_tbl t2 ";
+		sql = sql + "   on t1.BIG_CTG_CODE = t2.CTG_CODE ";
+		sql = sql + " WHERE ";
+		sql = sql + "   t1.LEVLE = ? ";
+		sql = sql + "   and t1.BIG_CTG_CODE = ? ";
+		sql = sql + "   and t1.SMALL_CTG_CODE= ? ";
+		sql = sql + " and t1.DEL = '0' ";
+
+		List<JiaoChengTblExt1Pojo> list = jdbcTemplate.query(sql, new Object[] { level ,bigCtgCode,smallCtgCode},new BeanPropertyRowMapper(JiaoChengTblExt1Pojo.class));
+		return list;
+	}
 
 }

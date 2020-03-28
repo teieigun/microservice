@@ -21,7 +21,6 @@ public class StTableDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	@GetMapping("getLoginInfo")
 	public List<ListPojo> getLoginInfo(String studentId, String studentNm, String sex, String grade, String classNo) {
 
 		List<String> listPara = new ArrayList<String>();

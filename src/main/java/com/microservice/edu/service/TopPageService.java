@@ -2,6 +2,8 @@ package com.microservice.edu.service;
 
 import java.util.List;
 
+import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
+import com.microservice.edu.pojo.JiaoChengTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class TopPageService {
 
 	@Autowired
 	private BigCategoryTblDao bigCategoryTblDao;
+
+	//谁都可以观看
+	private static String ZERO_LEVEL ="0";
 
 	@Autowired
 	private JiaoChengTblDao jiaoChengTblDao;
@@ -43,4 +48,20 @@ public class TopPageService {
 
 		return resultList;
 	}
+
+	public List<JiaoChengTblExt1Pojo> searchAllEnableVideo() throws Exception {
+
+		List<JiaoChengTblExt1Pojo> resultList=jiaoChengTblDao.getAllEnableVideo(ZERO_LEVEL);
+
+		return resultList;
+	}
+
+	public List<JiaoChengTblExt1Pojo> searchAllEnableVideoByCtg(String bigCtgCode,String smallCtgCode) throws Exception {
+
+		List<JiaoChengTblExt1Pojo> resultList=jiaoChengTblDao.getAllEnableVideoByCtg(ZERO_LEVEL,bigCtgCode,smallCtgCode);
+
+		return resultList;
+	}
+
+
 }
