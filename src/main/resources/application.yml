@@ -2,8 +2,11 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/weifu?useUnicode=true&characterEncoding=utf8&serverTimezone=JST
     username: teieigun
-    password: duezwi4r
+    password: 1qaz2wsx
     driverClassName: com.mysql.jdbc.Driver
+
+# thinkPad passwd:1qaz2wsx
+# desktop passwd:duezwi4r
 
 server:  
   tomcat:
