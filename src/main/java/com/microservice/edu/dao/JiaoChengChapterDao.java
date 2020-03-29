@@ -37,4 +37,25 @@ public class JiaoChengChapterDao {
         return list;
     }
 
+
+    /**
+     * 可以免费观看的视频
+     * */
+    public List<JiaoChengChapterPojo> getOneChapter(String jiaoChengId,String chapterNo) {
+
+        String sql = "select ";
+        sql = sql + "     jiao_cheng_id       ";
+        sql = sql + "   , chapter_no          ";
+        sql = sql + "   , jiao_cheng_chapter  ";
+        sql = sql + "   , jiao_cheng_url      ";
+        sql = sql + " from";
+        sql = sql + "   jiao_cheng_chapter ";
+        sql = sql + " where";
+        sql = sql + "   jiao_cheng_id = ? ";
+        sql = sql + " and chapter_no = ? ";
+
+        List<JiaoChengChapterPojo> list = jdbcTemplate.query(sql,  new Object[] { jiaoChengId, chapterNo},new BeanPropertyRowMapper(JiaoChengChapterPojo.class));
+        return list;
+    }
+
 }

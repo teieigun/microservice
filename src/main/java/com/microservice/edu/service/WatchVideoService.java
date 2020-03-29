@@ -41,4 +41,11 @@ public class WatchVideoService {
 		return resultList;
 
 	}
+	public List<JiaoChengChapterPojo> changeChapter(String JiaoChengId,String chapterNo) throws Exception {
+
+		List<JiaoChengChapterPojo> resultList = jiaoChengChapterDao.getOneChapter(JiaoChengId,chapterNo);
+
+		return resultList;
+
+	}
 }

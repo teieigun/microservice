@@ -30,6 +30,25 @@ public class WatchVideoControll {
 
         List<JiaoChengChapterPojo> listJiaoChengChapterPojo =  watchVideoService.getChapterList(jiaoChengId);
         model.addAttribute("listJiaoChengChapterPojo", listJiaoChengChapterPojo);
+        if(listJiaoChengChapterPojo !=null && listJiaoChengChapterPojo.size()>0){
+            model.addAttribute("jiaoChengChapterPojoOne", listJiaoChengChapterPojo.get(0));
+        }
+        return "/watchVideo";
+    }
+
+    @RequestMapping(value = "/changeChapter", method = RequestMethod.GET)
+    @Transactional(readOnly = true)
+    public String changeChapter(Model model,String jiaoChengId,String chapterNo) throws Exception {
+
+        System.out.println("jiaoChengId:"+jiaoChengId);
+        List<JiaoChengChapterPojo> listJiaoChengChapterPojo1 =  watchVideoService.changeChapter(jiaoChengId,chapterNo);
+        if(listJiaoChengChapterPojo1!=null && listJiaoChengChapterPojo1.size()>0){
+            model.addAttribute("jiaoChengChapterPojoOne", listJiaoChengChapterPojo1.get(0));
+        }
+
+
+        List<JiaoChengChapterPojo> listJiaoChengChapterPojo2 =  watchVideoService.getChapterList(jiaoChengId);
+        model.addAttribute("listJiaoChengChapterPojo", listJiaoChengChapterPojo2);
         return "/watchVideo";
     }
 
