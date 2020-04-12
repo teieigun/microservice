@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Oren Video Template</title>
@@ -332,7 +332,15 @@
 				<a href="#" title="" class="fg_btn">忘记了密码?</a>
 			</div><!--user-account end--->
 			<div class="fr-ps">
-				<h1>如果您还没有账号. <a href="/addUser" title="" class="show_signup">请在这里注册.</a></h1>
+				<h1>如果您还没有账号. 请输入邮箱来注册.</a></h1>
+				<div class="input-sec">
+					<form name="rgtForm" method="post" th:action="@{/emailRegist}">
+						<input type="text" name="email" size="35" placeholder="Email address">
+						<input type="hidden" name="action" th:value="register" />
+						<button type="submit">提交</button>
+					</form>
+				</div>
+
 			</div><!--fr-ps end-->
 		</div><!--login end--->
 
