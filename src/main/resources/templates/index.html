@@ -104,13 +104,13 @@
 									<li><a href="#" title="">导航</a>
 										<div class="mega-menu">
 											<ul>
-												<li><a href="/index" title="">主页</a></li>
-												<li><a href="/index" title="">基本信息</a></li>
-												<li><a href="/index" title="">历史记录</a></li>
-												<li><a href="/index" title="">我的问题</a></li>
-												<li><a href="/index" title="">我的技术简历</a></li>
-												<li><a href="/index" title="">面试技巧</a></li>
-												<li><a href="/index" title="">我的项目</a></li>
+												<li><a href="/tech/index" title="">主页</a></li>
+												<li><a href="/tech/index" title="">基本信息</a></li>
+												<li><a href="/tech/index" title="">历史记录</a></li>
+												<li><a href="/tech/index" title="">我的问题</a></li>
+												<li><a href="/tech/index" title="">我的技术简历</a></li>
+												<li><a href="/tech/index" title="">面试技巧</a></li>
+												<li><a href="/tech/index" title="">我的项目</a></li>
 
 											</ul>
 											<ul>
@@ -131,10 +131,10 @@
 										</div>
 										<div class="clearfix"></div>
 									</li>
-									<li><a href="/index" title="">视频分类</a></li>
-									<li><a href="/index" title="">频道</a></li>
-									<li><a href="/index" title="">直播间</a></li>
-									<li><a href="/index" title="">轻松一下</a></li>
+									<li><a href="/tech/index" title="">视频分类</a></li>
+									<li><a href="/tech/index" title="">频道</a></li>
+									<li><a href="/tech/index" title="">直播间</a></li>
+									<li><a href="/tech/index" title="">轻松一下</a></li>
 								</ul>
 							</nav><!--navigation end-->
 							<ul class="shr_links">
@@ -326,9 +326,9 @@
 								<div class="row">
 									<!---------add by tei start ---------->
 									<div th:each="jiaoChengTblPojo:${listJiaoChengTblPojo}" class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
-										<div class="videoo">
+										<div class="video">
 											<div class="vid_thumbainl">
-												<a th:href="@{/goToWatch(jiaoChengId=${jiaoChengTblPojo.jiaoChengId})}" title="">
+												<a th:href="@{/tech/video(jiaoChengId=${jiaoChengTblPojo.jiaoChengId})}" title="">
 													<img th:src="${jiaoChengTblPojo.jiaoChengImg}" alt="">
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
@@ -336,7 +336,7 @@
 												</a>
 											</div>
 											<div class="video_info">
-												<h3><a th:text="${jiaoChengTblPojo.jiaoChengName}" th:href="@{/goToWatch(jiaoChengId=${jiaoChengTblPojo.jiaoChengId})}" title=""></a></h3>
+												<h3><a th:text="${jiaoChengTblPojo.jiaoChengName}" th:href="@{/tech/video(jiaoChengId=${jiaoChengTblPojo.jiaoChengId})}" title=""></a></h3>
 												<h4><a th:text="${jiaoChengTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
 											</div>
 										</div>

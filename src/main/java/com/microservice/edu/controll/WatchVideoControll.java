@@ -22,7 +22,7 @@ public class WatchVideoControll {
     @Autowired
     WatchVideoService watchVideoService;
 
-    @RequestMapping(value = "/goToWatch", method = RequestMethod.GET)
+    @RequestMapping(value = "/edu/watch", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String goToVideoPage(Model model,String jiaoChengId) throws Exception {
 

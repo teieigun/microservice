@@ -23,7 +23,7 @@ public class TopControll {
 	@Autowired
 	TopPageService topPageService;
 
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/tech/index", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String index(Model model) throws Exception {
 
@@ -36,12 +36,22 @@ public class TopControll {
 	@Transactional(readOnly = true)
 	public String index2(Model model) throws Exception {
 
-		getIndexInfo(model);
+		//getIndexInfo(model);
 
-		return "/index";
+		return "/login";
 	}
 
-    @RequestMapping(value = "/video", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	@Transactional(readOnly = true)
+	public String signin(Model model) throws Exception {
+
+		//getIndexInfo(model);
+
+		return "/login";
+	}
+
+    @RequestMapping(value = "/tech/video", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String searchVideoBySmallCtg(Model model, String bigCtgCode, String smallCtgCode) throws Exception {
 
