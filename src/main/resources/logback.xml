@@ -5,7 +5,7 @@
     変数の定義を行います。
     2行目は外部のプロパティファイルの内容から定義します。
   -->
-  <property name="LOG_DIR" value="/var/log/mqProject" />
+  <property name="LOG_DIR" value="/var/microservice" />
 
   <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
     <Marker>com.example.sample.animal.Cat</Marker>
@@ -40,7 +40,7 @@
     時間とファイルサイズでアーカイブします。
   -->
   <appender name="ROLLING_A" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <file>${LOG_DIR}/roll_d_lbsample.log</file>
+    <file>${LOG_DIR}/microservice.log</file>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <fileNamePattern>${LOG_DIR}/roll_d_%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
       <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">

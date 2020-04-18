@@ -4,7 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
+import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.microservice.edu.pojo.UserPojo;
 /**
@@ -13,6 +18,10 @@ import com.microservice.edu.pojo.UserPojo;
  */
 @Repository
 public class UserDao {
+
+    /** DAO */
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     public HashMap<String, String> map=new HashMap<String, String>();
     /**
@@ -25,20 +34,21 @@ public class UserDao {
     private String validateCode;//激活码
     private Date  registerTime;//注册时间
      */
-    public void save(UserPojo user){
-        System.out.println("cicicici");
-        map.put("id", String.valueOf(user.getId()));
-        map.put("email", user.getEmail());
-        map.put("validateCode", user.getValidateCode());
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
-        String time=sdf.format(user.getRegisterTime());
-        map.put("registerTime", time);
-        int status=user.getStatus();
-        map.put("status", String.valueOf(status));
-        map.put("name", user.getName());
-        String t2=sdf.format(user.getLastActivateTime());
-        map.put("activeLastTime", String.valueOf(t2));
-        System.out.println("=======s========="+status);
+    public void saveAllInfo(UserPojo user){
+
+        String insertSql = " INSERT INTO microService.user_temp_profile " +
+                "(ID,NAME,PASSWD, EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME, DEL) VALUES(?,?,?,?,?,?,?,?)";
+
+        jdbcTemplate.update(insertSql,new Object[] { user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
+
+    }
+
+    public void saveSimpleInfo(UserPojo user){
+
+        String insertSql = " INSERT INTO microService.user_temp_profile " +
+                "(ID,EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?,?)";
+
+        jdbcTemplate.update(insertSql,new Object[] { user.getId(),user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime()});
 
     }
 
