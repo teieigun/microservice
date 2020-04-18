@@ -75,9 +75,6 @@ public class RegisterValidateService {
                 if(currentTime.before(user.getLastActivateTime())) {
                         //激活成功， //并更新用户的激活状态，为已激活
                         System.out.println("==sq==="+user.getStatus());
-                        user.setStatus(1);//把状态改为激活
-                        System.out.println("==sh==="+user.getStatus());
-                        userDao.update(user);
                 } else { throw new ServiceException("激活码已过期！");
                 }
             } else {
@@ -86,5 +83,10 @@ public class RegisterValidateService {
         } else {
             throw new ServiceException("激活码不正确");
         }
+    }
+
+    ///传递激活码和email过来
+    public void setPasswd(String passwd,String validateCode)throws ServiceException, ParseException{
+        userDao.setNewPass(passwd,validateCode);
     }
 }

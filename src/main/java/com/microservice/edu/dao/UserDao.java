@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -36,7 +37,7 @@ public class UserDao {
      */
     public void saveAllInfo(UserPojo user){
 
-        String insertSql = " INSERT INTO microService.user_temp_profile " +
+        String insertSql = " INSERT INTO user_temp_profile " +
                 "(ID,NAME,PASSWD, EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME, DEL) VALUES(?,?,?,?,?,?,?,?)";
 
         jdbcTemplate.update(insertSql,new Object[] { user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
@@ -45,8 +46,8 @@ public class UserDao {
 
     public void saveSimpleInfo(UserPojo user){
 
-        String insertSql = " INSERT INTO microService.user_temp_profile " +
-                "(ID,EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?,?)";
+        String insertSql = " INSERT INTO user_temp_profile " +
+                "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?)";
 
         jdbcTemplate.update(insertSql,new Object[] { user.getId(),user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime()});
 
@@ -55,14 +56,11 @@ public class UserDao {
     /**
      * @更新 user
      */
-    public void update(UserPojo user){
-        map.put("email", user.getEmail());
-        map.put("validateCode", user.getValidateCode());
-        Date time=user.getRegisterTime();
-        map.put("registerTime", String.valueOf(time));
-        int status=user.getStatus();
-        map.put("status", String.valueOf(status));
-        System.out.println("=======st========="+status);
+    public void setNewPass(String passwd,String validateCode){
+
+        String updateSql = " update user_temp_profile set PASSWD=?, STATUS=? where VALIDATE_CODE=? ";
+
+        jdbcTemplate.update(updateSql,new Object[] { passwd, MicroServiceConstants.USER_STATUS_PASSED,validateCode});
     }
 
     /**

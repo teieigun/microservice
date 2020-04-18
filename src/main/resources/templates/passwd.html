@@ -131,13 +131,15 @@
 				<span>输入登录密码</span>
 			</div><!--hd-lg end-->
 			<div class="user-account-pr">
-				<form>
+				<form name="rgtForm" method="post" th:action="@{/setPass}">
 					<div class="input-sec">
-						<input type="Password" name="password" placeholder="Password">
+						<input type="Password" name="passwd" placeholder="Password">
 					</div>
 					<div class="input-sec">
-						<input type="Password" name="confirm" placeholder="Confirm Password">
+						<input type="Password" name="confirmPasswd" placeholder="Confirm Password">
 					</div>
+
+					<input th:type="hidden" name="validateCode" th:value="${validateCode}" />
 					<div class="input-sec mb-0">
 						<button type="submit">Login</button>
 					</div><!--input-sec end-->

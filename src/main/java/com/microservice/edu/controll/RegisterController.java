@@ -2,8 +2,9 @@ package com.microservice.edu.controll;
 
 import java.text.ParseException;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import com.microservice.edu.form.LoginForm;
+import com.microservice.edu.form.PassForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -11,7 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.microservice.edu.service.RegisterValidateService;
-import com.microservice.edu.util.ServiceException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 
 @Controller
 public class RegisterController {
@@ -40,20 +47,22 @@ public class RegisterController {
 
     }
 
-    @RequestMapping(value="/passwd",method={RequestMethod.GET})
-    public String passwd(Model model ,String validateCode) throws ParseException{
+    @RequestMapping(value = "/passwd", method = RequestMethod.POST)
+    @Transactional(readOnly = true)
+    public String passwd(Model model, @ModelAttribute("form") @Valid String validateCode, BindingResult result) throws Exception {
 
-//        ModelAndView mav=new ModelAndView();
-//            try {
-//                //调用激活方法
-//                service.processActivate(validateCode);
-//                mav.setViewName("register/activate_success");
-//            } catch (ServiceException e) {
-//                model.addAttribute("message", e.getMessage());
-//                mav.setViewName("register/activate_failure");
-//            }
+        model.addAttribute("validateCode", validateCode);
 
         return "/passwd";
+    }
+
+    @RequestMapping(value = "/setPass", method = RequestMethod.POST)
+    @Transactional
+    public String setPass(Model model, @ModelAttribute("form") @Valid PassForm form, BindingResult result) throws Exception {
+
+        service.setPasswd(form.passwd,form.validateCode);
+
+        return "/tech/video";
     }
 
 }
