@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.microservice.edu.constants.StdConstants;
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.form.RegistForm;
 import com.microservice.edu.pojo.CodePojo;
 import com.microservice.edu.pojo.StInfoPojo;
@@ -54,7 +54,7 @@ public class UpdateControll {
 			
 		}
 		
-		List<CodePojo> codePojoList = commonServiceObj.getCodeList(StdConstants.CODE_SHENG);
+		List<CodePojo> codePojoList = commonServiceObj.getCodeList(MicroServiceConstants.CODE_SHENG);
 		model.addAttribute("codePojoList", codePojoList);
 		
 		registForm.setDoflg(doflg);
