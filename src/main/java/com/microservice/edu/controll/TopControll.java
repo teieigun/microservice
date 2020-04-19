@@ -23,7 +23,7 @@ public class TopControll {
 	@Autowired
 	TopPageService topPageService;
 
-	@RequestMapping(value = "/tech/index", method = RequestMethod.GET)
+		@RequestMapping(value = "/tech/index", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String index(Model model) throws Exception {
 

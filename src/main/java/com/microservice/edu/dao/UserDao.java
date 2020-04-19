@@ -63,6 +63,15 @@ public class UserDao {
         jdbcTemplate.update(updateSql,new Object[] {MicroServiceConstants.USER_STATUS_NOPASS,new Date(),email});
     }
 
+    public void updateUserStatus(String email,int status){
+
+        String updateSql = " update user_temp_profile set STATUS=? where EMAIL=? ";
+
+        jdbcTemplate.update(updateSql,new Object[] {status,email});
+    }
+
+
+
     /**
      * @throws ParseException
      * @查找信息
@@ -92,7 +101,7 @@ public class UserDao {
      * @throws ParseException
      * @查找信息
      */
-    public UserPojo findByVcd(String validateCd) throws ParseException{
+    public UserPojo findByVcd(String validateCd,int status) throws ParseException{
 
         List<UserPojo> list = null;
 
@@ -103,9 +112,9 @@ public class UserDao {
         sql = sql + "     REGISTER_TIME AS registerTime, ";
         sql = sql + "     DEL AS del ";
         sql = sql + " FROM   ";
-        sql = sql + "   user_temp_profile WHERE VALIDATE_CODE = ?";
+        sql = sql + "   user_temp_profile WHERE VALIDATE_CODE = ? and STATUS = ?";
 
-        list = jdbcTemplate.query(sql, new Object[] {validateCd}, new BeanPropertyRowMapper(UserPojo.class));
+        list = jdbcTemplate.query(sql, new Object[] {validateCd,status}, new BeanPropertyRowMapper(UserPojo.class));
 
         if(list !=null && list.size() > 0) {
             return  list.get(0);

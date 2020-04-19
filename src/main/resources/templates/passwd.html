@@ -131,14 +131,18 @@
 				<span>输入登录密码</span>
 			</div><!--hd-lg end-->
 			<div class="user-account-pr">
-				<form name="rgtForm" method="post" th:action="@{/setPass}">
+				<form name="PassForm" method="post" th:action="@{/setPass}">
 					<div class="input-sec">
-						<input type="Password" name="passwd" placeholder="Password">
+						用户账号：<input type="text" name="email" th:value="${email}" />
+						</div>
+					<div class="input-sec">
+						输入密码：<input type="Password" name="passwd" placeholder="Password" />
 					</div>
 					<div class="input-sec">
-						<input type="Password" name="confirmPasswd" placeholder="Confirm Password">
+						确认密码：<input type="Password" name="confirmPasswd" placeholder="Confirm Password" />
 					</div>
 
+					<span th:text="${validateCode}"></span>
 					<input th:type="hidden" name="validateCode" th:value="${validateCode}" />
 					<div class="input-sec mb-0">
 						<button type="submit">Login</button>
@@ -166,7 +170,7 @@
 				</svg>
 			</a>
 		</div>
-	</section><!--more_items_sec end-->			
+	</section><!--more_items_sec end-->
 
 
 </div><!--wrapper end-->

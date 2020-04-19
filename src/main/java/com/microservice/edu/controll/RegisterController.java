@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 
 import com.microservice.edu.form.LoginForm;
 import com.microservice.edu.form.PassForm;
+import com.microservice.edu.pojo.UserPojo;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -47,20 +48,20 @@ public class RegisterController {
 
     }
 
-    @RequestMapping(value = "/passwd", method = RequestMethod.POST)
+    @RequestMapping(value = "/passwd", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public String passwd(Model model, @ModelAttribute("form") @Valid String validateCode, BindingResult result) throws Exception {
-
-        model.addAttribute("validateCode", validateCode);
-
+    public String passwd(Model model, String validateCode) throws Exception {
+        UserPojo userPojo =service.getUserInfo(validateCode);
+        model.addAttribute("email", userPojo.getEmail());
+        model.addAttribute("validateCode", userPojo.getValidateCode());
         return "/passwd";
     }
 
     @RequestMapping(value = "/setPass", method = RequestMethod.POST)
     @Transactional
-    public String setPass(Model model, @ModelAttribute("form") @Valid PassForm form, BindingResult result) throws Exception {
+    public String setPass(Model model, PassForm form, BindingResult result) throws Exception {
 
-        service.setPasswd(form.passwd,form.validateCode);
+        service.setNewPasswd(form.passwd,form.validateCode);
 
         return "/tech/video";
     }

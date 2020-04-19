@@ -9,5 +9,8 @@ public final class MicroServiceConstants {
 	public static final int USER_STATUS_NOPASS =0;
 
 	//用户状态 1：通过认证状态的用户
-	public static final int USER_STATUS_PASSED =1;
+	public static final int USER_STATUS_PASSING =1;
+
+	//用户状态 2：通过认证状态的用户
+	public static final int USER_STATUS_PASSED =2;
 }

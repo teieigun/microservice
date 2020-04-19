@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()//允许表单登录
                 .loginPage("/signin")//登录页面
                 .loginProcessingUrl("/login")
-                .successForwardUrl("/tech/video")//自定义登录成功的页面地址
+                .successForwardUrl("/tech/index")//自定义登录成功的页面地址
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
