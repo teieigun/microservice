@@ -23,14 +23,6 @@ public class UsersControll {
     WatchVideoService watchVideoService;
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    @Transactional(readOnly = true)
-    public String login(Model model,String jiaoChengId) throws Exception {
-
-
-        return "/login";
-    }
-
     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String addUser(Model model,String jiaoChengId) throws Exception {

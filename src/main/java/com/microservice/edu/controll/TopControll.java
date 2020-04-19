@@ -23,7 +23,7 @@ public class TopControll {
 	@Autowired
 	TopPageService topPageService;
 
-		@RequestMapping(value = "/tech/index", method = RequestMethod.GET)
+		@RequestMapping(value = "/login", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String index(Model model) throws Exception {
 
@@ -68,7 +68,7 @@ public class TopControll {
 		List<List<SmallCategoryTblPojo>> listListSmallCategoryTblPojo = new ArrayList<List<SmallCategoryTblPojo>>();
 
 		//轮播菜单
-		List<BigCategoryTblPojo> bigCtgList = topPageService.getPageInfoLunBoBigCtg();
+			List<BigCategoryTblPojo> bigCtgList = topPageService.getPageInfoLunBoBigCtg();
 		if (bigCtgList != null && bigCtgList.size() > 0) {
 			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
 				listListSmallCategoryTblPojo.add(topPageService

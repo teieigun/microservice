@@ -62,7 +62,7 @@ public class JiaoChengTblDao {
 		String sql = "SELECT ";
 		sql = sql + "     t1.JIAO_CHENG_ID as jiaoChengId ";
 		sql = sql + "   , t1.JIAO_CHENG_NAME as jiaoChengName ";
-		sql = sql + "   , t2.CTG_NAME as bitCtgName ";
+		sql = sql + "   , t2.BIG_CTG_NAME as bitCtgName ";
 		sql = sql + "   , t1.BIG_CTG_CODE as bigCtgCode ";
 		sql = sql + "   , t1.SMALL_CTG_CODE as smallCtgCode ";
 		sql = sql + "   , t1.JIAO_CHENG_JIESHAO as jiaoChengJieshao ";
@@ -71,9 +71,9 @@ public class JiaoChengTblDao {
 		sql = sql + "   , t1.LEVLE  ";
 		sql = sql + " FROM ";
 		sql = sql + "   jiao_cheng_tbl t1 left join big_category_tbl t2 ";
-		sql = sql + "   on t1.BIG_CTG_CODE = t2.CTG_CODE ";
+		sql = sql + "   on t1.BIG_CTG_CODE = t2.BIG_CTG_NAME ";
 		sql = sql + " WHERE ";
-		sql = sql + "   t1.LEVLE = ? ";
+		sql = sql + "   t1.LEVLE < ? ";
 		sql = sql + " and t1.DEL = '0' ";
 
 		List<JiaoChengTblExt1Pojo> list = jdbcTemplate.query(sql, new Object[] { level },new BeanPropertyRowMapper(JiaoChengTblExt1Pojo.class));

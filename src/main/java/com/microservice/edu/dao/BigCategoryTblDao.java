@@ -22,14 +22,14 @@ public class BigCategoryTblDao {
 	  public List<BigCategoryTblPojo> getAllBigCtg(){
 
 		String sql = "SELECT ";
-		sql =sql + "    T1.CTG_CODE as ctgCode, ";
-		sql =sql + "    T1.CTG_NAME  as ctgName";
-		sql =sql + "    FROM BIG_CATEGORY_TBL T1 ";
-		sql =sql + "   WHERE T1.DEL IS NOT NULL ";
-		sql =sql + "   ORDER BY T1.CTG_CODE ";
+		sql =sql + "    T1.BIG_CTG_CODE as ctgCode, ";
+		sql =sql + "    T1.BIG_CTG_NAME  as ctgName";
+		sql =sql + "    FROM big_category_tbl T1 ";
+		sql =sql + "   WHERE T1.DEL = 0 ";
+		sql =sql + "   ORDER BY T1.BIG_CTG_CODE ";
 
 
-	    List<BigCategoryTblPojo> list= jdbcTemplate.query(sql, new BeanPropertyRowMapper(BigCategoryTblPojo.class));
+		List<BigCategoryTblPojo> list= jdbcTemplate.query(sql, new BeanPropertyRowMapper(BigCategoryTblPojo.class));
 	    return list;
 	  }
 }
