@@ -5,31 +5,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class UserPojo {
-    private Long id;
-    private String name;
     private String password;
     private String email;//注册账号
     private int status=0;//激活状态
     private String validateCode;//激活码
     private Date  registerTime;//注册时间
-
-
-    /////////////////
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getPassword() {
         return password;

@@ -2,11 +2,13 @@ package com.microservice.edu.dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.pojo.CodePojo;
 import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -35,21 +37,12 @@ public class UserDao {
     private String validateCode;//激活码
     private Date  registerTime;//注册时间
      */
-    public void saveAllInfo(UserPojo user){
+    public void saveUserInfo(UserPojo user){
 
         String insertSql = " INSERT INTO user_temp_profile " +
-                "(ID,NAME,PASSWD, EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME, DEL) VALUES(?,?,?,?,?,?,?,?)";
+                "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?,?)";
 
-        jdbcTemplate.update(insertSql,new Object[] { user.getId(),user.getName(),user.getPassword(),user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
-
-    }
-
-    public void saveSimpleInfo(UserPojo user){
-
-        String insertSql = " INSERT INTO user_temp_profile " +
-                "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?)";
-
-        jdbcTemplate.update(insertSql,new Object[] { user.getId(),user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime()});
+        jdbcTemplate.update(insertSql,new Object[] {user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
 
     }
 
@@ -63,19 +56,60 @@ public class UserDao {
         jdbcTemplate.update(updateSql,new Object[] { passwd, MicroServiceConstants.USER_STATUS_PASSED,validateCode});
     }
 
+    public void resetUser(String email){
+
+        String updateSql = " update user_temp_profile set STATUS=?, REGISTER_TIME=? where EMAIL=? ";
+
+        jdbcTemplate.update(updateSql,new Object[] {MicroServiceConstants.USER_STATUS_NOPASS,new Date(),email});
+    }
+
     /**
      * @throws ParseException
      * @查找信息
      */
-    public UserPojo find(String email) throws ParseException{
-        UserPojo user=new UserPojo();
-        user.setEmail(map.get("email"));
-        user.setName(map.get("name"));
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddhhmmss");
-        Date day=sdf.parse(map.get("registerTime"));
-        user.setRegisterTime(day);
-        user.setStatus(Integer.valueOf(map.get("status")));
-        user.setValidateCode(map.get("validateCode"));
-        return user;
+    public UserPojo findbyPk(String email) throws ParseException{
+
+        List<UserPojo> list = null;
+
+        String sql = "SELECT ";
+        sql = sql + "     PASSWD  AS passwd, ";
+        sql = sql + "     EMAIL   AS email, ";
+        sql = sql + "     VALIDATE_CODE AS validateCode, ";
+        sql = sql + "     REGISTER_TIME AS registerTime, ";
+        sql = sql + "     DEL AS del ";
+        sql = sql + " FROM   ";
+        sql = sql + "   user_temp_profile WHERE EMAIL = ?";
+
+        list = jdbcTemplate.query(sql, new Object[] {email}, new BeanPropertyRowMapper(UserPojo.class));
+
+        if(list !=null && list.size() > 0) {
+            return  list.get(0);
+        }
+        return new UserPojo();
+    }
+
+    /**
+     * @throws ParseException
+     * @查找信息
+     */
+    public UserPojo findByVcd(String validateCd) throws ParseException{
+
+        List<UserPojo> list = null;
+
+        String sql = "SELECT ";
+        sql = sql + "     PASSWD  AS passwd, ";
+        sql = sql + "     EMAIL   AS email, ";
+        sql = sql + "     VALIDATE_CODE AS validateCode, ";
+        sql = sql + "     REGISTER_TIME AS registerTime, ";
+        sql = sql + "     DEL AS del ";
+        sql = sql + " FROM   ";
+        sql = sql + "   user_temp_profile WHERE VALIDATE_CODE = ?";
+
+        list = jdbcTemplate.query(sql, new Object[] {validateCd}, new BeanPropertyRowMapper(UserPojo.class));
+
+        if(list !=null && list.size() > 0) {
+            return  list.get(0);
+        }
+        return new UserPojo();
     }
 }
