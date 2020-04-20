@@ -39,7 +39,7 @@ public class UserDao {
      */
     public void saveUserInfo(UserPojo user){
 
-        String insertSql = " INSERT INTO user_temp_profile " +
+        String insertSql = " INSERT INTO user_base_profile " +
                 "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?,?)";
 
         jdbcTemplate.update(insertSql,new Object[] {user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
@@ -51,21 +51,21 @@ public class UserDao {
      */
     public void setNewPass(String passwd,String validateCode){
 
-        String updateSql = " update user_temp_profile set PASSWD=?, STATUS=? where VALIDATE_CODE=? ";
+        String updateSql = " update user_base_profile set PASSWD=?, STATUS=? where VALIDATE_CODE=? ";
 
         jdbcTemplate.update(updateSql,new Object[] { passwd, MicroServiceConstants.USER_STATUS_PASSED,validateCode});
     }
 
     public void resetUser(String email){
 
-        String updateSql = " update user_temp_profile set STATUS=?, REGISTER_TIME=? where EMAIL=? ";
+        String updateSql = " update user_base_profile set STATUS=?, REGISTER_TIME=? where EMAIL=? ";
 
         jdbcTemplate.update(updateSql,new Object[] {MicroServiceConstants.USER_STATUS_NOPASS,new Date(),email});
     }
 
     public void updateUserStatus(String email,int status){
 
-        String updateSql = " update user_temp_profile set STATUS=? where EMAIL=? ";
+        String updateSql = " update user_base_profile set STATUS=? where EMAIL=? ";
 
         jdbcTemplate.update(updateSql,new Object[] {status,email});
     }
@@ -87,7 +87,7 @@ public class UserDao {
         sql = sql + "     REGISTER_TIME AS registerTime, ";
         sql = sql + "     DEL AS del ";
         sql = sql + " FROM   ";
-        sql = sql + "   user_temp_profile WHERE EMAIL = ?";
+        sql = sql + "   user_base_profile WHERE EMAIL = ?";
 
         list = jdbcTemplate.query(sql, new Object[] {email}, new BeanPropertyRowMapper(UserPojo.class));
 
@@ -112,7 +112,7 @@ public class UserDao {
         sql = sql + "     REGISTER_TIME AS registerTime, ";
         sql = sql + "     DEL AS del ";
         sql = sql + " FROM   ";
-        sql = sql + "   user_temp_profile WHERE VALIDATE_CODE = ? and STATUS = ?";
+        sql = sql + "   user_base_profile WHERE VALIDATE_CODE = ? and STATUS = ?";
 
         list = jdbcTemplate.query(sql, new Object[] {validateCd,status}, new BeanPropertyRowMapper(UserPojo.class));
 

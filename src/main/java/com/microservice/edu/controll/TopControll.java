@@ -3,19 +3,19 @@ package com.microservice.edu.controll;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.microservice.edu.dao.JiaoChengTblDao;
+
 import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
-import com.microservice.edu.pojo.JiaoChengTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.microservice.edu.pojo.BigCategoryTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import com.microservice.edu.service.TopPageService;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 @Controller
 public class TopControll {
@@ -23,7 +23,16 @@ public class TopControll {
 	@Autowired
 	TopPageService topPageService;
 
-		@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@Transactional(readOnly = true)
+	public String login(Model model) throws Exception {
+
+		getIndexInfo(model);
+
+		return "/index";
+	}
+
+	@GetMapping(value = "/video",produces = {"text/plain;charset=UTF-8"})
 	@Transactional(readOnly = true)
 	public String index(Model model) throws Exception {
 
