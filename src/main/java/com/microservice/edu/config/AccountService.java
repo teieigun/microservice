@@ -3,11 +3,6 @@ package com.microservice.edu.config;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.microservice.edu.dao.UserBaseProfileDao;
-import com.microservice.edu.dao.UserDao;
-import com.microservice.edu.dao.UserRoleMstDao;
-import com.microservice.edu.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +11,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.microservice.edu.dao.UserBaseProfileDao;
+import com.microservice.edu.dao.UserRoleMstDao;
+import com.microservice.edu.pojo.Account;
+import com.microservice.edu.pojo.BigCategoryTblPojo;
+import com.microservice.edu.pojo.UserBaseProfilePojo;
+import com.microservice.edu.pojo.UserRoleMstPojo;
 
 /**
  * ログイン認証処理を行うサービスクラスです。
@@ -50,8 +52,6 @@ public class AccountService implements UserDetailsService {
         if (UserBaseProfilePojo == null) {
             throw new UsernameNotFoundException("ユーザ情報の取得に失敗しました。");
         }
-
-        System.out.println("********** tmUser = " + UserBaseProfilePojo.toString());
 
         // 有効なユーザロール情報を取得します。
         List<UserRoleMstPojo> userRoleMstPojoList= null;
