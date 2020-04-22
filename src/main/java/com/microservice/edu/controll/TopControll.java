@@ -3,18 +3,19 @@ package com.microservice.edu.controll;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.microservice.edu.pojo.BigCategoryTblPojo;
+import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import com.microservice.edu.service.TopPageService;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
@@ -27,12 +28,13 @@ public class TopControll {
 	@Transactional(readOnly = true)
 	public String login(Model model) throws Exception {
 
-		getIndexInfo(model);
+//		getIndexInfo(model);
 
-		return "/index";
+		return "/login";
 	}
 
 	@GetMapping(value = "/video",produces = {"text/plain;charset=UTF-8"})
+	@PreAuthorize("hasAuthority('5')")//拥有p1权限才可以访问
 	@Transactional(readOnly = true)
 	public String index(Model model) throws Exception {
 
