@@ -66,7 +66,7 @@
 													<span>
 														<i class="icon-logout"></i>
 													</span>
-													<a href="#" title="">注销</a>
+													<a href="javascript:OnLinkClick();">注销</a><br />
 												</li>
 											</ul>
 										</div><!--sd_menu end-->
@@ -89,9 +89,11 @@
 									</div>
 								</li>
 								<li>
-									<a href="/login" title="" class="btn-default">登录</a>
+									<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
 								</li>
 							</ul><!--controls-lv end-->
+							<!-- ログアウト -->
+							<form role="form" id="logoutForm" th:action="@{/logout}" method="post"></form>
 							<div class="clearfix"></div>
 						</div><!--top_header_content end-->
 					</div>
@@ -124,7 +126,8 @@
 														<li><a href="Single_Channel_Products.html" title="">Linux入門</a></li>
 													</ul>
 												</li>
-												<li><a href="/logout" title="">注销</a></li>
+												<li><a href="login.html" title="">注冊</a></li>
+												<li><a href="signup.html" title="">登錄</a></li>
 												<li><a href="/video/account" title="">客户信息</a></li>
 											</ul>
 										</div>
@@ -238,7 +241,7 @@
 							<span>
 								<i class="icon-logout"></i>
 							</span>
-							<a href="#" title="">注销</a>
+							<a href="javascript:OnLinkClick();" >注销</a><br />
 						</li>
 					</ul>
 				</div><!--sd_menu end-->
@@ -376,5 +379,14 @@
 		<script src="js/flatpickr.js"></script>
 		<script src="js/script.js"></script>
 		<script src="js/script2.js"></script>
+
+		<script>
+	        function OnLinkClick() {
+	            target = document.getElementById("logoutForm");
+	            target.submit();
+	            return false;
+		        }
+		  </script>
+
 	</body>
 </html>

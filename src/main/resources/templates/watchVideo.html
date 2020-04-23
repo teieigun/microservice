@@ -140,9 +140,10 @@
 									</div>
 								</li>
 								<li>
-									<a href="Upload_Video.html" title="" class="btn-default">注销</a>
+									<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
 								</li>
 							</ul><!--controls-lv end-->
+							<form role="form" id="logoutForm" th:action="@{/logout}" method="post"></form>
 							<div class="clearfix"></div>
 						</div><!--top_header_content end-->
 					</div>
@@ -295,7 +296,7 @@
 							<span>
 								<i class="icon-logout"></i>
 							</span>
-							<a href="#" title="">注销</a>
+							<a href="javascript:OnLinkClick();">注销</a><br />
 						</li>
 					</ul>
 				</div><!--sd_menu end-->
@@ -439,7 +440,12 @@
                 var result = para.split(',');
                 window.location.href = '/changeChapter?lessonId='+result[0]+'&chapterNo='+result[1];
 			}
-		</script>
 
+	        function OnLinkClick() {
+	            target = document.getElementById("logoutForm");
+	            target.submit();
+	            return false;
+		        }
+		  </script>
 	</body>
 </html>

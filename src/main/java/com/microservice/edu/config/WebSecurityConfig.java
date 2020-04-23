@@ -37,11 +37,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
             .defaultSuccessUrl("/video")
             .usernameParameter("username").passwordParameter("password")
-            .and()
-            .logout()
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/regist?logout")
             .permitAll();
+            
+            http.logout()
+            .logoutSuccessUrl("/") // ログアウト成功時の遷移先URL
+            .permitAll();          // すべてのユーザに対して、ログアウトページへのアクセスを許す
+            
     	}catch(Exception e) {
     		System.out.println(e.toString());
     	}
