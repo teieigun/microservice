@@ -1,10 +1,10 @@
 package com.microservice.edu.service;
 
 import com.microservice.edu.dao.BigCategoryTblDao;
-import com.microservice.edu.dao.JiaoChengChapterDao;
-import com.microservice.edu.dao.JiaoChengTblDao;
+import com.microservice.edu.dao.LessonChapterDao;
+import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
-import com.microservice.edu.pojo.JiaoChengChapterPojo;
+import com.microservice.edu.pojo.LessonChapterPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +17,10 @@ public class WatchVideoService {
 	private BigCategoryTblDao bigCategoryTblDao;
 
 	@Autowired
-	private JiaoChengTblDao jiaoChengTblDao;
+	private LessonTblDao LessonTblDao;
 
 	@Autowired
-	private JiaoChengChapterDao jiaoChengChapterDao;
+	private LessonChapterDao LessonChapterDao;
 
 
 	//谁都可以观看
@@ -34,16 +34,16 @@ public class WatchVideoService {
 		return resultList;
 	}
 
-	public List<JiaoChengChapterPojo> getChapterList(String JiaoChengId) throws Exception {
+	public List<LessonChapterPojo> getChapterList(String LessonId) throws Exception {
 
-		List<JiaoChengChapterPojo> resultList = jiaoChengChapterDao.getChapterList(JiaoChengId);
+		List<LessonChapterPojo> resultList = LessonChapterDao.getChapterList(LessonId);
 
 		return resultList;
 
 	}
-	public List<JiaoChengChapterPojo> changeChapter(String JiaoChengId,String chapterNo) throws Exception {
+	public List<LessonChapterPojo> changeChapter(String LessonId,String chapterNo) throws Exception {
 
-		List<JiaoChengChapterPojo> resultList = jiaoChengChapterDao.getOneChapter(JiaoChengId,chapterNo);
+		List<LessonChapterPojo> resultList = LessonChapterDao.getOneChapter(LessonId,chapterNo);
 
 		return resultList;
 

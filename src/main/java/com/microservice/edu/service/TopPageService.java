@@ -2,13 +2,13 @@ package com.microservice.edu.service;
 
 import java.util.List;
 
-import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
-import com.microservice.edu.pojo.JiaoChengTblPojo;
+import com.microservice.edu.pojo.LessonTblExt1Pojo;
+import com.microservice.edu.pojo.LessonTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.microservice.edu.dao.BigCategoryTblDao;
-import com.microservice.edu.dao.JiaoChengTblDao;
+import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 
@@ -24,7 +24,7 @@ public class TopPageService {
 	private static String ZERO_LEVEL ="0";
 
 	@Autowired
-	private JiaoChengTblDao jiaoChengTblDao;
+	private LessonTblDao LessonTblDao;
 
 	public List<BigCategoryTblPojo> getPageInfoLunBoBigCtg() throws Exception {
 
@@ -36,7 +36,7 @@ public class TopPageService {
 
 	public List<SmallCategoryTblPojo> getPageInfoLunBoSmallCtg(String bigCtgCode) throws Exception {
 
-		List<SmallCategoryTblPojo> resultList=jiaoChengTblDao.getSmallCtgByPk(bigCtgCode);
+		List<SmallCategoryTblPojo> resultList=LessonTblDao.getSmallCtgByPk(bigCtgCode);
 
 		return resultList;
 	}
@@ -44,21 +44,21 @@ public class TopPageService {
 
 	public List<SmallCategoryTblPojo> searchVideoBySmallCtg(String bigCtgCode) throws Exception {
 
-		List<SmallCategoryTblPojo> resultList=jiaoChengTblDao.getSmallCtgByPk(bigCtgCode);
+		List<SmallCategoryTblPojo> resultList=LessonTblDao.getSmallCtgByPk(bigCtgCode);
 
 		return resultList;
 	}
 
-	public List<JiaoChengTblExt1Pojo> searchAllEnableVideo() throws Exception {
+	public List<LessonTblExt1Pojo> searchAllEnableVideo() throws Exception {
 
-		List<JiaoChengTblExt1Pojo> resultList=jiaoChengTblDao.getAllEnableVideo(ZERO_LEVEL);
+		List<LessonTblExt1Pojo> resultList=LessonTblDao.getAllEnableVideo(ZERO_LEVEL);
 
 		return resultList;
 	}
 
-	public List<JiaoChengTblExt1Pojo> searchAllEnableVideoByCtg(String bigCtgCode,String smallCtgCode) throws Exception {
+	public List<LessonTblExt1Pojo> searchAllEnableVideoByCtg(String bigCtgCode,String smallCtgCode) throws Exception {
 
-		List<JiaoChengTblExt1Pojo> resultList=jiaoChengTblDao.getAllEnableVideoByCtg(ZERO_LEVEL,bigCtgCode,smallCtgCode);
+		List<LessonTblExt1Pojo> resultList=LessonTblDao.getAllEnableVideoByCtg(ZERO_LEVEL,bigCtgCode,smallCtgCode);
 
 		return resultList;
 	}
