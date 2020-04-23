@@ -45,9 +45,9 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/passwd", method = RequestMethod.GET)
-    @Transactional(readOnly = true)
+    @Transactional
     public String passwd(Model model, String validateCode) throws Exception {
-        UserPojo userPojo =service.getUserInfo(validateCode);
+        UserPojo userPojo =service.processActivate(validateCode);
         model.addAttribute("email", userPojo.getEmail());
         model.addAttribute("validateCode", userPojo.getValidateCode());
         return "/passwd";

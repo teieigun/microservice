@@ -3,15 +3,16 @@ package com.microservice.edu.service;
 import java.text.ParseException;
 import java.util.Date;
 
-import com.microservice.edu.constants.MicroServiceConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.dao.UserDao;
+import com.microservice.edu.pojo.UserPojo;
 //import com.app.tools.MD5Tool;
 import com.microservice.edu.util.MD5Util;
 import com.microservice.edu.util.SendEmail;
 import com.microservice.edu.util.ServiceException;
-import com.microservice.edu.pojo.UserPojo;
 
 /**
  *
@@ -68,9 +69,9 @@ public class RegisterValidateService {
      * @throws ParseException
      */
     ///传递激活码和email过来
-    public void processActivate(String validateCode)throws ServiceException, ParseException{
-        //数据访问层，通过email获取用户信息
-        UserPojo user=userDao.findByVcd(validateCode,MicroServiceConstants.USER_STATUS_NOPASS);
+    public UserPojo processActivate(String validateCode)throws ServiceException, ParseException{
+
+    	UserPojo user=userDao.findByVcd(validateCode,MicroServiceConstants.USER_STATUS_NOPASS);
         //验证用户是否存在
         if(user!=null) {
             //验证用户激活状态
@@ -91,6 +92,8 @@ public class RegisterValidateService {
         } else {
             throw new ServiceException("激活码不正确");
         }
+
+        return user;
     }
 
     ///传递激活码和email过来
@@ -98,10 +101,4 @@ public class RegisterValidateService {
         userDao.setNewPass(passwd,validateCode);
     }
 
-    ///用ValicateCd取得用户信息
-    public UserPojo getUserInfo(String validateCode)throws ServiceException, ParseException{
-        UserPojo userPojo =userDao.findByVcd(validateCode, MicroServiceConstants.USER_STATUS_PASSING);
-
-        return userPojo;
-    }
 }
