@@ -1,8 +1,5 @@
 package com.microservice.edu.controll;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.microservice.edu.pojo.BigCategoryTblPojo;
-import com.microservice.edu.pojo.LessonTblPojo;
-import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import com.microservice.edu.service.TopPageService;
 
 
@@ -35,37 +29,19 @@ public class TopControll {
 	@GetMapping(value = "/video",produces = {"text/plain;charset=UTF-8"})
 	@PreAuthorize("hasAuthority('5')")//拥有p1权限才可以访问
 	@Transactional(readOnly = true)
-	public String index(Model model) throws Exception {
+	public String index(Model model,String bigCtgCode,String smallCtgCode) throws Exception {
 
-		getIndexInfo(model);
+		topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode);
 
 		return "/index";
 	}
+
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String index2(Model model) throws Exception {
 
 		return "/login";
-	}
-
-    private void getIndexInfo(Model model) throws Exception {
-		List<List<SmallCategoryTblPojo>> listListSmallCategoryTblPojo = new ArrayList<List<SmallCategoryTblPojo>>();
-
-		//轮播菜单
-			List<BigCategoryTblPojo> bigCtgList = topPageService.getPageInfoLunBoBigCtg();
-		if (bigCtgList != null && bigCtgList.size() > 0) {
-			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
-				listListSmallCategoryTblPojo.add(topPageService
-						.getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
-			}
-		}        //获取首页视频地址，图片
-        List<LessonTblPojo> listLessonTblPojo = topPageService.searchAllEnableVideo();
-
-
-        model.addAttribute("listLessonTblPojo", listLessonTblPojo);
-		model.addAttribute("listListSmallCategoryTblPojo", listListSmallCategoryTblPojo);
-		model.addAttribute("bigCtgList", bigCtgList);
 	}
 
 

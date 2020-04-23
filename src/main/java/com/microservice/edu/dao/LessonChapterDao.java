@@ -1,12 +1,13 @@
 package com.microservice.edu.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import com.microservice.edu.pojo.LessonChapterPojo;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.microservice.edu.pojo.LessonChapterPojo;
 
 @Repository
 public class LessonChapterDao {
@@ -46,8 +47,8 @@ public class LessonChapterDao {
         String sql = "select ";
         sql = sql + "     lesson_id       ";
         sql = sql + "   , chapter_no          ";
-        sql = sql + "   , lesson_chapter  ";
-        sql = sql + "   , lesson_url      ";
+        sql = sql + "   , chapter_name  ";
+        sql = sql + "   , url      ";
         sql = sql + " from";
         sql = sql + "   lesson_chapter ";
         sql = sql + " where";

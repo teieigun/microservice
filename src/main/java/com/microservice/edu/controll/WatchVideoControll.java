@@ -1,8 +1,7 @@
 package com.microservice.edu.controll;
 
-import com.microservice.edu.pojo.LessonChapterPojo;
-import com.microservice.edu.service.TopPageService;
-import com.microservice.edu.service.WatchVideoService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+import com.microservice.edu.pojo.LessonChapterPojo;
+import com.microservice.edu.service.TopPageService;
+import com.microservice.edu.service.WatchVideoService;
 
 @Controller
 public class WatchVideoControll {
@@ -38,16 +39,16 @@ public class WatchVideoControll {
 
     @RequestMapping(value = "/changeChapter", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public String changeChapter(Model model,String LessonId,String chapterNo) throws Exception {
+    public String changeChapter(Model model,String lessonId,String chapterNo) throws Exception {
 
-        System.out.println("LessonId:"+LessonId);
-        List<LessonChapterPojo> listLessonChapterPojo1 =  watchVideoService.changeChapter(LessonId,chapterNo);
+        System.out.println("LessonId:"+lessonId);
+        List<LessonChapterPojo> listLessonChapterPojo1 =  watchVideoService.changeChapter(lessonId,chapterNo);
         if(listLessonChapterPojo1!=null && listLessonChapterPojo1.size()>0){
             model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
         }
 
 
-        List<LessonChapterPojo> listLessonChapterPojo2 =  watchVideoService.getChapterList(LessonId);
+        List<LessonChapterPojo> listLessonChapterPojo2 =  watchVideoService.getChapterList(lessonId);
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
         return "/watchVideo";
     }
