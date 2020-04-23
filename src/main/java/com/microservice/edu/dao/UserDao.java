@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.pojo.CodePojo;
-import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
+import com.microservice.edu.pojo.LessonTblExt1Pojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,6 +1,6 @@
 package com.microservice.edu.pojo;
 
-public class JiaoChengTblExt1Pojo extends  JiaoChengTblPojo{
+public class LessonTblExt1Pojo extends  LessonTblPojo{
 
     //前端大分类名
     public String bitCtgName;

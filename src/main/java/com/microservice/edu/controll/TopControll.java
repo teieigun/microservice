@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.microservice.edu.pojo.BigCategoryTblPojo;
-import com.microservice.edu.pojo.JiaoChengTblExt1Pojo;
+import com.microservice.edu.pojo.LessonTblExt1Pojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import com.microservice.edu.service.TopPageService;
 
@@ -67,9 +67,9 @@ public class TopControll {
     public String searchVideoBySmallCtg(Model model, String bigCtgCode, String smallCtgCode) throws Exception {
 
         getIndexInfo(model);
-        List<JiaoChengTblExt1Pojo> listJiaoChengTblPojo = topPageService.searchAllEnableVideoByCtg(bigCtgCode,smallCtgCode);
+        List<LessonTblExt1Pojo> listLessonTblPojo = topPageService.searchAllEnableVideoByCtg(bigCtgCode,smallCtgCode);
 
-        model.addAttribute("listJiaoChengTblPojo", listJiaoChengTblPojo);
+        model.addAttribute("listLessonTblPojo", listLessonTblPojo);
 
         return "/index";
     }
@@ -86,10 +86,10 @@ public class TopControll {
 						.getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
 			}
 		}        //获取首页视频地址，图片
-        List<JiaoChengTblExt1Pojo> listJiaoChengTblPojo = topPageService.searchAllEnableVideo();
+        List<LessonTblExt1Pojo> listLessonTblPojo = topPageService.searchAllEnableVideo();
 
 
-        model.addAttribute("listJiaoChengTblPojo", listJiaoChengTblPojo);
+        model.addAttribute("listLessonTblPojo", listLessonTblPojo);
 		model.addAttribute("listListSmallCategoryTblPojo", listListSmallCategoryTblPojo);
 		model.addAttribute("bigCtgList", bigCtgList);
 	}
