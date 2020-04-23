@@ -28,8 +28,6 @@ public class TopControll {
 	@Transactional(readOnly = true)
 	public String login(Model model) throws Exception {
 
-//		getIndexInfo(model);
-
 		return "/login";
 	}
 
@@ -47,32 +45,8 @@ public class TopControll {
 	@Transactional(readOnly = true)
 	public String index2(Model model) throws Exception {
 
-		//getIndexInfo(model);
-
 		return "/login";
 	}
-
-
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
-	@Transactional(readOnly = true)
-	public String signin(Model model) throws Exception {
-
-		//getIndexInfo(model);
-
-		return "/login";
-	}
-
-    @RequestMapping(value = "/video", method = RequestMethod.GET)
-    @Transactional(readOnly = true)
-    public String searchVideoBySmallCtg(Model model, String bigCtgCode, String smallCtgCode) throws Exception {
-
-        getIndexInfo(model);
-        List<LessonTblPojo> listLessonTblPojo = topPageService.searchAllEnableVideoByCtg(bigCtgCode,smallCtgCode);
-
-        model.addAttribute("listLessonTblPojo", listLessonTblPojo);
-
-        return "/index";
-    }
 
 
     private void getIndexInfo(Model model) throws Exception {
