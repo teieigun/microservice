@@ -25,10 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	try {
             http
             .authorizeRequests()
-            .antMatchers("/video").hasAuthority("5")
-            .antMatchers("/video/video").hasAuthority("5")
-            .antMatchers("/video/vip").hasAuthority("5")
-            .antMatchers("/video/admin").hasAuthority("5")
+            .antMatchers("/video").hasAnyAuthority("1","2","3","9")
+            .antMatchers("/video/member").hasAnyAuthority("2","3","9")
+            .antMatchers("/video/vip").hasAnyAuthority("3","9")
+            .antMatchers("/video/admin").hasAnyAuthority("9")
             .antMatchers("/video/**").authenticated()//所有/r/**的请求必须认证通过
             .antMatchers("/", "/index").permitAll()//除了/r/**，其它的请求可以访问
             .and()

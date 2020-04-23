@@ -1,19 +1,16 @@
 package com.microservice.edu.dao;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import com.microservice.edu.constants.MicroServiceConstants;
-import com.microservice.edu.pojo.CodePojo;
-import com.microservice.edu.pojo.LessonTblExt1Pojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.pojo.UserPojo;
 /**
  *

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.microservice.edu.pojo.BigCategoryTblPojo;
-import com.microservice.edu.pojo.LessonTblExt1Pojo;
+import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import com.microservice.edu.service.TopPageService;
 
@@ -67,7 +67,7 @@ public class TopControll {
     public String searchVideoBySmallCtg(Model model, String bigCtgCode, String smallCtgCode) throws Exception {
 
         getIndexInfo(model);
-        List<LessonTblExt1Pojo> listLessonTblPojo = topPageService.searchAllEnableVideoByCtg(bigCtgCode,smallCtgCode);
+        List<LessonTblPojo> listLessonTblPojo = topPageService.searchAllEnableVideoByCtg(bigCtgCode,smallCtgCode);
 
         model.addAttribute("listLessonTblPojo", listLessonTblPojo);
 
@@ -86,7 +86,7 @@ public class TopControll {
 						.getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
 			}
 		}        //获取首页视频地址，图片
-        List<LessonTblExt1Pojo> listLessonTblPojo = topPageService.searchAllEnableVideo();
+        List<LessonTblPojo> listLessonTblPojo = topPageService.searchAllEnableVideo();
 
 
         model.addAttribute("listLessonTblPojo", listLessonTblPojo);

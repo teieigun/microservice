@@ -2,15 +2,13 @@ package com.microservice.edu.dao;
 
 import java.util.List;
 
-import com.microservice.edu.pojo.LessonTblExt1Pojo;
-import com.microservice.edu.pojo.LessonTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import com.microservice.edu.pojo.BigCategoryTblPojo;
+import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 
 @Repository
@@ -57,7 +55,7 @@ public class LessonTblDao {
 	/**
 	 * 可以免费观看的视频
 	 * */
-	public List<LessonTblExt1Pojo> getAllEnableVideo(String level) {
+	public List<LessonTblPojo> getAllEnableVideo(String level) {
 
 		String sql = "SELECT ";
 		sql = sql + "     t1.lesson_id      as lessonId ";
@@ -74,23 +72,23 @@ public class LessonTblDao {
 		sql = sql + "   on t1.big_ctg_code = t2.BIG_CTG_NAME ";
 		sql = sql + " WHERE ";
 		sql = sql + "   t1.levle < ? and "  ;
-		sql = sql + "   t1.del = '0' ";
+		sql = sql + "   t1.del = 0 ";
 
-		List<LessonTblExt1Pojo> list = jdbcTemplate.query(sql, new Object[] { level },new BeanPropertyRowMapper(LessonTblExt1Pojo.class));
+		List<LessonTblPojo> list = jdbcTemplate.query(sql, new Object[] { level },new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
 
 	/**
 	 * 可以免费观看的视频
 	 * */
-	public List<LessonTblExt1Pojo> getAllEnableVideoByCtg(String level,String bigCtgCode,String smallCtgCode) {
+	public List<LessonTblPojo> getAllEnableVideoByCtg(String level,String bigCtgCode,String smallCtgCode) {
 
 		String sql = "select ";
 		sql = sql + "   , t1.lesson_name    as LessonName ";
 		sql = sql + "   , t2.ctg_name       as bitCtgName ";
 		sql = sql + "   , t1.big_ctg_code   as bigCtgCode ";
 		sql = sql + "   , t1.small_ctg_code as smallCtgCode ";
-		sql = sql + "   , t1.lesson_role    as LessonJieshao ";
+		sql = sql + "   , t1.lesson_role    as lessonRole ";
 		sql = sql + "   , t1.lesson_img     as LessonImg ";
 		sql = sql + "   , t1.del ";
 		sql = sql + "   , t1.levle  ";
@@ -103,7 +101,7 @@ public class LessonTblDao {
 		sql = sql + "   and t1.small_ctg_code= ? ";
 		sql = sql + " and t1.del = '0' ";
 
-		List<LessonTblExt1Pojo> list = jdbcTemplate.query(sql, new Object[] { level ,bigCtgCode,smallCtgCode},new BeanPropertyRowMapper(LessonTblExt1Pojo.class));
+		List<LessonTblPojo> list = jdbcTemplate.query(sql, new Object[] { level ,bigCtgCode,smallCtgCode},new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
 

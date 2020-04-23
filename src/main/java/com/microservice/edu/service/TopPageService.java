@@ -2,14 +2,13 @@ package com.microservice.edu.service;
 
 import java.util.List;
 
-import com.microservice.edu.pojo.LessonTblExt1Pojo;
-import com.microservice.edu.pojo.LessonTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.microservice.edu.dao.BigCategoryTblDao;
 import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
+import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 
 @Service
@@ -21,7 +20,7 @@ public class TopPageService {
 	private BigCategoryTblDao bigCategoryTblDao;
 
 	//谁都可以观看
-	private static String ZERO_LEVEL ="0";
+	private static String ZERO_LEVEL ="9";
 
 	@Autowired
 	private LessonTblDao LessonTblDao;
@@ -49,16 +48,16 @@ public class TopPageService {
 		return resultList;
 	}
 
-	public List<LessonTblExt1Pojo> searchAllEnableVideo() throws Exception {
+	public List<LessonTblPojo> searchAllEnableVideo() throws Exception {
 
-		List<LessonTblExt1Pojo> resultList=LessonTblDao.getAllEnableVideo(ZERO_LEVEL);
+		List<LessonTblPojo> resultList=LessonTblDao.getAllEnableVideo(ZERO_LEVEL);
 
 		return resultList;
 	}
 
-	public List<LessonTblExt1Pojo> searchAllEnableVideoByCtg(String bigCtgCode,String smallCtgCode) throws Exception {
+	public List<LessonTblPojo> searchAllEnableVideoByCtg(String bigCtgCode,String smallCtgCode) throws Exception {
 
-		List<LessonTblExt1Pojo> resultList=LessonTblDao.getAllEnableVideoByCtg(ZERO_LEVEL,bigCtgCode,smallCtgCode);
+		List<LessonTblPojo> resultList=LessonTblDao.getAllEnableVideoByCtg(ZERO_LEVEL,bigCtgCode,smallCtgCode);
 
 		return resultList;
 	}
