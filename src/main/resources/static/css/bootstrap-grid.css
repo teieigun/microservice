@@ -845,6 +845,7 @@ html {
     -ms-flex: 0 0 75%;
     flex: 0 0 75%;
     max-width: 75%;
+    float: rigth;
   }
   .col-lg-10 {
     -ms-flex: 0 0 83.333333%;

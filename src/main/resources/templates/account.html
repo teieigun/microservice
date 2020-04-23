@@ -19,22 +19,6 @@
 <link rel="stylesheet" type="text/css" href="css/color.css">
 <link rel="stylesheet" type="text/css" href="css/layui.css">
 
-
-<script src="js/layui.js"></script>
-<script src="js/layui.all.js"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-<script>
-layui.use(['element', 'layer'], function(){
-  var element = layui.element;
-  var layer = layui.layer;
-  
-  //监听折叠
-  element.on('collapse(test)', function(data){
-    layer.msg('展开状态：'+ data.show);
-  });
-});
-</script>
-
 </head>
 
 
@@ -165,7 +149,7 @@ layui.use(['element', 'layer'], function(){
 									<div class="mega-menu">
 										<ul>
 											<li><a href="index.html" title="">主页</a></li>
-											<li><a href="watchVideo.html" title="">基本信息</a></li>
+											<li><a href="single_video_page.html" title="">基本信息</a></li>
 											<li><a href="Single_Video_Simplified_Page.html" title="">历史记录</a></li>
 											<li><a href="single_video_fullwidth_page.html" title="">我的问题</a></li>
 											<li><a href="single_video_playlist.html" title="">我的技术简历</a></li>
@@ -186,7 +170,7 @@ layui.use(['element', 'layer'], function(){
 											</li>
 											<li><a href="login.html" title="">注冊</a></li>
 											<li><a href="signup.html" title="">登錄</a></li>
-											<li><a href="UserAccountPage.html" title="">客户信息</a></li>
+											<li><a href="User_Account_Page.html" title="">客户信息</a></li>
 										</ul>
 									</div>
 									<div class="clearfix"></div>
@@ -452,7 +436,7 @@ layui.use(['element', 'layer'], function(){
 												<div class="tab-history acct_page">
 													<div class="videoo">
 														<div class="vid_thumbainl ms br">
-															<a href="watchVideo.html" title="">
+															<a href="single_video_page.html" title="">
 																<img src="images/resources/vide1.png" alt="">
 																<span class="vid-time">30:32</span>
 																<span class="watch_later">
@@ -461,7 +445,7 @@ layui.use(['element', 'layer'], function(){
 															</a>	
 														</div><!--vid_thumbnail end-->
 														<div class="video_info ms br">
-															<h3><a href="watchVideo.html" title="">HTML基础教程</a></h3>
+															<h3><a href="single_video_page.html" title="">HTML基础教程</a></h3>
 														</div>
 														<div class="clearfix"></div>
 													</div><!--videoo end-->
@@ -484,7 +468,7 @@ layui.use(['element', 'layer'], function(){
 												<div class="tab-history acct_page">
 													<div class="videoo">
 														<div class="vid_thumbainl ms br">
-															<a href="watchVideo.html" title="">
+															<a href="single_video_page.html" title="">
 																<img src="images/resources/vide2.png" alt="">
 																<span class="vid-time">30:32</span>
 																<span class="watch_later">
@@ -493,7 +477,7 @@ layui.use(['element', 'layer'], function(){
 															</a>	
 														</div><!--vid_thumbnail end-->
 														<div class="video_info ms br">
-															<h3><a href="watchVideo.html" title="">CSS基础教程</a></h3>
+															<h3><a href="single_video_page.html" title="">CSS基础教程</a></h3>
 														</div>
 														<div class="clearfix"></div>
 													</div><!--videoo end-->
@@ -516,7 +500,7 @@ layui.use(['element', 'layer'], function(){
 												<div class="tab-history acct_page">
 													<div class="videoo">
 														<div class="vid_thumbainl ms br">
-															<a href="watchVideo.html" title="">
+															<a href="single_video_page.html" title="">
 																<img src="images/resources/vide3.png" alt="">
 																<span class="vid-time">30:32</span>
 																<span class="watch_later">
@@ -525,7 +509,7 @@ layui.use(['element', 'layer'], function(){
 															</a>	
 														</div><!--vid_thumbnail end-->
 														<div class="video_info ms br">
-															<h3><a href="watchVideo.html" title="">JAVA基础教程</a></h3>
+															<h3><a href="single_video_page.html" title="">JAVA基础教程</a></h3>
 														</div>
 														<div class="clearfix"></div>
 													</div><!--videoo end-->
@@ -560,7 +544,7 @@ layui.use(['element', 'layer'], function(){
 										<button type="submit"> 变更</button>
 									</div><!--ch-pswd end-->
 								</form>
-							</div><!--change-pswd end-->	
+							</div><!--change-pswd end-->
 							<div class="account-details">
 								<div class="account_details_content">
 									<h2 class="hd-op">变更个人信息</h2>
@@ -617,6 +601,43 @@ layui.use(['element', 'layer'], function(){
 									<div class="ch-pswd">
 										<button type="submit"> 变更</button>
 									</div><!--ch-pswd end-->
+									
+									
+									<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+									  <legend>技术简历</legend>
+									</fieldset>
+									<div class="layui-collapse" lay-filter="test">
+									  <div class="layui-colla-item">
+										<h2 class="layui-colla-title">编程语言</h2>
+										<div class="layui-colla-content">
+										
+										<input type="text">JAVA</input>
+										</div>
+									  </div>
+									  <div class="layui-colla-item">
+										<h2 class="layui-colla-title">为什么前端工程师多不愿意用 Bootstrap 框架？</h2>
+										<div class="layui-colla-content">
+										  <p>因为不适合。如果希望开发长期的项目或者制作产品类网站，那么就需要实现特定的设计，为了在维护项目中可以方便地按设计师要求快速修改样式，肯定会逐步编写出各种业务组件、工具类，相当于为项目自行开发一套框架。——来自知乎@Kayo</p>
+										</div>
+									  </div>
+									  <div class="layui-colla-item">
+										<h2 class="layui-colla-title">layui 更适合哪些开发者？</h2>
+										<div class="layui-colla-content">
+										  <p>在前端技术快速变革的今天，layui 仍然坚持语义化的组织模式，甚至于模块理念都是采用类AMD组织形式，并非是有意与时代背道而驰。layui 认为以jQuery为核心的开发方式还没有到完全消亡的时候，而早期市面上基于jQuery的UI都普通做得差强人意，所以需要有一个新的UI去重新为这一领域注入活力，并采用一些更科学的架构方式。
+										  <br><br>
+										  因此准确地说，layui 更多是面向那些追求开发简单的前端工程师们，以及所有层次的服务端程序员。</p>
+										</div>
+									  </div>
+									  <div class="layui-colla-item">
+										<h2 class="layui-colla-title">贤心是男是女？</h2>
+										<div class="layui-colla-content">
+										  <p>man！ 所以这个问题不要再出现了。。。</p>
+										</div>
+									  </div>
+									</div>
+									
+									
+									
 								</div><!--account_details_content end-->
 								<div class="clearfix"></div>
 							</div><!--Account Details end-->
@@ -636,7 +657,20 @@ layui.use(['element', 'layer'], function(){
 <script src="js/flatpickr.js"></script>
 <script src="js/script.js"></script>
 
-
+<script src="js/layui.js"></script>
+<script src="js/layui.all.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use(['element', 'layer'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+  
+  //监听折叠
+  element.on('collapse(test)', function(data){
+    layer.msg('展开状态：'+ data.show);
+  });
+});
+</script>
 
 </body>
 

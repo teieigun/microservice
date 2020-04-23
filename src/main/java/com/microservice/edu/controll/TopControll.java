@@ -48,7 +48,6 @@ public class TopControll {
 		return "/login";
 	}
 
-
     private void getIndexInfo(Model model) throws Exception {
 		List<List<SmallCategoryTblPojo>> listListSmallCategoryTblPojo = new ArrayList<List<SmallCategoryTblPojo>>();
 
@@ -69,4 +68,10 @@ public class TopControll {
 	}
 
 
+	@RequestMapping(value = "/video/account", method = RequestMethod.GET)
+	@Transactional(readOnly = true)
+    public String account(){
+        //提示具体用户名称登录成功
+        return "/account";
+    }
 }
