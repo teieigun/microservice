@@ -1,24 +1,20 @@
 package com.microservice.edu.controll;
 
 import java.text.ParseException;
+
 import javax.annotation.Resource;
 
-import com.microservice.edu.form.LoginForm;
-import com.microservice.edu.form.PassForm;
-import com.microservice.edu.pojo.UserPojo;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.microservice.edu.form.PassForm;
+import com.microservice.edu.pojo.UserPojo;
 import com.microservice.edu.service.RegisterValidateService;
-import java.util.ArrayList;
-import java.util.List;
-import javax.validation.Valid;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 
 @Controller
@@ -63,7 +59,7 @@ public class RegisterController {
 
         service.setNewPasswd(form.passwd,form.validateCode);
 
-        return "/tech/video";
+        return "/index";
     }
 
 }

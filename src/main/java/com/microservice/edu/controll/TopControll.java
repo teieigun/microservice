@@ -62,7 +62,7 @@ public class TopControll {
 		return "/login";
 	}
 
-    @RequestMapping(value = "/tech/video", method = RequestMethod.GET)
+    @RequestMapping(value = "/video", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String searchVideoBySmallCtg(Model model, String bigCtgCode, String smallCtgCode) throws Exception {
 

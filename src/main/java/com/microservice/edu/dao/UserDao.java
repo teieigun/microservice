@@ -37,7 +37,7 @@ public class UserDao {
     public void saveUserInfo(UserPojo user){
 
         String insertSql = " INSERT INTO user_base_profile " +
-                "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?,?)";
+                "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?)";
 
         jdbcTemplate.update(insertSql,new Object[] {user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
 
@@ -48,7 +48,7 @@ public class UserDao {
      */
     public void setNewPass(String passwd,String validateCode){
 
-        String updateSql = " update user_base_profile set PASSWD=?, STATUS=? where VALIDATE_CODE=? ";
+        String updateSql = " update user_base_profile set PASSWORD=?, STATUS=? where VALIDATE_CODE=? ";
 
         jdbcTemplate.update(updateSql,new Object[] { passwd, MicroServiceConstants.USER_STATUS_PASSED,validateCode});
     }
@@ -78,11 +78,11 @@ public class UserDao {
         List<UserPojo> list = null;
 
         String sql = "SELECT ";
-        sql = sql + "     PASSWD  AS passwd, ";
+        sql = sql + "     PASSWORD  AS passwd, ";
         sql = sql + "     EMAIL   AS email, ";
         sql = sql + "     VALIDATE_CODE AS validateCode, ";
         sql = sql + "     REGISTER_TIME AS registerTime, ";
-        sql = sql + "     DEL AS del ";
+        sql = sql + "     ENABLE AS del ";
         sql = sql + " FROM   ";
         sql = sql + "   user_base_profile WHERE EMAIL = ?";
 
@@ -103,11 +103,11 @@ public class UserDao {
         List<UserPojo> list = null;
 
         String sql = "SELECT ";
-        sql = sql + "     PASSWD  AS passwd, ";
+        sql = sql + "     PASSWORD  AS passwd, ";
         sql = sql + "     EMAIL   AS email, ";
         sql = sql + "     VALIDATE_CODE AS validateCode, ";
         sql = sql + "     REGISTER_TIME AS registerTime, ";
-        sql = sql + "     DEL AS del ";
+        sql = sql + "     ENABLE AS del ";
         sql = sql + " FROM   ";
         sql = sql + "   user_base_profile WHERE VALIDATE_CODE = ? and STATUS = ?";
 
