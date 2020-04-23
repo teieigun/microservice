@@ -22,13 +22,13 @@ public class WatchVideoControll {
     @Autowired
     WatchVideoService watchVideoService;
 
-    @RequestMapping(value = "/edu/watch", method = RequestMethod.GET)
+    @RequestMapping(value = "/video/watch", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public String goToVideoPage(Model model,String LessonId) throws Exception {
+    public String goToVideoPage(Model model,String lessonId) throws Exception {
 
-        System.out.println("LessonId:"+LessonId);
+        System.out.println("LessonId:"+lessonId);
 
-        List<LessonChapterPojo> listLessonChapterPojo =  watchVideoService.getChapterList(LessonId);
+        List<LessonChapterPojo> listLessonChapterPojo =  watchVideoService.getChapterList(lessonId);
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
         if(listLessonChapterPojo !=null && listLessonChapterPojo.size()>0){
             model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo.get(0));

@@ -327,7 +327,7 @@
 						<div class="col-lg-9">
 							<div class="mn-vid-sc single_video">
 								<div class="vid-1">
-									<iframe id="videoWindow" width="850" height="722" th:src="${lessonChapterPojoOne.lessonUrl}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+									<iframe id="videoWindow" width="850" height="722" th:src="${LessonChapterPojoOne.url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 								</div><!--vid-1 end-->
 								<div class="dlcon">
 									<div class="content1">
@@ -335,8 +335,8 @@
 											<!--课程目录-->
 											<div class="dlinfo dlinfo2" style="display: block;">
 													<div class="div_xlbtn">
-														<div th:each="lessonChapterPojo:${listlessonChapterPojo}">
-															<a id="1qaz" href="#" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);"><span th:text="${lessonChapterPojo.lessonChapter}" /> <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" th:attr="onclick='player(\'' + ${lessonChapterPojo.lessonId}+ ','+${lessonChapterPojo.chapterNo} + '\');'">开始学习</button></a>
+														<div th:each="lessonChapterPojo:${listLessonChapterPojo}">
+															<a id="1qaz" href="#" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);"><span th:text="${lessonChapterPojo.chapterName}" /> <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" th:attr="onclick='player(\'' + ${lessonChapterPojo.lessonId}+ ','+${lessonChapterPojo.chapterNo} + '\');'">开始学习</button></a>
 														</div>
 													</div>
 											</div>
@@ -428,11 +428,12 @@
 		</div><!--wrapper end-->
 
 
-		<script src="./js/popper.js"></script>
-		<script src="./js/popper.js"></script>
-		<script src="./js/bootstrap.min.js"></script>
-		<script src="./js/video.js"></script>
-		<script src="./js/script.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/popper.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/flatpickr.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/script2.js"></script>
 		<script>
 			function player(para){
                 var result = para.split(',');

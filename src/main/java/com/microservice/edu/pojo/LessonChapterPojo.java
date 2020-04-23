@@ -2,17 +2,17 @@ package com.microservice.edu.pojo;
 
 public class LessonChapterPojo {
 
-    public String LessonId;
+    public String lessonId;
     public String chapterNo;
-    public String LessonChapter;
-    public String LessonUrl;
+    public String chapterName;
+    public String url;
 
     public String getLessonId() {
-        return LessonId;
+        return lessonId;
     }
 
-    public void setLessonId(String LessonId) {
-        this.LessonId = LessonId;
+    public void setLessonId(String lessonId) {
+        this.lessonId = lessonId;
     }
 
     public String getChapterNo() {
@@ -23,19 +23,16 @@ public class LessonChapterPojo {
         this.chapterNo = chapterNo;
     }
 
-    public String getLessonChapter() {
-        return LessonChapter;
+    public String getChapterName() {
+        return chapterName;
     }
-
-    public void setLessonChapter(String LessonChapter) {
-        this.LessonChapter = LessonChapter;
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
     }
-
-    public String getLessonUrl() {
-        return LessonUrl;
+    public String getUrl() {
+        return url;
     }
-
-    public void setLessonUrl(String LessonUrl) {
-        this.LessonUrl = LessonUrl;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

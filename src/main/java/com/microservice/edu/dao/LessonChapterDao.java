@@ -21,17 +21,17 @@ public class LessonChapterDao {
     public List<LessonChapterPojo> getChapterList(String LessonId) {
 
         String sql = "select ";
+        sql = sql + "     lesson_id as LessonId ";
+        sql = sql + "   , chapter_no as chapterNo ";
+        sql = sql + "   , chapter_name as chapterName ";
+        sql = sql + "   , url as url ";
+        sql = sql + " from ";
+        sql = sql + "   lesson_chapter  ";
+        sql = sql + " where ";
+        sql = sql + "   lesson_id = ? ";
+        sql = sql + " order by ";
         sql = sql + "     lesson_id ";
         sql = sql + "   , chapter_no ";
-        sql = sql + "   , chapter_name ";
-        sql = sql + "   , chapter_url ";
-        sql = sql + " from";
-        sql = sql + "   lesson_chapter ";
-        sql = sql + " where";
-        sql = sql + "   lesson_id = ? ";
-        sql = sql + " order by";
-        sql = sql + "     lesson_id";
-        sql = sql + "   , chapter_no";
 
         List<LessonChapterPojo> list = jdbcTemplate.query(sql,  new Object[] { LessonId },new BeanPropertyRowMapper(LessonChapterPojo.class));
         return list;
