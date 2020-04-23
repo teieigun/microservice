@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.microservice.edu.pojo.ListPojo;
-import com.microservice.edu.service.ListService;
-
 @Controller
 public class SearchControll {
 	
