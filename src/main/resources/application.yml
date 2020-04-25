@@ -1,9 +1,23 @@
+## 公司项目
+#spring:
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:7777/microService?useUnicode=true&characterEncoding=utf8&serverTimezone=JST
+#    username: weifu
+#    password: P@ssW0rd@
+#    driverClassName: com.mysql.jdbc.Driver
+
+## 练习时候使用
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:7777/microService?useUnicode=true&characterEncoding=utf8&serverTimezone=JST
-    username: weifu
-    password: P@ssW0rd@
+    url: jdbc:mysql://127.0.0.1:7777/teieigun?useUnicode=true&characterEncoding=utf8&serverTimezone=JST
+    username: teieigun
+    password: P@ssW0rd!
     driverClassName: com.mysql.jdbc.Driver
+  jpa:
+    show-sql:true
+    properties:
+      hibernate:
+        format_sql:true
 
 # thinkPad passwd:1qaz2wsx
 # desktop passwd:duezwi4r
