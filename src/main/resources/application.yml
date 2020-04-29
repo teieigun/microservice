@@ -13,11 +13,6 @@ spring:
     username: teieigun
     password: P@ssW0rd!
     driverClassName: com.mysql.jdbc.Driver
-  jpa:
-    show-sql:true
-    properties:
-      hibernate:
-        format_sql:true
 
 # thinkPad passwd:1qaz2wsx
 # desktop passwd:duezwi4r
