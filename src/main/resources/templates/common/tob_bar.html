@@ -14,7 +14,7 @@
 							<i class="icon-menu"></i>
 						</a>
 						<a href="index.html" title="" class="logo">
-							<img src="img/logo.png" alt="">
+							<img th:src="@{${'/img/' + 'logo.png'}}" />
 						</a>
 					</div><!--menu_logo end-->
 					<div class="search_form">
@@ -26,12 +26,14 @@
 						</form>
 					</div><!--search_form end-->
 					<ul class="controls-lv">
+						<!--
 						<li>
 							<a href="#" title=""><i class="icon-message"></i></a>
 						</li>
 						<li>
 							<a href="#" title=""><i class="icon-notification"></i></a>
 						</li>
+						-->
 						<li class="user-log">
 							<div class="user-ac-img">
 								<img src="img/resources/user-img.png" alt="">
