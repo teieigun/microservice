@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<div th:fragment="top_bar()" class="top_bar">
+			<div class="container">
+				<div class="top_header_content">
+					<div class="menu_logo">
+						<a href="#" title="" class="menu">
+							<i class="icon-menu"></i>
+						</a>
+						<a href="index.html" title="" class="logo">
+							<img src="img/logo.png" alt="">
+						</a>
+					</div><!--menu_logo end-->
+					<div class="search_form">
+						<form>
+							<input type="text" name="search" placeholder="Search Videos">
+							<button type="submit">
+								<i class="icon-search"></i>
+							</button>
+						</form>
+					</div><!--search_form end-->
+					<ul class="controls-lv">
+						<li>
+							<a href="#" title=""><i class="icon-message"></i></a>
+						</li>
+						<li>
+							<a href="#" title=""><i class="icon-notification"></i></a>
+						</li>
+						<li class="user-log">
+							<div class="user-ac-img">
+								<img src="img/resources/user-img.png" alt="">
+							</div>
+							<div class="account-menu">
+								<div class="sd_menu">
+									<ul class="mm_menu">
+										<li>
+											<span>
+												<i class="icon-settings"></i>
+											</span>
+											<a href="#" title="">我的信息</a>
+										</li>
+										<li>
+											<span>
+												<i class="icon-logout"></i>
+											</span>
+											<a href="javascript:OnLinkClick();">注销</a><br />
+										</li>
+									</ul>
+								</div><!--sd_menu end-->
+								<div class="sd_menu scnd">
+									<ul class="mm_menu">
+										<li>
+											<span>
+												<i class="icon-language"></i>
+											</span>
+											<a href="#" title="">语言</a>
+										</li>
+										<li>
+											<span>
+												<i class="icon-feedback"></i>
+											</span>
+											<a href="#" title="">反馈信息</a>
+										</li>
+									</ul>
+								</div><!--sd_menu end-->
+							</div>
+						</li>
+						<li>
+							<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
+						</li>
+					</ul><!--controls-lv end-->
+					<!-- ログアウト -->
+					<form role="form" id="logoutForm" th:action="@{/logout}" method="post"></form>
+					<div class="clearfix"></div>
+				</div><!--top_header_content end-->
+			</div>
+		</div>
+	</body>
+</html>
