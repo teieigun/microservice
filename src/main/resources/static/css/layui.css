@@ -1929,6 +1929,7 @@ a cite {
 	background-color: #F5F5F5;
 	cursor: pointer;
 	font-size: 14px;
+	border-radius: 5px;
 	overflow: hidden
 }
 

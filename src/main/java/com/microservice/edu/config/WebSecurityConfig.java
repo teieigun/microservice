@@ -34,8 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin().loginPage("/")
             .loginProcessingUrl("/login")
-            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
+//            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
             .defaultSuccessUrl("/video")
+            .failureForwardUrl("/login")
             .usernameParameter("username").passwordParameter("password")
             .permitAll();
             
