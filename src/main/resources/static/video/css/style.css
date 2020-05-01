@@ -281,7 +281,7 @@ header .container {
 	padding: 0 45px;
 }
 .top_bar {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 26px 0;
 }
 .hp_1 .top_bar.scroll {
@@ -334,7 +334,7 @@ header .container {
 	height: 38px;
 	line-height: 38px;
 	padding: 0 15px;
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 	border:0;
 }
 .search_form form button {
@@ -446,7 +446,7 @@ header .container {
 /* ============== BOTTOM HEADER ============= */
 
 .btm_bar {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .hp_1 .btm_bar {
 	border-bottom: 0;
@@ -673,7 +673,7 @@ nav ul ul li a span {
 
 .vidz_sec {
 	position: relative;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 30px 0;
 }
 .vidz_list {
@@ -916,7 +916,7 @@ svg:hover path {
 
 .more_items_sec {
 	padding: 70px 0;
-	border-top: 1px solid #e2ebef;
+	border-top: 1px solid #F5F5F5;
 }
 .more_items_sec svg {
 	width: 25px;
@@ -1001,7 +1001,7 @@ svg:hover path {
 	margin-top:18px;
 }
 .info-pr {
-	border-bottom: 2px solid #e2ebef;
+	border-bottom: 2px solid #F5F5F5;
 	padding-bottom: 13px;
 }
 .info-pr > span{
@@ -1073,7 +1073,7 @@ svg:hover path {
 .abt-mk{
 	width:100%;
 	padding: 29px 0 8px;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .abt-mk .info-pr-sec {
 	padding-top: 0;
@@ -1108,7 +1108,7 @@ svg:hover path {
 .amazon{
 	width:100%;
 	padding: 24px 0 23px 100px;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .abt-amz{
 	width:100%;
@@ -1182,7 +1182,7 @@ svg:hover path {
 .cmt-pr {
 	float: left;
 	width: 100%;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding-bottom: 24px;
 }
 .cmt-pr li {
@@ -1229,7 +1229,7 @@ svg:hover path {
 	padding-bottom: 19px;
 	width: 100%;
 	border:0;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .vcp_inf.pc form button{
 	color: #ffffff;
@@ -1491,7 +1491,7 @@ svg:hover path {
 	transform: translateX(-50%);
 	height: 100%;
 	width: 1px;
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 }
 .video-file{
 	width: 350px;
@@ -1548,7 +1548,7 @@ svg:hover path {
 	font-weight:400;
 	font-size: 16px;
 	line-height: 38px;
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 	border-radius: 30px;
 	width:100%;
 	height:38px;
@@ -1598,8 +1598,8 @@ svg:hover path {
 	text-align:center;
 	padding-top:21px;
 	padding-bottom:24px;
-	border-top: 1px solid #e2ebef;
-	border-bottom: 1px solid #e2ebef;
+	border-top: 1px solid #F5F5F5;
+	border-bottom: 1px solid #F5F5F5;
 }
 .abt-vidz ul li {
 	display: inline-block;
@@ -1619,7 +1619,7 @@ svg:hover path {
 .upload-detail{
 	width:100%;
 	padding: 22px 0 31px;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .upload-detail h3 {
 	color: #1c1b1b;
@@ -1653,7 +1653,7 @@ svg:hover path {
 }
 
 .progress {
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 	height: 6px;
 	margin: 27px 0 0 0;
 }
@@ -1689,7 +1689,7 @@ svg:hover path {
 	line-height: 19px;
 	width: 100%;
 	height: 38px;
-	background-color:#e2ebef;
+	background-color:#F5F5F5;
 	border-radius: 6px;
 	border:none;
 	padding-left:10px;
@@ -1730,7 +1730,7 @@ svg:hover path {
 	width:100%;
 	height: 38px;
 	border:none;
-	background-color:#e2ebef;
+	background-color:#F5F5F5;
 	padding-left:10px;
 	border-radius: 6px;
     -webkit-appearance: none;
@@ -2053,7 +2053,7 @@ strong {
 }
 .decp_cotnet {
 	max-width: 670px;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding-bottom:29px;
 	padding-top: 6px;
 }
@@ -2071,7 +2071,7 @@ strong {
 }
 .stats{
 	width:100%;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding-bottom:23px;
 	margin-top: 6px;
 }
@@ -2092,7 +2092,7 @@ strong {
 }
 .link-pr {
 	max-width: 670px;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 21px 0 23px;
 }
 .link-pr:last-child {
@@ -2295,14 +2295,14 @@ strong {
 	padding-bottom: 60px;
 }
 .history-hd-head {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .ab-history .nav-tabs {
 	float: left;
 	border-bottom: 0;
 }
 .history-lst .nav-tabs {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	/*float: left;*/
 	/*border-bottom: 0;*/
 }
@@ -2380,7 +2380,7 @@ strong {
 .tab-history {
 	width:100%;
 	position:relative;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 30px 0;
 }
 .tab-history:first-child {
@@ -2592,7 +2592,7 @@ strong {
 	color:#383838;
 	height: 38px;
 	padding-left:10px;
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 	border-radius: 5px;
 	border:none;
 	padding: 0 15px;
@@ -2647,7 +2647,7 @@ strong {
   left: 0;
   height: 19px;
   width: 19px;
-  background-color: #e2ebef;
+  background-color: #F5F5F5;
   border-radius: 6px;
   display: inline-block;
   cursor: pointer;
@@ -2834,11 +2834,11 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 }
 .video-details{
 	width:100%;
-	border-left: 1px solid #e2ebef;
+	border-left: 1px solid #F5F5F5;
 }
 .latest-vid-option{
 	width:100%;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 23px 0 27px 30px;
 }
 .hd-op{
@@ -2916,13 +2916,13 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 }
 .blocked-users {
 	width:100%;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 26px 0 25px 30px;
 }
 .blocked-users form input{
 	width: calc(100% - 200px);
 	height: 38px;
-	background: #e2ebef;
+	background: #F5F5F5;
 	border-radius: 10px;
 	color: #C3C3D2;
 	font-weight: 400;
@@ -2954,7 +2954,7 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 }
 .blocked-vcp{
 	width:100%;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 30px 0 29px 30px;
 	position:relative;
 }
@@ -3022,7 +3022,7 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 .ch-pswd input{
 	width: 470px;
 	height: 38px;
-	background: #e2ebef;
+	background: #F5F5F5;
 	border-radius: 10px;
 	color: #6e6f70;
 	font-weight: normal;
@@ -3055,7 +3055,7 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 }
 .blckd_list {
 	display: block;
-	border-top: 1px solid #e2ebef;
+	border-top: 1px solid #F5F5F5;
 	margin-top: 25px;
 }
 .mange_sub .optz_list {
@@ -3110,7 +3110,7 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 .dob input[type="text"]{
 	width: 100%;
 	height:38px;
-	background-color:#e2ebef;
+	background-color:#F5F5F5;
 	border-radius: 5px;
 	border:none;
 	color: #6e6f70;
@@ -3254,7 +3254,7 @@ select::-ms-expand {
 
 
 .playlist_view {
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 	padding: 23px 0 0;
 	min-width: 450px;
 	overflow: hidden;
@@ -3659,7 +3659,7 @@ select::-ms-expand {
 }
 .sd_menu {
 	width: 100%;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding: 23px 0 25px 42px;
 }
 .side_menu .sd_menu {
@@ -3804,7 +3804,7 @@ select::-ms-expand {
 	padding-bottom: 0;
 }
 .tb-pr {
-	border-bottom-color: #e2ebef;
+	border-bottom-color: #F5F5F5;
 	padding: 30px 0 30px 30px;
 }
 .tb-pr .verify_ic i {
@@ -3992,7 +3992,7 @@ header.hp_1 .side_links li.user_contrl {
 	padding: 67px 0 0;
 }
 .services-row {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding-bottom: 94px;
 }
 .service-col {
@@ -4147,7 +4147,7 @@ header.hp_1 .side_links li.user_contrl {
 }
 .top-footer {
 	padding: 65px 0 40px;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .ft-logo {
 	margin-bottom: 41px;
@@ -4213,7 +4213,7 @@ header.hp_1 .side_links li.user_contrl {
 }
 .browse_catgs .video_info {
 	margin-top: 0;
-	border:1px solid #e2ebef;
+	border:1px solid #F5F5F5;
 	border-top: 0;
 	padding-bottom: 23px;
 }
@@ -4257,7 +4257,7 @@ header.hp_1 .side_links li.user_contrl {
 
 
 .ftz-vidz {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding-bottom: 24px;
 	padding-top: 27px;
 }
@@ -4302,7 +4302,7 @@ header.hp_1 .side_links li.user_contrl {
 /* =================== BROWSER CATEGORIES CHANNELS ================ */
 
 .browse_categories {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .browse_categories_sec {
 	padding-top: 30px;
@@ -4423,7 +4423,7 @@ header.hp_1 .side_links li.user_contrl {
 	height: 20px;
 }
 .gend input[type="radio"]:checked ~ .checkmark {
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 }
 .gend .checkmark:before {
 	width: 10px;
@@ -4600,7 +4600,7 @@ header.hp_1 .side_links li.user_contrl {
 	z-index: 9;
 }
 .mm_menu .switch input:checked + .slider {
-	background-color: #e2ebef;
+	background-color: #F5F5F5;
 }
 .mm_menu .switch .slider:before {
 	background-color: #6e6f70;
@@ -4656,7 +4656,7 @@ header.hp_1 .side_links li.user_contrl {
 
 
 .br-top {
-	border-top: 1px solid #e2ebef;
+	border-top: 1px solid #F5F5F5;
 }
 
 .user-account .checkmark:before {
@@ -4668,7 +4668,7 @@ header.hp_1 .side_links li.user_contrl {
 
 
 .vidz-row .vidz_sec {
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 }
 .pop_channels .vidz_sec {
 	border-bottom: 0;
@@ -4693,15 +4693,15 @@ header.hp_1 .side_links li.user_contrl {
 
 .filter-sec {
 	padding: 22px 0 25px;
-	border-bottom: 1px solid #e2ebef;
-	border-top: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
+	border-top: 1px solid #F5F5F5;
 	margin-bottom: 30px;
 }
 .fl-head  {
 	color: #1c1b1b;
 	font-size: 16px;
 	font-weight: 400;
-	border-bottom: 1px solid #e2ebef;
+	border-bottom: 1px solid #F5F5F5;
 	padding-bottom: 25px;
 	margin-bottom: 22px;
 }

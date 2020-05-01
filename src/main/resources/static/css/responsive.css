@@ -120,7 +120,7 @@
 	.chat_view {min-width: 100%;}
 	.video_main .row .col-lg-3.ful-dt {max-width: 100%;}
 	.amz_prods {margin-bottom: 60px;border-bottom: 0;}
-	.video-file {border-bottom: 1px solid #e2ebef;width: 100%;}
+	.video-file {border-bottom: 1px solid #F5F5F5;width: 100%;}
 	.form_popup {height: 100%;}
 	.form_dvv {display: block;}
 	.hp_1 .side_menu .dp_ul li.live_dv {margin-top: 0;}
@@ -202,7 +202,7 @@
 	.mange_sub .vc_info.st {padding-left: 20px;}
 	.ch-pswd input {width: 100%;}
 	.video-file {padding: 40px 0 60px;}
-	.youtube-dwn {padding: 50px 0 70px;border-bottom: 1px solid #e2ebef;margin: 0;width: 100%;margin-bottom: 50px;}
+	.youtube-dwn {padding: 50px 0 70px;border-bottom: 1px solid #F5F5F5;margin: 0;width: 100%;margin-bottom: 50px;}
 	.suggestions p {font-size: 14px;}
 	.top-footer {padding-top: 60px;padding-bottom: 20px;}
 	.ab-history {padding-bottom: 0;}
