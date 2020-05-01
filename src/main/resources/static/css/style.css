@@ -67,6 +67,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 body {
     font-family: PingFangSC-Light,'STHeiti Light','helvetica neue','hiragino sans gb',arial,'microsoft yahei ui','microsoft yahei',simsun,sans-serif;
     font-size: 16px;
@@ -169,7 +170,7 @@ button:hover,
 	background-color: #4a90e2;
 }
 .container {
-	max-width: 1170px;
+	max-width: 1230px;
 }
 
 
@@ -913,6 +914,9 @@ svg:hover path {
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
+
+
+
 
 .more_items_sec {
 	padding: 70px 0;
@@ -2833,7 +2837,6 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 	width:100%;
 	padding-bottom:20px;
 }
-
 .video-details{
 	width:100%;
 	border-left: 1px solid #e2ebef;
@@ -4740,7 +4743,9 @@ header.hp_1 .side_links li.user_contrl {
 	border-top: 0;
 }
 
-
+div img:hover{
+                transform: scale(1.2);
+            }
 
 /* ================== VIDEO PLAYER ================= */
 
@@ -4756,4 +4761,8 @@ header.hp_1 .side_links li.user_contrl {
 	-ms-transform: translate(-50%,-50%);
 	-o-transform: translate(-50%,-50%);
 	transform: translate(-50%,-50%);
+}
+
+div img:hover{
+	transform: scale(1.2);
 }
