@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8" />
+</head>
+
+<body>
+	<!-- パネル部品 -->
+	<div th:fragment="panelParts()" class="panels">
+		<a id="panel1" th:href="@{/property/detail(propertyId=${propertyId})}" class = "panel" th:classappend="${activeNo eq '1' ? 'active' : ''}">
+			<div>基本情報</div>
+		</a>
+		<a id="panel2" href="#" class="panel inactive">
+			<div>契約情報（調整中）</div>
+		</a>
+		<a id="panel3" th:href="@{/property/transaction(propertyId=${propertyId})}" class ="panel" th:classappend="${activeNo eq '3' ? 'active' : ''}">
+			<div>取引情報</div>
+		</a>
+		<a id="panel4" href="#" class="panel inactive">
+			<div>所有者情報（調整中）</div>
+		</a>
+		<a id="panel5" href="#" class="panel inactive">
+			<div>借入情報（調整中）</div>
+		</a>
+	</div>
+
+	<!-- パネル部品（物件新規登録用） -->
+	<div th:fragment="panelPartsNewProperty()" class="panels">
+		<a id="panel1" th:href="@{/property/detail(propertyId=${propertyId})}" style="pointer-events: none;" class="panel active">
+			<div>基本情報</div>
+		</a>
+	</div>
+
+</body>
+</html>
