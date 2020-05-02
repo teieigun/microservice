@@ -7,12 +7,9 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="icon" href="images/Favicon.png">
-		<link rel="stylesheet" type="text/css" href="css/animate.css">
+
+		<link rel="stylesheet" type="text/css" href="css/tei.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/flatpickr.min.css">
-		<link rel="stylesheet" type="text/css" href="css/fontello.css">
-		<link rel="stylesheet" type="text/css" href="css/fontello-codes.css">
-		<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/responsive.css">
 		<link rel="stylesheet" type="text/css" href="css/color.css">
@@ -174,7 +171,7 @@
 										</div><!--ch-pswd end-->
 									</form>
 								</div><!--change-pswd end-->
-								<div class="account-details">
+<div class="account-details">
 									<div class="account_details_content">
 										<h2 class="hd-op">变更个人信息</h2>
 										<h4 class="slct-hd">国家</h4>
@@ -215,19 +212,24 @@
 												<option> ABGC</option>
 											</select>
 										</div>
-<h4 class="slct-hd">生年月日</h4>
-<input type="text" class="demo-input" placeholder="请选择日期" id="test1">
 
+										<h4 class="slct-hd">生年月日</h4>
+										<input type="text" class="demo-input" placeholder="请选择日期" id="birthday">
+</div>
+<div class="account_details_content">
+									<h2 class="hd-op">技术简历</h2>
 
 										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-										  <legend>技术简历</legend>
+
 										</fieldset>
 										<div class="layui-collapse" lay-filter="test">
 										  <div class="layui-colla-item">
 											<h2 class="layui-colla-title">编程语言</h2>
+
 											<div class="layui-colla-content">
 
-											<input type="text"></input>
+<div id="test7" class="demo-tree"></div>
+
 											</div>
 										  </div>
 										  <div class="layui-colla-item">
@@ -269,7 +271,7 @@
 
 				//执行一个laydate实例
 				laydate.render({
-				  elem: '#test1' //指定元素
+				  elem: '#birthday' //指定元素
 			});
 			</script>
 			<script src="js/jquery.min.js"></script>
@@ -299,6 +301,82 @@
 			        }
 
 		    </script>
+
+		    <script>
+				layui.use(['tree', 'util'], function(){
+				  var tree = layui.tree
+				  ,layer = layui.layer
+				  ,util = layui.util
+
+				  //模拟数据2
+				  ,data2 = [{
+				    title: '开发语言'
+				    ,id: 1
+				    ,children: [{
+				      title: 'JAVA'
+				      ,id: 5
+				    },{
+				      title: 'C#'
+				      ,id: 6
+				    },{
+				      title: 'PHP'
+				      ,id: 7
+				    }]
+				  },{
+				    title: '数据库'
+				    ,id: 2
+				    ,checked: true
+				    ,children: [{
+				      title: 'Oracle'
+				      ,id: 8
+				    },{
+				      title: 'Mysql'
+				      ,id: 9
+				    },{
+				      title: 'SqlServer'
+				      ,id: 10
+				    },{
+				      title: 'PostgreSql'
+				      ,id: 11
+				    }]
+				  },{
+				    title: '框架'
+				    ,id: 3
+				    ,children: [{
+				      title: 'Spring boot'
+				      ,id: 12
+				      ,fixed: true
+				    },{
+				      title: 'Struts'
+				      ,id: 13
+				    }]
+				  },{
+				    title: '基盘'
+				    ,id: 4
+				    ,children: [{
+				      title: 'apache'
+				      ,id: 14
+				      ,checked: true
+				    },{
+				      title: 'tomcat'
+				      ,id: 15
+				      ,disabled: true
+				    },{
+				      title: 'nginx'
+				      ,id: 16
+				    }]
+				  }];
+
+				  //开启复选框
+				  tree.render({
+				    elem: '#test7'
+				    ,data: data2
+				    ,showCheckbox: true
+				  });
+
+				});
+			</script>
+
 	</body>
 
 </html>

@@ -128,9 +128,11 @@ pre {
 	word-wrap: break-word
 }
 
-body {
+
+body{
+	font-family:"微软雅黑";
 	line-height: 24px;
-	font: 14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif
+	color: #14191e;
 }
 
 hr {

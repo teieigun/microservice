@@ -1,7 +1,7 @@
 ﻿/*
 
-@Name：不落阁后台模板源码 
-@Author：Absolutely 
+@Name：不落阁后台模板源码
+@Author：Absolutely
 @Site：http://www.lyblogs.cn
 
 */
@@ -431,6 +431,7 @@ body .steward {
 
         .individuation .setting-item span {
             font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
             font-size: 13px;
             color: #676a6c;
             line-height: 21px;
