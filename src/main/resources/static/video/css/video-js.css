@@ -1056,13 +1056,6 @@ body.vjs-full-window {
 .vjs-tt-cue {
   display: block; }
 
-video::-webkit-media-text-track-display {
-  -webkit-transform: translateY(-3em);
-  transform: translateY(-3em); }
-
-.video-js.vjs-user-inactive.vjs-playing video::-webkit-media-text-track-display {
-  -webkit-transform: translateY(-1.5em);
-  transform: translateY(-1.5em); }
 
 .video-js .vjs-fullscreen-control {
   cursor: pointer;
@@ -1403,7 +1396,7 @@ video::-webkit-media-text-track-display {
 
 .dlinfo2 .video_list_num {
     display: block;
-    width: 850px;
+    width: 800px;
     height: 40px;
     line-height: 40px;
     text-indent: 35px;
