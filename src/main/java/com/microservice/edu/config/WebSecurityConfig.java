@@ -30,12 +30,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/video/vip").hasAnyAuthority("3","9")
             .antMatchers("/video/admin").hasAnyAuthority("9")
             .antMatchers("/video/**").authenticated()//所有/r/**的请求必须认证通过
-            .antMatchers("/", "/index").permitAll()//除了/r/**，其它的请求可以访问
+            .antMatchers("/", "/index","/video/css","/video/img","/video/font","/video/js").permitAll()//除了/r/**，其它的请求可以访问
             .and()
             .formLogin().loginPage("/")
             .loginProcessingUrl("/login")
-            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
+//            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
             .defaultSuccessUrl("/video")
+            .failureForwardUrl("/login")
             .usernameParameter("username").passwordParameter("password")
             .permitAll();
             

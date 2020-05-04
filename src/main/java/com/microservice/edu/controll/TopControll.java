@@ -19,7 +19,7 @@ public class TopControll {
 	@Autowired
 	TopPageService topPageService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method={RequestMethod.GET,RequestMethod.POST})
 	@Transactional(readOnly = true)
 	public String login(Model model) throws Exception {
 

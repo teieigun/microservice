@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<div th:fragment="side_menu()" class="side_menu">
+			<div class="form_dvv">
+				<a href="#" title="" class="login_form_show">Sign in</a>
+			</div>
+			<div class="sd_menu">
+				<ul class="mm_menu">
+					<li>
+						<span>
+							<i class="icon-home"></i>
+						</span>
+						<a href="/video" title="">首页</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-fire"></i>
+						</span>
+						<a href="#" title="">最近更新</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-subscriptions"></i>
+						</span>
+						<a href="#" title="">视频搜索</a>
+					</li>
+				</ul>
+			</div><!--sd_menu end-->
+			<div class="sd_menu">
+				<h3>Library</h3>
+				<ul class="mm_menu">
+					<li>
+						<span>
+							<i class="icon-history"></i>
+						</span>
+						<a href="#" title="">历史记录</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-play_list"></i>
+						</span>
+						<a href="/#" title="">播放列表</a>
+					</li>
+				</ul>
+			</div><!--sd_menu end-->
+			<div class="sd_menu">
+				<ul class="mm_menu">
+					<li>
+						<span>
+							<i class="icon-settings"></i>
+						</span>
+						<a href="#" title="">我的信息</a>
+					</li>
+					<li>
+						<span>
+							<i class="icon-logout"></i>
+						</span>
+						<a href="javascript:OnLinkClick();" >注销</a><br />
+					</li>
+				</ul>
+			</div><!--sd_menu end-->
+			<div class="sd_menu bb-0">
+				<ul class="social_links">
+					<li>
+						<a href="#" title="">
+							<i class="icon-facebook-official"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="">
+							<i class="icon-twitter"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" title="">
+							<i class="icon-instagram"></i>
+						</a>
+					</li>
+				</ul><!--social_links end-->
+			</div><!--sd_menu end-->
+			<div class="dd_menu"></div>
+		</div><!--side_menu end-->
+	</body>
+</html>

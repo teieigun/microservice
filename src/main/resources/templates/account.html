@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cn" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
 		<title>Oren Video Template</title>
@@ -8,392 +7,28 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="icon" href="images/Favicon.png">
+
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/flatpickr.min.css">
 		<link rel="stylesheet" type="text/css" href="css/fontello.css">
 		<link rel="stylesheet" type="text/css" href="css/fontello-codes.css">
 		<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
+		<link rel="stylesheet" type="text/css" href="css/video-js.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/responsive.css">
 		<link rel="stylesheet" type="text/css" href="css/color.css">
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
+		<link rel="stylesheet" type="text/css" href="css/tei.css">
 
 	</head>
 	<body>
 		<div class="wrapper">
 
 			<header>
-				<div class="top_bar">
-					<div class="container">
-						<div class="top_header_content">
-							<div class="menu_logo">
-								<a href="#" title="" class="menu">
-									<i class="icon-menu"></i>
-								</a>
-								<a href="index.html" title="" class="logo">
-									<img src="images/logo.png" alt="">
-								</a>
-							</div><!--menu_logo end-->
-							<div class="search_form">
-								<form>
-									<input type="text" name="search" placeholder="Search Videos">
-									<button type="submit">
-										<i class="icon-search"></i>
-									</button>
-								</form>
-							</div><!--search_form end-->
-							<ul class="controls-lv">
-								<li>
-									<a href="#" title=""><i class="icon-message"></i></a>
-								</li>
-								<li>
-									<a href="#" title=""><i class="icon-notification"></i></a>
-								</li>
-								<li class="user-log">
-									<div class="user-ac-img">
-										<img src="images/resources/user-img.png" alt="">
-									</div>
-									<div class="account-menu">
-										<h4>AZYRUSMAX <span class="usr-status">PRO</span></h4>
-										<div class="sd_menu">
-											<ul class="mm_menu">
-												<li>
-													<span>
-														<i class="icon-user"></i>
-													</span>
-													<a href="#" title="">My Channel</a>
-												</li>
-												<li>
-													<span>
-														<i class="icon-paid_sub"></i>
-													</span>
-													<a href="#" title="">Paid subscriptions</a>
-												</li>
-												<li>
-													<span>
-														<i class="icon-settings"></i>
-													</span>
-													<a href="#" title="">Settings</a>
-												</li>
-												<li>
-													<span>
-														<i class="icon-logout"></i>
-													</span>
-													<a href="#" title="">Sign out</a>
-												</li>
-											</ul>
-										</div><!--sd_menu end-->
-										<div class="sd_menu scnd">
-											<ul class="mm_menu">
-												<li>
-													<span>
-														<i class="icon-light"></i>
-													</span>
-													<a href="#" title="">Dark Theme</a>
-													<label class="switch">
-														<input type="checkbox">
-													  	<b class="slider round"></b>
-													</label>
-												</li>
-												<li>
-													<span>
-														<i class="icon-language"></i>
-													</span>
-													<a href="#" title="">Language</a>
-												</li>
-												<li>
-													<span>
-														<i class="icon-feedback"></i>
-													</span>
-													<a href="#" title="">Send feedback</a>
-												</li>
-												<li>
-													<span>
-														<i class="icon-location"></i>
-													</span>
-													<a href="#" title="">India</a>
-													<i class="icon-arrow_below"></i>
-												</li>
-											</ul>
-										</div><!--sd_menu end-->
-										<div class="restricted-mode">
-											<h4>Restricted Mode</h4>
-											<label class="switch">
-												<input type="checkbox" checked>
-											  	<span class="slider round"></span>
-											</label>
-											<div class="clearfix"></div>
-										</div><!--restricted-more end-->
-									</div>
-								</li>
-								<li>
-									<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
-								</li>
-							</ul><!--controls-lv end-->
-							<form role="form" id="logoutForm" th:action="@{/logout}" method="post"></form>
-							<div class="clearfix"></div>
-						</div><!--top_header_content end-->
-					</div>
-				</div><!--header_content end-->
-				<div class="btm_bar">
-					<div class="container">
-						<div class="btm_bar_content">
-							<nav>
-								<ul>
-									<li><a href="#" title="">导航</a>
-										<div class="mega-menu">
-											<ul>
-												<li><a href="index.html" title="">主页</a></li>
-												<li><a href="single_video_page.html" title="">基本信息</a></li>
-												<li><a href="Single_Video_Simplified_Page.html" title="">历史记录</a></li>
-												<li><a href="single_video_fullwidth_page.html" title="">我的问题</a></li>
-												<li><a href="single_video_playlist.html" title="">我的技术简历</a></li>
-												<li><a href="Upload_Video.html" title="">面试技巧</a></li>
-												<li><a href="Upload_Edit.html" title="">我的项目</a></li>
-
-											</ul>
-											<ul>
-												<li><a href="#" title="">我的视频 <span class="icon-arrow_below"></span></a>
-													<ul>
-														<li><a href="Single_Channel_Home.html" title="">html基础</a></li>
-														<li><a href="Single_Channel_Videos.html" title="">css</a></li>
-														<li><a href="Single_Channel_Playlist.html" title="">js＆jquery</a></li>
-														<li><a href="Single_Channel_Channels.html" title="">java入門</a></li>
-														<li><a href="Single_Channel_About.html" title="">SQL基礎</a></li>
-														<li><a href="Single_Channel_Products.html" title="">Linux入門</a></li>
-													</ul>
-												</li>
-												<li><a href="login.html" title="">注冊</a></li>
-												<li><a href="signup.html" title="">登錄</a></li>
-												<li><a href="User_Account_Page.html" title="">客户信息</a></li>
-											</ul>
-										</div>
-										<div class="clearfix"></div>
-									</li>
-									<li><a href="Browse_Categories.html" title="">视频分类</a></li>
-									<li><a href="Browse_Channels.html" title="">频道</a></li>
-									<li><a href="Single_Channel_Home.html" title="">直播间</a></li>
-									<li><a href="#" title="">轻松一下</a></li>
-								</ul>
-							</nav><!--navigation end-->
-							<ul class="shr_links">
-								<li>
-									<h3>Go to : </h3>
-								</li>
-								<li>
-									<button data-toggle="tooltip" data-placement="top" title="Like">
-									  <i class="icon-like"></i>
-									</button>
-								</li>
-								<li>
-									<button data-toggle="tooltip" data-placement="top" title="Watch later">
-									  <i class="icon-watch_later"></i>
-									</button>
-								</li>
-								<li>
-									<button data-toggle="tooltip" data-placement="top" title="Playlist">
-									  <i class="icon-playlist"></i>
-									</button>
-								</li>
-								<li>
-									<button data-toggle="tooltip" data-placement="top" title="Purchased">
-									  <i class="icon-purchased"></i>
-									</button>
-								</li>
-								<li>
-									<button data-toggle="tooltip" data-placement="top" title="History">
-									  <i class="icon-history"></i>
-									</button>
-								</li>
-							</ul><!--shr_links end-->
-							<ul class="vid_thums">
-								<li>
-									<a class="active" href="#" title=""><i class="icon-grid"></i></a>
-								</li>
-								<li>
-									<a href="#" title="">
-										<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-											 viewBox="0 0 108 108" xml:space="preserve">
-											<rect width="63" height="45"/>
-											<rect x="81" width="27" height="45"/>
-											<rect x="45" y="63" width="63" height="45"/>
-											<rect y="63" width="27" height="45"/>
-										</svg>
-									</a>
-								</li>
-							</ul><!--vid_status end-->
-							<div class="clearfix"></div>
-						</div><!--btm_bar_content end-->
-					</div>
-				</div><!--btm_bar end-->
+				<div th:replace="/common/tob_bar.html::top_bar()"></div><!--header_content end-->
+				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
 			</header><!--header end-->
-
-			<div class="side_menu">
-				<div class="form_dvv">
-					<a href="#" title="" class="login_form_show">Sign in</a>
-				</div>
-				<div class="sd_menu">
-					<ul class="mm_menu">
-						<li>
-							<span>
-								<i class="icon-home"></i>
-							</span>
-							<a href="#" title="">Home</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-fire"></i>
-							</span>
-							<a href="#" title="">Trending</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-subscriptions"></i>
-							</span>
-							<a href="#" title="">Subscriptions</a>
-						</li>
-					</ul>
-				</div><!--sd_menu end-->
-				<div class="sd_menu">
-					<h3>Library</h3>
-					<ul class="mm_menu">
-						<li>
-							<span>
-								<i class="icon-history"></i>
-							</span>
-							<a href="#" title="">History</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-watch_later"></i>
-							</span>
-							<a href="#" title="">Watch Later</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-purchased"></i>
-							</span>
-							<a href="#" title="">Purchases</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-like"></i>
-							</span>
-							<a href="#" title="">Liked Videos</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-play_list"></i>
-							</span>
-							<a href="#" title="">Playlist</a>
-						</li>
-					</ul>
-				</div><!--sd_menu end-->
-				<div class="sd_menu subs_lst">
-					<h3>Subscriptions</h3>
-					<ul class="mm_menu">
-						<li>
-							<span class="usr_name">
-								<img src="images/resources/th1.png" alt="">
-							</span>
-							<a href="#" title="">Dr Disrespect</a>
-							<small>3</small>
-						</li>
-						<li>
-							<span class="usr_name">
-								<img src="images/resources/th2.png" alt="">
-							</span>
-							<a href="#" title="">ASMR</a>
-							<small>6</small>
-						</li>
-						<li>
-							<span class="usr_name">
-								<img src="images/resources/th3.png" alt="">
-							</span>
-							<a href="#" title="">Rivvrs</a>
-							<small>2</small>
-						</li>
-						<li>
-							<span class="usr_name">
-								<img src="images/resources/th4.png" alt="">
-							</span>
-							<a href="#" title="">The Verge</a>
-							<small>11</small>
-						</li>
-						<li>
-							<span class="usr_name">
-								<img src="images/resources/th5.png" alt="">
-							</span>
-							<a href="#" title="">Seeker</a>
-							<small>3</small>
-						</li>
-						<li>
-							<span class="usr_name">
-								<img src="images/resources/sn.png" alt="">
-							</span>
-							<a href="#" title="">Music</a>
-							<small>20</small>
-						</li>
-					</ul>
-					<a href="#" title="" class="more-ch"><i class="icon-arrow_below"></i> Show 14 more</a>
-				</div><!--sd_menu end-->
-				<div class="sd_menu">
-					<ul class="mm_menu">
-						<li>
-							<span>
-								<i class="icon-settings"></i>
-							</span>
-							<a href="#" title="">Settings</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-flag"></i>
-							</span>
-							<a href="#" title="">Report history</a>
-						</li>
-						<li>
-							<span>
-								<i class="icon-logout"></i>
-							</span>
-							<a href="#" title="">Sign out</a>
-						</li>
-					</ul>
-				</div><!--sd_menu end-->
-				<div class="sd_menu m_linkz">
-					<ul class="mm_menu">
-						<li><a href="#">About</a></li>
-						<li><a href="#">Community Rules </a></li>
-						<li><a href="#">Privacy</a></li>
-						<li><a href="#">Terms</a></li>
-						<li><a href="#">Blogs</a></li>
-						<li><a href="#">Contracts </a></li>
-						<li><a href="#">Donate</a></li>
-						<li><a href="#">FAQ</a></li>
-					</ul>
-					<span>azyrusthemes</span>
-				</div><!--sd_menu end-->
-				<div class="sd_menu bb-0">
-					<ul class="social_links">
-						<li>
-							<a href="#" title="">
-								<i class="icon-facebook-official"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="">
-								<i class="icon-twitter"></i>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="">
-								<i class="icon-instagram"></i>
-							</a>
-						</li>
-					</ul><!--social_links end-->
-				</div><!--sd_menu end-->
-				<div class="dd_menu"></div>
-			</div><!--side_menu end-->
+			<div th:replace="/common/side_menu.html::side_menu()"></div><!--header_content end-->
 
 			<section class="user-account">
 				<div class="container">
@@ -407,11 +42,13 @@
 									<h4>郑英群</h4>
 								</div><!--video_info pr-->
 								<div class="widget account">
-									<h2 class="hd-uc"> <i class="icon-user"></i> Account</h2>
+									<h2 class="hd-uc"> <i class="icon-user">我的信息</i> </h2>
 									<ul>
-										<li><a href="#">我的信息</a></li>
 										<li><a href="#">变更密码</a></li>
-										<li><a href="#">变更个人信息</a></li>
+										<li><a href="#">基本信息</a></li>
+										<li><a href="#">语言</a></li>
+										<li><a href="#">技术简历</a></li>
+										<li><a href="#">职业简历</a></li>
 									</ul>
 								</div><!--account end-->
 							</div><!--sidebar end-->
@@ -541,9 +178,11 @@
 										</div><!--ch-pswd end-->
 									</form>
 								</div><!--change-pswd end-->
+
+
 								<div class="account-details">
 									<div class="account_details_content">
-										<h2 class="hd-op">变更个人信息</h2>
+										<h2 class="hd-op">个人信息</h2>
 										<h4 class="slct-hd">国家</h4>
 										<div class="slct_optz">
 											<select>
@@ -551,9 +190,6 @@
 												<option>日本</option>
 												<option>美国</option>
 											</select>
-											<a href="#" title="" class="arw_vz">
-												<i class="icon-arrow_below"></i>
-											</a>
 										</div>
 										<h4 class="slct-hd">性别</h4>
 										<ul class="gend">
@@ -577,7 +213,7 @@
 											</li>
 										</ul>
 										<h4 class="slct-hd">邮件</h4>
-										<div class="slct_optz">
+										<div>
 											<select>
 												<option> ABGC</option>
 												<option> ABGC</option>
@@ -585,76 +221,140 @@
 												<option> ABGC</option>
 											</select>
 										</div>
+
 										<h4 class="slct-hd">生年月日</h4>
-										<div class="dob flatpickr">
-											<select>
-												<option> ABGC</option>
-												<option> ABGC</option>
-												<option> ABGC</option>
-												<option> ABGC</option>
-											</select>
-										</div>
-										<div class="ch-pswd">
-											<button type="submit"> 变更</button>
-										</div><!--ch-pswd end-->
-
-
+										<input type="text" class="demo-input" placeholder="请选择日期" id="birthday">
+										<div style="margin: 30px"></div>
+										<h4 class="slct_optz">技术简历</h4>
 										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-										  <legend>技术简历</legend>
+											<div class="layui-collapse" lay-filter="test">
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">编程语言</h2>
+													<div class="layui-colla-content">
+														<div id="test7" class="demo-tree"></div>
+													</div>
+												</div>
+
+
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">取得资格</h2>
+													<div class="layui-colla-content">
+														<p>资格1</p>
+													</div>
+												</div>
+
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">就职过哪家公司？</h2>
+													<div class="layui-colla-content">
+														<p>微软，IBM</p>
+													</div>
+												</div>
+
+												<div class="layui-colla-item">
+												<h2 class="layui-colla-title">参加过哪些项目？</h2>
+												<div class="layui-colla-content">
+												  <p>东京都医疗费</p>
+												</div>
+											  </div>
+											</div>
 										</fieldset>
-										<div class="layui-collapse" lay-filter="test">
-										  <div class="layui-colla-item">
-											<h2 class="layui-colla-title">编程语言</h2>
-											<div class="layui-colla-content">
-
-											<input type="text">JAVA</input>
-											</div>
-										  </div>
-										  <div class="layui-colla-item">
-											<h2 class="layui-colla-title">为什么前端工程师多不愿意用 Bootstrap 框架？</h2>
-											<div class="layui-colla-content">
-											  <p>因为不适合。如果希望开发长期的项目或者制作产品类网站，那么就需要实现特定的设计，为了在维护项目中可以方便地按设计师要求快速修改样式，肯定会逐步编写出各种业务组件、工具类，相当于为项目自行开发一套框架。——来自知乎@Kayo</p>
-											</div>
-										  </div>
-										  <div class="layui-colla-item">
-											<h2 class="layui-colla-title">layui 更适合哪些开发者？</h2>
-											<div class="layui-colla-content">
-											  <p>在前端技术快速变革的今天，layui 仍然坚持语义化的组织模式，甚至于模块理念都是采用类AMD组织形式，并非是有意与时代背道而驰。layui 认为以jQuery为核心的开发方式还没有到完全消亡的时候，而早期市面上基于jQuery的UI都普通做得差强人意，所以需要有一个新的UI去重新为这一领域注入活力，并采用一些更科学的架构方式。
-											  <br><br>
-											  因此准确地说，layui 更多是面向那些追求开发简单的前端工程师们，以及所有层次的服务端程序员。</p>
-											</div>
-										  </div>
-										  <div class="layui-colla-item">
-											<h2 class="layui-colla-title">贤心是男是女？</h2>
-											<div class="layui-colla-content">
-											  <p>man！ 所以这个问题不要再出现了。。。</p>
-											</div>
-										  </div>
-										</div>
 
 
+										<h4 class="slct_optz">语言</h4>
+										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+											<div class="layui-collapse" lay-filter="test">
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">编程语言</h2>
+													<div class="layui-colla-content">
+														<div id="test7" class="demo-tree"></div>
+													</div>
+												</div>
 
-									</div><!--account_details_content end-->
-									<div class="clearfix"></div>
-								</div><!--Account Details end-->
-							</div><!--video-details end-->
-						</div>
-					</div>
-				</div>
+
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">取得资格</h2>
+													<div class="layui-colla-content">
+														<p>资格1</p>
+													</div>
+												</div>
+
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">就职过哪家公司？</h2>
+													<div class="layui-colla-content">
+														<p>微软，IBM</p>
+													</div>
+												</div>
+
+												<div class="layui-colla-item">
+												<h2 class="layui-colla-title">参加过哪些项目？</h2>
+												<div class="layui-colla-content">
+												  <p>东京都医疗费</p>
+												</div>
+											  </div>
+											</div>
+										</fieldset>
+
+
+										<h4 class="slct_optz">职业简历</h4>
+										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+											<div class="layui-collapse" lay-filter="test">
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">编程语言</h2>
+													<div class="layui-colla-content">
+														<div id="test7" class="demo-tree"></div>
+													</div>
+												</div>
+
+
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">取得资格</h2>
+													<div class="layui-colla-content">
+														<p>资格1</p>
+													</div>
+												</div>
+
+												<div class="layui-colla-item">
+													<h2 class="layui-colla-title">就职过哪家公司？</h2>
+													<div class="layui-colla-content">
+														<p>微软，IBM</p>
+													</div>
+												</div>
+
+												<div class="layui-colla-item">
+												<h2 class="layui-colla-title">参加过哪些项目？</h2>
+												<div class="layui-colla-content">
+												  <p>东京都医疗费</p>
+												</div>
+											  </div>
+											</div>
+										</fieldset>
+
+	</div><!--Account Details end-->
+</div><!--video-details end-->
+
+
 			</section><!--user-account end-->
+						<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
 
 		</div><!--wrapper end-->
 
+		    <script src="js/laydate.js"></script> <!-- 改成你的路径 -->
+		    <script>
+				lay('#version').html('-v'+ laydate.v);
 
-
+				//执行一个laydate实例
+				laydate.render({
+				  elem: '#birthday' //指定元素
+			});
+			</script>
 			<script src="js/jquery.min.js"></script>
 			<script src="js/popper.js"></script>
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/flatpickr.js"></script>
 			<script src="js/script.js"></script>
-
 			<script src="js/layui.js"></script>
-			<script src="js/layui.all.js"></script>
+
+
 			<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 			<script>
 				layui.use(['element', 'layer'], function(){
@@ -672,7 +372,84 @@
 		            target.submit();
 		            return false;
 			        }
-			  </script>
+
+		    </script>
+
+		    <script>
+				layui.use(['tree', 'util'], function(){
+				  var tree = layui.tree
+				  ,layer = layui.layer
+				  ,util = layui.util
+
+				  //模拟数据2
+				  ,data2 = [{
+				    title: '开发语言'
+				    ,id: 1
+				    ,children: [{
+				      title: 'JAVA'
+				      ,id: 5
+				    },{
+				      title: 'C#'
+				      ,id: 6
+				    },{
+				      title: 'PHP'
+				      ,id: 7
+				    }]
+				  },{
+				    title: '数据库'
+				    ,id: 2
+				    ,checked: true
+				    ,children: [{
+				      title: 'Oracle'
+				      ,id: 8
+				    },{
+				      title: 'Mysql'
+				      ,id: 9
+				    },{
+				      title: 'SqlServer'
+				      ,id: 10
+				    },{
+				      title: 'PostgreSql'
+				      ,id: 11
+				    }]
+				  },{
+				    title: '框架'
+				    ,id: 3
+				    ,children: [{
+				      title: 'Spring boot'
+				      ,id: 12
+				      ,fixed: true
+				    },{
+				      title: 'Struts'
+				      ,id: 13
+				    }]
+				  },{
+				    title: '基盘'
+				    ,id: 4
+				    ,children: [{
+				      title: 'apache'
+				      ,id: 14
+				      ,checked: true
+				    },{
+				      title: 'tomcat'
+				      ,id: 15
+				      ,disabled: true
+				    },{
+				      title: 'nginx'
+				      ,id: 16
+				    }]
+				  }];
+
+				  //开启复选框
+				  tree.render({
+				    elem: '#test7'
+				    ,data: data2
+				    ,showCheckbox: true
+				  });
+
+				});
+			</script>
+
 	</body>
 
 </html>

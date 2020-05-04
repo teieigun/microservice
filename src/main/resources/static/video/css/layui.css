@@ -128,8 +128,11 @@ pre {
 	word-wrap: break-word
 }
 
-body {
+
+body{
+	font-family:"微软雅黑";
 	line-height: 24px;
+	color: #14191e;
 }
 
 hr {

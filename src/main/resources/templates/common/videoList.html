@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+	</head>
+	<body>
+		<div th:fragment="videoList()">
+			<div class="dlcon">
+				<div class="content1">
+					<div class="dlconL fl">
+						<!--课程目录-->
+						<div class="dlinfo dlinfo2" style="display: block;">
+							<div class="div_xlbtn">
+								<div th:each="lessonChapterPojo:${listLessonChapterPojo}">
+									<a id="1qaz" href="#" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);"><span th:text="${lessonChapterPojo.chapterName}" /> <button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" th:attr="onclick='player(\'' + ${lessonChapterPojo.lessonId}+ ','+${lessonChapterPojo.chapterNo} + '\');'">开始学习</button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

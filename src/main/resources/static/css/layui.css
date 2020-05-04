@@ -1827,7 +1827,7 @@ a cite {
 	line-height: 22px;
 	border-left: 5px solid #009688;
 	border-radius: 0 2px 2px 0;
-	background-color: #f2f2f2
+	background-color: #F5F5F5
 }
 
 .layui-quote-nm {
@@ -1926,9 +1926,10 @@ a cite {
 	line-height: 42px;
 	padding: 0 15px 0 35px;
 	color: #333;
-	background-color: #f2f2f2;
+	background-color: #F5F5F5;
 	cursor: pointer;
 	font-size: 14px;
+	border-radius: 5px;
 	overflow: hidden
 }
 
@@ -2482,7 +2483,7 @@ hr {
 }
 
 .layui-form-select dl dd:hover {
-	background-color: #f2f2f2;
+	background-color: #F5F5F5;
 	-webkit-transition: .5s all;
 	transition: .5s all
 }
@@ -3229,7 +3230,7 @@ hr {
 .layui-table-total,
 .layui-table-total tr,
 .layui-table[lay-even] tr:nth-child(even) {
-	background-color: #f2f2f2
+	background-color: #F5F5F5
 }
 
 .layui-table td,
@@ -3451,7 +3452,7 @@ hr {
 }
 
 .layui-table-tool-panel li:hover {
-	background-color: #f2f2f2
+	background-color: #F5F5F5
 }
 
 .layui-table-tool-panel li .layui-form-checkbox[lay-skin=primary] i {
@@ -3953,7 +3954,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-transfer-data li:hover {
-	background-color: #f2f2f2;
+	background-color: #F5F5F5;
 	transition: .5s all
 }
 
@@ -4077,7 +4078,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-nav .layui-nav-child a:hover {
-	background-color: #f2f2f2;
+	background-color: #F5F5F5;
 	color: #000
 }
 
@@ -4388,7 +4389,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-tab-card>.layui-tab-title {
-	background-color: #f2f2f2
+	background-color: #F5F5F5
 }
 
 .layui-tab-card>.layui-tab-title li {
@@ -4874,7 +4875,7 @@ body .layui-util-face .layui-layer-content {
 	line-height: 20px;
 	border: 1px solid #ddd;
 	border-left-width: 6px;
-	background-color: #F2F2F2;
+	background-color: #F5F5F5;
 	color: #333;
 	font-family: Courier New;
 	font-size: 12px
