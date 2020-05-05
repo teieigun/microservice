@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 测试前后端分离的测试类 前端 Vue.js  后端 Spring boot
+ * */
 
 @Controller
-public class TestControll {
+public class BookControll {
 
 
 	@Autowired
