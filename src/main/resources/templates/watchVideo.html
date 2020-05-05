@@ -45,7 +45,7 @@
 
 			/*タブのスタイル*/
 			.tab_item {
-				width: calc(100%/3);
+				width: calc(100%/4);
 				height: 50px;
 				border-bottom: 3px solid #5ab4bd;
 				background-color: #d9d9d9;
@@ -84,6 +84,10 @@
 				display: block;
 			}
 
+			#testing:checked ~ #testing_content {
+				display: block;
+			}
+
 			/*選択されているタブのスタイルを変える*/
 			.tabs input:checked + .tab_item {
 				background-color: #5ab4bd;
@@ -117,10 +121,15 @@
 									<div class="tabs">
 										<input id="all" type="radio" name="tab_item" checked>
 										<label class="tab_item" for="all">章节播放</label>
+
 										<input id="programming" type="radio" name="tab_item">
 										<label class="tab_item" for="programming">学习笔记</label>
+
 										<input id="design" type="radio" name="tab_item">
-										<label class="tab_item" for="design">留言</label>
+										<label class="tab_item" for="design">我有问题</label>
+
+										<input id="testing" type="radio" name="tab_item">
+										<label class="tab_item" for="testing">演习问题</label>
 
 										<div class="tab_content" id="all_content">
 											<div>
@@ -137,7 +146,11 @@
 												<p class="c-txtsp">デザインの内容がここに入ります</p>
 											</div>
 										</div>
-
+										<div class="tab_content" id="testing_content">
+											<div class="tab_content_description">
+												<p class="c-txtsp">テストの内容がここに入ります</p>
+											</div>
+										</div>
 									</div>
 
 
