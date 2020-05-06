@@ -50,6 +50,11 @@ public class WatchVideoControll {
 
         List<LessonChapterPojo> listLessonChapterPojo2 =  watchVideoService.getChapterList(lessonId);
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
+        if(listLessonChapterPojo2!=null && listLessonChapterPojo2.size()>0){
+            model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
+            model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
+        }
+
         return "/watchVideo";
     }
 

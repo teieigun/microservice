@@ -17,8 +17,10 @@ import com.microservice.edu.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import web.SessionContext;
 
 /**
  * 点赞评论控制器
@@ -80,17 +82,19 @@ public class CommentsControll {
      * @return
      */
 
-    @RequestMapping(value = "/video/getListByOwnerId", method = RequestMethod.POST)
+    @RequestMapping(value = "/video/getListByOwnerId", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public ResultDT getListByOwnerId(HttpServletRequest request) {
-        String ownerId = request.getParameter("ownerId");
-        String userId = request.getParameter("userId");
-        LogUtil.info(ownerId);
-        LogUtil.info(userId);
+    public String getListByOwnerId(Model model, int lessonId,int chapterNo, HttpServletRequest request) {
+
+        LogUtil.info(lessonId+"/"+chapterNo);
+        LogUtil.info(SessionContext.getUserName(request));
         //查询所有评论
-        List<CommentsRoot> byOwnerIdService = commentService.findByOwnerIdService(ownerId);
+        List<CommentsRoot> byOwnerIdService = commentService.findByLessonChapter(lessonId,chapterNo);
         LogUtil.info(byOwnerIdService.toString());
-        return ResultDTUtils.success(byOwnerIdService);
+
+        model.addAttribute("ListCommentsRoot", byOwnerIdService);
+
+        return "/watchVideo";
     }
 
     /**

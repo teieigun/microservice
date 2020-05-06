@@ -18,8 +18,17 @@ public interface CommentsMapper {
      * @param ownerId 文章或资源id
      * @return
      */
-//    @Select("select * from comments_info where owner_id = #{ownerId}")
+    @Select("select * from comments_root where owner_id = #{ownerId}")
     List<CommentsRoot> findByOwnerId(String ownerId);
+
+    /**
+     * 获取该文章或资源下的所有评论
+     * @param lessonId 文章或资源id
+     * @param chapterno 文章或资源id
+     * @return
+     */
+    @Select("select * from comments_root  WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno}")
+    List<CommentsRoot> findByLessonChapter(int lessonId,int chapterno );
 
     /**
      * 添加子评论或回复评论
@@ -35,8 +44,8 @@ public interface CommentsMapper {
      * @param commentsRoot
      * @return
      */
-//    @Insert("insert into comments_root (id,comment_id,owner_id,type,from_id,from_name,from_avatar,like_num,content,create_time) " +
-//            "values(#{id},#{commentId},#{ownerId},#{type},#{fromId},#{fromName},#{fromAvatar},#{likeNum},#{content},#{createTime})")
+    @Insert("insert into comments_root (id,comment_id,owner_id,type,from_id,from_name,from_avatar,like_num,content,create_time) " +
+            "values(#{id},#{commentId},#{ownerId},#{type},#{fromId},#{fromName},#{fromAvatar},#{likeNum},#{content},#{createTime})")
     boolean addRootComments(CommentsRoot commentsRoot);
 
     /**

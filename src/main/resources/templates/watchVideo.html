@@ -20,7 +20,11 @@
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
 		<link rel="stylesheet" type="text/css" href="css/tei.css">
 		<script src="./js/jquery.min.js"></script>
+
 		<script>
+		  var lessonId=0;
+		  var chapterNo=0;
+
 		$(document).ready(function(){
 		  $(".video_list_num").mouseenter(function(){
 			this.style.backgroundColor ="#F0F8FF";
@@ -31,7 +35,20 @@
 			$(this).find("Button").css('display','none');
 		  });
 
+		  $("#programming").click(function(){
+			  alert("programming");
+		  });
+		  $("#design").click(function(){
+			  alert(1);
+			  const lessonId = document.getElementById('lessonId').value;
+			  const chapterNo = document.getElementById('chapterNo').value;
+
+			  const url = 'getListByOwnerId?lessonId='+lessonId+'&chapterNo='+chapterNo;
+			  alert(url);
+			  window.location.href = url;
+		  });
 		});
+
 		</script>
 		<style type="text/css">
 			/*タブ切り替え全体のスタイル*/
@@ -76,7 +93,6 @@
 				overflow: hidden;
 			}
 
-
 			/*選択されているタブのコンテンツのみを表示*/
 			#all:checked ~ #all_content,
 			#programming:checked ~ #programming_content,
@@ -98,6 +114,10 @@
 
 	</head>
 	<body>
+		<form name="videoListForm" method="post">
+			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}" />
+			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}" />
+		</form>
 		<div class="wrapper">
 
 			<header>
@@ -105,8 +125,6 @@
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
 			</header><!--header end-->
 			<div th:replace="/common/side_menu.html::side_menu()"></div><!--header_content end-->
-
-
 
 			<div th:fragment="videoList()">
 				<section class="mn-sec">
@@ -154,8 +172,6 @@
 											</div>
 										</div>
 									</div>
-
-
 								</div><!--mn-vid-sc end--->
 							</div><!---col-lg-9 end-->
 							<div th:replace="/common/recomend.html::recomend()"></div><!--header_content end-->
@@ -164,13 +180,8 @@
 				</section><!--mn-sec end-->
 			</div>
 		</div>
-
-
-
-		</div><!--wrapper end-->
+	</div><!--wrapper end-->
 		<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
-
-		<script src="js/jquery.min.js"></script>
 		<script src="js/popper.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/flatpickr.js"></script>
@@ -179,6 +190,8 @@
 		<script>
 			function player(para){
                 var result = para.split(',');
+                document.getElementById('lessonId').value=result[0];
+				document.getElementById('chapterNo').value=result[1];
                 window.location.href = '/changeChapter?lessonId='+result[0]+'&chapterNo='+result[1];
 			}
 

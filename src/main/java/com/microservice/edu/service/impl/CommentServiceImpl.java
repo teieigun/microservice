@@ -28,6 +28,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<CommentsRoot> findByLessonChapter(int lessonId, int chapterNo) {
+
+        return commentsMapper.findByLessonChapter(lessonId,chapterNo);
+    }
+
+    @Override
     public boolean addRootCommentsService(CommentsRoot commentsRoot) {
         if(commentsRoot == null){
             return false;
