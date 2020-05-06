@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.log4j.Logger;
 import org.springframework.util.Assert;
 
 /**
@@ -23,9 +22,7 @@ import org.springframework.util.Assert;
  */
 @SuppressWarnings("rawtypes")
 public class BeanUtil {
-	
-	private static Logger log = Logger.getLogger(BeanUtil.class); // 日志
-	
+
 	//将map list转换为bean list
 	public static <T> List<T> mapListToBeanList(Class<T> clazz, List<Map<String,Object>> mapList){
 		List<T> rstList = new ArrayList<T>();
@@ -48,7 +45,7 @@ public class BeanUtil {
                 throw new Exception();
             }
         } catch (Exception e) {
-            log.error("类型实例化对象失败,类型:" + clazz);
+			LogUtil.error("类型实例化对象失败,类型:" + clazz);
             return null;
         }
         Map<String, Object> newMap = new HashMap<String, Object>();
@@ -65,7 +62,7 @@ public class BeanUtil {
                     try {
                         method.invoke(instance, v);
                     } catch (Exception e) {
-                    	log.error("属性值装入失败,装入方法：" + ptypes + "."
+						LogUtil.error("属性值装入失败,装入方法：" + ptypes + "."
                                 + method.getName() + ".参数类型" + ptypes[0]
                                 + ";装入值的类型:" + v.getClass());
                     }
@@ -356,7 +353,7 @@ public class BeanUtil {
 
     /**
      * 转换将第一个字母大写变成小写，并在前面加下划线
-     * @param args
+     *
      */
     public static String fieldToColumn(String str) {
         char[] chars = str.toCharArray();
@@ -373,7 +370,7 @@ public class BeanUtil {
     
     /**
      * 首字母变大写
-     * @param args
+     *
      */
     public static String upperCaseFirst(String str) {
     	return Character.toUpperCase(str.charAt(0))+str.substring(1, str.length());
@@ -381,7 +378,7 @@ public class BeanUtil {
     
     /**
      * 首字母变小写
-     * @param args
+     *
      */
     public static String lowerCaseFirst(String str) {
     	return Character.toLowerCase(str.charAt(0))+str.substring(1, str.length());
