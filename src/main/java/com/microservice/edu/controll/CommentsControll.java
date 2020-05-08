@@ -4,7 +4,9 @@ import com.microservice.edu.form.comments.CommentsReply;
 import com.microservice.edu.form.comments.CommentsRoot;
 import com.microservice.edu.form.comments.Liked;
 import com.microservice.edu.form.comments.ResultDT;
+import com.microservice.edu.pojo.LessonChapterPojo;
 import com.microservice.edu.service.CommentService;
+import com.microservice.edu.service.WatchVideoService;
 import com.microservice.edu.util.ResultDTUtils;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import web.SessionContext;
 
 /**
@@ -30,6 +33,9 @@ import web.SessionContext;
 public class CommentsControll {
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    WatchVideoService watchVideoService;
 
     /**
      * 添加父评论   直接对标文章，资源等下面的评论
@@ -84,18 +90,34 @@ public class CommentsControll {
 
     @RequestMapping(value = "/video/getListByOwnerId", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public String getListByOwnerId(Model model, int lessonId,int chapterNo, HttpServletRequest request) {
+    @ResponseBody
+    public List<CommentsRoot> getListByOwnerId(int lessonId,int chapterNo, HttpServletRequest request) {
 
         LogUtil.info(lessonId+"/"+chapterNo);
         LogUtil.info(SessionContext.getUserName(request));
+
+        System.out.println("LessonId:"+lessonId);
+//        List<LessonChapterPojo> listLessonChapterPojo1 = null;
+//        try {
+//            listLessonChapterPojo1 = watchVideoService.changeChapter(String.valueOf(lessonId),String.valueOf(chapterNo));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        if(listLessonChapterPojo1!=null && listLessonChapterPojo1.size()>0){
+//            model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
+//        }
+
         //查询所有评论
         List<CommentsRoot> byOwnerIdService = commentService.findByLessonChapter(lessonId,chapterNo);
         LogUtil.info(byOwnerIdService.toString());
 
-        model.addAttribute("ListCommentsRoot", byOwnerIdService);
+        //model.addAttribute("ListCommentsRoot", byOwnerIdService);
 
-        return "/watchVideo";
+
+        return byOwnerIdService;
     }
+
+
 
     /**
      * 点赞模块，已完善

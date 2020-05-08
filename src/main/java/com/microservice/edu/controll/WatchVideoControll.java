@@ -34,10 +34,11 @@ public class WatchVideoControll {
         if(listLessonChapterPojo !=null && listLessonChapterPojo.size()>0){
             model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo.get(0));
         }
+        model.addAttribute("checkFlg", 1);
         return "/watchVideo";
     }
 
-    @RequestMapping(value = "/changeChapter", method = RequestMethod.GET)
+    @RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String changeChapter(Model model,String lessonId,String chapterNo) throws Exception {
 
@@ -54,6 +55,8 @@ public class WatchVideoControll {
             model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
             model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
         }
+
+        model.addAttribute("checkFlg", 1);
 
         return "/watchVideo";
     }

@@ -20,6 +20,7 @@
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
 		<link rel="stylesheet" type="text/css" href="css/tei.css">
 		<script src="./js/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 		<script>
 		  var lessonId=0;
@@ -35,18 +36,19 @@
 			$(this).find("Button").css('display','none');
 		  });
 
-		  $("#programming").click(function(){
-			  alert("programming");
+		  $("#all").click(function(){
+			  const lessonId = document.getElementById('lessonId').value;
+			  const url = 'watch?lessonId='+lessonId;
+			  window.location.href = url;
+
 		  });
+
 		  $("#design").click(function(){
-			  alert(1);
 			  const lessonId = document.getElementById('lessonId').value;
 			  const chapterNo = document.getElementById('chapterNo').value;
-
 			  const url = 'getListByOwnerId?lessonId='+lessonId+'&chapterNo='+chapterNo;
-			  alert(url);
-			  window.location.href = url;
 		  });
+
 		});
 
 		</script>
@@ -118,8 +120,7 @@
 			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}" />
 			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}" />
 		</form>
-		<div class="wrapper">
-
+		<div id="testVue" class="wrapper">
 			<header>
 				<div th:replace="/common/tob_bar.html::top_bar()"></div><!--header_content end-->
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
@@ -137,16 +138,16 @@
 									</div><!--vid-1 end-->
 
 									<div class="tabs">
-										<input id="all" type="radio" name="tab_item" checked>
+										<input id="all" type="radio" name="tab_item" th:checked="${checkFlg}==1">
 										<label class="tab_item" for="all">章节播放</label>
 
-										<input id="programming" type="radio" name="tab_item">
+										<input id="programming" type="radio" name="tab_item" th:checked="${checkFlg}==2">
 										<label class="tab_item" for="programming">学习笔记</label>
 
-										<input id="design" type="radio" name="tab_item">
+										<input id="design" type="radio" name="tab_item" v-on:click="question()" th:checked="${checkFlg} == 3">
 										<label class="tab_item" for="design">我有问题</label>
 
-										<input id="testing" type="radio" name="tab_item">
+										<input id="testing" type="radio" name="tab_item" th:checked="${checkFlg} == 4">
 										<label class="tab_item" for="testing">演习问题</label>
 
 										<div class="tab_content" id="all_content">
@@ -180,7 +181,36 @@
 				</section><!--mn-sec end-->
 			</div>
 		</div>
-	</div><!--wrapper end-->
+	</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#testVue',
+				data () {
+					return {
+						info: null,
+						error: null,
+						msg: 'hello'
+					}
+				},
+				 mounted () {
+				 	axios
+				 			.get('getListByOwnerId?lessonId=9&chapterNo=1')
+				 			.then(response => (this.info = response))
+				 			.catch(error => (this.error = error))
+				 },
+				methods: {
+
+					question: function () {
+						axios
+								.get('getListByOwnerId?lessonId=9&chapterNo=1')
+								.then(response => (this.info = response.data))
+								.catch(error => (this.error = error));
+					}
+				}
+			})
+		</script>
 		<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
 		<script src="js/popper.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -192,7 +222,7 @@
                 var result = para.split(',');
                 document.getElementById('lessonId').value=result[0];
 				document.getElementById('chapterNo').value=result[1];
-                window.location.href = '/changeChapter?lessonId='+result[0]+'&chapterNo='+result[1];
+                window.location.href = '/video/changeChapter?lessonId='+result[0]+'&chapterNo='+result[1];
 			}
 
 	        function OnLinkClick() {
