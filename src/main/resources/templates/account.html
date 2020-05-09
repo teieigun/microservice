@@ -7,7 +7,6 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="icon" href="images/Favicon.png">
-
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/fontello.css">
@@ -19,6 +18,107 @@
 		<link rel="stylesheet" type="text/css" href="css/color.css">
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
 		<link rel="stylesheet" type="text/css" href="css/tei.css">
+		<link rel="stylesheet" type="text/css" href="css/upload.css">
+
+		<style>
+			.ycupload-main1 {
+				overflow: hidden;
+				padding-left: 25px
+			}
+
+			.ycupload-span1 {
+				float: left;
+				color: #ff5a5a;
+				font-size: 14px;
+				line-height: 60px;
+				font-weight: 900;
+				margin-right: 7px
+			}
+
+			#clipBtn {
+				width: 120px;
+				height: 36px;
+				border-radius: 4px;
+				background-color: #ff8a00;
+				color: #fff;
+				font-size: 14px;
+				text-align: center;
+				line-height: 36px;
+				outline: 0
+			}
+
+			.clipButton {
+				height: 56px;
+				line-height: 36px;
+				text-align: center;
+				padding-top: 8px
+			}
+
+			.clipBgn {
+				width: 100%;
+				margin: 10% auto;
+				background-color: #fff;
+				overflow: hidden;
+				border-radius: 4px
+			}
+
+			.cover-wrap {
+				display: none;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, .4);
+				z-index: 10000000;
+				text-align: center
+			}
+
+			.clipRow2 {
+				min-height: 1px;
+				line-height: 160px;
+				text-align: center;
+				position: relative
+			}
+
+			.clipContent {
+				width: 140px;
+				height: 32px;
+				border-radius: 4px;
+				background-color: #ff8a00;
+				color: #fff;
+				font-size: 14px;
+				text-align: center;
+				line-height: 32px;
+				outline: 0;
+				margin-left: 37px;
+				position: relative
+			}
+
+			#file {
+				cursor: pointer;
+				opacity: 0;
+				filter: alpha(opacity=0);
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0
+			}
+
+			</style>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.photoClip.min.js"></script>
+		<script src="js/iscroll-zoom.js"></script>
+		<script src="js/hammer.js"></script>
+		<script src="js/lrz.all.bundle.js"></script>
+		<script src="js/popper.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/flatpickr.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/layui.js"></script>
+
 
 	</head>
 	<body>
@@ -161,6 +261,45 @@
 										</div><!--tb-pr end-->
 									</div><!--vidz_list end-->
 								</div><!--latest_vidz end-->
+
+								<div class="change-pswd">
+									<h2 class="hd-op">更新头像</h2>
+									<form>
+										<div class="clipRow2" style="" ontouchstart="">
+											<div class="cover-wrap" style="display: none;">
+												<div class="clipBgn" style="width: 40%;">
+													<div id="clipArea" style="margin: 3px; height: 520px; user-select: none; overflow: hidden; position: relative;">
+														<div class="photo-clip-view" style="position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -214px; margin-top: -160.5px;">
+															<div class="photo-clip-moveLayer" style="transform-origin: 0px 0px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
+																<div class="photo-clip-rotateLayer"></div>
+															</div>
+														</div>
+														<div class="photo-clip-mask" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; pointer-events: none;">
+															<div class="photo-clip-mask-left" style="position: absolute; left: 0px; right: 50%; top: 50%; bottom: 50%; width: auto; height: 321px; margin-right: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-mask-right" style="position: absolute; left: 50%; right: 0px; top: 50%; bottom: 50%; margin-left: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-mask-top" style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 50%; margin-bottom: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-mask-bottom" style="position: absolute; left: 0px; right: 0px; top: 50%; bottom: 0px; margin-top: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-area" style="border: 1px dashed rgb(221, 221, 221); position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -215px; margin-top: -161.5px;"></div>
+														</div>
+													</div>
+													<div class="clipButton" style="">
+														<button id="clipBtn" style="">选择照片</button>
+													</div>
+												</div>
+											</div>
+											<div id="view" style="width: 100px; height: 100px; background-color: rgb(102, 102, 102); background-repeat: no-repeat; background-position: center center; background-size: contain;"></div>
+											<div style="height:10px;"></div>
+											<div class="clipContent" style="">
+												选择照片
+												<input type="file" id="file" style="" accept="image/*">
+											</div>
+										</div>
+										<div class="ch-pswd">
+											<button type="submit"> 变更</button>
+										</div><!--ch-pswd end-->
+									</form>
+								</div><!--change-pswd end-->
+
 								<div class="change-pswd">
 									<h2 class="hd-op">变更密码</h2>
 									<form>
@@ -266,7 +405,7 @@
 												<div class="layui-colla-item">
 													<h2 class="layui-colla-title">编程语言</h2>
 													<div class="layui-colla-content">
-														<div id="test7" class="demo-tree"></div>
+														<div id="test17" class="demo-tree"></div>
 													</div>
 												</div>
 
@@ -301,7 +440,7 @@
 												<div class="layui-colla-item">
 													<h2 class="layui-colla-title">编程语言</h2>
 													<div class="layui-colla-content">
-														<div id="test7" class="demo-tree"></div>
+														<div id="test27" class="demo-tree"></div>
 													</div>
 												</div>
 
@@ -329,10 +468,12 @@
 											</div>
 										</fieldset>
 
-	</div><!--Account Details end-->
-</div><!--video-details end-->
-
-
+									</div><!--Account Details end-->
+								</div><!--video-details end-->
+							</div>
+						</div>
+					</div>
+				</div>
 			</section><!--user-account end-->
 						<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
 
@@ -347,14 +488,6 @@
 				  elem: '#birthday' //指定元素
 			});
 			</script>
-			<script src="js/jquery.min.js"></script>
-			<script src="js/popper.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/flatpickr.js"></script>
-			<script src="js/script.js"></script>
-			<script src="js/layui.js"></script>
-
-
 			<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 			<script>
 				layui.use(['element', 'layer'], function(){
@@ -449,6 +582,49 @@
 
 				});
 			</script>
+
+		<script type="text/javascript">
+			layui.use(["jquery", "upload", "form", "layer", "element"], function () {
+				var $ = layui.$,
+						element = layui.element,
+						layer = layui.layer,
+						upload = layui.upload,
+						form = layui.form;
+				//拖拽上传
+				var uploadInst = upload.render({
+					elem: '#headImg'
+					, url: '/upload/headImg'
+					, size: 500
+					, before: function (obj) {
+						//预读本地文件示例，不支持ie8
+						obj.preview(function (index, file, result) {
+							$('#demo1').attr('src', result); //图片链接（base64）
+						});
+					}
+					, done: function (res) {
+						//如果上传失败
+						if (res.code > 0) {
+							return layer.msg('上传失败');
+						}
+						//上传成功
+						//打印后台传回的地址: 把地址放入一个隐藏的input中, 和表单一起提交到后台, 此处略..
+						/*   console.log(res.data.src);*/
+						window.parent.uploadHeadImage(res.data.src);
+						var demoText = $('#demoText');
+						demoText.html('<span style="color: #8f8f8f;">上传成功!!!</span>');
+					}
+					, error: function () {
+						//演示失败状态，并实现重传
+						var demoText = $('#demoText');
+						demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+						demoText.find('.demo-reload').on('click', function () {
+							uploadInst.upload();
+						});
+					}
+				});
+				element.init();
+			});
+		</script>
 
 	</body>
 
