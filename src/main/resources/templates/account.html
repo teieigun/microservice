@@ -14,11 +14,9 @@
 		<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
 		<link rel="stylesheet" type="text/css" href="css/video-js.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-
 		<link rel="stylesheet" type="text/css" href="css/color.css">
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
-
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/iscroll-zoom.js"></script>
@@ -32,7 +30,6 @@
 				overflow: hidden;
 				padding-left: 25px
 			}
-
 			.ycupload-span1 {
 				float: left;
 				color: #ff5a5a;
@@ -41,7 +38,6 @@
 				font-weight: 900;
 				margin-right: 7px
 			}
-
 			#clipBtn {
 				width: 100px;
 				height: 36px;
@@ -53,14 +49,12 @@
 				line-height: 36px;
 				outline: 0
 			}
-
 			.clipButton {
 				height: 56px;
 				line-height: 36px;
 				text-align: center;
 				padding-top: 8px
 			}
-
 			.clipBgn {
 				width: 100%;
 				margin: 10% auto;
@@ -68,7 +62,6 @@
 				overflow: hidden;
 				border-radius: 4px
 			}
-
 			.cover-wrap {
 				display: none;
 				position: fixed;
@@ -80,14 +73,12 @@
 				z-index: 10000000;
 				text-align: center
 			}
-
 			.clipRow2 {
 				min-height: 1px;
 				line-height: 160px;
 				text-align: center;
 				position: relative
 			}
-
 			.clipContent {
 				width: 80px;
 				height: 30px;
@@ -100,7 +91,6 @@
 				outline: 0;
 				position: relative
 			}
-
 			#file {
 				cursor: pointer;
 				opacity: 0;
@@ -111,13 +101,11 @@
 				top: 0;
 				left: 0
 			}
-
 		</style>
 	</head>
 
 	<body>
 		<div class="wrapper">
-
 			<header>
 				<div th:replace="/common/tob_bar.html::top_bar()"></div><!--header_content end-->
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
@@ -253,74 +241,67 @@
 										</div><!--tb-pr end-->
 									</div><!--vidz_list end-->
 								</div><!--latest_vidz end-->
-
-
-<div class="tb-pr">
-								<h2 class="hd-op">更新头像</h2>
-
-<div class="suojin">
-								<div class="clipRow2" style="" ontouchstart="">
-									<div class="cover-wrap" style="display: none;">
-										<div class="clipBgn" style="width: 40%;">
-											<form>
-												<div id="clipArea" style="margin: 3px; height: 520px; user-select: none; overflow: hidden; position: relative;">
-													<div class="photo-clip-view" style="position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -214px; margin-top: -160.5px;">
-														<div class="photo-clip-moveLayer" style="transform-origin: 0px 0px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
-															<div class="photo-clip-rotateLayer"></div>
+								<div class="tb-pr">
+									<h2 class="hd-op">更新头像</h2>
+									<div class="suojin">
+									<div class="clipRow2" style="" ontouchstart="">
+										<div class="cover-wrap" style="display: none;">
+											<div class="clipBgn" style="width: 40%;">
+												<form>
+													<div id="clipArea" style="margin: 3px; height: 520px; user-select: none; overflow: hidden; position: relative;">
+														<div class="photo-clip-view" style="position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -214px; margin-top: -160.5px;">
+															<div class="photo-clip-moveLayer" style="transform-origin: 0px 0px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
+																<div class="photo-clip-rotateLayer"></div>
+															</div>
+														</div>
+														<div class="photo-clip-mask" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; pointer-events: none;">
+															<div class="photo-clip-mask-left" style="position: absolute; left: 0px; right: 50%; top: 50%; bottom: 50%; width: auto; height: 321px; margin-right: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-mask-right" style="position: absolute; left: 50%; right: 0px; top: 50%; bottom: 50%; margin-left: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-mask-top" style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 50%; margin-bottom: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-mask-bottom" style="position: absolute; left: 0px; right: 0px; top: 50%; bottom: 0px; margin-top: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+															<div class="photo-clip-area" style="border: 1px dashed rgb(221, 221, 221); position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -215px; margin-top: -161.5px;"></div>
 														</div>
 													</div>
-													<div class="photo-clip-mask" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; pointer-events: none;">
-														<div class="photo-clip-mask-left" style="position: absolute; left: 0px; right: 50%; top: 50%; bottom: 50%; width: auto; height: 321px; margin-right: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
-														<div class="photo-clip-mask-right" style="position: absolute; left: 50%; right: 0px; top: 50%; bottom: 50%; margin-left: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
-														<div class="photo-clip-mask-top" style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 50%; margin-bottom: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
-														<div class="photo-clip-mask-bottom" style="position: absolute; left: 0px; right: 0px; top: 50%; bottom: 0px; margin-top: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
-														<div class="photo-clip-area" style="border: 1px dashed rgb(221, 221, 221); position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -215px; margin-top: -161.5px;"></div>
-													</div>
+												</form>
+												<div class="clipButton" style="">
+													<button id="clipBtn" style="">选择照片</button>
 												</div>
-											</form>
-											<div class="clipButton" style="">
-												<button id="clipBtn" style="">选择照片</button>
 											</div>
 										</div>
+										<div id="view" style="width: 80px; height: 80px; background-color: rgb(102, 102, 102); background-repeat: no-repeat; background-position: center center; background-size: contain;"></div>
+										<div style="height:10px;"></div>
 									</div>
-									<div id="view" style="width: 80px; height: 80px; background-color: rgb(102, 102, 102); background-repeat: no-repeat; background-position: center center; background-size: contain;"></div>
-									<div style="height:10px;"></div>
+
+										<div class="clipContent" style="">
+											选择照片
+											<input type="file" id="file" style="" accept="image/*">
+										</div>
+									</div>
 								</div>
 
-								<div class="clipContent" style="">
-									选择照片
-									<input type="file" id="file" style="" accept="image/*">
+								<div class="tb-pr">
+									<h2 class="hd-op">变更密码</h2>
+									<div class="suojin">
+										<form>
+											<div class="ch-pswd">
+												<input type="password" name="old_password" placeholder="旧密码">
+											</div><!--ch-pswd end-->
+											<div class="ch-pswd">
+												<input type="password" name="new_password" placeholder="新密码">
+											</div><!--ch-pswd end-->
+											<div class="ch-pswd">
+												<input type="password" name="confirm_password" placeholder="确认新密码">
+											</div><!--ch-pswd end-->
+											<div class="ch-pswd">
+												<button type="submit"> 变更</button>
+											</div><!--ch-pswd end-->
+										</form>
+										</div>
 								</div>
 
-
-</div></div>
-
-<div class="tb-pr">
-	<h2 class="hd-op">变更密码</h2>
-		<div class="suojin">
-
-											<form>
-												<div class="ch-pswd">
-													<input type="password" name="old_password" placeholder="旧密码">
-												</div><!--ch-pswd end-->
-												<div class="ch-pswd">
-													<input type="password" name="new_password" placeholder="新密码">
-												</div><!--ch-pswd end-->
-												<div class="ch-pswd">
-													<input type="password" name="confirm_password" placeholder="确认新密码">
-												</div><!--ch-pswd end-->
-												<div class="ch-pswd">
-													<button type="submit"> 变更</button>
-												</div><!--ch-pswd end-->
-											</form>
-
-		</div>
-</div>
-
-<div class="tb-pr">
-
-										<h2 class="hd-op">个人信息</h2>
-	<div class="suojin">
+								<div class="tb-pr">
+									<h2 class="hd-op">个人信息</h2>
+									<div class="suojin">
 										<h4 class="slct-hd">国家</h4>
 										<div class="slct_optz">
 											<select width="150px;">
@@ -351,26 +332,25 @@
 												</div>
 											</li>
 										</ul>
-
 										<h4 class="slct-hd">生年月日</h4>
 										 <input type="date"></input>
+									</div>
+								</div>
 
-	</div>
-</div>
-
-<div class="tb-pr">
-	<h4 class="slct_optz">开发语言</h4>
-	<div class="suojin">
-		<div th:replace="/common/program.html::program()"></div>
-	</div>
-</div>
+								<div class="tb-pr">
+									<h4 class="slct_optz">开发语言</h4>
+									<div class="suojin">
+										<div th:replace="/common/program.html::program()"></div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</section><!--user-account end-->
-						<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
+			</section>
+			<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
+		</div>
 
-		</div><!--wrapper end-->
 		<script type="text/javascript">
 			//上传封面
 			var clipArea = new bjj.PhotoClip("#clipArea", {
@@ -394,7 +374,6 @@
 					// 裁剪完成的回调函数。this指向图片对象，会将裁剪出的图像数据DataURL作为参数传入
 					$('.cover-wrap').fadeOut();
 					$('#view').css('background-size', '100% 100%');
-					alert(dataURL);
 					console.log(dataURL); //输出图像base64
 				}
 			});
@@ -419,9 +398,7 @@
 			        alert(values.join(', '));
 			    });
 			});
-
 		</script>
-
 	</body>
 
 </html>
