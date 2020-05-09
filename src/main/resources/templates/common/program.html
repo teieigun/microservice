@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head></head>
+	<body>
+		<div th:fragment="program()" class="lang_container">
+		    <table>
+		        <tbody>
+		            <tr>
+		                <td><input id="languageInput" type="text" name="name"></td>
+						<td>
+							<select name="example" style="height: 30px;">
+							<option value="1">1 years</option>
+							<option value="2">2 years</option>
+							<option value="3">over 3 years</option>
+							</select>
+						</td>
+		                <td><button class="removeLanguage">-</button></td>
+		            </tr>
+		        </tbody>
+		    </table>
+		    <button id="addRow">+ A</button>
+		    <button id="getValues">B</button>
+		</div>
+	</body>
+</html>

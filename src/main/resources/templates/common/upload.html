@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div th:fragment="upload()"  class="clipRow2" style="" ontouchstart="">
+			<div class="cover-wrap" style="display: none;">
+				<div class="clipBgn" style="width: 40%;">
+					<div id="clipArea" style="margin: 3px; height: 520px; user-select: none; overflow: hidden; position: relative;">
+						<div class="photo-clip-view" style="position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -214px; margin-top: -160.5px;">
+							<div class="photo-clip-moveLayer" style="transform-origin: 0px 0px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
+								<div class="photo-clip-rotateLayer"></div>
+							</div>
+						</div>
+						<div class="photo-clip-mask" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; pointer-events: none;">
+							<div class="photo-clip-mask-left" style="position: absolute; left: 0px; right: 50%; top: 50%; bottom: 50%; width: auto; height: 321px; margin-right: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+							<div class="photo-clip-mask-right" style="position: absolute; left: 50%; right: 0px; top: 50%; bottom: 50%; margin-left: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+							<div class="photo-clip-mask-top" style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 50%; margin-bottom: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+							<div class="photo-clip-mask-bottom" style="position: absolute; left: 0px; right: 0px; top: 50%; bottom: 0px; margin-top: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+							<div class="photo-clip-area" style="border: 1px dashed rgb(221, 221, 221); position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -215px; margin-top: -161.5px;"></div>
+						</div>
+					</div>
+					<div class="clipButton" style="">
+						<button id="clipBtn" style="">选择照片</button>
+					</div>
+				</div>
+			</div>
+			<div id="view" style="width: 100px; height: 100px; background-color: rgb(102, 102, 102); background-repeat: no-repeat; background-position: center center; background-size: contain;"></div>
+			<div style="height:10px;"></div>
+			<div class="clipContent" style="">
+				选择照片
+				<input type="file" id="file" style="" accept="image/*">
+			</div>
+		</div>
+	</body>
+</html>

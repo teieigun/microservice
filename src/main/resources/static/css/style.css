@@ -3013,16 +3013,12 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
-.change-pswd{
-	width:100%;
-	padding: 46px 0 0 30px;
-}
-.change-pswd .hd-op {
-	margin-bottom: 26px;
-}
 .ch-pswd{
 	width:100%;
-	margin-bottom: 30px;
+	padding: 10px 0 0 30px;
+}
+.suojin .hd-op {
+	margin-bottom: 26px;
 }
 .ch-pswd input{
 	width: 470px;
