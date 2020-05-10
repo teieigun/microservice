@@ -4762,3 +4762,35 @@ div img:hover{
 div img:hover{
 	transform: scale(1.2);
 }
+
+
+#languageInput {
+	width: 150px;
+	height: 29px;
+	margin-right: 5px;
+	font-size: 18px;
+}
+.removeLanguage {
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	background-color: tomato;
+	color: white;
+	border: none;
+	border-radius: 15px;
+}
+#addRow, #getValues {
+	width: 100px;
+	height: 30px;
+	font-size: 16px;
+	background-color: lightseagreen;
+	color: white;
+	border: none;
+	margin: 20px;
+}
+button:hover {
+	cursor: pointer;
+}
+tr:hover {
+	cursor: move;
+}
