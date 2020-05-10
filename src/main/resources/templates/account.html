@@ -17,6 +17,7 @@
 		<link rel="stylesheet" type="text/css" href="css/color.css">
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/mse.css">
 
 		<script src="js/jquery.min.js"></script>
 		<script src="js/iscroll-zoom.js"></script>
@@ -126,9 +127,9 @@
 								<div class="widget account">
 									<h2 class="hd-uc"> <i class="icon-user">我的信息</i> </h2>
 									<ul>
-										<li><a href="#">变更密码</a></li>
-										<li><a href="#">个人信息</a></li>
-										<li><a href="#">开发语言</a></li>
+										<li class="a1"><a href="#">变更密码</a></li>
+										<li class="a1"><a href="#">个人信息</a></li>
+										<li class="a1"><a href="#">开发语言</a></li>
 									</ul>
 								</div><!--account end-->
 							</div><!--sidebar end-->
@@ -169,7 +170,7 @@
 											选择照片
 											<input type="file" id="file" name="file" style="" accept="image/*">
 										</div>
-										<div style="height:10px;"></div>
+
 										<form method="post" name="imageForm" th:action="@{/video/upload}" >
 											<input type="hidden" id="imageId" name="imageCode" value=""></input>
 										</form>
@@ -202,46 +203,28 @@
 								<div class="tb-pr">
 									<h2>个人信息</h2>
 									<div class="hd-op">
+										<h4 class="slct-hd">姓名</h4>
+										<input type="text" value=""></input>
 
-										<div class="layui-form-item">
-											<label class="layui-form-label">单行选择框</label>
-											<div class="layui-input-block">
-												<select name="interest" lay-filter="aihao">
-													<option value=""></option>
-													<option value="0">写作</option>
-													<option value="1" selected="">阅读</option>
-													<option value="2">游戏</option>
-													<option value="3">音乐</option>
-													<option value="4">旅行</option>
-												</select>
-											</div>
-										</div>
+										<div class="oneEmptyLine"></div>
 
+										<h4 class="slct-hd">国籍</h4>
+										<input type="text" value=""></input>
 
-										<div class="sub-row"></div>
+										<div class="oneEmptyLine"></div>
+
 										<h4 class="slct-hd">性别</h4>
-										<ul class="gend">
-											<li>
-												<div class="chekbox-lg">
-													<label>
-														<input type="radio" name="gender" value="man">
-														<b class="checkmark"></b>
-														<span>男</span>
-													</label>
-												</div>
-											</li>
-											<li>
-												<div class="chekbox-lg">
-													<label>
-														<input type="radio" name="gender" value="female">
-														<b class="checkmark"> </b>
-														<span>女</span>
-													</label>
-												</div>
-											</li>
-										</ul>
+										<input type="radio" name="sex" value="girl" checked="checked">男性
+										<input type="radio" name="sex" value="boy">女性
+
+										<div class="oneEmptyLine"></div>
+
 										<h4 class="slct-hd">生年月日</h4>
 										 <input type="date"></input>
+
+									</div>
+									<div class="ch-pswd">
+										<button type="button" onclick="changeProgram();"> 变更</button>
 									</div>
 								</div>
 
