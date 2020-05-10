@@ -3015,10 +3015,14 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 }
 .ch-pswd{
 	width:100%;
-	padding: 10px 0 0 30px;
+	margin-bottom: 20px;
 }
-.suojin .hd-op {
-	margin-bottom: 26px;
+
+.hd-op {
+	margin: 20px;
+}
+.oneEmptyLine{
+	margin-bottom: 20px;
 }
 .ch-pswd input{
 	width: 470px;

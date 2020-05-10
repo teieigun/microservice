@@ -136,9 +136,8 @@
 						<div class="col-lg-9">
 							<div class="video-details">
 								<div class="tb-pr">
-									<h2 class="hd-op">更新头像</h2>
-									<div class="suojin">
-
+									<h2>更新头像</h2>
+									<div class="hd-op">
 										<div class="clipRow2" style="" ontouchstart="">
 											<div class="cover-wrap" style="display: none;">
 												<div class="clipBgn" style="width: 40%;">
@@ -173,16 +172,16 @@
 										<div style="height:10px;"></div>
 										<form method="post" name="imageForm" th:action="@{/video/upload}" >
 											<input type="hidden" id="imageId" name="imageCode" value=""></input>
-											<div class="ch-pswd">
-												<button type="button" onclick="changeImage();"> 变更</button>
-											</div>
 										</form>
+									</div>
+									<div class="ch-pswd">
+										<button type="button" onclick="changeImage();"> 变更</button>
 									</div>
 								</div>
 
 								<div class="tb-pr">
-									<h2 class="hd-op">变更密码</h2>
-									<div class="suojin">
+									<h2>变更密码</h2>
+									<div class="hd-op">
 										<form>
 											<div class="ch-pswd">
 												<input type="password" name="old_password" placeholder="旧密码">
@@ -193,24 +192,32 @@
 											<div class="ch-pswd">
 												<input type="password" name="confirm_password" placeholder="确认新密码">
 											</div><!--ch-pswd end-->
-											<div class="ch-pswd">
-												<button type="submit"> 变更</button>
-											</div><!--ch-pswd end-->
 										</form>
-										</div>
+									</div>
+									<div class="ch-pswd">
+										<button type="submit"> 变更</button>
+									</div><!--ch-pswd end-->
 								</div>
 
 								<div class="tb-pr">
-									<h2 class="hd-op">个人信息</h2>
-									<div class="suojin">
-										<h4 class="slct-hd">国家</h4>
-										<div class="slct_optz">
-											<select width="150px;">
-												<option>中国</option>
-												<option>日本</option>
-												<option>美国</option>
-											</select>
+									<h2>个人信息</h2>
+									<div class="hd-op">
+
+										<div class="layui-form-item">
+											<label class="layui-form-label">单行选择框</label>
+											<div class="layui-input-block">
+												<select name="interest" lay-filter="aihao">
+													<option value=""></option>
+													<option value="0">写作</option>
+													<option value="1" selected="">阅读</option>
+													<option value="2">游戏</option>
+													<option value="3">音乐</option>
+													<option value="4">旅行</option>
+												</select>
+											</div>
 										</div>
+
+
 										<div class="sub-row"></div>
 										<h4 class="slct-hd">性别</h4>
 										<ul class="gend">
@@ -238,17 +245,22 @@
 									</div>
 								</div>
 
-								<form method="post" name="imageForm" th:action="@{/account/program}" >
+
 									<div class="tb-pr">
 										<h4 class="slct_optz">开发语言</h4>
 										<div class="suojin">
-											<div th:replace="/common/program.html::program()"></div>
+											<form method="post" name="imageForm" th:action="@{/account/program}" >
+											<div class="suojin">
+												<div th:replace="/common/program.html::program()"></div>
+											</div>
+											</form>
+										</div>
+										<div class="ch-pswd">
+											<button type="button" onclick="changeProgram();"> 变更</button>
 										</div>
 									</div>
-									<div class="ch-pswd">
-										<button type="button" onclick="changeProgram();"> 变更</button>
-									</div>
-								</form>
+
+
 							</div>
 						</div>
 					</div>
