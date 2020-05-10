@@ -66,6 +66,7 @@ public class LoginController {
         if(principal instanceof org.springframework.security.core.userdetails.UserDetails){
             UserDetails userDetails = (UserDetails) principal;
             username = userDetails.getUsername();
+
         }else{
             username = principal.toString();
         }

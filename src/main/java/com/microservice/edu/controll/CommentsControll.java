@@ -96,6 +96,7 @@ public class CommentsControll {
         LogUtil.info(lessonId+"/"+chapterNo);
         LogUtil.info(SessionContext.getUserName(request));
 
+
         System.out.println("LessonId:"+lessonId);
 //        List<LessonChapterPojo> listLessonChapterPojo1 = null;
 //        try {
