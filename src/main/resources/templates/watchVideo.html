@@ -230,6 +230,28 @@
 	            target.submit();
 	            return false;
 		        }
-		  </script>
+		</script>
+
+		<script src="../js/layui.js"></script>
+		<script>
+			layui.use('layedit', function(){
+				var layedit = layui.layedit;
+
+				var index = layedit.build('demo', {
+					//hideTool: ['image']
+					uploadImage: {
+						url: 'json/upload/demoLayEdit.json'
+						,type: 'get'
+					}
+					//,tool: []
+					//,height: 100
+				});
+
+				getChoose.onclick = function(){
+					alert(layedit.getSelection(index));
+				};
+
+			});
+		</script>
 	</body>
 </html>
