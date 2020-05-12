@@ -8,99 +8,70 @@
 	<body>
 		<div th:fragment="cmt()" class="cmt-bx">
 			<div id="app" class="container" style="padding-top: 64px;">
-				<div class="container">
-					<div class="error" v-if="error">
-						{{ msg }}
-					</div>
+				<div class="layui-container">
+					<div class="layui-row layui-col-space15">
+						<div class="layui-col-md8">
 
-					<!--
-					<div class="columns" v-else>
-						<table>
-							<tr>
-								<td>编号</td>
-								<td>图书名称</td>
-								<td>作者</td>
-							</tr>
+							<div class="fly-panel">
 
-						</table>
-					</div>
-					-->
-
-					<div class="cmt-bx">
-						<ul class="cmt-pr">
-							<li><span>18,386</span> Comments</li>
-							<li>
-								<span><i class="icon-sort_by"></i><a href="#" title="">Sort By</a></span>
-							</li>
-						</ul>
-
-						<ul class="cmn-lst">
-							<li>
-								<div class="vcp_inf">
-									<div class="vc_hd">
-										<img src="images/resources/th2.png" alt="">
-									</div>
-									<div class="coments">
-										<div class="pinned-comment">
-											<span><i class="icon-pinned"></i>Pinned by ScereBro</span>
-										</div>
-										<h2>ScereBro <small class="posted_dt"> . 18 hours ago</small></h2>
-										<p>Where does Thor: Ragnarok rank amongst the other Thor movies? Amongst the rest of the MCU? Let us know in the comments below and tell us which other movies you'd like to see us make Honest.</p>
-										<ul class="cmn-i">
-											<li>
-												<a href="#" title="">
-													<i class="icon-thumbs_up"></i>
-												</a>
-												<span>680</span>
-											</li>
-											<li>
-												<a href="#" title="">
-													<i class="icon-thumbs_down"></i>
-												</a>
-												<span>21</span>
-											</li>
-										</ul>
-										<a href="#" title="">View all 164 replies</a>
-									</div><!--coments end-->
-								</div><!--vcp_inf end-->
-							</li>
-							<li>
-								<div class="vcp_inf">
-									<div class="vc_hd">
-										<img src="images/resources/th3.png" alt="">
-									</div>
-									<div class="coments">
-										<h2>Doge <small class="posted_dt"> . 2 hours ago</small></h2>
-										<p>Depressive Alcoholics are my favorite superheroes </p>
-										<ul class="cmn-i">
-											<li>
-												<a href="#" title="">
-													<i class="icon-thumbs_up"></i>
-												</a>
-												<span>61</span>
-											</li>
-											<li>
-												<a href="#" title="">
-													<i class="icon-thumbs_down"></i>
-												</a>
-												<span>3</span>
-											</li>
-										</ul>
-										<a href="#" title="">View all 26 replies</a>
-									</div><!--coments end-->
-								</div><!--vcp_inf end-->
-							</li>
-							<div style="width: 750px;">
-								<form class="layui-form">
-									<div class="layui-form-item">
-							  <textarea name="demo" id="demo" class="layui-hide"></textarea>
-									</div>
-									<button class="layui-btn">提交</button>
-									<a class="layui-btn" id="getChoose">获取选中内容</a>
-								</form>
+								<ul class="fly-list">
+									<li> <a href="/u/7767144" class="fly-avatar"> <img src="//cdn.layui.com/avatar/7767144.jpg?t=1533265233623" alt="匿名丶">
+									</a>
+										<h2> <a class="layui-badge">分享</a> <a href="/jie/66075/">多处 iframe 的通信</a> </h2>
+										<div class="fly-list-info"> <a href="/u/7767144" link=""> <cite>匿名丶</cite> </a> <span>2020-5-3 </span> <span
+												class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 20</span> <span class="layui-badge fly-badge-accept layui-hide-xs">已结</span>
+											<span class="fly-list-nums"> <i class="iconfont icon-pinglun1" title="回答"></i> 15 </span> </div>
+										<div class="fly-list-badge"> <span class="layui-badge layui-bg-red">精帖</span> </div>
+									</li>
+									<li> <a href="/u/54843936" class="fly-avatar"> <img src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=YN9956zWBuOFTDw1Y7jZiaA&amp;s=100&amp;t=1584216733"
+																						alt="伊丈夫"> </a>
+										<h2> <a class="layui-badge">分享</a> <a href="/jie/65497/">使用layui的第30天：分享利用layui的文件导入excel，并且通过mvc导入到数据库</a>
+										</h2>
+										<div class="fly-list-info"> <a href="/u/54843936" link=""> <cite>伊丈夫</cite> </a> <span>2020-4-19 </span> <span
+												class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 20</span> <span class="fly-list-nums">
+										<i class="iconfont icon-pinglun1" title="回答"></i> 19 </span> </div>
+										<div class="fly-list-badge"> <span class="layui-badge layui-bg-red">精帖</span> </div>
+									</li>
+									<li> <a href="/u/7767144" class="fly-avatar"> <img src="//cdn.layui.com/avatar/7767144.jpg?t=1533265233623" alt="匿名丶">
+									</a>
+										<h2> <a class="layui-badge">分享</a> <a href="/jie/66075/">多处 iframe 的通信</a> </h2>
+										<div class="fly-list-info"> <a href="/u/7767144" link=""> <cite>匿名丶</cite> </a> <span>2020-5-3 </span> <span
+												class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 20</span> <span class="layui-badge fly-badge-accept layui-hide-xs">已结</span>
+											<span class="fly-list-nums"> <i class="iconfont icon-pinglun1" title="回答"></i> 15 </span> </div>
+										<div class="fly-list-badge"> <span class="layui-badge layui-bg-red">精帖</span> </div>
+									</li>
+									<li> <a href="/u/54843936" class="fly-avatar"> <img src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=YN9956zWBuOFTDw1Y7jZiaA&amp;s=100&amp;t=1584216733"
+																						alt="伊丈夫"> </a>
+										<h2> <a class="layui-badge">分享</a> <a href="/jie/65497/">使用layui的第30天：分享利用layui的文件导入excel，并且通过mvc导入到数据库</a>
+										</h2>
+										<div class="fly-list-info"> <a href="/u/54843936" link=""> <cite>伊丈夫</cite> </a> <span>2020-4-19 </span> <span
+												class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 20</span> <span class="fly-list-nums">
+										<i class="iconfont icon-pinglun1" title="回答"></i> 19 </span> </div>
+										<div class="fly-list-badge"> <span class="layui-badge layui-bg-red">精帖</span> </div>
+									</li>
+									<li> <a href="/u/54843936" class="fly-avatar"> <img src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=YN9956zWBuOFTDw1Y7jZiaA&amp;s=100&amp;t=1584216733"
+																						alt="伊丈夫"> </a>
+										<h2> <a class="layui-badge">分享</a> <a href="/jie/65497/">使用layui的第30天：分享利用layui的文件导入excel，并且通过mvc导入到数据库</a>
+										</h2>
+										<div class="fly-list-info"> <a href="/u/54843936" link=""> <cite>伊丈夫</cite> </a> <span>2020-4-19 </span> <span
+												class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 20</span> <span class="fly-list-nums">
+										<i class="iconfont icon-pinglun1" title="回答"></i> 19 </span> </div>
+										<div class="fly-list-badge"> <span class="layui-badge layui-bg-red">精帖</span> </div>
+									</li>
+								</ul>
 							</div>
-						</ul><!--comment list end-->
+						</div>
 					</div>
+					<div style="width: 755px;">
+						<form class="layui-form">
+							<div class="layui-form-item">
+								<textarea name="demo" id="demo" class="layui-hide"></textarea>
+							</div>
+							<button class="layui-btn">提交</button>
+							<a class="layui-btn" id="getChoose">获取选中内容</a>
+						</form>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
