@@ -191,14 +191,15 @@
 					return {
 						info: null,
 						error: null,
+						flg:0,
 						msg: 'hello'
 					}
 				},
 				 mounted () {
 				 	axios
-				 			.get('getListByOwnerId?lessonId=9&chapterNo=1')
-				 			.then(response => (this.info = response))
-				 			.catch(error => (this.error = error))
+							.get('getListByOwnerId?lessonId=9&chapterNo=1')
+							.then(response => (this.info = response.data,this.flg=1))
+							.catch(error => (this.error = error));
 				 },
 				methods: {
 
