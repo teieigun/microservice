@@ -2851,7 +2851,7 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 }
 .hd-op{
 	font-weight:500;
-	font-size: 18px;
+	font-size: 14px;
 	line-height: 20px;
 	color: #1c1b1b;
 	margin-bottom: 20px;
@@ -3110,7 +3110,7 @@ input{
 }
 .slct-hd{
 	font-weight:500;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 19px;
 	color: #1c1b1b;
 	margin-bottom: 11px;

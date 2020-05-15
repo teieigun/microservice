@@ -4,8 +4,6 @@
 }
 
 @font-face {font-family: 'iconfont';
-    src: url('../img/font/iconfont.eot');
-    src: url('../img/font/iconfont.eot') format('embedded-opentype'),
     url('../img/font/iconfont.woff') format('woff'),
     url('../img/font/iconfont.ttf') format('truetype'),
     url('../img/font/iconfont.svg#iconfont') format('svg');
@@ -224,5 +222,17 @@ body{
 
 li.a1{
 	margin-left:20px;
+}
+
+.uploadImage{
+	width: 80px;
+	height: 80px;
+	background-color: rgb(102, 102, 102);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: contain;
+}
+.testtest{
+	vertical-align: top !important;
 }
 

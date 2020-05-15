@@ -1,20 +1,19 @@
 package com.microservice.edu.controll;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import Decoder.BASE64Decoder;
+import com.microservice.edu.dao.UserDao;
+import com.microservice.edu.pojo.UserPojo;
+import com.microservice.edu.service.ProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,11 +32,23 @@ import web.SessionContext;
 @Controller
 public class accountControll {
 
+	@Autowired
+	ProfileService profileService;
+
+	@Value("${userProfilePath}")
+	private String userProfilePath;
+
+	@Autowired
+	private UserDao userDao;
+
 
 	@RequestMapping(value = "/account", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
-    public String account(HttpServletRequest request){
+    public String account(Model model,String ValCode,HttpServletRequest request){
 		System.out.println(SessionContext.getUserName(request));
+
+		model.addAttribute("filename", userProfilePath);
+		model.addAttribute("ValCode", ValCode);
         //提示具体用户名称登录成功
         return "/account";
     }
@@ -59,72 +70,28 @@ public class accountControll {
 		return null;
 	}
 
-	@Value("${userProfilePath}")
-	private String userProfilePath;
-
-
 	@RequestMapping(path = "/video/upload", method = RequestMethod.POST)
-	String upload(Model model, UploadForm uploadForm) {
-		Path path = Paths.get(userProfilePath);
-		if (!Files.exists(path)) {
-			try {
-				Files.createDirectory(path);
-			} catch (NoSuchFileException ex) {
-				System.err.println(ex);
-			} catch (IOException ex) {
-				System.err.println(ex);
-			}
-		}
-
-		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
-		Path uploadfile = Paths
-				.get(userProfilePath + filename + ".png");
-
-		String imageString = uploadForm.getImageCode().replace("url(\"","");
-		imageString=imageString.replace("\")","");
-		imageString=imageString.replace(" ","+");
-
-		imageString = imageString.replace("data:image/jpeg;base64,", "");
-		imageString = imageString.replace("data:image/png;base64,", "");
-
-
-		writeImage(imageString,uploadfile);
-
-
-		return "redirect:/sample";
-	}
-
-	private void writeImage(String imageString,Path userProfilePath){
-
-		if (imageString == null) {
-			return;
-		}
-
-		BASE64Decoder decoder = new BASE64Decoder();
+	String upload(Model model, UploadForm uploadForm,HttpServletRequest request) {
+		UserPojo userPojo =null;
 		try {
-			//Base64デコード
-			byte[] b = decoder.decodeBuffer(imageString);
-			for (int i = 0; i < b.length; ++i) {
-				if (b[i] < 0) {
-					b[i] += 256;
+			userPojo=userDao.findbyPk(SessionContext.getUserName(request));
+			Path path = Paths.get(userProfilePath);
+			if (!Files.exists(path)) {
+				try {
+					Files.createDirectory(path);
+				} catch (NoSuchFileException ex) {
+					System.err.println(ex);
+				} catch (IOException ex) {
+					System.err.println(ex);
 				}
 			}
-			File file = new File(userProfilePath.toString());
-			OutputStream out = new FileOutputStream(file);
-			out.write(b);
-			out.flush();
-			out.close();
 
-			File file2 = new File(userProfilePath.toString());
-			if (file2.exists()) {
-				file2.setExecutable(true, false);
-				file2.setReadable(true, false);
-				file2.setWritable(true, false);
-			}
-
-			return ;
-		} catch (Exception e) {
-			return ;
+			profileService.imgUpload(uploadForm,userProfilePath+userPojo.getValidateCode());
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
+		return "redirect:/account?ValCode="+userPojo.getValidateCode();
 	}
+
+
 }

@@ -157,13 +157,20 @@
 																<div class="photo-clip-area" style="border: 1px dashed rgb(221, 221, 221); position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -215px; margin-top: -161.5px;"></div>
 															</div>
 														</div>
-
 													<div class="clipButton" style="">
 														<button id="clipBtn" style="">选择照片</button>
 													</div>
 												</div>
 											</div>
-											<div id="view" style="width: 80px; height: 80px; background-color: rgb(102, 102, 102); background-repeat: no-repeat; background-position: center center; background-size: contain;"></div>
+											<table>
+												<tr>
+													<td border="1"><div class="uploadImage" id="view" ></div></td>
+													<td>→</td>
+													<td border="1"><div><img th:src="@{${'/images/'+ValCode+'.png'}}" /></div></td>
+												</tr>
+											</table>
+
+
 											<div style="height:10px;"></div>
 										</div>
 										<div class="clipContent" style="">
@@ -175,6 +182,7 @@
 											<input type="hidden" id="imageId" name="imageCode" value=""></input>
 										</form>
 									</div>
+
 									<div class="ch-pswd">
 										<button type="button" onclick="changeImage();"> 变更</button>
 									</div>
@@ -232,7 +240,7 @@
 									<div class="tb-pr">
 										<h4 class="slct_optz">开发语言</h4>
 										<div class="suojin">
-											<form method="post" name="imageForm" th:action="@{/account/program}" >
+											<form method="post" name="programForm" th:action="@{/account/program}" >
 											<div class="suojin">
 												<div th:replace="/common/program.html::program()"></div>
 											</div>
@@ -302,7 +310,6 @@
 
 			function changeImage() {
 				var bgImage = $('#view').css('backgroundImage');
-				alert(bgImage);
 				document.getElementById("imageId").value = bgImage;
 				document.imageForm.submit();
 
