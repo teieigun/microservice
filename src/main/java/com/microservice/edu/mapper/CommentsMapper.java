@@ -44,8 +44,8 @@ public interface CommentsMapper {
      * @param commentsRoot
      * @return
      */
-    @Insert("insert into comments_root (id,comment_id,owner_id,type,from_id,from_name,from_avatar,like_num,content,create_time) " +
-            "values(#{id},#{commentId},#{ownerId},#{type},#{fromId},#{fromName},#{fromAvatar},#{likeNum},#{content},#{createTime})")
+    @Insert("insert into comments_root (question_id,lesson_id,chapter_no,owner_id,content,create_time) " +
+            "values(#{question_id},#{lesson_id},#{chapter_no},#{owner_id},#{content},#{createTime})")
     boolean addRootComments(CommentsRoot commentsRoot);
 
     /**

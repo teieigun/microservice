@@ -23,9 +23,10 @@
 		<script src="../js/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-		<script>
+		<script th:inline="javascript">
 		  var lessonId=0;
 		  var chapterNo=0;
+		  var tagFlg = /*[[${tagFlg}]]*/ null;
 
 		$(document).ready(function(){
 		  $(".video_list_num").mouseenter(function(){
@@ -39,7 +40,7 @@
 
 		  $("#all").click(function(){
 			  const lessonId = document.getElementById('lessonId').value;
-			  const url = 'watch?lessonId='+lessonId;
+			  const url = 'watch?lessonId='+lessonId+"&tagFlg=1";
 			  window.location.href = url;
 
 		  });
@@ -196,21 +197,29 @@
 					}
 				},
 				 mounted () {
-				 	axios
-							.get('getListByOwnerId?lessonId=9&chapterNo=1')
-							.then(response => (this.info = response.data,this.flg=1))
-							.catch(error => (this.error = error));
+					if(tagFlg==3){
+						$("#design").prop('checked', true);
+					}
+
+				 	axios.get('getListByOwnerId?lessonId=9&chapterNo=1')
+						.then(response => (this.info = response.data,this.flg=0))
+						.catch(error => (this.error = error));
 				 },
 				methods: {
 
 					question: function () {
+						const lessonId = document.getElementById('lessonId').value;
+						const chapterNo = document.getElementById('chapterNo').value;
 						axios
-								.get('getListByOwnerId?lessonId=9&chapterNo=1')
+								.get('getListByOwnerId?'+lessonId+'=9&chapterNo='+chapterNo)
 								.then(response => (this.info = response.data))
 								.catch(error => (this.error = error));
 					}
 				}
-			})
+			});
+			function test() {
+				alert("tagFlg:"+tagFlg);
+			}
 		</script>
 		<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
 		<script src="../js/popper.js"></script>

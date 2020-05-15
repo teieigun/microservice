@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import web.SessionContext;
 
 /**
- * 点赞评论控制器
+ * 点赞问题控制器
  */
 @Controller
 @Slf4j
@@ -38,30 +38,33 @@ public class CommentsControll {
     WatchVideoService watchVideoService;
 
     /**
-     * 添加父评论   直接对标文章，资源等下面的评论
+     * 添加父问题   直接对标文章，资源等下面的问题
      * @param commentsRoot
      * @return
      */
-    @RequestMapping(value = "/video/addRootComments", method = RequestMethod.POST)
+    @RequestMapping(value = "/video/question", method = RequestMethod.POST)
     @Transactional(rollbackFor = Exception.class)
-    public ResultDT addRootComments(CommentsRoot commentsRoot) {
+    public String addRootComments(CommentsRoot commentsRoot,HttpServletRequest request) {
+
+
+        String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&tagFlg="+3;
+
         LogUtil.info("1" + commentsRoot.toString());
         if (commentsRoot.getContent().length() != 0) {
-            commentsRoot.setCommentId(UUID.randomUUID().toString().replaceAll("-", ""));//设置评论唯一标识
-            commentsRoot.setCreateTime(new Date());//设置添加评论时间
+            commentsRoot.setQuestion_id(UUID.randomUUID().toString().replaceAll("-", ""));//设置问题唯一标识
+            commentsRoot.setCreateTime(new Date());//设置添加问题时间
+            commentsRoot.setOwner_id(SessionContext.getUserName(request));
+
             LogUtil.info("2" + commentsRoot);
-            boolean b = commentService.addRootCommentsService(commentsRoot); //调用service方法来完成评论的存储
+            boolean b = commentService.addRootCommentsService(commentsRoot); //调用service方法来完成问题的存储
             LogUtil.info("3" + commentsRoot.toString());
-            if (b) {
-                return ResultDTUtils.success(commentsRoot);
-            }
         }
-        //评论内容为空 返回错误信息
-        return ResultDTUtils.error(ResultDTUtils.COMMENT_ERROR, "addError");
+        //问题内容为空 返回错误信息
+        return url;
     }
 
     /**
-     * 添加子评论，对应父评论
+     * 添加子问题，对应父问题
      * @param commentsReply
      * @return
      */
@@ -83,7 +86,7 @@ public class CommentsControll {
     }
 
     /**
-     * 根据资源ID来回去该资源的所有评论
+     * 根据资源ID来回去该资源的所有问题
      * @param request
      * @return
      */
@@ -98,17 +101,8 @@ public class CommentsControll {
 
 
         System.out.println("LessonId:"+lessonId);
-//        List<LessonChapterPojo> listLessonChapterPojo1 = null;
-//        try {
-//            listLessonChapterPojo1 = watchVideoService.changeChapter(String.valueOf(lessonId),String.valueOf(chapterNo));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        if(listLessonChapterPojo1!=null && listLessonChapterPojo1.size()>0){
-//            model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
-//        }
-
-        //查询所有评论
+        
+        //查询所有问题
         List<CommentsRoot> byOwnerIdService = commentService.findByLessonChapter(lessonId,chapterNo);
         LogUtil.info(byOwnerIdService.toString());
 
@@ -142,7 +136,7 @@ public class CommentsControll {
             b = commentService.updateLikedService(liked);
         }
         if(b) {
-            //更新评论的点赞次数
+            //更新问题的点赞次数
             if(liked.getLikeStatus() == 0)
                 liked.setLikeStatus(-1);
             if(commType.equals("root"))

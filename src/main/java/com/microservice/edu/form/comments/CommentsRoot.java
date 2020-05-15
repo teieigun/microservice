@@ -14,28 +14,16 @@ import java.util.List;
 public class CommentsRoot implements Serializable{
 
     //评论主键id
-    public Integer id;
+    public String question_id;
 
     //评论唯一标识
-    public String commentId;
+    public String lesson_id;
 
     //评论的资源id。标记这条评论是属于哪个资源的。资源可以是文章、视频、资源
-    public String ownerId;
-
-    //评论类型。1文章，2视频评论，3资源评论
-    public Integer type;
+    public String chapter_no;
 
     //评论者id
-    public String fromId;
-
-    //评论者名字
-    public String fromName;
-
-    //评论者头像
-    public String fromAvatar;
-
-    //获得点赞的数量
-    public Integer likeNum;
+    public String owner_id;
 
     //评论内容
     public String content;
@@ -46,68 +34,37 @@ public class CommentsRoot implements Serializable{
     //子评论
     public List<CommentsReply> listCommentsReply;
 
-    public Integer getId() {
-        return id;
+
+    public String getQuestion_id() {
+        return question_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setQuestion_id(String question_id) {
+        this.question_id = question_id;
     }
 
-    public String getCommentId() {
-        return commentId;
+    public String getLesson_id() {
+        return lesson_id;
     }
 
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
+    public void setLesson_id(String lesson_id) {
+        this.lesson_id = lesson_id;
     }
 
-    public String getOwnerId() {
-        return ownerId;
+    public String getChapter_no() {
+        return chapter_no;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    public void setChapter_no(String chapter_no) {
+        this.chapter_no = chapter_no;
     }
 
-    public Integer getType() {
-        return type;
+    public String getOwner_id() {
+        return owner_id;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public String getFromId() {
-        return fromId;
-    }
-
-    public void setFromId(String fromId) {
-        this.fromId = fromId;
-    }
-
-    public String getFromName() {
-        return fromName;
-    }
-
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
-    }
-
-    public String getFromAvatar() {
-        return fromAvatar;
-    }
-
-    public void setFromAvatar(String fromAvatar) {
-        this.fromAvatar = fromAvatar;
-    }
-
-    public Integer getLikeNum() {
-        return likeNum;
-    }
-
-    public void setLikeNum(Integer likeNum) {
-        this.likeNum = likeNum;
+    public void setOwner_id(String owner_id) {
+        this.owner_id = owner_id;
     }
 
     public String getContent() {
