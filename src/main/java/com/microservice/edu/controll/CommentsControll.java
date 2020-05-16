@@ -91,10 +91,10 @@ public class CommentsControll {
      * @return
      */
 
-    @RequestMapping(value = "/video/getListByOwnerId", method = RequestMethod.GET)
+    @RequestMapping(value = "/video/showQuestion", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     @ResponseBody
-    public List<CommentsRoot> getListByOwnerId(int lessonId,int chapterNo, HttpServletRequest request) {
+    public List<CommentsRoot> showQuestion(int lessonId,int chapterNo, HttpServletRequest request) {
 
         LogUtil.info(lessonId+"/"+chapterNo);
         LogUtil.info(SessionContext.getUserName(request));
@@ -112,6 +112,21 @@ public class CommentsControll {
         return byOwnerIdService;
     }
 
+    @RequestMapping(value = "/video/showAnwser", method = RequestMethod.GET)
+    @Transactional(readOnly = true)
+    @ResponseBody
+    public List<CommentsRoot> showAnwser(String questionId, HttpServletRequest request) {
+
+        LogUtil.info("questionId:"+questionId);
+        LogUtil.info(SessionContext.getUserName(request));
+
+        //查询所有问题
+        List<CommentsRoot> byPkService = commentService.findByPkService(questionId);
+        LogUtil.info(byPkService.toString());
+
+        //model.addAttribute("ListCommentsRoot", byOwnerIdService);
+        return byPkService;
+    }
 
 
     /**

@@ -201,7 +201,7 @@
 						$("#design").prop('checked', true);
 					}
 
-				 	axios.get('getListByOwnerId?lessonId=9&chapterNo=1')
+				 	axios.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
 						.then(response => (this.info = response.data,this.flg=0))
 						.catch(error => (this.error = error));
 				 },
@@ -211,10 +211,17 @@
 						const lessonId = document.getElementById('lessonId').value;
 						const chapterNo = document.getElementById('chapterNo').value;
 						axios
-								.get('getListByOwnerId?'+lessonId+'=9&chapterNo='+chapterNo)
-								.then(response => (this.info = response.data))
+								.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
+								.then(response => (this.info = response.data,this.flg=0))
+								.catch(error => (this.error = error));
+					},
+					answer: function (questionId) {
+						axios
+								.get('showAnwser?questionId='+questionId)
+								.then(response => (this.info = response.data,this.flg=1))
 								.catch(error => (this.error = error));
 					}
+
 				}
 			});
 			function test() {

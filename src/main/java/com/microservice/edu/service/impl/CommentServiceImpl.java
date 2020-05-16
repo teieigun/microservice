@@ -28,10 +28,19 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<CommentsRoot> findByPkService(String questionId) {
+        if(questionId == null){
+            return null;
+        }
+        return commentsMapper.findByOwnerPk(questionId);
+    }
+
+    @Override
     public List<CommentsRoot> findByLessonChapter(int lessonId, int chapterNo) {
 
         return commentsMapper.findByLessonChapter(lessonId,chapterNo);
     }
+
 
     @Override
     public boolean addRootCommentsService(CommentsRoot commentsRoot) {

@@ -22,6 +22,14 @@ public interface CommentsMapper {
     List<CommentsRoot> findByOwnerId(String ownerId);
 
     /**
+     * 用问题ID获取问题内容
+     * @param questionId 问题ID
+     * @return
+     */
+    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE question_id = #{questionId}")
+    List<CommentsRoot> findByOwnerPk(String questionId);
+
+    /**
      * 获取该文章或资源下的所有评论
      * @param lessonId 文章或资源id
      * @param chapterno 文章或资源id

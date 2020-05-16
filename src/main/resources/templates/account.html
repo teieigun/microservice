@@ -215,13 +215,12 @@
 										<input type="text" value=""></input>
 
 										<div class="oneEmptyLine"></div>
-
 										<h4 class="slct-hd">性别</h4>
+
 										<input type="radio" name="sex" value="girl" checked="checked">男性
 										<input type="radio" name="sex" value="boy">女性
 
 										<div class="oneEmptyLine"></div>
-
 										<h4 class="slct-hd">生年月日</h4>
 										 <input type="date"></input>
 
@@ -230,23 +229,19 @@
 										<button type="button" onclick="changeProgram();"> 变更</button>
 									</div>
 								</div>
-
-
-									<div class="tb-pr">
-										<h4 class="slct_optz">开发语言</h4>
+								<div class="tb-pr">
+									<h4 class="slct_optz">开发语言</h4>
+									<div class="suojin">
+										<form method="post" name="programForm" th:action="@{/account/program}" >
 										<div class="suojin">
-											<form method="post" name="programForm" th:action="@{/account/program}" >
-											<div class="suojin">
-												<div th:replace="/common/program.html::program()"></div>
-											</div>
-											</form>
+											<div th:replace="/common/program.html::program()"></div>
 										</div>
-										<div class="ch-pswd">
-											<button type="button" onclick="changeProgram();"> 变更</button>
-										</div>
+										</form>
 									</div>
-
-
+									<div class="ch-pswd">
+										<button type="button" onclick="changeProgram();"> 变更</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>

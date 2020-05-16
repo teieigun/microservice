@@ -9,12 +9,14 @@
 		<div th:fragment="cmt()" class="cmt-bx">
 			<div id="app" class="container">
 				<div class="layui-container">
-					<h1 v-if="flg==1">Vue is awesome!</h1>
+					<div STYLE="width: 755px;" v-if="flg==1">
+						<span v-html="info[0].content"></span>
+					</div>
 					<div v-if="flg==0" class="layui-row layui-col-space15">
 						<div class="fly-panel">
 							<ul class="fly-list">
 								<li v-for="item in info" v-bind:key="item.id">
-									<a href="/u/7767144" class="fly-avatar">
+									<a  class="fly-avatar" v-on:click="answer(item.question_id)" >
 										<img :src="'/images/'+item.profile_image"　alt="用户名">
 									</a>
 									<h2> <a class="layui-badge">分享</a> <a href="/jie/66075/"><span v-html="item.content"></span></a> </h2>
@@ -37,7 +39,6 @@
 								<textarea name="content" id="demo" class="layui-hide"></textarea>
 								<input type="hidden" name="lesson_id" th:value="${LessonChapterPojoOne.lessonId}" />
 								<input type="hidden" name="chapter_no" th:value="${LessonChapterPojoOne.chapterNo}" />
-
 							</div>
 							<button class="layui-btn">提交</button>
 							<a class="layui-btn" id="getChoose">获取选中内容</a>

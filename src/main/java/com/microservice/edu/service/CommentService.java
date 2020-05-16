@@ -16,6 +16,13 @@ public interface CommentService {
     List<CommentsRoot> findByOwnerIdService(String ownerId);
 
     /**
+     * 用问题ID取得问题内容
+     * @param questionId 问题ID
+     * @return
+     */
+    List<CommentsRoot> findByPkService(String questionId);
+
+    /**
      * 获取该文章或资源下的所有评论
      * @param lessonId 文章或资源id
      * @param chapterNo 文章或资源id
