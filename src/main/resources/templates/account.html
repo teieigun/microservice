@@ -76,8 +76,8 @@
 			}
 			.clipRow2 {
 				min-height: 1px;
-				line-height: 160px;
-				text-align: center;
+				line-height: 100px;
+				text-align: left;
 				position: relative
 			}
 			.clipContent {
@@ -120,7 +120,7 @@
 							<div class="sidebar">
 								<div class="widget video_info pr sp">
 									<span class="vc_hd">
-										<img src="images/resources/sn.png" alt="">
+										<img th:src="@{${'/images/'+ValCode+'.png'}}" />
 									</span>
 									<h4>郑英群</h4>
 								</div><!--video_info pr-->
@@ -162,15 +162,10 @@
 													</div>
 												</div>
 											</div>
-											<table>
-												<tr>
-													<td border="1"><div class="uploadImage" id="view" ></div></td>
-													<td>→</td>
-													<td border="1"><div><img th:src="@{${'/images/'+ValCode+'.png'}}" /></div></td>
-												</tr>
-											</table>
-
-
+											<div style="display:inline;">
+												<div id="view" class="uploadImage"  ></div>
+												<div class="uploadImage2" ><img th:src="@{${'/images/'+ValCode+'.png'}}" /></div>
+											</div>
 											<div style="height:10px;"></div>
 										</div>
 										<div class="clipContent" style="">
@@ -277,11 +272,14 @@
 				loadComplete: function() {
 					// 加载完成的回调函数。this指向图片对象，并将图片地址作为参数传入
 					console.log("照片读取完成");
+
 				},
 				//loadError: function(event) {}, // 加载失败的回调函数。this指向 fileReader 对象，并将错误事件的 event 对象作为参数传入
 				clipFinish: function(dataURL) {
 					// 裁剪完成的回调函数。this指向图片对象，会将裁剪出的图像数据DataURL作为参数传入
 					$('.cover-wrap').fadeOut();
+					$('.uploadImage').css('display','block');
+					$('.uploadImage2').css('display','none');
 					$('#view').css('background-size', '100% 100%');
 					console.log(dataURL); //输出图像base64
 				}
@@ -309,9 +307,13 @@
 			});
 
 			function changeImage() {
-				var bgImage = $('#view').css('backgroundImage');
-				document.getElementById("imageId").value = bgImage;
-				document.imageForm.submit();
+				if(($('.uploadImage2').css('display')!='inline')){
+					var bgImage = $('#view').css('backgroundImage');
+					document.getElementById("imageId").value = bgImage;
+					document.imageForm.submit();
+				}else{
+					alert("画像を選択してください。");
+				}
 
 			}
 		</script>

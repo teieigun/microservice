@@ -33,7 +33,7 @@ public class ProfileService {
 
 		String filename = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS").format(LocalDateTime.now());
 		Path uploadfile = Paths
-				.get(userProfilePath  + ".png");
+				.get(userProfilePath);
 
 		String imageString = uploadForm.getImageCode().replace("url(\"","");
 		imageString=imageString.replace("\")","");
@@ -42,7 +42,8 @@ public class ProfileService {
 		imageString = imageString.replace("data:image/jpeg;base64,", "");
 		imageString = imageString.replace("data:image/png;base64,", "");
 
-
 		ImageUpload.writeImage(imageString,uploadfile);
+
+
 	}
 }

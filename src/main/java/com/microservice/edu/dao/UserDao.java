@@ -67,6 +67,12 @@ public class UserDao {
         jdbcTemplate.update(updateSql,new Object[] {status,email});
     }
 
+    public void updateUserProfileImage(String email,String imagePath){
+
+        String updateSql = " update user_base_info set profile_image=? where email=? ";
+
+        jdbcTemplate.update(updateSql,new Object[] {imagePath,email});
+    }
 
 
     /**

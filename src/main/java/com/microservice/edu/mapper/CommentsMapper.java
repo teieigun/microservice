@@ -27,7 +27,7 @@ public interface CommentsMapper {
      * @param chapterno 文章或资源id
      * @return
      */
-    @Select("select * from comments_root  WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno}")
+    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno}")
     List<CommentsRoot> findByLessonChapter(int lessonId,int chapterno );
 
     /**

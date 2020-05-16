@@ -25,6 +25,9 @@ public class CommentsRoot implements Serializable{
     //评论者id
     public String owner_id;
 
+    //提问者头像
+    public String profile_image;
+
     //评论内容
     public String content;
 
@@ -89,6 +92,14 @@ public class CommentsRoot implements Serializable{
 
     public void setListCommentsReply(List<CommentsReply> listCommentsReply) {
         this.listCommentsReply = listCommentsReply;
+    }
+
+    public String getProfile_image() {
+        return profile_image;
+    }
+
+    public void setProfile_image(String profile_image) {
+        this.profile_image = profile_image;
     }
 }
 

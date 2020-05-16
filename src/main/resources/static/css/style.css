@@ -5032,7 +5032,6 @@ pre{border: none; border-left: 5px solid #ddd;}
 
 /* 单行列表 */
 .fly-list-one .fly-panel-title{margin-bottom: 5px;}
-.fly-list-one dd{margin: 0 15px; line-height: 26px; white-space: nowrap; overflow: hidden; list-style: decimal-leading-zero inside; *list-style-type: decimal inside; color: #009E94;}
 .fly-list-one dd a,
 .fly-list-one dd span{display: inline-block; *display: inline; *zoom: 1; vertical-align: top; font-style: normal}
 .fly-list-one dd a{max-width: 85%; margin-right: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px;}
@@ -5333,7 +5332,6 @@ body .fly-user-main{position: relative; min-height: 600px;}
 /* 案例 */
 .fly-case-header{position: relative; height: 260px; text-align: center; background: #24262F;}
 .fly-case-year{position: absolute; top: 50px; width: 100%; line-height: 50px; font-size: 50px; text-align: center; color: #fff; font-weight: 300;}
-.fly-case-header-desc{position: absolute; left: 0; top: 115px; width: 100%; text-align: align;}
 .fly-case-header-desc a{letter-spacing: 2px; font-size: 20px; font-weight: 300; color: #fff;}
 .fly-case-banner{position: absolute; left: 50%; top: 100px; width: 670px; margin-left: -335px;}
 .fly-case-btn{position: absolute; bottom: 45px; left: 0; width: 100%; text-align: center;}

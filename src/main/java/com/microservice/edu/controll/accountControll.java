@@ -46,9 +46,14 @@ public class accountControll {
 	@Transactional(readOnly = true)
     public String account(Model model,String ValCode,HttpServletRequest request){
 		System.out.println(SessionContext.getUserName(request));
-
+		UserPojo userPojo =null;
+		try {
+			userPojo=userDao.findbyPk(SessionContext.getUserName(request));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("filename", userProfilePath);
-		model.addAttribute("ValCode", ValCode);
+		model.addAttribute("ValCode", userPojo.getValidateCode());
         //提示具体用户名称登录成功
         return "/account";
     }
@@ -86,11 +91,16 @@ public class accountControll {
 				}
 			}
 
-			profileService.imgUpload(uploadForm,userProfilePath+userPojo.getValidateCode());
+			String imageName=userPojo.getValidateCode()+".png";
+
+			profileService.imgUpload(uploadForm,userProfilePath+imageName);
+
+			userDao.updateUserProfileImage(SessionContext.getUserName(request),imageName);
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/account?ValCode="+userPojo.getValidateCode();
+		return "redirect:/account";
 	}
 
 
