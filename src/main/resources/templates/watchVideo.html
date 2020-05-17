@@ -210,6 +210,7 @@
 								.then(response => (this.info = response.data,this.flg=0))
 								.catch(error => (this.error = error));
 					}else {
+						document.getElementById("questionId").value=questionId;
 						axios
 								.get('showAnwser?questionId='+questionId)
 								.then(response => (this.info = response.data,this.flg=1))

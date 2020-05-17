@@ -49,6 +49,7 @@ public class CommentsControll {
 
         String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&tagFlg="+3+"&questionId=0";
 
+        System.out.println("-------------:"+commentsRoot.getQuestion_id());
         //提问
         LogUtil.info("1" + commentsRoot.toString());
         if (commentsRoot.getContent().length() != 0 && commentsRoot.getQuestion_id().isEmpty()) {
