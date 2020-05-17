@@ -9,8 +9,20 @@
 		<div th:fragment="cmt()" class="cmt-bx">
 			<div id="app" class="container">
 				<div class="layui-container">
+
 					<div STYLE="width: 755px;" v-if="flg==1">
-						<span v-html="info[0].content"></span>
+						<p><h1>提问:</h1></p>
+						<hr />
+						<div class="detail-about-cmt">
+							<div class="user-ac-img" style="height: 60px">
+								<img :src="'/images/'+info[0].profile_image" width="60px" height="60px"　alt="用户名">
+							</div>
+						</div>
+						<div class="oneEmptyLine"></div>
+						<span class="span-cmt" v-html="info[0].content"></span>
+						<div class="oneEmptyLine"></div>
+						<p><h1>回答:</h1></p>
+						<hr />
 					</div>
 					<div v-if="flg==0" class="layui-row layui-col-space15">
 						<div class="fly-panel">

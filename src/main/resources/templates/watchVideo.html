@@ -200,7 +200,8 @@
 					if(tagFlg==3){
 						$("#design").prop('checked', true);
 					}
-
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
 				 	axios.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
 						.then(response => (this.info = response.data,this.flg=0))
 						.catch(error => (this.error = error));
