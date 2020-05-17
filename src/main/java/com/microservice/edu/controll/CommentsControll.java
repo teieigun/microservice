@@ -1,28 +1,28 @@
 package com.microservice.edu.controll;
 
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.microservice.edu.form.comments.CommentsReply;
 import com.microservice.edu.form.comments.CommentsRoot;
 import com.microservice.edu.form.comments.Liked;
 import com.microservice.edu.form.comments.ResultDT;
-import com.microservice.edu.pojo.LessonChapterPojo;
 import com.microservice.edu.service.CommentService;
 import com.microservice.edu.service.WatchVideoService;
-import com.microservice.edu.util.ResultDTUtils;
-import lombok.extern.slf4j.Slf4j;
-
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 import com.microservice.edu.util.LogUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import com.microservice.edu.util.ResultDTUtils;
+
+import lombok.extern.slf4j.Slf4j;
 import web.SessionContext;
 
 /**
@@ -47,13 +47,13 @@ public class CommentsControll {
     public String addRootComments(CommentsRoot commentsRoot,HttpServletRequest request) {
 
 
-        String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&tagFlg="+3;
+        String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&tagFlg="+3+"&questionId=0";
 
         //提问
         LogUtil.info("1" + commentsRoot.toString());
         if (commentsRoot.getContent().length() != 0 && commentsRoot.getQuestion_id().isEmpty()) {
             commentsRoot.setQuestion_id(UUID.randomUUID().toString().replaceAll("-", ""));//设置问题唯一标识
-            commentsRoot.setCreateTime(new Date());//设置添加问题时间
+            commentsRoot.setCreate_time(new Date());//设置添加问题时间
             commentsRoot.setOwner_id(SessionContext.getUserName(request));
 
             LogUtil.info("2" + commentsRoot);
@@ -69,8 +69,7 @@ public class CommentsControll {
             commentsReply.setAnwser_id(SessionContext.getUserName(request));
             commentsReply.setContent(commentsRoot.getContent());
             boolean b = commentService.addSonCommentsService(commentsReply); //调用service方法来完成问题的存储
-            url = "redirect:/video/showAnwser?questionId=" + commentsReply.getQuestion_id()+"&tagFlg="+3;
-
+            url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&tagFlg="+3+"&questionId="+commentsRoot.question_id;
         }
         //问题内容为空 返回错误信息
         return url;
@@ -94,7 +93,7 @@ public class CommentsControll {
 
 
         System.out.println("LessonId:"+lessonId);
-        
+
         //查询所有问题
         List<CommentsRoot> byOwnerIdService = commentService.findByLessonChapter(lessonId,chapterNo);
         LogUtil.info(byOwnerIdService.toString());

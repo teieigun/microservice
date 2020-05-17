@@ -27,6 +27,7 @@
 		  var lessonId=0;
 		  var chapterNo=0;
 		  var tagFlg = /*[[${tagFlg}]]*/ null;
+		  var questionId = /*[[${questionId}]]*/ null;
 
 		$(document).ready(function(){
 		  $(".video_list_num").mouseenter(function(){
@@ -200,11 +201,20 @@
 					if(tagFlg==3){
 						$("#design").prop('checked', true);
 					}
-					const lessonId = document.getElementById('lessonId').value;
-					const chapterNo = document.getElementById('chapterNo').value;
-				 	axios.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
-						.then(response => (this.info = response.data,this.flg=0))
-						.catch(error => (this.error = error));
+
+					 const lessonId = document.getElementById('lessonId').value;
+					 const chapterNo = document.getElementById('chapterNo').value;
+
+					if(questionId==0 || questionId==null){
+						axios.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
+								.then(response => (this.info = response.data,this.flg=0))
+								.catch(error => (this.error = error));
+					}else {
+						axios
+								.get('showAnwser?questionId='+questionId)
+								.then(response => (this.info = response.data,this.flg=1))
+								.catch(error => (this.error = error));
+					}
 				 },
 				methods: {
 
@@ -223,35 +233,7 @@
 								.get('showAnwser?questionId='+questionId)
 								.then(response => (this.info = response.data,this.flg=1))
 								.catch(error => (this.error = error));
-					},
-					submitCmt: function () {
-						alert("submitCmt");
-						const content = document.getElementById("demo").value;
-						const lessonId = document.getElementById("lessonId").value;
-						const chapterNo = document.getElementById("chapterNo").value;
-						const questionId = document.getElementById("questionId").value;
-
-						const params = new FormData();
-						params.append("content",content);
-						params.append("lesson_id",lessonId);
-						params.append("chapter_no",chapterNo);
-						params.append("question_id",questionId);
-
-						axios({
-							url:'/video/question',
-							method:'POST',
-							headers:{
-								'Content-Type':'text/plain'
-							},
-							data:params
-						}).then(function(response){
-
-						}).catch((error) =>{
-							//Network error comes in
-						});
-
 					}
-
 				}
 			});
 			function test() {

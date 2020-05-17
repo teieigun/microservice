@@ -25,7 +25,7 @@ public class WatchVideoControll {
 
     @RequestMapping(value = "/video/watch", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public String goToVideoPage(Model model,String lessonId,String tagFlg) throws Exception {
+    public String goToVideoPage(Model model,String lessonId,String tagFlg,String questionId) throws Exception {
 
         System.out.println("LessonId:"+lessonId);
 
@@ -40,6 +40,7 @@ public class WatchVideoControll {
             model.addAttribute("tagFlg", tagFlg);
         }
 
+        model.addAttribute("questionId", questionId);
         model.addAttribute("checkFlg", 1);
         return "/watchVideo";
     }

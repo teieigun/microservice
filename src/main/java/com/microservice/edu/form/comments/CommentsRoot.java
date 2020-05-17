@@ -1,11 +1,11 @@
 package com.microservice.edu.form.comments;
 
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import lombok.Data;
 
 /**
  * 评论表主表
@@ -32,7 +32,15 @@ public class CommentsRoot implements Serializable{
     public String content;
 
     //创建时间
-    public Date createTime;
+    public Date create_time;
+
+    public Date getCreate_time() {
+        return create_time;
+    }
+
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
+    }
 
     //子评论
     public List<CommentsReply> listCommentsReply;
@@ -78,13 +86,6 @@ public class CommentsRoot implements Serializable{
         this.content = content;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
     public List<CommentsReply> getListCommentsReply() {
         return listCommentsReply;
@@ -101,5 +102,8 @@ public class CommentsRoot implements Serializable{
     public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
     }
+
+
+
 }
 
