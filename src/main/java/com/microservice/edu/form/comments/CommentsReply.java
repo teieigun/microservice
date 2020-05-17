@@ -12,109 +12,46 @@ import java.util.Date;
 @Data
 public class CommentsReply implements Serializable{
 
-    //父评论的主键id
-    public String id;
+    //问题ID
+    public String question_id;
 
-    //该条评论的唯一标识
-    public String commentId;
+    //回答ID
+    public String comment_id;
 
-    //评论者id
-    public String fromId;
-
-    //评论者名字
-    public String fromName;
-
-    //评论者头像
-    public String fromAvatar;
-
-    //被评论者id
-    public String toId;
-
-    //被评论者名字
-    public String toName;
-
-    //被评论者头像
-    public String toAvatar;
-
-    //获得点赞的数量
-    public Integer likeNum;
+    //回答者
+    public String anwser_id;
 
     //评论内容
     public String content;
 
+    //获得点赞的数量
+    public Integer like_num;
+
     //创建时间
-    public Date createTime;
+    public Date create_time;
 
-    public String getId() {
-        return id;
+    public String getQuestion_id() {
+        return question_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setQuestion_id(String question_id) {
+        this.question_id = question_id;
     }
 
-    public String getCommentId() {
-        return commentId;
+    public String getComment_id() {
+        return comment_id;
     }
 
-    public void setCommentId(String commentId) {
-        this.commentId = commentId;
+    public void setComment_id(String comment_id) {
+        this.comment_id = comment_id;
     }
 
-    public String getFromId() {
-        return fromId;
+    public String getAnwser_id() {
+        return anwser_id;
     }
 
-    public void setFromId(String fromId) {
-        this.fromId = fromId;
-    }
-
-    public String getFromName() {
-        return fromName;
-    }
-
-    public void setFromName(String fromName) {
-        this.fromName = fromName;
-    }
-
-    public String getFromAvatar() {
-        return fromAvatar;
-    }
-
-    public void setFromAvatar(String fromAvatar) {
-        this.fromAvatar = fromAvatar;
-    }
-
-    public String getToId() {
-        return toId;
-    }
-
-    public void setToId(String toId) {
-        this.toId = toId;
-    }
-
-    public String getToName() {
-        return toName;
-    }
-
-    public void setToName(String toName) {
-        this.toName = toName;
-    }
-
-    public String getToAvatar() {
-        return toAvatar;
-    }
-
-    public void setToAvatar(String toAvatar) {
-        this.toAvatar = toAvatar;
-    }
-
-    public Integer getLikeNum() {
-        return likeNum;
-    }
-
-    public void setLikeNum(Integer likeNum) {
-        this.likeNum = likeNum;
+    public void setAnwser_id(String anwser_id) {
+        this.anwser_id = anwser_id;
     }
 
     public String getContent() {
@@ -125,12 +62,20 @@ public class CommentsReply implements Serializable{
         this.content = content;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreate_time() {
+        return create_time;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreate_time(Date create_time) {
+        this.create_time = create_time;
+    }
+
+    public Integer getLike_num() {
+        return like_num;
+    }
+
+    public void setLike_num(Integer like_num) {
+        this.like_num = like_num;
     }
 }
 

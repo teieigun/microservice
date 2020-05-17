@@ -209,6 +209,7 @@
 				methods: {
 
 					question: function () {
+						document.getElementById("questionId").value="";
 						const lessonId = document.getElementById('lessonId').value;
 						const chapterNo = document.getElementById('chapterNo').value;
 						axios
@@ -217,10 +218,38 @@
 								.catch(error => (this.error = error));
 					},
 					answer: function (questionId) {
+						document.getElementById("questionId").value=questionId;
 						axios
 								.get('showAnwser?questionId='+questionId)
 								.then(response => (this.info = response.data,this.flg=1))
 								.catch(error => (this.error = error));
+					},
+					submitCmt: function () {
+						alert("submitCmt");
+						const content = document.getElementById("demo").value;
+						const lessonId = document.getElementById("lessonId").value;
+						const chapterNo = document.getElementById("chapterNo").value;
+						const questionId = document.getElementById("questionId").value;
+
+						const params = new FormData();
+						params.append("content",content);
+						params.append("lesson_id",lessonId);
+						params.append("chapter_no",chapterNo);
+						params.append("question_id",questionId);
+
+						axios({
+							url:'/video/question',
+							method:'POST',
+							headers:{
+								'Content-Type':'text/plain'
+							},
+							data:params
+						}).then(function(response){
+
+						}).catch((error) =>{
+							//Network error comes in
+						});
+
 					}
 
 				}

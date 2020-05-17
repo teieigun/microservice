@@ -38,7 +38,7 @@ public class CommentsControll {
     WatchVideoService watchVideoService;
 
     /**
-     * 添加父问题   直接对标文章，资源等下面的问题
+     * 提问题 和 回答问题
      * @param commentsRoot
      * @return
      */
@@ -49,8 +49,9 @@ public class CommentsControll {
 
         String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&tagFlg="+3;
 
+        //提问
         LogUtil.info("1" + commentsRoot.toString());
-        if (commentsRoot.getContent().length() != 0) {
+        if (commentsRoot.getContent().length() != 0 && commentsRoot.getQuestion_id().isEmpty()) {
             commentsRoot.setQuestion_id(UUID.randomUUID().toString().replaceAll("-", ""));//设置问题唯一标识
             commentsRoot.setCreateTime(new Date());//设置添加问题时间
             commentsRoot.setOwner_id(SessionContext.getUserName(request));
@@ -58,32 +59,24 @@ public class CommentsControll {
             LogUtil.info("2" + commentsRoot);
             boolean b = commentService.addRootCommentsService(commentsRoot); //调用service方法来完成问题的存储
             LogUtil.info("3" + commentsRoot.toString());
+        // 回答
+        }else{
+            CommentsReply commentsReply = new CommentsReply();
+
+            commentsReply.setQuestion_id(commentsRoot.question_id);
+            commentsReply.setComment_id(UUID.randomUUID().toString().replaceAll("-", ""));
+            commentsReply.setCreate_time(new Date());//设置添加问题时间
+            commentsReply.setAnwser_id(SessionContext.getUserName(request));
+            commentsReply.setContent(commentsRoot.getContent());
+            boolean b = commentService.addSonCommentsService(commentsReply); //调用service方法来完成问题的存储
+            url = "redirect:/video/showAnwser?questionId=" + commentsReply.getQuestion_id()+"&tagFlg="+3;
+
         }
         //问题内容为空 返回错误信息
         return url;
     }
 
-    /**
-     * 添加子问题，对应父问题
-     * @param commentsReply
-     * @return
-     */
-    @RequestMapping(value = "/video/addSonComments", method = RequestMethod.POST)
-    @Transactional(rollbackFor = Exception.class)
-    public ResultDT addSonComments(CommentsReply commentsReply) {
-        LogUtil.info("1" + commentsReply.toString());
-        if (commentsReply.getContent().length() != 0) {
-            commentsReply.setCommentId(UUID.randomUUID().toString().replaceAll("-",""));
-            commentsReply.setCreateTime(new Date());
-            LogUtil.info("2" + commentsReply);
-            boolean b = commentService.addSonCommentsService(commentsReply);
-            LogUtil.info("3" + commentsReply.toString());
-            if (b) {
-                return ResultDTUtils.success(commentsReply,null);
-            }
-        }
-        return ResultDTUtils.error(ResultDTUtils.COMMENT_ERROR, "addError");
-    }
+
 
     /**
      * 根据资源ID来回去该资源的所有问题

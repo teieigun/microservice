@@ -43,8 +43,8 @@ public interface CommentsMapper {
      * @param commentsReply
      * @return
      */
-    @Insert("insert into comments_reply (id,comment_id,from_id,from_name,from_avatar,to_id,to_name,to_avatar,like_num,content,create_time) " +
-            "values(#{id},#{commentId},#{fromId},#{fromName},#{fromAvatar},#{toId},#{toName},#{toAvatar},#{likeNum},#{content},#{createTime})")
+    @Insert("insert into comments_reply (question_id,comment_id,anwser_id,content,create_time,like_num) " +
+            "values(#{question_id},#{comment_id},#{anwser_id},#{content},#{create_time},#{like_num})")
     boolean addSonComments(CommentsReply commentsReply);
 
     /**
@@ -53,7 +53,7 @@ public interface CommentsMapper {
      * @return
      */
     @Insert("insert into comments_root (question_id,lesson_id,chapter_no,owner_id,content,create_time) " +
-            "values(#{question_id},#{lesson_id},#{chapter_no},#{owner_id},#{content},#{createTime})")
+            "values(#{question_id},#{lesson_id},#{chapter_no},#{owner_id},#{content},#{create_time})")
     boolean addRootComments(CommentsRoot commentsRoot);
 
     /**
