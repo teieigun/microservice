@@ -34,7 +34,7 @@ public class UserDao {
     private String validateCode;//激活码
     private Date  registerTime;//注册时间
      */
-    public void saveUserInfo(UserPojo user){
+    public void saveProfile(UserPojo user){
 
         String insertSql = " INSERT INTO user_base_profile " +
                 "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?)";
@@ -42,6 +42,16 @@ public class UserDao {
         jdbcTemplate.update(insertSql,new Object[] {user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
 
     }
+
+    public void saveBaseInfo(String email){
+
+        String insertSql = " INSERT INTO user_base_info " +
+                "(EMAIL) VALUES(?)";
+
+        jdbcTemplate.update(insertSql,new Object[] {email });
+
+    }
+
 
     /**
      * @更新 user

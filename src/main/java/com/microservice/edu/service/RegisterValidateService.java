@@ -42,7 +42,8 @@ public class RegisterValidateService {
             if(userDao.findbyPk(email).getEmail()!=null){
                 userDao.resetUser(email);
             }else{
-                userDao.saveUserInfo(user);
+                userDao.saveProfile(user);
+                userDao.saveBaseInfo(email);
             }
         } catch (ParseException e) {
             e.printStackTrace();
