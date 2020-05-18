@@ -38,6 +38,8 @@ public class CommentsControll {
     @Autowired
     WatchVideoService watchVideoService;
 
+    private static int ROW =5;
+
     /**
      * 提问题 和 回答问题
      * @param commentsRoot
@@ -105,6 +107,28 @@ public class CommentsControll {
 
         return byOwnerIdService;
     }
+
+    @RequestMapping(value = "/video/showQuestionPage", method = RequestMethod.GET)
+    @Transactional(readOnly = true)
+    @ResponseBody
+    public List<CommentsRoot> showQuestionFt(int lessonId,int chapterNo,int offset, HttpServletRequest request) {
+
+        LogUtil.info(lessonId+"/"+chapterNo);
+        LogUtil.info(SessionContext.getUserName(request));
+
+
+        System.out.println("LessonId:"+lessonId);
+
+        //查询所有问题
+        List<CommentsRoot> byOwnerIdService = commentService.findByLessonChapterPage(lessonId,chapterNo,(offset-1)*ROW,ROW);
+        LogUtil.info(byOwnerIdService.toString());
+
+        //model.addAttribute("ListCommentsRoot", byOwnerIdService);
+
+
+        return byOwnerIdService;
+    }
+
 
     @RequestMapping(value = "/video/showAnwser", method = RequestMethod.GET)
     @Transactional(readOnly = true)

@@ -27,7 +27,7 @@ public interface CommentsMapper {
      * @param questionId 问题ID
      * @return
      */
-    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE question_id = #{questionId}")
+    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE question_id = #{questionId} order by id")
     List<CommentsRoot> findByOwnerPk(String questionId);
 
     /**
@@ -36,8 +36,9 @@ public interface CommentsMapper {
      * @param chapterno 文章或资源id
      * @return
      */
-    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno}")
+    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno} order by id")
     List<CommentsRoot> findByLessonChapter(int lessonId,int chapterno );
+
 
 
     /**
@@ -46,7 +47,16 @@ public interface CommentsMapper {
      * @param chapterno 文章或资源id
      * @return
      */
-    @Select("SELECT t1.question_id,t1.comment_id,t1.anwser_id,t1.content,t1.create_time,t1.like_num,t2.profile_image from comments_reply t1 LEFT JOIN user_base_info t2 ON t1.anwser_id = t2.email  WHERE t1.question_id=#{questionId}")
+    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno} order by id LIMIT #{offset},#{row}" )
+    List<CommentsRoot> findByLessonChapterPage(int lessonId,int chapterno,int offset,int row);
+
+    /**
+     * 获取该文章或资源下的所有评论
+     * @param lessonId 文章或资源id
+     * @param chapterno 文章或资源id
+     * @return
+     */
+    @Select("SELECT t1.question_id,t1.comment_id,t1.anwser_id,t1.content,t1.create_time,t1.like_num,t2.profile_image from comments_reply t1 LEFT JOIN user_base_info t2 ON t1.anwser_id = t2.email  WHERE t1.question_id=#{questionId} order by id")
     List<CommentsReply> findByQuestionId(String questionId);
 
 

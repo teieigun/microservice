@@ -42,6 +42,12 @@ public class CommentServiceImpl implements CommentService {
         return commentsMapper.findByLessonChapter(lessonId,chapterNo);
     }
 
+    @Override
+    public List<CommentsRoot> findByLessonChapterPage(int lessonId, int chapterNo,int offset,int row) {
+
+        return commentsMapper.findByLessonChapterPage(lessonId,chapterNo,offset,row);
+    }
+
 
     @Override
     public List<CommentsReply> findByQuestionId(String questionId) {

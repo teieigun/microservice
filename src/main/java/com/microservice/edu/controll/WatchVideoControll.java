@@ -20,59 +20,58 @@ import web.SessionContext;
 @Controller
 public class WatchVideoControll {
 
+	@Autowired
+	TopPageService topPageService;
 
-    @Autowired
-    TopPageService topPageService;
+	@Autowired
+	WatchVideoService watchVideoService;
 
-    @Autowired
-    WatchVideoService watchVideoService;
+	@RequestMapping(value = "/video/watch", method = RequestMethod.GET)
+	@Transactional(readOnly = true)
+	public String goToVideoPage(Model model, String lessonId, String tagFlg, String questionId,
+			HttpServletRequest request) throws Exception {
 
-    @RequestMapping(value = "/video/watch", method = RequestMethod.GET)
-    @Transactional(readOnly = true)
-    public String goToVideoPage(Model model,String lessonId,String tagFlg,String questionId,HttpServletRequest request) throws Exception {
+		System.out.println("LessonId:" + lessonId);
 
-        System.out.println("LessonId:"+lessonId);
+		List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(lessonId);
+		model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
+		if (listLessonChapterPojo != null && listLessonChapterPojo.size() > 0) {
+			model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo.get(0));
+		}
+		if (tagFlg.isEmpty()) {
+			model.addAttribute("tagFlg", 1);
+		} else {
+			model.addAttribute("tagFlg", tagFlg);
+		}
 
-        List<LessonChapterPojo> listLessonChapterPojo =  watchVideoService.getChapterList(lessonId);
-        model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
-        if(listLessonChapterPojo !=null && listLessonChapterPojo.size()>0){
-            model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo.get(0));
-        }
-        if(tagFlg.isEmpty()){
-            model.addAttribute("tagFlg", 1);
-        }else{
-            model.addAttribute("tagFlg", tagFlg);
-        }
+		model.addAttribute("questionId", questionId);
+		model.addAttribute("checkFlg", 1);
+		model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
+		model.addAttribute("questions", 20);
 
-        model.addAttribute("questionId", questionId);
-        model.addAttribute("checkFlg", 1);
-        model.addAttribute("profileImage",SessionContext.getAttribute(request, "profileImage"));
+		return "/watchVideo";
+	}
 
+	@RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
+	@Transactional(readOnly = true)
+	public String changeChapter(Model model, String lessonId, String chapterNo) throws Exception {
 
-        return "/watchVideo";
-    }
+		System.out.println("LessonId:" + lessonId);
+		List<LessonChapterPojo> listLessonChapterPojo1 = watchVideoService.changeChapter(lessonId, chapterNo);
+		if (listLessonChapterPojo1 != null && listLessonChapterPojo1.size() > 0) {
+			model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
+		}
 
-    @RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
-    @Transactional(readOnly = true)
-    public String changeChapter(Model model,String lessonId,String chapterNo) throws Exception {
+		List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(lessonId);
+		model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
+		if (listLessonChapterPojo2 != null && listLessonChapterPojo2.size() > 0) {
+			model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
+			model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
+		}
 
-        System.out.println("LessonId:"+lessonId);
-        List<LessonChapterPojo> listLessonChapterPojo1 =  watchVideoService.changeChapter(lessonId,chapterNo);
-        if(listLessonChapterPojo1!=null && listLessonChapterPojo1.size()>0){
-            model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
-        }
+		model.addAttribute("checkFlg", 1);
 
-
-        List<LessonChapterPojo> listLessonChapterPojo2 =  watchVideoService.getChapterList(lessonId);
-        model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
-        if(listLessonChapterPojo2!=null && listLessonChapterPojo2.size()>0){
-            model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
-            model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
-        }
-
-        model.addAttribute("checkFlg", 1);
-
-        return "/watchVideo";
-    }
+		return "/watchVideo";
+	}
 
 }

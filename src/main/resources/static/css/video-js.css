@@ -1390,7 +1390,6 @@ body.vjs-full-window {
 
 .dlinfo2 .div_xlbtn {
 	width: 850px;
-    border-bottom: 1px solid #d9dde1;
 }
 
 .dlinfo2 .video_list_num {
@@ -1401,7 +1400,7 @@ body.vjs-full-window {
     text-indent: 35px;
     margin-bottom: 8px;
 	border-radius: 12px;
-	
+
 }
 
 .dlconL {

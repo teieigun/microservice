@@ -30,6 +30,8 @@ public interface CommentService {
      */
     List<CommentsRoot> findByLessonChapter(int lessonId,int chapterNo);
 
+    List<CommentsRoot> findByLessonChapterPage(int lessonId,int chapterNo,int offset,int row);
+
 
 
     List<CommentsReply> findByQuestionId(String questionId);

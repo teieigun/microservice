@@ -28,6 +28,8 @@
 		  var chapterNo=0;
 		  var tagFlg = /*[[${tagFlg}]]*/ null;
 		  var questionId = /*[[${questionId}]]*/ null;
+		  var questions = /*[[${questions}]]*/ null;
+
 
 		$(document).ready(function(){
 		  $(".video_list_num").mouseenter(function(){
@@ -55,71 +57,10 @@
 		});
 
 		</script>
-		<style type="text/css">
-			/*タブ切り替え全体のスタイル*/
-			.tabs {
-				margin-top: 50px;
-				padding-bottom: 5px;
-				background-color: #fff;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-				width: 850px;
-				margin: 0 auto;}
-
-			/*タブのスタイル*/
-			.tab_item {
-				width: calc(100%/4);
-				height: 50px;
-				border-bottom: 3px solid #5ab4bd;
-				background-color: #d9d9d9;
-				line-height: 50px;
-				font-size: 16px;
-				text-align: center;
-				color: #565656;
-				display: block;
-				float: left;
-				text-align: center;
-				font-weight: bold;
-				transition: all 0.2s ease;
-			}
-			.tab_item:hover {
-				opacity: 0.75;
-			}
-
-			/*ラジオボタンを全て消す*/
-			input[name="tab_item"] {
-				display: none;
-			}
-
-			/*タブ切り替えの中身のスタイル*/
-			.tab_content {
-				display: none;
-				padding: 25px 25px 0;
-				clear: both;
-				overflow: hidden;
-			}
-
-			/*選択されているタブのコンテンツのみを表示*/
-			#all:checked ~ #all_content,
-			#programming:checked ~ #programming_content,
-			#design:checked ~ #design_content {
-				display: block;
-			}
-
-			#testing:checked ~ #testing_content {
-				display: block;
-			}
-
-			/*選択されているタブのスタイルを変える*/
-			.tabs input:checked + .tab_item {
-				background-color: #5ab4bd;
-				color: #fff;
-			}
-		</style>
-
-
 	</head>
 	<body>
 		<form name="videoListForm" method="post">
+			<input type="hidden" id="pageName" value="question" />
 			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}" />
 			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}" />
 		</form>
@@ -198,6 +139,9 @@
 					}
 				},
 				 mounted () {
+
+					window.questionPage = this.questionPage
+
 					if(tagFlg==3){
 						$("#design").prop('checked', true);
 					}
@@ -210,6 +154,8 @@
 								.then(response => (this.info = response.data,this.flg=0))
 								.catch(error => (this.error = error));
 					}else {
+						document.getElementById("demo1").style.display ="none";
+						document.getElementById("pageName").value="answer";
 						document.getElementById("questionId").value=questionId;
 						axios
 								.get('showAnwser?questionId='+questionId)
@@ -220,19 +166,34 @@
 				methods: {
 
 					question: function () {
+						document.getElementById("pageName").value="question";
+						document.getElementById("demo1").style.display ="block";
 						document.getElementById("questionId").value="";
 						const lessonId = document.getElementById('lessonId').value;
 						const chapterNo = document.getElementById('chapterNo').value;
 						axios
-								.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
+								.get('showQuestionPage?lessonId='+lessonId+'&chapterNo='+chapterNo+'&offset=1')
 								.then(response => (this.info = response.data,this.flg=0))
 								.catch(error => (this.error = error));
 					},
 					answer: function (questionId) {
+
+						document.getElementById("demo1").style.display ="none";
+
 						document.getElementById("questionId").value=questionId;
 						axios
 								.get('showAnwser?questionId='+questionId)
 								.then(response => (this.info = response.data,this.flg=1))
+								.catch(error => (this.error = error));
+					},
+					questionPage: function (current) {
+						document.getElementById("demo1").style.display ="block";
+						document.getElementById("questionId").value="";
+						const lessonId = document.getElementById('lessonId').value;
+						const chapterNo = document.getElementById('chapterNo').value;
+						axios
+								.get('showQuestionPage?lessonId='+lessonId+'&chapterNo='+chapterNo+'&offset='+current)
+								.then(response => (this.info = response.data,this.flg=0))
 								.catch(error => (this.error = error));
 					}
 				}
@@ -281,6 +242,26 @@
 					alert(layedit.getSelection(index));
 				};
 
+			});
+		</script>
+		<script>
+			layui.use(['laypage', 'layer'], function(){
+			  var laypage = layui.laypage
+			  ,layer = layui.layer;
+
+			  //总页数大于页码总数
+			  laypage.render({
+			    elem: 'demo1'
+			    ,count: questions //数据总数
+			    ,jump: function(obj){
+
+			      if(document.getElementById("pageName").value !="answer"){
+
+			    	  window.questionPage(obj.curr);
+			      }
+			      console.log(obj)
+			    }
+			  });
 			});
 		</script>
 	</body>

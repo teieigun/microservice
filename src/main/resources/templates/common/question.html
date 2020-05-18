@@ -10,7 +10,7 @@
 			<div id="app" class="container">
 				<div class="layui-container">
 
-					<div STYLE="width: 755px;" v-if="flg==1">
+					<div style="width: 755px;" v-if="flg==1">
 						<p><h1>提问:</h1></p>
 						<hr />
 						<div class="detail-about-cmt">
@@ -22,7 +22,7 @@
 						<span class="span-cmt" v-html="info[0].commentsRoot.content"></span>
 						<div class="oneEmptyLine"></div>
 						<p><h1>回答:</h1></p>
-
+						<hr />
 								<ul class="fly-list-answer">
 									<li v-for="item in info" v-bind:key="item.question_id">
 										<div v-if="item.question_id !=null" class="detail-about-cmt">
@@ -34,7 +34,7 @@
 									</li>
 								</ul>
 
-						<hr />
+
 					</div>
 					<div v-if="flg==0" class="layui-row layui-col-space15">
 						<div class="fly-panel">
@@ -43,20 +43,14 @@
 									<a  class="fly-avatar" v-on:click="answer(item.question_id)" >
 										<img :src="'/images/'+item.profile_image"　alt="用户名">
 									</a>
-									<h2> <a class="layui-badge">分享</a> <a href="/jie/66075/"><span v-html="item.content"></span></a> </h2>
-								</li>
-								<li> <a href="/u/54843936" class="fly-avatar"> <img src="//thirdqq.qlogo.cn/g?b=oidb&amp;k=YN9956zWBuOFTDw1Y7jZiaA&amp;s=100&amp;t=1584216733"
-																					alt="伊丈夫"> </a>
-									<h2> <a class="layui-badge">分享</a> <a href="/jie/65497/">使用layui的第30天：分享利用layui的文件导入excel，并且通过mvc导入到数据库</a>
-									</h2>
-									<div class="fly-list-info"> <a href="/u/54843936" link=""> <cite>伊丈夫</cite> </a> <span>2020-4-19 </span> <span
-											class="fly-list-kiss layui-hide-xs" title="悬赏飞吻"><i class="iconfont icon-kiss"></i> 20</span> <span class="fly-list-nums">
-										<i class="iconfont icon-pinglun1" title="回答"></i> 19 </span> </div>
-									<div class="fly-list-badge"> <span class="layui-badge layui-bg-red">精帖</span> </div>
+									<h2> <a class="layui-badge">问题</a> <a href="/jie/66075/"><span v-html="item.content"></span></a> </h2>
 								</li>
 							</ul>
 						</div>
 					</div>
+
+
+					<div id="demo1"></div>
 					<div style="width: 755px;">
 						<div>
 							<form class="layui-form" method="post" th:action="@{/video/question}">
@@ -72,7 +66,6 @@
 							</form>
 						</div>
 					</div>
-				</div>
 				</div>
 			</div>
 		</div>
