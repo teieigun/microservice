@@ -10,9 +10,6 @@ import java.text.ParseException;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.microservice.edu.dao.UserDao;
-import com.microservice.edu.pojo.UserPojo;
-import com.microservice.edu.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -24,7 +21,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.microservice.edu.dao.UserDao;
 import com.microservice.edu.form.UploadForm;
+import com.microservice.edu.pojo.UserPojo;
+import com.microservice.edu.service.ProfileService;
 
 import web.SessionContext;
 
@@ -54,6 +54,7 @@ public class accountControll {
 		}
 		model.addAttribute("filename", userProfilePath);
 		model.addAttribute("ValCode", userPojo.getValidateCode());
+        model.addAttribute("profileImage",SessionContext.getAttribute(request, "profileImage"));
         //提示具体用户名称登录成功
         return "/account";
     }

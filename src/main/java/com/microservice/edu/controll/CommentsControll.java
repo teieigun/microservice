@@ -1,5 +1,6 @@
 package com.microservice.edu.controll;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -122,6 +123,11 @@ public class CommentsControll {
         	if(byPkService!=null && byPkService.size()>0) {
         		commentsReply.get(0).setCommentsRoot(byPkService.get(0));
         	}
+        }else {
+        	commentsReply = new ArrayList<CommentsReply>();
+        	CommentsReply commentsReply2 = new CommentsReply();
+        	commentsReply2.setCommentsRoot(byPkService.get(0));
+        	commentsReply.add(commentsReply2);
         }
 
 

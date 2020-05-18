@@ -1,5 +1,7 @@
 package com.microservice.edu.controll;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.microservice.edu.pojo.UserBaseInfo;
+import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.service.TopPageService;
-import web.SessionContext;
 
-import javax.servlet.http.HttpServletRequest;
+import web.SessionContext;
 
 
 @Controller
@@ -24,6 +27,11 @@ public class TopControll {
 
 	@Autowired
 	TopPageService topPageService;
+
+	@Autowired
+	ProfileService profileService;
+
+
 
 	@RequestMapping(value = "/login", method={RequestMethod.GET,RequestMethod.POST})
 	@Transactional(readOnly = true)
@@ -41,6 +49,12 @@ public class TopControll {
 		SessionContext.setAttribute(request, sessionId,getUserDetails());
 
 		topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode);
+
+		UserBaseInfo userBaseInfo = profileService.getBookInfo(SessionContext.getUserName(request));
+
+		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
+
+		model.addAttribute("profileImage",userBaseInfo.profile_image);
 
 		return "/index";
 	}

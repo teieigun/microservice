@@ -22,16 +22,18 @@
 						<span class="span-cmt" v-html="info[0].commentsRoot.content"></span>
 						<div class="oneEmptyLine"></div>
 						<p><h1>回答:</h1></p>
-							<ul class="fly-list-answer">
-								<li v-for="item in info" v-bind:key="item.question_id">
-									<div class="detail-about-cmt">
-										<div class="user-ac-img" style="height: 60px">
-											<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
+
+								<ul class="fly-list-answer">
+									<li v-for="item in info" v-bind:key="item.question_id">
+										<div v-if="item.question_id !=null" class="detail-about-cmt">
+											<div class="user-ac-img" style="height: 60px">
+												<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
+											</div>
 										</div>
-									</div>
-									<span v-html="item.content"></span>
-								</li>
-							</ul>
+										<span v-html="item.content"></span>
+									</li>
+								</ul>
+
 						<hr />
 					</div>
 					<div v-if="flg==0" class="layui-row layui-col-space15">

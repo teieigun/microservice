@@ -1,36 +1,87 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<meta charset="utf-8" />
-</head>
+	<head>
+		<meta charset="utf-8" />
+	</head>
 
-<body>
-	<!-- パネル部品 -->
-	<div th:fragment="panelParts()" class="panels">
-		<a id="panel1" th:href="@{/property/detail(propertyId=${propertyId})}" class = "panel" th:classappend="${activeNo eq '1' ? 'active' : ''}">
-			<div>基本情報</div>
-		</a>
-		<a id="panel2" href="#" class="panel inactive">
-			<div>契約情報（調整中）</div>
-		</a>
-		<a id="panel3" th:href="@{/property/transaction(propertyId=${propertyId})}" class ="panel" th:classappend="${activeNo eq '3' ? 'active' : ''}">
-			<div>取引情報</div>
-		</a>
-		<a id="panel4" href="#" class="panel inactive">
-			<div>所有者情報（調整中）</div>
-		</a>
-		<a id="panel5" href="#" class="panel inactive">
-			<div>借入情報（調整中）</div>
-		</a>
-	</div>
-
-	<!-- パネル部品（物件新規登録用） -->
-	<div th:fragment="panelPartsNewProperty()" class="panels">
-		<a id="panel1" th:href="@{/property/detail(propertyId=${propertyId})}" style="pointer-events: none;" class="panel active">
-			<div>基本情報</div>
-		</a>
-	</div>
-
-</body>
+	<body>
+		<div th:fragment="top_bar()" class="top_bar">
+			<div class="container">
+				<div class="top_header_content">
+					<div class="menu_logo">
+						<a href="#" title="" class="menu">
+							<i class="icon-menu"></i>
+						</a>
+						<a href="index.html" title="" class="logo">
+							<img th:src="@{${'/img/' + 'logo.png'}}" style="width: 200px;" />
+						</a>
+					</div><!--menu_logo end-->
+					<div class="search_form">
+						<form>
+							<input type="text" name="search" placeholder="Search Videos">
+							<button type="submit">
+								<i class="icon-search"></i>
+							</button>
+						</form>
+					</div><!--search_form end-->
+					<ul class="controls-lv">
+						<!--
+						<li>
+							<a href="#" title=""><i class="icon-message"></i></a>
+						</li>
+						<li>
+							<a href="#" title=""><i class="icon-notification"></i></a>
+						</li>
+						-->
+						<li class="user-log">
+							<div class="user-ac-img">
+								<img th:src="@{${'/images/' + profileImage}}" style="width: 60px;height:60px;" />
+							</div>
+							<div class="account-menu">
+								<div class="sd_menu">
+									<ul class="mm_menu">
+										<li>
+											<span>
+												<i class="icon-settings"></i>
+											</span>
+											<a href="#" title="">我的信息</a>
+										</li>
+										<li>
+											<span>
+												<i class="icon-logout"></i>
+											</span>
+											<a href="javascript:OnLinkClick();">注销</a><br />
+										</li>
+									</ul>
+								</div><!--sd_menu end-->
+								<div class="sd_menu scnd">
+									<ul class="mm_menu">
+										<li>
+											<span>
+												<i class="icon-language"></i>
+											</span>
+											<a href="#" title="">语言</a>
+										</li>
+										<li>
+											<span>
+												<i class="icon-feedback"></i>
+											</span>
+											<a href="#" title="">反馈信息</a>
+										</li>
+									</ul>
+								</div><!--sd_menu end-->
+							</div>
+						</li>
+						<li>
+							<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
+						</li>
+					</ul><!--controls-lv end-->
+					<!-- ログアウト -->
+					<form role="form" id="logoutForm" th:action="@{/logout}" method="post"></form>
+					<div class="clearfix"></div>
+				</div><!--top_header_content end-->
+			</div>
+		</div>
+	</body>
 </html>

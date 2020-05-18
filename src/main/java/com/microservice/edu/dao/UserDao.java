@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.pojo.UserPojo;
 /**
  *
@@ -133,5 +134,36 @@ public class UserDao {
             return  list.get(0);
         }
         return new UserPojo();
+    }
+
+    /**
+     * @throws ParseException
+     * @查找信息
+     */
+    public UserBaseInfo findUserInofByPk(String email) throws ParseException{
+
+        List<UserBaseInfo> list = null;
+
+		String sql = "select ";
+		sql = sql + "    email, ";
+		sql = sql + "    mb_name, ";
+		sql = sql + "    mb_sex, ";
+		sql = sql + "    mb_phone, ";
+		sql = sql + "    mb_wechat, ";
+		sql = sql + "    res_list, ";
+		sql = sql + "    profile_image, ";
+		sql = sql + "    create_name, ";
+		sql = sql + "    create_date, ";
+		sql = sql + "    update_name, ";
+		sql = sql + "    update_date, ";
+		sql = sql + "    del ";
+		sql = sql + "from user_base_info where email = ?";
+
+        list = jdbcTemplate.query(sql, new Object[] {email}, new BeanPropertyRowMapper(UserBaseInfo.class));
+
+        if(list !=null && list.size() > 0) {
+            return  list.get(0);
+        }
+        return new UserBaseInfo();
     }
 }

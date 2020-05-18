@@ -2,6 +2,8 @@ package com.microservice.edu.controll;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.microservice.edu.pojo.LessonChapterPojo;
 import com.microservice.edu.service.TopPageService;
 import com.microservice.edu.service.WatchVideoService;
+
+import web.SessionContext;
 
 @Controller
 public class WatchVideoControll {
@@ -25,7 +29,7 @@ public class WatchVideoControll {
 
     @RequestMapping(value = "/video/watch", method = RequestMethod.GET)
     @Transactional(readOnly = true)
-    public String goToVideoPage(Model model,String lessonId,String tagFlg,String questionId) throws Exception {
+    public String goToVideoPage(Model model,String lessonId,String tagFlg,String questionId,HttpServletRequest request) throws Exception {
 
         System.out.println("LessonId:"+lessonId);
 
@@ -42,6 +46,9 @@ public class WatchVideoControll {
 
         model.addAttribute("questionId", questionId);
         model.addAttribute("checkFlg", 1);
+        model.addAttribute("profileImage",SessionContext.getAttribute(request, "profileImage"));
+
+
         return "/watchVideo";
     }
 
