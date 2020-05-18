@@ -5009,6 +5009,7 @@ pre{border: none; border-left: 5px solid #ddd;}
 
 /* 列表 */
 .fly-list li{position: relative; line-height: 22px; padding: 15px 15px 15px 75px; border-bottom: 1px dotted #e2e2e2;}
+.fly-list-answer li{position: relative; line-height: 22px; padding: 15px 15px 15px 15px; border-bottom: 1px dotted #e2e2e2;}
 .fly-list li:last-child{border-bottom: none;}
 .fly-list li h2,
 .fly-list li h2 a,

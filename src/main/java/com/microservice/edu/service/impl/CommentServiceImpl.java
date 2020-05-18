@@ -1,14 +1,15 @@
 package com.microservice.edu.service.impl;
 
-import com.microservice.edu.mapper.CommentsMapper;
-import com.microservice.edu.form.comments.CommentsRoot;
-import com.microservice.edu.form.comments.CommentsReply;
-import com.microservice.edu.form.comments.Liked;
-import com.microservice.edu.service.CommentService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.microservice.edu.form.comments.CommentsReply;
+import com.microservice.edu.form.comments.CommentsRoot;
+import com.microservice.edu.form.comments.Liked;
+import com.microservice.edu.mapper.CommentsMapper;
+import com.microservice.edu.service.CommentService;
 
 /**
  * 评论的service类，衔接控制层与持久化层
@@ -41,6 +42,12 @@ public class CommentServiceImpl implements CommentService {
         return commentsMapper.findByLessonChapter(lessonId,chapterNo);
     }
 
+
+    @Override
+    public List<CommentsReply> findByQuestionId(String questionId) {
+
+        return commentsMapper.findByQuestionId(questionId);
+    }
 
     @Override
     public boolean addRootCommentsService(CommentsRoot commentsRoot) {

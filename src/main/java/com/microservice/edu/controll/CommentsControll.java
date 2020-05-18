@@ -108,17 +108,27 @@ public class CommentsControll {
     @RequestMapping(value = "/video/showAnwser", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     @ResponseBody
-    public List<CommentsRoot> showAnwser(String questionId, HttpServletRequest request) {
+    public List<CommentsReply> showAnwser(String questionId, HttpServletRequest request) {
 
         LogUtil.info("questionId:"+questionId);
         LogUtil.info(SessionContext.getUserName(request));
 
         //查询所有问题
         List<CommentsRoot> byPkService = commentService.findByPkService(questionId);
+
+        List<CommentsReply> commentsReply = commentService.findByQuestionId(questionId);
+
+        if(commentsReply!=null && commentsReply.size()>0) {
+        	if(byPkService!=null && byPkService.size()>0) {
+        		commentsReply.get(0).setCommentsRoot(byPkService.get(0));
+        	}
+        }
+
+
         LogUtil.info(byPkService.toString());
 
         //model.addAttribute("ListCommentsRoot", byOwnerIdService);
-        return byPkService;
+        return commentsReply;
     }
 
 

@@ -1,14 +1,15 @@
 package com.microservice.edu.mapper;
 
-import com.microservice.edu.form.comments.CommentsRoot;
-import com.microservice.edu.form.comments.CommentsReply;
-import com.microservice.edu.form.comments.Liked;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import java.util.List;
+import com.microservice.edu.form.comments.CommentsReply;
+import com.microservice.edu.form.comments.CommentsRoot;
+import com.microservice.edu.form.comments.Liked;
 
 @Mapper
 public interface CommentsMapper {
@@ -37,6 +38,19 @@ public interface CommentsMapper {
      */
     @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno}")
     List<CommentsRoot> findByLessonChapter(int lessonId,int chapterno );
+
+
+    /**
+     * 获取该文章或资源下的所有评论
+     * @param lessonId 文章或资源id
+     * @param chapterno 文章或资源id
+     * @return
+     */
+    @Select("SELECT t1.question_id,t1.comment_id,t1.anwser_id,t1.content,t1.create_time,t1.like_num,t2.profile_image from comments_reply t1 LEFT JOIN user_base_info t2 ON t1.anwser_id = t2.email  WHERE t1.question_id=#{questionId}")
+    List<CommentsReply> findByQuestionId(String questionId);
+
+
+
 
     /**
      * 添加子评论或回复评论

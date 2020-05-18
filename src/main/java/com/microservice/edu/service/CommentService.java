@@ -1,10 +1,10 @@
 package com.microservice.edu.service;
 
+import java.util.List;
+
 import com.microservice.edu.form.comments.CommentsReply;
 import com.microservice.edu.form.comments.CommentsRoot;
 import com.microservice.edu.form.comments.Liked;
-
-import java.util.List;
 
 public interface CommentService {
 
@@ -29,6 +29,12 @@ public interface CommentService {
      * @return
      */
     List<CommentsRoot> findByLessonChapter(int lessonId,int chapterNo);
+
+
+
+    List<CommentsReply> findByQuestionId(String questionId);
+
+
 
     /**
      * 添加父评论

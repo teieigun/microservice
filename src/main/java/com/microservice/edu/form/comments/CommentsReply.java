@@ -1,16 +1,18 @@
 package com.microservice.edu.form.comments;
 
 
-import lombok.Data;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.Data;
 
 /**
  * 评论表子表
  */
 @Data
 public class CommentsReply implements Serializable{
+
+	public CommentsRoot commentsRoot;
 
     //问题ID
     public String question_id;
@@ -29,6 +31,11 @@ public class CommentsReply implements Serializable{
 
     //创建时间
     public Date create_time;
+
+
+    //提问者头像
+    public String profile_image;
+
 
     public String getQuestion_id() {
         return question_id;
@@ -77,5 +84,7 @@ public class CommentsReply implements Serializable{
     public void setLike_num(Integer like_num) {
         this.like_num = like_num;
     }
+
+
 }
 
