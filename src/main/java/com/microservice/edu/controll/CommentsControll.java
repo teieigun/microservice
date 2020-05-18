@@ -145,15 +145,14 @@ public class CommentsControll {
 
         if(commentsReply!=null && commentsReply.size()>0) {
         	if(byPkService!=null && byPkService.size()>0) {
-        		commentsReply.get(0).setCommentsRoot(byPkService.get(0));
+        		commentsReply.get(0).commentsRoot=byPkService.get(0);
         	}
         }else {
         	commentsReply = new ArrayList<CommentsReply>();
         	CommentsReply commentsReply2 = new CommentsReply();
-        	commentsReply2.setCommentsRoot(byPkService.get(0));
+        	commentsReply2.commentsRoot=byPkService.get(0);
         	commentsReply.add(commentsReply2);
         }
-
 
         LogUtil.info(byPkService.toString());
 

@@ -32,77 +32,77 @@ import web.SessionContext;
 @Controller
 public class accountControll {
 
-	@Autowired
-	ProfileService profileService;
+    @Autowired
+    ProfileService profileService;
 
-	@Value("${userProfilePath}")
-	private String userProfilePath;
+    @Value("${userProfilePath}")
+    private String userProfilePath;
 
-	@Autowired
-	private UserDao userDao;
+    @Autowired
+    private UserDao userDao;
 
 
-	@RequestMapping(value = "/account", method = RequestMethod.GET)
-	@Transactional(readOnly = true)
-    public String account(Model model,String ValCode,HttpServletRequest request){
-		System.out.println(SessionContext.getUserName(request));
-		UserPojo userPojo =null;
-		try {
-			userPojo=userDao.findbyPk(SessionContext.getUserName(request));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("filename", userProfilePath);
-		model.addAttribute("ValCode", userPojo.getValidateCode());
-        model.addAttribute("profileImage",SessionContext.getAttribute(request, "profileImage"));
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    @Transactional(readOnly = true)
+    public String account(Model model, String ValCode, HttpServletRequest request) {
+        System.out.println(SessionContext.getUserName(request));
+        UserPojo userPojo = null;
+        try {
+            userPojo = userDao.findbyPk(SessionContext.getUserName(request));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("filename", userProfilePath);
+        model.addAttribute("ValCode", userPojo.getValidateCode());
+        model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         //提示具体用户名称登录成功
         return "/account";
     }
 
-	//获取当前用户信息
-	private UserDetails getUserDetails(){
-		String username = null;
-		//当前认证通过的用户身份
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		//用户身份
-		Object principal = authentication.getPrincipal();
-		if(principal == null){
-			username = "匿名";
-		}
-		if(principal instanceof UserDetails){
-			UserDetails userDetails = (UserDetails) principal;
-			return userDetails;
-		}
-		return null;
-	}
+    //获取当前用户信息
+    private UserDetails getUserDetails() {
+        String username = null;
+        //当前认证通过的用户身份
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //用户身份
+        Object principal = authentication.getPrincipal();
+        if (principal == null) {
+            username = "匿名";
+        }
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            return userDetails;
+        }
+        return null;
+    }
 
-	@RequestMapping(path = "/video/upload", method = RequestMethod.POST)
-	String upload(Model model, UploadForm uploadForm,HttpServletRequest request) {
-		UserPojo userPojo =null;
-		try {
-			userPojo=userDao.findbyPk(SessionContext.getUserName(request));
-			Path path = Paths.get(userProfilePath);
-			if (!Files.exists(path)) {
-				try {
-					Files.createDirectory(path);
-				} catch (NoSuchFileException ex) {
-					System.err.println(ex);
-				} catch (IOException ex) {
-					System.err.println(ex);
-				}
-			}
+    @RequestMapping(path = "/video/upload", method = RequestMethod.POST)
+    String upload(Model model, UploadForm uploadForm, HttpServletRequest request) {
+        UserPojo userPojo = null;
+        try {
+            userPojo = userDao.findbyPk(SessionContext.getUserName(request));
+            Path path = Paths.get(userProfilePath);
+            if (!Files.exists(path)) {
+                try {
+                    Files.createDirectory(path);
+                } catch (NoSuchFileException ex) {
+                    System.err.println(ex);
+                } catch (IOException ex) {
+                    System.err.println(ex);
+                }
+            }
 
-			String imageName=userPojo.getValidateCode()+".png";
+            String imageName = userPojo.getValidateCode() + ".png";
 
-			profileService.imgUpload(uploadForm,userProfilePath+imageName);
+            profileService.imgUpload(uploadForm, userProfilePath + imageName);
 
-			userDao.updateUserProfileImage(SessionContext.getUserName(request),imageName);
+            userDao.updateUserProfileImage(SessionContext.getUserName(request), imageName);
 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return "redirect:/account";
-	}
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/account";
+    }
 
 
 }

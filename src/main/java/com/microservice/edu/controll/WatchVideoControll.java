@@ -54,7 +54,7 @@ public class WatchVideoControll {
 
 	@RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
-	public String changeChapter(Model model, String lessonId, String chapterNo) throws Exception {
+	public String changeChapter(Model model, String lessonId, String chapterNo,HttpServletRequest request) throws Exception {
 
 		System.out.println("LessonId:" + lessonId);
 		List<LessonChapterPojo> listLessonChapterPojo1 = watchVideoService.changeChapter(lessonId, chapterNo);
@@ -68,7 +68,7 @@ public class WatchVideoControll {
 			model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
 			model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
 		}
-
+		model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
 		model.addAttribute("checkFlg", 1);
 
 		return "/watchVideo";

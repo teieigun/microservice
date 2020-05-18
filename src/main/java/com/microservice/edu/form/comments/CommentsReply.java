@@ -32,7 +32,6 @@ public class CommentsReply implements Serializable{
     //创建时间
     public Date create_time;
 
-
     //提问者头像
     public String profile_image;
 
