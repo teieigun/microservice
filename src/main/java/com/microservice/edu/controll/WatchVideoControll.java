@@ -28,15 +28,21 @@ public class WatchVideoControll {
 
 	@RequestMapping(value = "/video/watch", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
-	public String goToVideoPage(Model model, String lessonId, String tagFlg, String questionId,
+	public String goToVideoPage(Model model, String lessonId,String chapterNo, String tagFlg, String questionId,
 			HttpServletRequest request) throws Exception {
 
-		System.out.println("LessonId:" + lessonId);
+		System.out.println("※※※※LessonId:" + lessonId);
+		System.out.println("※※※※chapterNo:" + chapterNo);
 
 		List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(lessonId);
+
 		model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
 		if (listLessonChapterPojo != null && listLessonChapterPojo.size() > 0) {
-			model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo.get(0));
+			if("0".equals(chapterNo)){
+				chapterNo="1";
+			}
+			List<LessonChapterPojo> LessonChapterPojoOne = watchVideoService.getOneChapter(lessonId,chapterNo);
+			model.addAttribute("LessonChapterPojoOne", LessonChapterPojoOne.get(0));
 		}
 		if (tagFlg.isEmpty()) {
 			model.addAttribute("tagFlg", 1);

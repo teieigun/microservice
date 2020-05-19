@@ -41,6 +41,14 @@ public class WatchVideoService {
 		return resultList;
 
 	}
+
+	public List<LessonChapterPojo> getOneChapter(String LessonId,String chapterNo) throws Exception {
+
+		List<LessonChapterPojo> resultList = LessonChapterDao.getOneChapter(LessonId,chapterNo);
+
+		return resultList;
+
+	}
 	public List<LessonChapterPojo> changeChapter(String LessonId,String chapterNo) throws Exception {
 
 		List<LessonChapterPojo> resultList = LessonChapterDao.getOneChapter(LessonId,chapterNo);

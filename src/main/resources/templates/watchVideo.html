@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<title>微服私访</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
 		<link rel="icon" href="img/Favicon.png" type="image/x-icon">
 		<link rel="icon" href="images/Favicon.png">
 		<link rel="stylesheet" type="text/css" href="../css/animate.css">
@@ -24,45 +24,46 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 		<script th:inline="javascript">
-		  var lessonId=0;
-		  var chapterNo=0;
-		  var tagFlg = /*[[${tagFlg}]]*/ null;
-		  var questionId = /*[[${questionId}]]*/ null;
-		  var questions = /*[[${questions}]]*/ null;
+			var lessonId = 0;
+			var chapterNo = 0;
+			var tagFlg = /*[[${tagFlg}]]*/ null;
+			var questionId = /*[[${questionId}]]*/ null;
+			var questions = /*[[${questions}]]*/ null;
 
 
-		$(document).ready(function(){
-		  $(".video_list_num").mouseenter(function(){
-			this.style.backgroundColor ="#F0F8FF";
-			$(this).find("Button").css('display','block');
-		  });
-		  $(".video_list_num").mouseleave(function(){
-			this.style.backgroundColor = "#F0F8FF";
-			$(this).find("Button").css('display','none');
-		  });
+			$(document).ready(function () {
+				$(".video_list_num").mouseenter(function () {
+					this.style.backgroundColor = "#F0F8FF";
+					$(this).find("Button").css('display', 'block');
+				});
+				$(".video_list_num").mouseleave(function () {
+					this.style.backgroundColor = "#F0F8FF";
+					$(this).find("Button").css('display', 'none');
+				});
 
-		  $("#all").click(function(){
-			  const lessonId = document.getElementById('lessonId').value;
-			  const url = 'watch?lessonId='+lessonId+"&tagFlg=1";
-			  window.location.href = url;
+				$("#all").click(function () {
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
+					const url = '/video/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo+"&tagFlg=1";
+					window.location.href = url;
 
-		  });
+				});
 
-		  $("#design").click(function(){
-			  const lessonId = document.getElementById('lessonId').value;
-			  const chapterNo = document.getElementById('chapterNo').value;
-			  const url = 'getListByOwnerId?lessonId='+lessonId+'&chapterNo='+chapterNo;
-		  });
+				$("#design").click(function () {
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
+					const url = 'getListByOwnerId?lessonId=' + lessonId + '&chapterNo=' + chapterNo;
+				});
 
-		});
+			});
 
 		</script>
 	</head>
 	<body>
 		<form name="videoListForm" method="post">
-			<input type="hidden" id="pageName" value="question" />
-			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}" />
-			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}" />
+			<input type="hidden" id="pageName" value="question"/>
+			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}"/>
+			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}"/>
 		</form>
 		<div id="testVue" class="wrapper">
 			<header>
@@ -70,7 +71,6 @@
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
 			</header><!--header end-->
 			<div th:replace="/common/side_menu.html::side_menu()"></div><!--header_content end-->
-
 			<div th:fragment="videoList()">
 				<section class="mn-sec">
 					<div class="container">
@@ -78,9 +78,12 @@
 							<div class="col-lg-9">
 								<div class="mn-vid-sc single_video">
 									<div class="tabs">
-										<iframe id="videoWindow" width="850" height="722" th:src="${LessonChapterPojoOne.url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										<iframe id="videoWindow" width="850" height="722" th:src="${LessonChapterPojoOne.url}"
+												frameborder="0"
+												allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+												allowfullscreen>
+										</iframe>
 									</div><!--vid-1 end-->
-
 									<div class="tabs">
 										<input id="all" type="radio" name="tab_item" th:checked="${checkFlg}==1">
 										<label class="tab_item" for="all">章节播放</label>
@@ -88,7 +91,8 @@
 										<input id="programming" type="radio" name="tab_item" th:checked="${checkFlg}==2">
 										<label class="tab_item" for="programming">学习笔记</label>
 
-										<input id="design" type="radio" name="tab_item" v-on:click="question()" th:checked="${checkFlg} == 3">
+										<input id="design" type="radio" name="tab_item" v-on:click="question()"
+											   th:checked="${checkFlg} == 3">
 										<label class="tab_item" for="design">我有问题</label>
 
 										<input id="testing" type="radio" name="tab_item" th:checked="${checkFlg} == 4">
@@ -96,7 +100,8 @@
 
 										<div class="tab_content" id="all_content">
 											<div>
-												<div th:replace="/common/videoList.html::videoList()"></div><!--header_content end-->
+												<div th:replace="/common/videoList.html::videoList()"></div>
+												<!--header_content end-->
 											</div>
 										</div>
 										<div class="tab_content" id="programming_content">
@@ -107,7 +112,8 @@
 										<div class="tab_content" id="design_content">
 											<div class="tab_content_description">
 												<div>
-													<div th:replace="/common/question.html::question()"></div><!--header_content end-->
+													<div th:replace="/common/question.html::question()"></div>
+													<!--header_content end-->
 												</div>
 											</div>
 										</div>
@@ -125,81 +131,76 @@
 				</section><!--mn-sec end-->
 			</div>
 		</div>
-
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 		<script type="text/javascript">
 			new Vue({
 				el: '#testVue',
-				data () {
+				data() {
 					return {
 						info: null,
 						error: null,
-						flg:0,
+						flg: 0,
 						msg: 'hello'
 					}
 				},
-				 mounted () {
-
+				mounted() {
 					window.questionPage = this.questionPage
-
-					if(tagFlg==3){
+					if (tagFlg == 3) {
 						$("#design").prop('checked', true);
 					}
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
 
-					 const lessonId = document.getElementById('lessonId').value;
-					 const chapterNo = document.getElementById('chapterNo').value;
-
-					if(questionId==0 || questionId==null){
-						axios.get('showQuestion?lessonId='+lessonId+'&chapterNo='+chapterNo)
-								.then(response => (this.info = response.data,this.flg=0))
-								.catch(error => (this.error = error));
-					}else {
-						document.getElementById("demo1").style.display ="none";
-						document.getElementById("pageName").value="answer";
-						document.getElementById("questionId").value=questionId;
+					if (questionId == 0 || questionId == null) {
+						axios.get('showQuestion?lessonId=' + lessonId + '&chapterNo=' + chapterNo)
+							.then(response => (this.info = response.data, this.flg = 0))
+							.catch(error => (this.error = error));
+					} else {
+						document.getElementById("demo1").style.display = "none";
+						document.getElementById("pageName").value = "answer";
+						document.getElementById("questionId").value = questionId;
 						axios
-								.get('showAnwser?questionId='+questionId)
-								.then(response => (this.info = response.data,this.flg=1))
-								.catch(error => (this.error = error));
+							.get('showAnwser?questionId=' + questionId)
+							.then(response => (this.info = response.data, this.flg = 1))
+							.catch(error => (this.error = error));
 					}
-				 },
+				},
 				methods: {
-
 					question: function () {
-						document.getElementById("pageName").value="question";
-						document.getElementById("demo1").style.display ="block";
-						document.getElementById("questionId").value="";
+						document.getElementById("pageName").value = "question";
+						document.getElementById("demo1").style.display = "block";
+						document.getElementById("questionId").value = "";
 						const lessonId = document.getElementById('lessonId').value;
 						const chapterNo = document.getElementById('chapterNo').value;
 						axios
-								.get('showQuestionPage?lessonId='+lessonId+'&chapterNo='+chapterNo+'&offset=1')
-								.then(response => (this.info = response.data,this.flg=0))
-								.catch(error => (this.error = error));
+							.get('showQuestionPage?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&offset=1')
+							.then(response => (this.info = response.data, this.flg = 0))
+							.catch(error => (this.error = error));
 					},
 					answer: function (questionId) {
 
-						document.getElementById("demo1").style.display ="none";
-
-						document.getElementById("questionId").value=questionId;
+						document.getElementById("demo1").style.display = "none";
+						document.getElementById("questionId").value = questionId;
 						axios
-								.get('showAnwser?questionId='+questionId)
-								.then(response => (this.info = response.data,this.flg=1))
-								.catch(error => (this.error = error));
+							.get('showAnwser?questionId=' + questionId)
+							.then(response => (this.info = response.data, this.flg = 1))
+							.catch(error => (this.error = error));
 					},
 					questionPage: function (current) {
-						document.getElementById("demo1").style.display ="block";
-						document.getElementById("questionId").value="";
+						document.getElementById("demo1").style.display = "block";
+						document.getElementById("questionId").value = "";
 						const lessonId = document.getElementById('lessonId').value;
 						const chapterNo = document.getElementById('chapterNo').value;
 						axios
-								.get('showQuestionPage?lessonId='+lessonId+'&chapterNo='+chapterNo+'&offset='+current)
-								.then(response => (this.info = response.data,this.flg=0))
-								.catch(error => (this.error = error));
+							.get('showQuestionPage?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&offset=' + current)
+							.then(response => (this.info = response.data, this.flg = 0))
+							.catch(error => (this.error = error));
 					}
 				}
 			});
+
 			function test() {
-				alert("tagFlg:"+tagFlg);
+				alert("tagFlg:" + tagFlg);
 			}
 		</script>
 		<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
@@ -209,59 +210,57 @@
 		<script src="../js/script.js"></script>
 		<script src="../js/script2.js"></script>
 		<script>
-			function player(para){
-                var result = para.split(',');
-                document.getElementById('lessonId').value=result[0];
-				document.getElementById('chapterNo').value=result[1];
-                window.location.href = '/video/changeChapter?lessonId='+result[0]+'&chapterNo='+result[1];
+			function player(para) {
+				var result = para.split(',');
+				document.getElementById('lessonId').value = result[0];
+				document.getElementById('chapterNo').value = result[1];
+				window.location.href = '/video/changeChapter?lessonId=' + result[0] + '&chapterNo=' + result[1];
 			}
 
-	        function OnLinkClick() {
-	            target = document.getElementById("logoutForm");
-	            target.submit();
-	            return false;
-		        }
+			function OnLinkClick() {
+				target = document.getElementById("logoutForm");
+				target.submit();
+				return false;
+			}
 		</script>
 
 		<script src="../js/layui.js"></script>
 		<script>
-			layui.use('layedit', function(){
+			layui.use('layedit', function () {
 				var layedit = layui.layedit;
 
 				var index = layedit.build('demo', {
 					//hideTool: ['image']
 					uploadImage: {
 						url: 'json/upload/demoLayEdit.json'
-						,type: 'get'
+						, type: 'get'
 					}
 					//,tool: []
 					//,height: 100
 				});
 
-				getChoose.onclick = function(){
+				getChoose.onclick = function () {
 					alert(layedit.getSelection(index));
 				};
 
 			});
 		</script>
 		<script>
-			layui.use(['laypage', 'layer'], function(){
-			  var laypage = layui.laypage
-			  ,layer = layui.layer;
+			layui.use(['laypage', 'layer'], function () {
+				var laypage = layui.laypage
+					, layer = layui.layer;
 
-			  //总页数大于页码总数
-			  laypage.render({
-			    elem: 'demo1'
-			    ,count: questions //数据总数
-			    ,jump: function(obj){
-
-			      if(document.getElementById("pageName").value !="answer"){
-
-			    	  window.questionPage(obj.curr);
-			      }
-			      console.log(obj)
-			    }
-			  });
+				//总页数大于页码总数
+				laypage.render({
+					elem: 'demo1'
+					, count: questions //数据总数
+					, jump: function (obj) {
+						if (document.getElementById("pageName").value != "answer") {
+							window.questionPage(obj.curr);
+						}
+						console.log(obj)
+					}
+				});
 			});
 		</script>
 	</body>

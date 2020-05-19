@@ -11,7 +11,7 @@ import lombok.Data;
  * 评论表主表
  */
 @Data
-public class CommentsRoot implements Serializable{
+public class CommentsRoot implements Serializable {
 
     //评论主键id
     public String question_id;
@@ -33,6 +33,40 @@ public class CommentsRoot implements Serializable{
 
     //创建时间
     public Date create_time;
+
+    //发布者
+    public String mb_name;
+
+    //发布时间
+    public int days;
+
+    //回答者人数
+    public int cnt;
+
+
+    public String getMb_name() {
+        return mb_name;
+    }
+
+    public void setMb_name(String mb_name) {
+        this.mb_name = mb_name;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public int getCnt() {
+        return cnt;
+    }
+
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+    }
 
     public Date getCreate_time() {
         return create_time;
@@ -102,7 +136,6 @@ public class CommentsRoot implements Serializable{
     public void setProfile_image(String profile_image) {
         this.profile_image = profile_image;
     }
-
 
 
 }

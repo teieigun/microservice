@@ -47,13 +47,12 @@ public interface CommentsMapper {
      * @param chapterno 文章或资源id
      * @return
      */
-    @Select("SELECT t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,t2.profile_image,t1.content,t1.create_time from comments_root t1 LEFT JOIN user_base_info t2 ON t1.owner_id = t2.email WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno} order by id LIMIT #{offset},#{row}" )
+    @Select("SELECT t1.id,t1.question_id,t1.lesson_id,t1.chapter_no,t1.owner_id,ifnull(t3.mb_name,'匿名者') as mb_name,t1.content,t3.profile_image,DATEDIFF(NOW(),t1.create_time) AS days,t1.cmt_type,  (SELECT COUNT(t2.id) FROM comments_reply t2 WHERE t1.question_id=t2.question_id) AS cnt FROM comments_root t1 LEFT JOIN user_base_info t3 ON t1.owner_id=t3.email  WHERE lesson_id =#{lessonId} AND chapter_no=#{chapterno} order by id LIMIT #{offset},#{row}" )
     List<CommentsRoot> findByLessonChapterPage(int lessonId,int chapterno,int offset,int row);
 
     /**
      * 获取该文章或资源下的所有评论
-     * @param lessonId 文章或资源id
-     * @param chapterno 文章或资源id
+     * @param questionId 文章或资源id
      * @return
      */
     @Select("SELECT t1.question_id,t1.comment_id,t1.anwser_id,t1.content,t1.create_time,t1.like_num,t2.profile_image from comments_reply t1 LEFT JOIN user_base_info t2 ON t1.anwser_id = t2.email  WHERE t1.question_id=#{questionId} order by id")
