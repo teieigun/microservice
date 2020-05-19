@@ -15,13 +15,15 @@ public class CommentsRootDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public int getCommentsRootCount() {
+    public int getCommentsRootCount(int lessonId,int chapterNo) {
 
         String sql = "select ";
         sql = sql + "     count(id) as cnt";
-        sql = sql + " from comments_root";
+        sql = sql + "  from comments_root ";
+        sql = sql + " where lesson_id=?";
+        sql = sql + "   and chapter_no=?";
 
-        int count = jdbcTemplate.queryForObject(sql, Integer.class);
+        int count = jdbcTemplate.queryForObject(sql, new Object[] {lessonId,chapterNo},Integer.class);
 
         return count;
     }

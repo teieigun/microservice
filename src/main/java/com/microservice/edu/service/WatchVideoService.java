@@ -62,7 +62,7 @@ public class WatchVideoService {
 
 	}
 
-	public int getCommentsRootCount(){
-		return commentsRootDao.getCommentsRootCount();
+	public int getCommentsRootCount(int lessonId,int chapterNo){
+		return commentsRootDao.getCommentsRootCount(lessonId,chapterNo);
 	}
 }
