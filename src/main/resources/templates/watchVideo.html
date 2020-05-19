@@ -230,19 +230,14 @@
 				var layedit = layui.layedit;
 
 				var index = layedit.build('demo', {
-					//hideTool: ['image']
 					uploadImage: {
-						url: 'json/upload/demoLayEdit.json'
-						, type: 'get'
+						url: '/video/uploadImage'
+						, type: 'POST'
 					}
-					//,tool: []
-					//,height: 100
 				});
-
 				getChoose.onclick = function () {
 					alert(layedit.getSelection(index));
 				};
-
 			});
 		</script>
 		<script>

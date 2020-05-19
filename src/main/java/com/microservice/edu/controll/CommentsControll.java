@@ -1,11 +1,14 @@
 package com.microservice.edu.controll;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ import com.microservice.edu.util.LogUtil;
 import com.microservice.edu.util.ResultDTUtils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 import web.SessionContext;
 
 /**
@@ -203,5 +207,63 @@ public class CommentsControll {
         List<Liked> listLikedService = commentService.getListLikedService(userId);
         LogUtil.info(listLikedService.toString());
         return ResultDTUtils.success(listLikedService);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/video/uploadImage", method = RequestMethod.GET)
+    public Map upload(MultipartFile file, HttpServletRequest request){
+
+        String prefix="";
+        String dateStr="";
+        //保存上传
+        OutputStream out = null;
+        InputStream fileInput=null;
+        try{
+            if(file!=null){
+                String originalName = file.getOriginalFilename();
+                prefix=originalName.substring(originalName.lastIndexOf(".")+1);
+                Date date = new Date();
+                String uuid = UUID.randomUUID()+"";
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                dateStr = simpleDateFormat.format(date);
+                String filepath = "D:\\mycode\\LayUiTest\\src\\main\\resources\\static\\images\\" + dateStr+"\\"+uuid+"." + prefix;
+
+
+                File files=new File(filepath);
+                //打印查看上传路径
+                System.out.println(filepath);
+                if(!files.getParentFile().exists()){
+                    files.getParentFile().mkdirs();
+                }
+                file.transferTo(files);
+                Map<String,Object> map2=new HashMap<>();
+                Map<String,Object> map=new HashMap<>();
+                map.put("code",0);
+                map.put("msg","");
+                map.put("data",map2);
+                map2.put("src","/images/"+ dateStr+"/"+uuid+"." + prefix);
+                return map;
+            }
+
+        }catch (Exception e){
+        }finally{
+            try {
+                if(out!=null){
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if(fileInput!=null){
+                    fileInput.close();
+                }
+            } catch (IOException e) {
+            }
+        }
+        Map<String,Object> map=new HashMap<>();
+        map.put("code",1);
+        map.put("msg","");
+        return map;
     }
 }
