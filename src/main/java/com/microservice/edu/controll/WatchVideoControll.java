@@ -50,10 +50,12 @@ public class WatchVideoControll {
 			model.addAttribute("tagFlg", tagFlg);
 		}
 
+
+
 		model.addAttribute("questionId", questionId);
 		model.addAttribute("checkFlg", 1);
 		model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
-		model.addAttribute("questions", 20);
+		model.addAttribute("questions", watchVideoService.getCommentsRootCount());
 
 		return "/watchVideo";
 	}

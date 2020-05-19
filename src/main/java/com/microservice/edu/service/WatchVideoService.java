@@ -1,6 +1,7 @@
 package com.microservice.edu.service;
 
 import com.microservice.edu.dao.BigCategoryTblDao;
+import com.microservice.edu.dao.CommentsRootDao;
 import com.microservice.edu.dao.LessonChapterDao;
 import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
@@ -21,6 +22,10 @@ public class WatchVideoService {
 
 	@Autowired
 	private LessonChapterDao LessonChapterDao;
+
+	@Autowired
+	private CommentsRootDao commentsRootDao;
+
 
 
 	//谁都可以观看
@@ -55,5 +60,9 @@ public class WatchVideoService {
 
 		return resultList;
 
+	}
+
+	public int getCommentsRootCount(){
+		return commentsRootDao.getCommentsRootCount();
 	}
 }
