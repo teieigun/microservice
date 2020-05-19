@@ -10,9 +10,9 @@ import lombok.Data;
  * 评论表子表
  */
 @Data
-public class CommentsReply implements Serializable{
+public class CommentsReply implements Serializable {
 
-	public CommentsRoot commentsRoot;
+    public CommentsRoot commentsRoot;
 
     //问题ID
     public String question_id;
@@ -34,6 +34,12 @@ public class CommentsReply implements Serializable{
 
     //提问者头像
     public String profile_image;
+
+    //发布者
+    public String mb_name;
+
+    //发布时间
+    public int days;
 
 
     public String getQuestion_id() {
@@ -84,6 +90,36 @@ public class CommentsReply implements Serializable{
         this.like_num = like_num;
     }
 
+    public CommentsRoot getCommentsRoot() {
+        return commentsRoot;
+    }
 
+    public void setCommentsRoot(CommentsRoot commentsRoot) {
+        this.commentsRoot = commentsRoot;
+    }
+
+    public String getProfile_image() {
+        return profile_image;
+    }
+
+    public void setProfile_image(String profile_image) {
+        this.profile_image = profile_image;
+    }
+
+    public String getMb_name() {
+        return mb_name;
+    }
+
+    public void setMb_name(String mb_name) {
+        this.mb_name = mb_name;
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
 }
 

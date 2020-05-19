@@ -15,7 +15,18 @@
 						<hr />
 						<div class="detail-about-cmt">
 							<div class="user-ac-img" style="height: 60px">
-								<img :src="'/images/'+info[0].commentsRoot.profile_image" width="60px" height="60px"　alt="用户名">
+								<span class="fly-avatar">
+									<img :src="'/images/'+info[0].commentsRoot.profile_image" width="60px" height="60px"　alt="用户名">
+								</span>
+								<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
+									<h2> <span class="layui-badge">问题</span></h2>
+									<a href="/u/34742904" link="">
+										<cite>
+											<span v-html="info[0].commentsRoot.mb_name"></span>
+										</cite>
+									</a>
+									<span v-html="info[0].commentsRoot.days"></span>天前
+								</div>
 							</div>
 						</div>
 						<div class="oneEmptyLine"></div>
@@ -26,8 +37,17 @@
 								<ul class="fly-list-answer">
 									<li v-for="item in info" v-bind:key="item.question_id">
 										<div v-if="item.question_id !=null" class="detail-about-cmt">
-											<div class="user-ac-img" style="height: 60px">
+											<span class="fly-avatar">
 												<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
+											</span>
+											<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
+												<h2> <span class="layui-badge">问题</span></h2>
+												<a href="/u/34742904" link="">
+													<cite>
+														<span v-html="item.mb_name"></span>
+													</cite>
+												</a>
+												<span v-html="item.days"></span>天前
 											</div>
 										</div>
 										<span v-html="item.content"></span>
