@@ -9,7 +9,6 @@
 		<div th:fragment="question()" class="cmt-bx">
 			<div id="app" class="container">
 				<div class="layui-container">
-
 					<div style="width: 755px;" v-if="flg==1">
 						<p><h1>提问:</h1></p>
 						<hr />
@@ -20,7 +19,7 @@
 								</span>
 								<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
 									<h2> <span class="layui-badge">问题</span></h2>
-									<a href="/u/34742904" link="">
+									<a href="#" link="">
 										<cite>
 											<span v-html="info[0].commentsRoot.mb_name"></span>
 										</cite>
@@ -34,25 +33,25 @@
 						<div class="oneEmptyLine"></div>
 						<p><h1>回答:</h1></p>
 						<hr />
-							<ul class="fly-list-answer">
-								<li v-for="item in info" v-bind:key="item.question_id">
-									<div v-if="item.question_id !=null" class="detail-about-cmt">
-										<span class="fly-avatar">
-											<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
-										</span>
-										<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
-											<h2> <span class="layui-badge">问题</span></h2>
-											<a href="/u/34742904" link="">
-												<cite>
-													<span v-html="item.mb_name"></span>
-												</cite>
-											</a>
-											<span v-html="item.days"></span>天前
-										</div>
+						<ul class="fly-list-answer">
+							<li v-for="item in info" v-bind:key="item.question_id">
+								<div v-if="item.question_id !=null" class="detail-about-cmt">
+									<span class="fly-avatar">
+										<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
+									</span>
+									<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
+										<h2> <span class="layui-badge">回答</span></h2>
+										<a href="#" link="">
+											<cite>
+												<span v-html="item.mb_name"></span>
+											</cite>
+										</a>
+										<span v-html="item.days"></span>天前
 									</div>
-									<span v-html="item.content"></span>
-								</li>
-							</ul>
+								</div>
+								<span v-html="item.content"></span>
+							</li>
+						</ul>
 					</div>
 					<div v-if="flg==0" class="layui-row layui-col-space15">
 						<div class="fly-panel">
@@ -63,10 +62,10 @@
 									</a>
 									<div class="fly-list-info content-item">
 										<span class="layui-badge">问题</span>
-										<a href="/jie/66075/"><span v-html="item.content"></span></a>
+										<a href="#"><span v-html="item.content"></span></a>
 									</div>
 									<div class="fly-list-info">
-										<a href="/u/34742904" link=""><cite><span v-html="item.mb_name"></span></cite> </a>
+										<a href="#"><cite><span v-html="item.mb_name"></span></cite> </a>
 										<span v-html="item.days"></span>天前
 										<span class="fly-list-nums">
 											<i class="iconfont icon-pinglun1" title="回答"></i> <span v-html="item.cnt"></span>人回答
@@ -76,8 +75,6 @@
 							</ul>
 						</div>
 					</div>
-
-
 					<div id="demo1"></div>
 					<div style="width: 755px;">
 						<div>
