@@ -34,27 +34,25 @@
 						<div class="oneEmptyLine"></div>
 						<p><h1>回答:</h1></p>
 						<hr />
-								<ul class="fly-list-answer">
-									<li v-for="item in info" v-bind:key="item.question_id">
-										<div v-if="item.question_id !=null" class="detail-about-cmt">
-											<span class="fly-avatar">
-												<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
-											</span>
-											<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
-												<h2> <span class="layui-badge">问题</span></h2>
-												<a href="/u/34742904" link="">
-													<cite>
-														<span v-html="item.mb_name"></span>
-													</cite>
-												</a>
-												<span v-html="item.days"></span>天前
-											</div>
+							<ul class="fly-list-answer">
+								<li v-for="item in info" v-bind:key="item.question_id">
+									<div v-if="item.question_id !=null" class="detail-about-cmt">
+										<span class="fly-avatar">
+											<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
+										</span>
+										<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
+											<h2> <span class="layui-badge">问题</span></h2>
+											<a href="/u/34742904" link="">
+												<cite>
+													<span v-html="item.mb_name"></span>
+												</cite>
+											</a>
+											<span v-html="item.days"></span>天前
 										</div>
-										<span v-html="item.content"></span>
-									</li>
-								</ul>
-
-
+									</div>
+									<span v-html="item.content"></span>
+								</li>
+							</ul>
 					</div>
 					<div v-if="flg==0" class="layui-row layui-col-space15">
 						<div class="fly-panel">
@@ -63,7 +61,10 @@
 									<a  class="fly-avatar" v-on:click="answer(item.question_id)" >
 										<img :src="'/images/'+item.profile_image"　alt="用户名">
 									</a>
-									<h2> <a class="layui-badge">问题</a> <a href="/jie/66075/"><span v-html="item.content"></span></a> </h2>
+									<div class="fly-list-info">
+										<span class="layui-badge">问题</span>
+										<a href="/jie/66075/"><span v-html="item.content"></span></a>
+									</div>
 									<div class="fly-list-info">
 										<a href="/u/34742904" link=""><cite><span v-html="item.mb_name"></span></cite> </a>
 										<span v-html="item.days"></span>天前
