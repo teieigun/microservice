@@ -169,8 +169,8 @@
 		</dependency>
 
 		<dependency>
-		  <groupId>com.BASE64Decoder</groupId>
-		  <artifactId>BASE64Decoder</artifactId>
+		  <groupId>com.microservice</groupId>
+		  <artifactId>microservice</artifactId>
 		  <version>1.0</version>
 		  <scope>system</scope>
 		  <systemPath>${basedir}/lib/sun.misc.BASE64Decoder.jar</systemPath>
