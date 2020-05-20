@@ -1,4 +1,4 @@
-package web;
+package com.microservice.edu.web;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 
 import org.springframework.security.core.userdetails.UserDetails;
-import web.auth.SessionUser;
+import com.microservice.edu.web.auth.SessionUser;
 
 /**
  * session工具类

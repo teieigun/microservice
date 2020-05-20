@@ -26,7 +26,7 @@ import com.microservice.edu.form.UploadForm;
 import com.microservice.edu.pojo.UserPojo;
 import com.microservice.edu.service.ProfileService;
 
-import web.SessionContext;
+import com.microservice.edu.web.SessionContext;
 
 
 @Controller

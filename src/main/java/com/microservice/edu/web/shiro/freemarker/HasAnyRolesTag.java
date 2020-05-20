@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package web.shiro.freemarker;
+package com.microservice.edu.web.shiro.freemarker;
 
 import org.apache.shiro.subject.Subject;
 

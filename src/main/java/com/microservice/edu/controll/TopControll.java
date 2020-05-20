@@ -18,7 +18,7 @@ import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.service.TopPageService;
 
-import web.SessionContext;
+import com.microservice.edu.web.SessionContext;
 
 
 @Controller

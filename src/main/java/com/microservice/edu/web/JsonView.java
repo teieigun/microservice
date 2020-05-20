@@ -1,4 +1,4 @@
-package web;
+package com.microservice.edu.web;
 
 import net.sf.json.JSONObject;
 

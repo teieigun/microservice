@@ -1,4 +1,4 @@
-package web.shiro.freemarker;
+package com.microservice.edu.web.shiro.freemarker;
 
 /**
  * <p>Equivalent to {@link org.apache.shiro.web.tags.HasRoleTag}</p>

@@ -1,4 +1,4 @@
-package web.auth;
+package com.microservice.edu.web.auth;
 
 import java.util.Set;
 

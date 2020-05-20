@@ -15,7 +15,7 @@ import com.microservice.edu.pojo.LessonChapterPojo;
 import com.microservice.edu.service.TopPageService;
 import com.microservice.edu.service.WatchVideoService;
 
-import web.SessionContext;
+import com.microservice.edu.web.SessionContext;
 
 @Controller
 public class WatchVideoControll {

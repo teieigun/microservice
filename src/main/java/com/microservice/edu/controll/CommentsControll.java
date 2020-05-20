@@ -28,7 +28,7 @@ import com.microservice.edu.util.ResultDTUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
-import web.SessionContext;
+import com.microservice.edu.web.SessionContext;
 
 /**
  * 点赞问题控制器

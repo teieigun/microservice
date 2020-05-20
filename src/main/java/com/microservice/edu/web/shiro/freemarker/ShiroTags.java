@@ -1,4 +1,4 @@
-package web.shiro.freemarker;
+package com.microservice.edu.web.shiro.freemarker;
 
 import freemarker.template.SimpleHash;
 

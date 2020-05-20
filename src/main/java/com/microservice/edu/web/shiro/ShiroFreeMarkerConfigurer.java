@@ -1,10 +1,10 @@
-package web.shiro;
+package com.microservice.edu.web.shiro;
 
 import java.io.IOException;
 
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
-import web.shiro.freemarker.ShiroTags;
+import com.microservice.edu.web.shiro.freemarker.ShiroTags;
 
 import freemarker.template.TemplateException;
 

@@ -1,4 +1,4 @@
-package web;
+package com.microservice.edu.web;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
