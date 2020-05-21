@@ -13,4 +13,10 @@ public final class MicroServiceConstants {
 
 	//用户状态 2：通过认证状态的用户
 	public static final int USER_STATUS_PASSED =2;
+
+	//套餐ID从 90000 到 99999
+	public static final int COURSE_ID_FROM =90000;
+
+	//套餐ID从 90000 到 99999
+	public static final int COURSE_ID_TO =99999;
 }

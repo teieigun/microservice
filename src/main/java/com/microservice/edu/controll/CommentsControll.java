@@ -64,9 +64,8 @@ public class CommentsControll {
             commentsRoot.setCreate_time(new Date());//设置添加问题时间
             commentsRoot.setOwner_id(SessionContext.getUserName(request));
 
-            LogUtil.info("2" + commentsRoot);
             boolean b = commentService.addRootCommentsService(commentsRoot); //调用service方法来完成问题的存储
-            LogUtil.info("3" + commentsRoot.toString());
+            LogUtil.info(commentsRoot.toString());
         // 回答
         }else{
             CommentsReply commentsReply = new CommentsReply();

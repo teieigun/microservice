@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.util.SecurityUtil;
@@ -40,15 +41,16 @@ public class WatchVideoControll {
                                 HttpServletRequest request) throws Exception {
 
         //课程ID大于90000的情况属于套餐，套餐内容显示处理
-        if(Integer.valueOf(lessonId)>90000){
+        if (Integer.valueOf(lessonId) >= MicroServiceConstants.COURSE_ID_FROM &&
+                Integer.valueOf(lessonId) <= MicroServiceConstants.COURSE_ID_TO) {
 
             return "redirect:/showCourse?lessonId=" + lessonId;
         }
 
         String email = SecurityUtil.getUserDetails().getUsername();
         //未购买的情况下，视频再检索
-        List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email,lessonId);
-        if(listLessonChapterPojo == null || listLessonChapterPojo.size() == 0){
+        List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
+        if (listLessonChapterPojo == null || listLessonChapterPojo.size() == 0) {
             return "redirect:/video";
         }
 
@@ -85,7 +87,7 @@ public class WatchVideoControll {
             model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
         }
         String email = SecurityUtil.getUserDetails().getUsername();
-        List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(email,lessonId);
+        List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(email, lessonId);
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
         if (listLessonChapterPojo2 != null && listLessonChapterPojo2.size() > 0) {
             model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);

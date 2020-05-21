@@ -30,7 +30,7 @@ import com.microservice.edu.web.SessionContext;
 
 
 @Controller
-public class accountControll {
+public class AccountControll {
 
     @Autowired
     ProfileService profileService;
