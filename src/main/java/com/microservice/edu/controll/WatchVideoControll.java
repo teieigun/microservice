@@ -4,7 +4,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.pojo.UserBaseInfo;
+import com.microservice.edu.service.ProfileService;
+import com.microservice.edu.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -17,6 +21,7 @@ import com.microservice.edu.service.WatchVideoService;
 
 import com.microservice.edu.web.SessionContext;
 
+
 @Controller
 public class WatchVideoControll {
 
@@ -26,10 +31,18 @@ public class WatchVideoControll {
     @Autowired
     WatchVideoService watchVideoService;
 
+    @Autowired
+    ProfileService profileService;
+
     @RequestMapping(value = "/video/watch", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String goToVideoPage(Model model, String lessonId, String chapterNo, String tagFlg, String questionId,
                                 HttpServletRequest request) throws Exception {
+        //课程ID大于90000的情况属于套餐，套餐内容显示处理
+        if(Integer.valueOf(lessonId)>90000){
+
+            return "redirect:/showCourse?lessonId=" + lessonId;
+        }
 
         System.out.println("※※※※LessonId:" + lessonId);
         System.out.println("※※※※chapterNo:" + chapterNo);

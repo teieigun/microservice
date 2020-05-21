@@ -1,5 +1,9 @@
 package com.microservice.edu.util;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -66,6 +70,24 @@ public class SecurityUtil {
        }
        return sb.toString();
    }
+
+    //获取当前用户信息
+    public static UserDetails getUserDetails(){
+        String username = null;
+        //当前认证通过的用户身份
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //用户身份
+        Object principal = authentication.getPrincipal();
+        if(principal == null){
+            username = "匿名";
+        }
+        if(principal instanceof org.springframework.security.core.userdetails.UserDetails){
+            UserDetails userDetails = (UserDetails) principal;
+            userDetails.getUsername();
+            return userDetails;
+        }
+        return null;
+    }
    
    public static void main(String[] args) {
 	System.out.println(filterHtml("<a href=\"www.baidu.com\">百度</a>"));

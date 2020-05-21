@@ -17,10 +17,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
 		//本番環境
-		registry.addResourceHandler("/images/**").addResourceLocations("file:/var/www/html/img/");
+		//registry.addResourceHandler("/images/**").addResourceLocations("file:/var/www/html/img/");
 
 		//ローカル環境
-		//registry.addResourceHandler("/images/**").addResourceLocations("file:///C:\\img\\profile\\");
+		registry.addResourceHandler("/images/**").addResourceLocations("file:///C:\\img\\profile\\");
 
 	}
 }

@@ -55,42 +55,117 @@ public class LessonTblDao {
 	}
 
 	/**
-	 * 可以免费观看的视频
+	 * 现实所以视频，同时显示购买情况
 	 * */
-	public List<LessonTblPojo> getAllEnableVideo(String level, String bigCtgCode, String smallCtgCode) {
+	public List<LessonTblPojo> getAllEnableVideo(String email, String bigCtgCode, String smallCtgCode) {
 
 		List<String> paralist = new ArrayList<String>();
 
-		paralist.add(level);
+		paralist.add(email);
 
 		String sql = "SELECT ";
-		sql = sql + "     t1.lesson_id      as lessonId ";
-		sql = sql + "   , t1.lesson_name    as lessonName ";
-		sql = sql + "   , t2.big_ctg_name   as bitCtgName ";
-		sql = sql + "   , t1.big_ctg_code   as bigCtgCode ";
-		sql = sql + "   , t1.small_ctg_code as smallCtgCode ";
-		sql = sql + "   , t1.lesson_jieshao as lessonJieshao ";
-		sql = sql + "   , t1.lesson_img     as lessonImg ";
-		sql = sql + "   , t1.del ";
-		sql = sql + "   , t1.levle  ";
-		sql = sql + " FROM ";
-		sql = sql + "   Lesson_tbl t1 left join big_category_tbl t2 ";
-		sql = sql + "   on t1.big_ctg_code = t2.BIG_CTG_NAME ";
-		sql = sql + " WHERE ";
-		sql = sql + "   t1.levle < ? and ";
+		sql = sql + "  t3.lessonId";
+		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　已购买' END) AS lessonName ";
+		sql = sql + "  ,t3.bitCtgName";
+		sql = sql + "  ,t3.bigCtgCode";
+		sql = sql + "  ,t3.smallCtgCode";
+		sql = sql + "  ,t3.lessonImg";
+		sql = sql + "  ,t3.lessonType";
+		sql = sql + "  ,case when email IS NULL then 'N' ELSE 'Y' END AS videoFlg";
+		sql = sql + " FROM (SELECT ";
+		sql = sql + "  t1.lesson_id as lessonId ";
+		sql = sql + "  , t1.lesson_name as lessonName ";
+		sql = sql + "  , t2.big_ctg_name as bitCtgName ";
+		sql = sql + "  , t1.big_ctg_code as bigCtgCode ";
+		sql = sql + "  , t1.small_ctg_code as smallCtgCode ";
+		sql = sql + "  , t1.lesson_img as lessonImg ";
+		sql = sql + "  , t1.del ";
+		sql = sql + "  , 'lesson' AS lessonType";
+		sql = sql + "  FROM Lesson_tbl t1 left join big_category_tbl t2 ";
+		sql = sql + "  on t1.big_ctg_code = t2.BIG_CTG_NAME ";
+		sql = sql + "  UNION ";
+		sql = sql + "  SELECT ";
+		sql = sql + "  T2.course_id AS lessonId";
+		sql = sql + "  ,T2.course_name AS lessonName";
+		sql = sql + "  ,'' AS bitCtgName";
+		sql = sql + "  ,'' AS bigCtgCode";
+		sql = sql + "  ,'' AS smallCtgCode";
+		sql = sql + "  ,T2.course_img AS lessonImg";
+		sql = sql + "  ,T2.del";
+		sql = sql + "  ,'course' AS lessonType";
+		sql = sql + "  FROM course_master T2 ) t3 ";
+		sql = sql + "  LEFT JOIN (SELECT email,";
+		sql = sql + "  lesson_id AS lessonId,";
+		sql = sql + "  lessonType ";
+		sql = sql + "  FROM ";
+		sql = sql + " (SELECT t1.email,";
+		sql = sql + "  t2.lesson_id,";
+		sql = sql + "  'lesson' AS lessonType ";
+		sql = sql + "  FROM user_course_mapping t1 LEFT JOIN course_lesson_mapping t2";
+		sql = sql + "  ON t1.course_id = t2.course_id";
+		sql = sql + " UNION ";
+		sql = sql + "  SELECT t3.email,";
+		sql = sql + "  t3.lesson_id,";
+		sql = sql + "  'lesson' AS lessonType ";
+		sql = sql + "  FROM user_lession_mapping t3";
+		sql = sql + " UNION ";
+		sql = sql + "  SELECT t4.email,";
+		sql = sql + "  t4.course_id as lesson_id,";
+		sql = sql + "  'course' AS lessonType ";
+		sql = sql + "  FROM user_course_mapping t4";
+		sql = sql + " ) t5 WHERE t5.email = ?) t6";
+		sql = sql + " ON t3.lessonId =t6.lessonId AND";
+		sql = sql + " t3.lessonType =t6.lessonType";
+		sql = sql + " WHERE 1=1 ";
 
 		if (bigCtgCode != null && smallCtgCode != null) {
 			paralist.add(bigCtgCode);
 			paralist.add(smallCtgCode);
-			sql = sql + "   t1.big_ctg_code = ? and ";
-			sql = sql + "   t1.small_ctg_code = ? and ";
+			sql = sql + " and  t3.bigCtgCode = ?  ";
+			sql = sql + " and  t3.smallCtgCode = ?  ";
 		}
-		sql = sql + "   t1.del = 0 ";
+		sql = sql + "  and t3.del = 0 ";
 
 		List<LessonTblPojo> list = jdbcTemplate.query(sql, paralist.toArray(),
 				new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
+
+
+	/**
+	 * 显示已购买套餐的内容
+	 * */
+	public List<LessonTblPojo> getBuyCourseVideo(String email, String courseId) {
+
+		List<String> paralist = new ArrayList<String>();
+
+		paralist.add(email);
+		paralist.add(courseId);
+
+		String sql = " SELECT ";
+		sql = sql + "   t1.LESSON_ID AS lessonId";
+		sql = sql + "  ,CONCAT(t1.LESSON_NAME,'　已购买') AS lessonName";
+		sql = sql + "  ,t1.BIG_CTG_CODE AS bigCtgCode";
+		sql = sql + "  ,t1.SMALL_CTG_CODE AS smallCtgCode";
+		sql = sql + "  ,t1.LESSON_IMG AS lessonImg";
+		sql = sql + "  ,'lesson' AS lessonType";
+		sql = sql + "  ,t1.DEL";
+		sql = sql + " FROM Lesson_tbl t1";
+		sql = sql + " WHERE t1.DEL =0 ";
+		sql = sql + "  AND t1.LESSON_ID IN";
+		sql = sql + "   (SELECT t2.lesson_id";
+		sql = sql + "      FROM user_course_mapping t1 LEFT JOIN ";
+		sql = sql + "           course_lesson_mapping t2 ";
+		sql = sql + "        ON t1.course_id = t2.course_id";
+		sql = sql + "     WHERE t1.email =? ";
+		sql = sql + "       and t1.course_id = ?) ";
+
+
+		List<LessonTblPojo> list = jdbcTemplate.query(sql, paralist.toArray(),
+				new BeanPropertyRowMapper(LessonTblPojo.class));
+		return list;
+	}
+
 
 	/**
 	 * 可以免费观看的视频

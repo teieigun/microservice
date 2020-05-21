@@ -2,6 +2,8 @@ package com.microservice.edu.controll;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.pojo.CourseMasterPojo;
+import com.microservice.edu.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -20,6 +22,9 @@ import com.microservice.edu.service.TopPageService;
 
 import com.microservice.edu.web.SessionContext;
 
+import java.security.Security;
+import java.util.List;
+
 
 @Controller
 public class TopControll {
@@ -31,13 +36,13 @@ public class TopControll {
 	@Autowired
 	ProfileService profileService;
 
-
-
 	@RequestMapping(value = "/login", method={RequestMethod.GET,RequestMethod.POST})
 	@Transactional(readOnly = true)
 	public String login(Model model) throws Exception {
 		return "/login";
 	}
+
+	private String email;
 
 	@GetMapping(value = "/video",produces = {"text/plain;charset=UTF-8"})
 	@PreAuthorize("hasAuthority('5')")//拥有p1权限才可以访问
@@ -46,15 +51,51 @@ public class TopControll {
 
 		String sessionId = request.getSession().getId();
 
-		SessionContext.setAttribute(request, sessionId,getUserDetails());
+		//用户账户取得
+		UserDetails userDetails = SecurityUtil.getUserDetails();
+		SessionContext.setAttribute(request, sessionId,SecurityUtil.getUserDetails());
 
-		topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode);
+		email = userDetails.getUsername();
+
+		topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode,email);
 
 		UserBaseInfo userBaseInfo = profileService.getBookInfo(SessionContext.getUserName(request));
 
 		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
 
 		model.addAttribute("profileImage",userBaseInfo.profile_image);
+		model.addAttribute("videoType","全部视频");
+
+		return "/index";
+	}
+
+
+	@GetMapping(value = "/showCourse",produces = {"text/plain;charset=UTF-8"})
+	@PreAuthorize("hasAuthority('5')")//拥有p1权限才可以访问
+	@Transactional(readOnly = true)
+	public String showCourse(Model model, String lessonId, HttpServletRequest request) throws Exception {
+
+		String sessionId = request.getSession().getId();
+
+		//用户账户取得
+		UserDetails userDetails = SecurityUtil.getUserDetails();
+		SessionContext.setAttribute(request, sessionId,SecurityUtil.getUserDetails());
+
+		//套餐名取得
+
+		List<CourseMasterPojo> listCourseMstPojo = topPageService.getCourseInfo(lessonId);
+
+		email = userDetails.getUsername();
+
+		topPageService.getBuyCourseVideo(model,null,null,email,lessonId);
+
+		UserBaseInfo userBaseInfo = profileService.getBookInfo(SessionContext.getUserName(request));
+
+		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
+
+		model.addAttribute("profileImage",userBaseInfo.profile_image);
+
+		model.addAttribute("videoType",listCourseMstPojo.get(0).courseName);
 
 		return "/index";
 	}
@@ -76,20 +117,4 @@ public class TopControll {
         return "/account";
     }
 
-	//获取当前用户信息
-	private UserDetails getUserDetails(){
-		String username = null;
-		//当前认证通过的用户身份
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		//用户身份
-		Object principal = authentication.getPrincipal();
-		if(principal == null){
-			username = "匿名";
-		}
-		if(principal instanceof org.springframework.security.core.userdetails.UserDetails){
-			UserDetails userDetails = (UserDetails) principal;
-			return userDetails;
-		}
-		return null;
-	}
 }
