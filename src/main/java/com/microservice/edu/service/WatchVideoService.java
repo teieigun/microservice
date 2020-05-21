@@ -43,9 +43,9 @@ public class WatchVideoService {
 		return resultList;
 	}
 
-	public List<LessonChapterPojo> getChapterList(String LessonId) throws Exception {
+	public List<LessonChapterPojo> getChapterList(String email,String LessonId) throws Exception {
 
-		List<LessonChapterPojo> resultList = LessonChapterDao.getChapterList(LessonId);
+		List<LessonChapterPojo> resultList = LessonChapterDao.getChapterList(email,LessonId);
 
 		return resultList;
 

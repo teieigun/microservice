@@ -38,17 +38,21 @@ public class WatchVideoControll {
     @Transactional(readOnly = true)
     public String goToVideoPage(Model model, String lessonId, String chapterNo, String tagFlg, String questionId,
                                 HttpServletRequest request) throws Exception {
+
         //课程ID大于90000的情况属于套餐，套餐内容显示处理
         if(Integer.valueOf(lessonId)>90000){
 
             return "redirect:/showCourse?lessonId=" + lessonId;
         }
 
-        System.out.println("※※※※LessonId:" + lessonId);
-        System.out.println("※※※※chapterNo:" + chapterNo);
+        String email = SecurityUtil.getUserDetails().getUsername();
+        //未购买的情况下，视频再检索
+        List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email,lessonId);
+        if(listLessonChapterPojo == null || listLessonChapterPojo.size() == 0){
+            return "redirect:/video";
+        }
 
-        List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(lessonId);
-
+        //已购买的情况下，进入播放页面
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
         if (listLessonChapterPojo != null && listLessonChapterPojo.size() > 0) {
             if ("0".equals(chapterNo)) {
@@ -80,7 +84,8 @@ public class WatchVideoControll {
         if (listLessonChapterPojo1 != null && listLessonChapterPojo1.size() > 0) {
             model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
         }
-        List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(lessonId);
+        String email = SecurityUtil.getUserDetails().getUsername();
+        List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(email,lessonId);
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
         if (listLessonChapterPojo2 != null && listLessonChapterPojo2.size() > 0) {
             model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
