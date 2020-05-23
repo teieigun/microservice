@@ -19,16 +19,10 @@
     <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="css/mse.css">
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/iscroll-zoom.js"></script>
-    <script src="js/hammer.js"></script>
-    <script src="js/lrz.all.bundle.js"></script>
-    <script src="js/jquery.photoClip.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
 
     <style>
         form {
-            padding: 20px 15px 15px 120px;
+            padding: 20px 15px 15px 20px;
         }
 
         form {
@@ -43,7 +37,7 @@
 
         form label {
             display: inline-block;
-            width: 70px;
+            width: 120px;
             text-align: right
         }
 
@@ -67,7 +61,7 @@
         body {
             width: 100%;
             height: 100%;
-            background-image: url(img/1.jpg);
+            background-image: url(img/bg1.jpg);
         }
 
         #box {
@@ -99,34 +93,87 @@
 </head>
 
 <body>
-<div id="box">
-    <form method="post" action="upload" enctype="multipart/form-data" style="background:#cccccc;border-radius:25px;">
+<div id="box" width="1200px">
+
+   <form name="FileForm" method="post" th:action="@{/admin/doUpload}" enctype="multipart/form-data" style="background:#cccccc;border-radius:25px;">
         <fieldset>
-            <div style="margin-left: 120px;font-size: 30px;font-family:STXingkai;">
+            <div style="margin-left: 10px;font-size: 30px;font-family:STXingkai;">
                 文件上传
             </div>
-            <!-- <p>
-              <label>用户名:</label>
-              <input type="text"name="username"placeholder="用户名"required="required"/>
-            </p>
-            <p>
-              <label>密码:</label>
-              <input type="password"name="password"placeholder="密码"required="required"/>
-            </p> -->
-
             <p>
                 <label>选择文件:</label>
                 <input type="file" name="file">
             </p>
             <p>
-                <label>保存路径:</label>
-                <input type="text" name="path" id="path" value="L:\"/>
+                <label>IT技术大分类:</label>
+                <select id="bigCtg" name="bigCtg">
+                    <option value="" selected>--请选择供IT技术大分类--</option>
+                    <option th:each="bigCategoryTblPojo : ${resultList}"
+                            th:value="${bigCategoryTblPojo.ctgCode}" th:text="${bigCategoryTblPojo.ctgName}">
+                    </option>
+                </select>
+                <br/>
+                <label>IT技术小分类:</label>
+                <select id="smallCtg" name="smallCtg">
+                    <option value="" selected>--请选择供IT技术小分类--</option>
+                </select>
+                <br/>
+                <label>上传路径:</label>
+                <select id="path" name="path"  style="width: 300px;">
+                </select>
             </p>
             <p>
                 <input type="submit" value="开始上传" name="submit" id="submit"/>
             </p>
         </fieldset>
     </form>
+
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("#bigCtg").on('change', function(){
+            var aVal = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "/admin/smallCode",
+                data: { "bigCode" : aVal },
+                dataType : "json"
+            }).done(function(data){
+
+                $('select#smallCtg').children().remove();
+
+                // map で option タグのオブジェクトを生成しておいて、ループの外で append　する
+                var arr = $.map(data, function (val, index) {
+                    var result = val.split('/');
+                    $option = $('<option>', { value: result[0], text: result[1]});
+                    return $option;
+                });
+                $('#smallCtg').append(arr);
+            }).fail(function(XMLHttpRequest, textStatus, error){
+                alert("失败");
+            });
+        });
+
+        $("#smallCtg").on('change', function(){
+            var aVal = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "/admin/lessonPath",
+                data: { "bigSmallCode" : aVal },
+                dataType : "json"
+            }).done(function(data){
+                // map で option タグのオブジェクトを生成しておいて、ループの外で append　する
+                $('select#path').children().remove();
+                var arr = $.map(data, function (val, index) {
+                    var result = val.split('/');
+                    $option = $('<option>', { value: result[1], text: result[0]+"("+result[1]+")"});
+                    return $option;
+                });
+                $('#path').append(arr);
+            }).fail(function(XMLHttpRequest, textStatus, error){
+                alert("失败");
+            });
+        });
+    </script>
 </div>
 </body>
 

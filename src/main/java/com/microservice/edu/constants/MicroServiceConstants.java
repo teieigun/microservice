@@ -19,4 +19,17 @@ public final class MicroServiceConstants {
 
 	//套餐ID从 90000 到 99999
 	public static final int COURSE_ID_TO =99999;
+
+	//开发环境
+	public static final String IMAGE_PATH="file:///C:\\img\\profile\\";
+
+	//真实环境
+	//public static final String IMAGE_PATH="file:/var/www/html/img/";
+
+	//开发环境
+	public static final String UPLOAD_PATH="file:///C:\\upload\\";
+
+	//真实环境
+	//public static final String UPLOAD_PATH="file:/var/www/html/upload/";
+
 }

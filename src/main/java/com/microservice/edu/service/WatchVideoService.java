@@ -1,25 +1,21 @@
 package com.microservice.edu.service;
 
-import com.microservice.edu.dao.BigCategoryTblDao;
+import com.microservice.edu.dao.CategoryTblDao;
 import com.microservice.edu.dao.CommentsRootDao;
 import com.microservice.edu.dao.LessonChapterDao;
 import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
 import com.microservice.edu.pojo.LessonChapterPojo;
-import com.microservice.edu.pojo.LessonTblPojo;
-import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class WatchVideoService {
 
 	@Autowired
-	private BigCategoryTblDao bigCategoryTblDao;
+	private CategoryTblDao bigCategoryTblDao;
 
 	@Autowired
 	private LessonTblDao LessonTblDao;

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.microservice.edu.dao.BigCategoryTblDao;
+import com.microservice.edu.dao.CategoryTblDao;
 import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
 import com.microservice.edu.pojo.LessonTblPojo;
@@ -21,7 +21,7 @@ public class TopPageService {
 
 
 	@Autowired
-	private BigCategoryTblDao bigCategoryTblDao;
+	private CategoryTblDao CategoryTblDao;
 
 	//谁都可以观看
 	private static String ZERO_LEVEL ="9";
@@ -35,7 +35,7 @@ public class TopPageService {
 
 	public List<BigCategoryTblPojo> getPageInfoLunBoBigCtg() throws Exception {
 
-		List<BigCategoryTblPojo> resultList=bigCategoryTblDao.getAllBigCtg();
+		List<BigCategoryTblPojo> resultList=CategoryTblDao.getAllBigCtg();
 
 		return resultList;
 	}

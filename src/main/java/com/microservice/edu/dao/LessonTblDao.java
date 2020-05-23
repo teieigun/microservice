@@ -195,4 +195,30 @@ public class LessonTblDao {
 		return list;
 	}
 
+
+	/**
+	 * 根据大分类和小分类，取得课程一览
+	 * */
+	public List<LessonTblPojo> getLessonListByCtg(String bigCtgCode, String smallCtgCode) {
+
+		String sql = "select ";
+		sql = sql + "     t1.lesson_name    as LessonName ";
+		sql = sql + "   , t1.big_ctg_code   as bigCtgCode ";
+		sql = sql + "   , t1.small_ctg_code as smallCtgCode ";
+		sql = sql + "   , t1.lesson_img     as LessonImg ";
+		sql = sql + "   , t1.upload_path    as uploadPath ";
+		sql = sql + "   , t1.del ";
+		sql = sql + "   , t1.levle  ";
+		sql = sql + " from ";
+		sql = sql + "   lesson_tbl t1 ";
+		sql = sql + " where ";
+		sql = sql + "       t1.big_ctg_code = ? ";
+		sql = sql + "   and t1.small_ctg_code= ? ";
+		sql = sql + "   and t1.del = '0' order by t1.big_ctg_code,t1.small_ctg_code";
+
+		List<LessonTblPojo> list = jdbcTemplate.query(sql, new Object[] {bigCtgCode, smallCtgCode },
+				new BeanPropertyRowMapper(LessonTblPojo.class));
+		return list;
+	}
+
 }

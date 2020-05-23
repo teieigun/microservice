@@ -2,7 +2,6 @@ package com.microservice.edu.pojo;
 
 public class LessonTblPojo {
 
-
     public String lessonId;
     public String lessonName;
     public String bigCtgCode;
@@ -10,6 +9,7 @@ public class LessonTblPojo {
     public String smallCtgCode;
     public String lessonRole;
     public String lessonImg;
+    public String uploadPath;
     public String del;
     public String lessonType;
     public String videoFlg;
@@ -86,4 +86,12 @@ public class LessonTblPojo {
     public String getVideoFlg() { return videoFlg; }
 
     public void setVideoFlg(String videoFlg) { this.videoFlg = videoFlg; }
+
+    public String getUploadPath() {
+        return uploadPath;
+    }
+
+    public void setUploadPath(String uploadPath) {
+        this.uploadPath = uploadPath;
+    }
 }

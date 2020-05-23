@@ -1,5 +1,6 @@
 package com.microservice.edu.config;
 
+import com.microservice.edu.constants.MicroServiceConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -18,9 +19,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 		//本番環境
 		//registry.addResourceHandler("/images/**").addResourceLocations("file:/var/www/html/img/");
+		//registry.addResourceHandler("/upload/**").addResourceLocations("file:/var/www/html/upload/");
 
 		//ローカル環境
-		registry.addResourceHandler("/images/**").addResourceLocations("file:///C:\\img\\profile\\");
-
+		registry.addResourceHandler("/images/**").addResourceLocations(MicroServiceConstants.IMAGE_PATH);
+		registry.addResourceHandler("/upload/**").addResourceLocations(MicroServiceConstants.UPLOAD_PATH);
 	}
 }
