@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body >
+		<div th:fragment="downloadFile()" class="layui-form">
+			<table class="layui-table">
+				<colgroup>
+					<col width="20">
+					<col width="150">
+					<col width="150">
+					<col>
+				</colgroup>
+				<thead>
+				<tr>
+					<th>No</th>
+					<th>大分类</th>
+					<th>小分类</th>
+					<th>点击下载</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr v-for="item in dlFile" v-bind:key="item.id">
+					<td><span v-html="item.id"></span></td>
+					<td><span v-html="item.bigCtgName"></span></td>
+					<td><span v-html="item.smallCtgName"></span></td>
+					<td><a :href ="'/video/dlimage?filePath='+item.documentUrl+'&fileName='+item.documentName+''"><span v-html="item.documentName"/></a></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

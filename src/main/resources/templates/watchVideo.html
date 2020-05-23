@@ -88,7 +88,8 @@
 										<input id="all" type="radio" name="tab_item" th:checked="${checkFlg}==1">
 										<label class="tab_item" for="all">章节播放</label>
 
-										<input id="programming" type="radio" name="tab_item" th:checked="${checkFlg}==2">
+										<input id="programming" type="radio" name="tab_item"  v-on:click="download()"
+											   th:checked="${checkFlg}==2">
 										<label class="tab_item" for="programming">辅助文档</label>
 
 										<input id="design" type="radio" name="tab_item" v-on:click="question()"
@@ -106,7 +107,7 @@
 										</div>
 										<div class="tab_content" id="programming_content">
 											<div class="tab_content_description">
-												<p class="c-txtsp">プログラミングの内容がここに入ります</p>
+												<div th:replace="/common/downloadFile.html::downloadFile()"></div>
 											</div>
 										</div>
 										<div class="tab_content" id="design_content">
@@ -139,6 +140,7 @@
 					return {
 						info: null,
 						error: null,
+						dlFile:null,
 						flg: 0,
 						msg: 'hello'
 					}
@@ -195,6 +197,13 @@
 							.get('showQuestionPage?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&offset=' + current)
 							.then(response => (this.info = response.data, this.flg = 0))
 							.catch(error => (this.error = error));
+					},
+					download:function () {
+						var lessonId =document.getElementById("lessonId").value;
+						axios
+								.get('/video/download?lessonId=' + lessonId )
+								.then(response => (this.dlFile = response.data, this.flg = 0))
+								.catch(error => (this.error = error));
 					}
 				}
 			});
