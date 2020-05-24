@@ -13,7 +13,7 @@ import java.util.Properties;
 public class SendEmail {
 
     public static final String FROM = "wfjy@microserviceedu.tokyo";//发件人的email
-    public static final String PWD = "duezwi4r";//发件人密码
+    public static final String PWD = "DuezWi4r";//发件人密码
 
     /**
      * 获取Session
