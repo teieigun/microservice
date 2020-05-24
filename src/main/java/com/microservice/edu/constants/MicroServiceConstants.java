@@ -21,15 +21,19 @@ public final class MicroServiceConstants {
 	public static final int COURSE_ID_TO =99999;
 
 	//开发环境
-	public static final String IMAGE_PATH="file:///C:\\img\\profile\\";
+	//public static final String IMAGE_PATH="file:///C:\\img\\profile\\";
 
 	//真实环境
-	//public static final String IMAGE_PATH="file:/var/www/html/img/";
+	public static final String IMAGE_PATH="file:/var/www/html/img/";
 
 	//开发环境
-	public static final String UPLOAD_PATH="file:///C:\\upload\\";
+	//public static final String UPLOAD_PATH="file:///C:\\upload\\";
 
 	//真实环境
-	//public static final String UPLOAD_PATH="file:/var/www/html/upload/";
+	public static final String UPLOAD_PATH="file:/var/www/html/upload/";
+
+	//public static final String HTTP_URL ="http://www.microserviceedu.tokyo:8080";
+
+	public static final String HTTP_URL ="http://localhost:8080";
 
 }

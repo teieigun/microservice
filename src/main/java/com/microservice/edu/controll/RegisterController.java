@@ -59,7 +59,7 @@ public class RegisterController {
 
         service.setNewPasswd(form.passwd,form.validateCode);
 
-        return "/video";
+        return "redirect:/video";
     }
 
 }

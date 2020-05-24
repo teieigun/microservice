@@ -44,7 +44,7 @@ public class TopControll {
 
 	private String email;
 
-	@GetMapping(value = "/video",produces = {"text/plain;charset=UTF-8"})
+	@RequestMapping(value = "/video", method={RequestMethod.GET,RequestMethod.POST})
 	@PreAuthorize("hasAuthority('5')")//拥有p1权限才可以访问
 	@Transactional(readOnly = true)
 	public String index(Model model, String bigCtgCode, String smallCtgCode, HttpServletRequest request) throws Exception {
