@@ -21,9 +21,19 @@
 <div class="wrapper">
 	<section>
 		<div class="login_form" id="login_form">
+
+			<div class="hd-lg">
+				<div style="align-content: center" th:if="${validationError}" th:each="error : ${validationError}">
+					<span style="color:#bf5757;" th:text="${error}"></span>
+					<hr />
+				</div>
+
+			</div><!--hd-lg end-->
+
 			<div class="hd-lg">
 				<span>输入登录密码</span>
 			</div><!--hd-lg end-->
+
 			<div class="user-account-pr">
 				<form name="PassForm" method="post" th:action="@{/setPass}">
 					<div class="input-sec">
