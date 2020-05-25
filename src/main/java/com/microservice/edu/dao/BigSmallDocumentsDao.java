@@ -57,7 +57,7 @@ public class BigSmallDocumentsDao {
 
 
         String sql = "select ";
-        sql = sql + "   @rowid:=@rowid+1 as id,";
+        sql = sql + "   REPLACE((@rowid:=@rowid+1),'.0','') as id,";
         sql = sql + "    t3.BIG_CTG_CODE as bigCtgCode,";
         sql = sql + "    t3.BIG_CTG_NAME as bigCtgName,";
         sql = sql + "    t4.SMALL_CTG_CODE as smallCtgCode,";
