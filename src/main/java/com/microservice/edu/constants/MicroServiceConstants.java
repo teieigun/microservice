@@ -38,4 +38,8 @@ public final class MicroServiceConstants {
 	//开发环境
 	public static final String HTTP_URL ="http://localhost:8080";
 
+	public static final String EXECUTE_MESSAGE = "executeMessage";
+
+	public static final String ERROR_MESSAGE = "errorMessage";
+
 }

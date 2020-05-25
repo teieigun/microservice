@@ -185,34 +185,44 @@
 
 								<div class="tb-pr">
 									<h2>变更密码</h2>
+									<div class="error-message-area" th:if="${#fields.hasErrors('${cpwd.*}')}">
+										<div class="error-message" th:each="error : ${#fields.detailedErrors('${cpwd.*}')}" th:text="${error.message}"></div>
+									</div>
+									<div class="error-message-area" th:if="${errorMsg!=null}">
+										<div class="error-message" th:text="${errorMsg}"></div>
+									</div>
+									<div class="execute-message-area" th:if="${executeMsg!=null}">
+										<div class="execute-message" th:text="${executeMsg}"></div>
+									</div>
 									<div class="hd-op">
-										<form>
+										<form method="post" name="changePasswd" th:action="@{/video/cpwd}" >
+											<input type="hidden" name="email" th:value="${username}">
 											<div class="ch-pswd">
-												<input type="password" name="old_password" placeholder="旧密码">
+												<input type="password" name="old_pwd" placeholder="旧密码">
 											</div><!--ch-pswd end-->
 											<div class="ch-pswd">
-												<input type="password" name="new_password" placeholder="新密码">
+												<input type="password" name="new_pwd" placeholder="新密码">
 											</div><!--ch-pswd end-->
 											<div class="ch-pswd">
-												<input type="password" name="confirm_password" placeholder="确认新密码">
+												<input type="password" name="confirm_pwd" placeholder="确认新密码">
+											</div><!--ch-pswd end-->
+											<div class="ch-pswd">
+												<button type="submit"> 变更</button>
 											</div><!--ch-pswd end-->
 										</form>
 									</div>
-									<div class="ch-pswd">
-										<button type="submit"> 变更</button>
-									</div><!--ch-pswd end-->
 								</div>
 
 								<div class="tb-pr">
-									<h2>个人信息</h2>
+									<h2>个人信息(尚未实装)</h2>
 									<div class="hd-op">
 										<h4 class="slct-hd">姓名</h4>
-										<input type="text" value=""></input>
+										<input type="text" value="" placeholder="姓名"></input>
 
 										<div class="oneEmptyLine"></div>
 
 										<h4 class="slct-hd">国籍</h4>
-										<input type="text" value=""></input>
+										<input type="text" value="" placeholder="中国"></input>
 
 										<div class="oneEmptyLine"></div>
 										<h4 class="slct-hd">性别</h4>
@@ -230,7 +240,7 @@
 									</div>
 								</div>
 								<div class="tb-pr">
-									<h4 class="slct_optz">开发语言</h4>
+									<h4 class="slct_optz">开发语言(尚未实装)</h4>
 									<div class="suojin">
 										<form method="post" name="programForm" th:action="@{/account/program}" >
 										<div class="suojin">

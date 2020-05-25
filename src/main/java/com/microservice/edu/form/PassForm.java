@@ -7,7 +7,8 @@ import javax.validation.constraints.*;
 @Data
 public class PassForm {
 
-	@NotBlank(message = "用户账号：用户名不能为空")
+	@NotBlank(message = "用户名不能为空")
+	@Email(message = "请输入邮箱地址")
 	public String email;
 
 	/** 密码 */

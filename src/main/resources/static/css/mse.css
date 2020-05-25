@@ -305,3 +305,39 @@ input[name="tab_item"] {
 	background-color: #5ab4bd;
 	color: #fff;
 }
+
+.error-message-area {
+	width: 215px;
+	height: max-content;
+	margin: 5px;
+	padding-left:10px;
+	padding-right:5px ;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+	border: 1px solid #AAAAAA;
+	border-radius: 6px;
+	background-color: #F5F5F5;
+}
+
+.execute-message-area {
+	width: 215px;
+	height: max-content;
+	margin: 5px;
+	padding-left:10px;
+	padding-right:5px ;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 20px;
+	border: 1px solid #AAAAAA;
+	border-radius: 6px;
+	background-color: #F5F5F5;
+}
+.error-message-area .error-message {
+	color: #F7736B;
+	font-size: 12px;
+}
+.execute-message-area .execute-message {
+	color: #000000;
+	font-size: 12px;
+}

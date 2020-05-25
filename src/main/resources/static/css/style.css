@@ -3035,9 +3035,9 @@ input{
 	width: 200px;
 	color: #6e6f70;
 	font-weight: normal;
-	font-size: 16px;
+	font-size: 14px;
 	line-height: 19px;
-	padding: 0 15px;
+	padding: 0 0px;
 }
 .ch-pswd button{
 	width: 170px;

@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.microservice.edu.dao.UserBaseProfileDao;
+import com.microservice.edu.form.ChangePwdForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,10 @@ public class ProfileService {
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private UserBaseProfileDao userBaseProfileDao;
+
 
 	public UserBaseInfo getBookInfo(String email) throws Exception {
 
@@ -46,10 +52,10 @@ public class ProfileService {
 
 
 	}
-	public void getUserInfo(String email){
+	public int updatePasswd(ChangePwdForm cpwdForm){
 
+		int rows = userBaseProfileDao.updatePasswd(cpwdForm);
 
-
-
+		return rows;
 	}
 }
