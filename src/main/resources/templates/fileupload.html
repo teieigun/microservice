@@ -164,7 +164,7 @@
                 // map で option タグのオブジェクトを生成しておいて、ループの外で append　する
                 $('select#path').children().remove();
                 var arr = $.map(data, function (val, index) {
-                    var result = val.split('/');
+                    var result = val.split('#');
                     $option = $('<option>', { value: result[1], text: result[0]+"("+result[1]+")"});
                     return $option;
                 });

@@ -81,7 +81,7 @@ public class LessonTblDao {
 		sql = sql + "  , t1.lesson_img as lessonImg ";
 		sql = sql + "  , t1.del ";
 		sql = sql + "  , 'lesson' AS lessonType";
-		sql = sql + "  FROM Lesson_tbl t1 left join big_category_tbl t2 ";
+		sql = sql + "  FROM lesson_tbl t1 left join big_category_tbl t2 ";
 		sql = sql + "  on t1.big_ctg_code = t2.BIG_CTG_NAME ";
 		sql = sql + "  UNION ";
 		sql = sql + "  SELECT ";
@@ -159,7 +159,7 @@ public class LessonTblDao {
 		sql = sql + "  , t1.lesson_img as lessonImg ";
 		sql = sql + "  , t1.del ";
 		sql = sql + "  , 'lesson' AS lessonType";
-		sql = sql + "  FROM Lesson_tbl t1 left join big_category_tbl t2 ";
+		sql = sql + "  FROM lesson_tbl t1 left join big_category_tbl t2 ";
 		sql = sql + "  on t1.big_ctg_code = t2.BIG_CTG_NAME ";
 		sql = sql + "  UNION ";
 		sql = sql + "  SELECT ";
@@ -235,7 +235,7 @@ public class LessonTblDao {
 		sql = sql + "  , t1.lesson_img as lessonImg ";
 		sql = sql + "  , t1.del ";
 		sql = sql + "  , 'lesson' AS lessonType";
-		sql = sql + "  FROM Lesson_tbl t1 left join big_category_tbl t2 ";
+		sql = sql + "  FROM lesson_tbl t1 left join big_category_tbl t2 ";
 		sql = sql + "  on t1.big_ctg_code = t2.BIG_CTG_NAME ";
 		sql = sql + "  UNION ";
 		sql = sql + "  SELECT ";
@@ -296,7 +296,7 @@ public class LessonTblDao {
 		sql = sql + "  ,t1.LESSON_IMG AS lessonImg";
 		sql = sql + "  ,'lesson' AS lessonType";
 		sql = sql + "  ,t1.DEL";
-		sql = sql + " FROM Lesson_tbl t1";
+		sql = sql + " FROM lesson_tbl t1";
 		sql = sql + " WHERE t1.DEL =0 ";
 		sql = sql + "  AND t1.LESSON_ID IN";
 		sql = sql + "   (SELECT t2.lesson_id";

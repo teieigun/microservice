@@ -1,25 +1,32 @@
 package com.microservice.edu.controll;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.microservice.edu.pojo.BigCategoryTblPojo;
 import com.microservice.edu.pojo.BigSmallDocumentsPojo;
 import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 import com.microservice.edu.service.FileService;
-import com.microservice.edu.service.ProfileService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Administrator
@@ -34,7 +41,6 @@ public class FileController {
 
     @RequestMapping(value = "/admin/upload", method = {RequestMethod.GET, RequestMethod.POST})
     @Transactional(readOnly = true)
-    @PreAuthorize("hasAuthority('9')")//拥有9级权限才可以访问
     public String upload(Model model) {
 
         //保存目录取得
@@ -52,15 +58,12 @@ public class FileController {
 
     @RequestMapping(value = "/admin/smallCode", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    @PreAuthorize("hasAuthority('9')")//拥有9级权限才可以访问
     public String[] smallCode(Model model, String bigCode) {
 
         List<SmallCategoryTblPojo> resultList = null;
 
         //保存目录取得
         Map<String, String> testmap = null;
-
-        String[] test = {"001/java", "002/oracle", "003/html"};
 
         List<String> list = new ArrayList<String>();
         try {
@@ -81,7 +84,6 @@ public class FileController {
 
     @RequestMapping(value = "/admin/lessonPath", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
-    @PreAuthorize("hasAuthority('9')")//拥有9级权限才可以访问
     public String[] bigSmallCode(Model model, String bigSmallCode) {
 
         List<LessonTblPojo> resultList = null;
@@ -89,14 +91,12 @@ public class FileController {
         //保存目录取得
         Map<String, String> testmap = null;
 
-        String[] test = {"001/java", "002/oracle", "003/html"};
-
         List<String> list = new ArrayList<String>();
         try {
             resultList = fileService.getLessonListByCtg(bigSmallCode.substring(0, 3), bigSmallCode.substring(3, 7));
 
             for (LessonTblPojo obj : resultList) {
-                list.add(obj.lessonName + "/" + obj.uploadPath);
+                list.add(obj.lessonName + "#" + obj.uploadPath);
             }
 
         } catch (Exception e) {
@@ -108,7 +108,6 @@ public class FileController {
     }
 
     @RequestMapping(value = "/admin/doUpload", method = {RequestMethod.POST})
-    @PreAuthorize("hasAuthority('9')")//拥有9级权限才可以访问
     @ResponseBody
     public String upload(@RequestParam("file") MultipartFile file, @RequestParam("path") String path, String smallCtg) {
         if (file.isEmpty()) {
