@@ -100,7 +100,9 @@ public class WatchVideoControll {
             model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
         }
 
+        List<LessonTblPojo> listRecommend = topPageService.searchAllEnableVideoIsRcommend(email);
 
+        model.addAttribute("listRecommend", listRecommend);
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         model.addAttribute("checkFlg", 1);
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
