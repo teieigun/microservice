@@ -1,10 +1,12 @@
 package com.microservice.edu.controll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.util.SecurityUtil;
@@ -69,6 +71,10 @@ public class WatchVideoControll {
             model.addAttribute("tagFlg", tagFlg);
         }
 
+        List<LessonTblPojo> listRecommend = topPageService.searchAllEnableVideoIsRcommend(email);
+
+
+        model.addAttribute("listRecommend", listRecommend);
         model.addAttribute("questionId", questionId);
         model.addAttribute("checkFlg", 1);
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
@@ -93,6 +99,8 @@ public class WatchVideoControll {
             model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
             model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
         }
+
+
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         model.addAttribute("checkFlg", 1);
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));

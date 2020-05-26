@@ -18,8 +18,8 @@
 						</a>
 					</div><!--menu_logo end-->
 					<div class="search_form">
-						<form>
-							<input type="text" name="search" placeholder="Search Videos">
+						<form th:action="@{/video}" method="post">
+							<input type="text" name="videoNm" placeholder="Search Videos">
 							<button type="submit">
 								<i class="icon-search"></i>
 							</button>

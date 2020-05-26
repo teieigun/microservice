@@ -9,58 +9,26 @@
 		<div th:fragment="recomend()" class="col-lg-3">
 			<div class="sidebar">
 				<div class="vidz-prt">
-					<h2 class="sm-vidz">推荐教程</h2>
+					<h2 class="sm-vidz">最近更新视频教程</h2>
 					<h3 class="aut-vid">
 					</h3>
 					<div class="clearfix"></div>
 				</div><!--vidz-prt end-->
-				<div class="videoo-list-ab">
+				<div th:each="lessonTblPojo:${listRecommend}" class="videoo-list-ab">
 					<div class="videoo">
 						<div class="video_info">
-							<h3><a href="#" title="">HTML基础</a></h3>
+							<h3>
+								<a th:text="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title=""></a>
+							</h3>
 						</div>
 						<div class="vid_thumbainl">
-							<a href="watchVideo.html" title="">
-								<img src="images/resources/vide1.png" alt="">
+							<a th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title="">
+								<img th:src="${'../'+lessonTblPojo.lessonImg}" alt="">
 								<span class="vid-time">10:21</span>
-								<span class="watch_later">
-												<i class="icon-watch_later_fill"></i>
-											</span>
+								<span class="watch_later"><i class="icon-watch_later_fill"></i></span>
 							</a>
 						</div><!--vid_thumbnail end-->
-
 					</div><!--videoo end-->
-					<div class="videoo">
-						<div class="video_info">
-							<h3><a href="#" title="">SQL基础入门教程</a></h3>
-						</div>
-						<div class="vid_thumbainl">
-							<a href="watchVideo.html" title="">
-								<img src="images/resources/vide2.png" alt="">
-								<span class="vid-time">13:49</span>
-								<span class="watch_later">
-												<i class="icon-watch_later_fill"></i>
-											</span>
-							</a>
-						</div><!--vid_thumbnail end-->
-
-					</div><!--videoo end-->
-					<div class="videoo">
-						<div class="video_info">
-							<h3><a href="#" title="">JAVA基础教程</a></h3>
-						</div>
-						<div class="vid_thumbainl">
-							<a href="watchVideo.html" title="">
-								<img src="images/resources/vide3.png" alt="">
-								<span class="vid-time">2:54</span>
-								<span class="watch_later">
-												<i class="icon-watch_later_fill"></i>
-											</span>
-							</a>
-						</div><!--vid_thumbnail end-->
-
-					</div><!--videoo end-->
-
 				</div><!--videoo-list-ab end-->
 			</div><!--side-bar end-->
 		</div>

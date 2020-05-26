@@ -27,7 +27,7 @@ public class ProfileService {
 	private UserBaseProfileDao userBaseProfileDao;
 
 
-	public UserBaseInfo getBookInfo(String email) throws Exception {
+	public UserBaseInfo getUserInfoInfo(String email) throws Exception {
 
 
 		UserBaseInfo userBaseInfo=userDao.findUserInofByPk(email);

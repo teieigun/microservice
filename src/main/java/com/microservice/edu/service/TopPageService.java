@@ -63,12 +63,27 @@ public class TopPageService {
 		return resultList;
 	}
 
+	public List<LessonTblPojo> searchAllEnableVideoUseLike(String email,String videoNm) throws Exception {
+
+		List<LessonTblPojo> resultList=LessonTblDao.getAllEnableVideoUseLike(email,videoNm);
+
+		return resultList;
+	}
+
 	public List<LessonTblPojo> searchAllEnableVideoByCtg(String bigCtgCode,String smallCtgCode) throws Exception {
 
 		List<LessonTblPojo> resultList=LessonTblDao.getAllEnableVideoByCtg(ZERO_LEVEL,bigCtgCode,smallCtgCode);
 
 		return resultList;
 	}
+
+	public List<LessonTblPojo> searchAllEnableVideoIsRcommend(String email) throws Exception {
+
+		List<LessonTblPojo> resultList=LessonTblDao.getAllEnableVideoIsRcommend(email);
+
+		return resultList;
+	}
+
 
 
 	public void getIndexInfo(Model model,String bigCtgCode,String smallCtgCode,String email) throws Exception {
@@ -85,6 +100,24 @@ public class TopPageService {
 
 
         model.addAttribute("listLessonTblPojo", listLessonTblPojo);
+		model.addAttribute("listListSmallCategoryTblPojo", listListSmallCategoryTblPojo);
+		model.addAttribute("bigCtgList", bigCtgList);
+	}
+
+	public void getIndexInfoUseLike(Model model,String videoNm,String email) throws Exception {
+		List<List<SmallCategoryTblPojo>> listListSmallCategoryTblPojo = new ArrayList<List<SmallCategoryTblPojo>>();
+
+		//轮播菜单
+		List<BigCategoryTblPojo> bigCtgList = getPageInfoLunBoBigCtg();
+		if (bigCtgList != null && bigCtgList.size() > 0) {
+			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
+				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
+			}
+		}        //获取首页视频地址，图片
+		List<LessonTblPojo> listLessonTblPojo = searchAllEnableVideoUseLike(email,videoNm);
+
+
+		model.addAttribute("listLessonTblPojo", listLessonTblPojo);
 		model.addAttribute("listListSmallCategoryTblPojo", listListSmallCategoryTblPojo);
 		model.addAttribute("bigCtgList", bigCtgList);
 	}

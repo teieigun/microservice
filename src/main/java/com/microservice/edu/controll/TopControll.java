@@ -47,7 +47,7 @@ public class TopControll {
 	@RequestMapping(value = "/video", method={RequestMethod.GET,RequestMethod.POST})
 	@PreAuthorize("hasAuthority('5')")//拥有p1权限才可以访问
 	@Transactional(readOnly = true)
-	public String index(Model model, String bigCtgCode, String smallCtgCode, HttpServletRequest request) throws Exception {
+	public String index(Model model, String bigCtgCode, String smallCtgCode, String videoNm,HttpServletRequest request) throws Exception {
 
 		String sessionId = request.getSession().getId();
 
@@ -56,10 +56,13 @@ public class TopControll {
 		SessionContext.setAttribute(request, sessionId,SecurityUtil.getUserDetails());
 
 		email = userDetails.getUsername();
+		if(videoNm==null || videoNm.isEmpty()){
+			topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode,email);
+		}else{
+			topPageService.getIndexInfoUseLike(model,videoNm,email);
+		}
 
-		topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode,email);
-
-		UserBaseInfo userBaseInfo = profileService.getBookInfo(SessionContext.getUserName(request));
+		UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));
 
 		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
 
@@ -89,7 +92,7 @@ public class TopControll {
 
 		topPageService.getBuyCourseVideo(model,null,null,email,lessonId);
 
-		UserBaseInfo userBaseInfo = profileService.getBookInfo(SessionContext.getUserName(request));
+		UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));
 
 		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
 
