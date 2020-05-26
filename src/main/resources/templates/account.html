@@ -113,7 +113,7 @@
 							<div class="sidebar">
 								<div class="widget video_info pr sp">
 									<span class="vc_hd">
-										<img th:src="@{${'/images/'+ValCode+'.png'}}" />
+										<img th:src="@{${'/images/'+profileImage}}" />
 									</span>
 									<h4>郑英群</h4>
 								</div><!--video_info pr-->
@@ -157,18 +157,17 @@
 											</div>
 											<div style="display:inline;">
 												<div id="view" class="uploadImage"  ></div>
-												<div class="uploadImage2" ><img th:src="@{${'/images/'+ValCode+'.png'}}" /></div>
+												<div class="uploadImage2" ><img th:src="@{${'/images/'+profileImage}}" /></div>
 											</div>
 											<div style="height:10px;"></div>
 										</div>
 										<div class="clipContent" style="">
 											选择照片
 											<input type="file" id="file" name="file" style="" accept="image/*">
+											<form method="post" name="imageForm" th:action="@{/video/upload}" >
+												<input type="hidden" id="imageId" name="imageCode" value=""></input>
+											</form>
 										</div>
-
-										<form method="post" name="imageForm" th:action="@{/video/upload}" >
-											<input type="hidden" id="imageId" name="imageCode" value=""></input>
-										</form>
 									</div>
 
 									<div class="ch-pswd">
@@ -199,11 +198,11 @@
 											<div class="ch-pswd">
 												<input type="password" name="confirm_pwd" placeholder="确认新密码">
 											</div><!--ch-pswd end-->
-											<div class="ch-pswd">
-												<button type="submit"> 变更</button>
-											</div><!--ch-pswd end-->
 										</form>
 									</div>
+									<div class="ch-pswd">
+										<button type="button" onclick="changePass();"> 变更</button>
+									</div><!--ch-pswd end-->
 								</div>
 
 								<div class="tb-pr">
@@ -330,6 +329,9 @@
 				return false;
 			}
 
+			function changePass() {
+				document.changePasswd.submit();
+			}
 		</script>
 	</body>
 

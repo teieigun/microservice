@@ -42,8 +42,12 @@ public class RegisterValidateService {
             if(userDao.findbyPk(email).getEmail()!=null){
                 userDao.resetUser(email);
             }else{
+                //设定认证表
                 userDao.saveProfile(user);
+                //设定用户基本信息
                 userDao.saveBaseInfo(email);
+                //设定用户基本权限
+                userDao.saveRoleInfo(email);
             }
         } catch (ParseException e) {
             e.printStackTrace();
