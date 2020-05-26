@@ -27,25 +27,25 @@ public final class MicroServiceConstants {
 
 
 
-	//---------------------------------------------------------------------------/
+
 	//--------------------------------环境切换------------------------------------/
+	//开发环境
+	//public static final String IMAGE_PATH="file:///C:\\img\\profile\\";
+
+	//开发环境
+	//public static final String UPLOAD_PATH="file:///C:\\upload\\";
+
+	//开发环境
+	//public static final String HTTP_URL ="http://localhost:8080";
+
+
+
+	//真实环境
+	public static final String IMAGE_PATH="file:/var/www/html/img/";
+	//真实环境
+	public static final String HTTP_URL ="http://www.microserviceedu.tokyo";
+	//真实环境
+	public static final String UPLOAD_PATH="file:/var/www/html/upload/";
+
 	//---------------------------------------------------------------------------/
-	//开发环境
-	public static final String IMAGE_PATH="file:///C:\\img\\profile\\";
-
-	//开发环境
-	public static final String UPLOAD_PATH="file:///C:\\upload\\";
-
-	//开发环境
-	public static final String HTTP_URL ="http://localhost:8080";
-
-
-
-	//真实环境
-	//public static final String IMAGE_PATH="file:/var/www/html/img/";
-	//真实环境
-	//public static final String HTTP_URL ="http://www.microserviceedu.tokyo";
-	//真实环境
-	//public static final String UPLOAD_PATH="file:/var/www/html/upload/";
-
 }
