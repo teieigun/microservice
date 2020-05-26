@@ -2696,6 +2696,7 @@ input[type="checkbox"]:checked ~ .checkmark:before {
 	font-size: 16px;
 	margin-bottom: 25px;
 	text-align: left;
+	text-decoration: underline !important;
 }
 .fg_btn:hover {
 	color: #6e6f70;
