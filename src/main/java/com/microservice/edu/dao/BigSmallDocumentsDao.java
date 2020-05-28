@@ -73,7 +73,7 @@ public class BigSmallDocumentsDao {
         sql = sql + " LEFT JOIN small_category_tbl t4";
         sql = sql + " ON t1.SMALL_CTG_CODE = t4.SMALL_CTG_CODE";
         sql = sql + " AND t1.BIG_CTG_CODE = t4.BIG_CTG_CODE";
-        sql = sql + " WHERE t1.LESSON_ID =?";
+        sql = sql + " WHERE t1.LESSON_ID =? AND t2.document_name IS NOT NULL";
 
         List<BigSmallDocumentsPojo> list = jdbcTemplate.query(sql,new Object[] { lessonId }, new BeanPropertyRowMapper(BigSmallDocumentsPojo.class));
         return list;

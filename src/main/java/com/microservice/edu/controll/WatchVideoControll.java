@@ -53,7 +53,7 @@ public class WatchVideoControll {
         //未购买的情况下，视频再检索
         List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
         if (listLessonChapterPojo == null || listLessonChapterPojo.size() == 0) {
-            return "redirect:/video";
+            return "redirect:/video/callme";
         }
 
         //已购买的情况下，进入播放页面
@@ -107,6 +107,14 @@ public class WatchVideoControll {
         model.addAttribute("checkFlg", 1);
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
         return "/watchVideo";
+    }
+
+    @RequestMapping(value = "/video/callme", method = RequestMethod.GET)
+    @Transactional(readOnly = true)
+    public String callme(Model model, String lessonId, String chapterNo, HttpServletRequest request) throws Exception {
+        UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));
+        model.addAttribute("profileImage",userBaseInfo.profile_image);
+        return "/callme";
     }
 
 }
