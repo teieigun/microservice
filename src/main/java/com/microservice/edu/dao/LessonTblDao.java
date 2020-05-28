@@ -293,7 +293,7 @@ public class LessonTblDao {
 
 		String sql = " SELECT ";
 		sql = sql + "   t1.LESSON_ID AS lessonId";
-		sql = sql + "  ,CONCAT(t1.LESSON_NAME,'　已购买') AS lessonName";
+		sql = sql + "  ,CONCAT(t1.LESSON_NAME,'　<span style=\"color:#ff0000;font-weight:bold;\">已购买</span>') AS lessonName";
 		sql = sql + "  ,t1.BIG_CTG_CODE AS bigCtgCode";
 		sql = sql + "  ,t1.SMALL_CTG_CODE AS smallCtgCode";
 		sql = sql + "  ,t1.LESSON_IMG AS lessonImg";
