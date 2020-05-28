@@ -66,7 +66,7 @@ public class LessonTblDao {
 		String sql = "SELECT ";
 		sql = sql + "  t3.lessonId";
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
-		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　已购买' END) AS lessonName ";
+		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　<span style=\"color:#ff0000;font-weight:bold;\">已购买</span>' END) AS lessonName ";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
 		sql = sql + "  ,t3.smallCtgCode";
@@ -145,7 +145,7 @@ public class LessonTblDao {
 		String sql = "SELECT ";
 		sql = sql + "  t3.lessonId";
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
-		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　已购买' END) AS lessonName ";
+		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　<span style=\"color:#ff0000;font-weight:bold;\">已购买</span>' END) AS lessonName ";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
 		sql = sql + "  ,t3.smallCtgCode";
@@ -222,7 +222,7 @@ public class LessonTblDao {
 		String sql = "SELECT ";
 		sql = sql + "  t3.lessonId";
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
-		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　已购买' END) AS lessonName ";
+		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　<span style=\"color:#ff0000;font-weight:bold;\">已购买</span>' END) AS lessonName ";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
 		sql = sql + "  ,t3.smallCtgCode";

@@ -154,8 +154,8 @@
 												</a>
 											</div>
 											<div class="video_info">
-												<h3><a th:text="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title=""></a></h3>
-												<h4><a th:text="${lessonTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
+												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title=""></a></h3>
+												<h4><a th:utext="${lessonTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
 											</div>
 										</div>
 									</div>
