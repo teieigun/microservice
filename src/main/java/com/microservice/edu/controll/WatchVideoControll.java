@@ -37,10 +37,27 @@ public class WatchVideoControll {
     @Autowired
     ProfileService profileService;
 
-    @RequestMapping(value = "/video/watch", method = RequestMethod.GET)
+
+    private String email;
+
+    @RequestMapping(value = "/showlist", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String goToVideoPage(Model model, String lessonId, String chapterNo, String tagFlg, String questionId,
                                 HttpServletRequest request) throws Exception {
+
+        UserDetails userDetails = SecurityUtil.getUserDetails();
+
+        if(userDetails!=null){
+            email = userDetails.getUsername();
+            model.addAttribute("topbutton","1");
+        }else{
+            email= MicroServiceConstants.NO_NAME_USER_EMAIL;
+            model.addAttribute("topbutton","2");
+        }
+
+        if(lessonId==null || lessonId.isEmpty()){
+            return "/video";
+        }
 
         //课程ID大于90000的情况属于套餐，套餐内容显示处理
         if (Integer.valueOf(lessonId) >= MicroServiceConstants.COURSE_ID_FROM &&
@@ -49,7 +66,6 @@ public class WatchVideoControll {
             return "redirect:/showCourse?lessonId=" + lessonId;
         }
 
-        String email = SecurityUtil.getUserDetails().getUsername();
         //未购买的情况下，视频再检索
         List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
         if (listLessonChapterPojo == null || listLessonChapterPojo.size() == 0) {
@@ -80,7 +96,7 @@ public class WatchVideoControll {
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
 
-        return "/watchVideo";
+        return "/watchlistVideo";
     }
 
     @RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
@@ -106,7 +122,7 @@ public class WatchVideoControll {
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         model.addAttribute("checkFlg", 1);
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
-        return "/watchVideo";
+        return "/watchlistVideo";
     }
 
     @RequestMapping(value = "/video/callme", method = RequestMethod.GET)

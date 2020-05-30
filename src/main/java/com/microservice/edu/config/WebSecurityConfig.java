@@ -25,8 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	try {
             http
             .authorizeRequests()
-            .antMatchers("/video").hasAnyAuthority("1","2","3")
-            .antMatchers("/video/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/watch").hasAnyAuthority("1","2","3")
+            .antMatchers("/watch/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/vip").hasAnyAuthority("2","3")
             .antMatchers("/vip/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/admin").hasAnyAuthority("3")
@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/account/**").authenticated()//所有/r/**的请求必须认证通过
             .antMatchers("/", "/index","/video/css","/video/img","/video/font","/video/js").permitAll()//除了/r/**，其它的请求可以访问
             .and()
-            .formLogin().loginPage("/")
+            .formLogin().loginPage("/showlogin")
             .loginProcessingUrl("/login")
 //            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
             .defaultSuccessUrl("/video")

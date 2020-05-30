@@ -29,6 +29,7 @@
 			var tagFlg = /*[[${tagFlg}]]*/ null;
 			var questionId = /*[[${questionId}]]*/ null;
 			var questions = /*[[${questions}]]*/ null;
+			var topbutton = /*[[${topbutton}]]*/ null;
 
 
 			$(document).ready(function () {
@@ -44,7 +45,7 @@
 				$("#all").click(function () {
 					const lessonId = document.getElementById('lessonId').value;
 					const chapterNo = document.getElementById('chapterNo').value;
-					const url = '/video/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo+"&tagFlg=1";
+					const url = '/showlist?lessonId=' + lessonId + '&chapterNo=' + chapterNo+"&tagFlg=1";
 					window.location.href = url;
 
 				});

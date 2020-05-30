@@ -2,6 +2,7 @@ package com.microservice.edu.controll;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.form.LoginForm;
 import com.microservice.edu.pojo.CourseMasterPojo;
 import com.microservice.edu.util.SecurityUtil;
@@ -41,6 +42,14 @@ public class TopControll {
 	@Autowired
 	ProfileService profileService;
 
+	@RequestMapping(value = "/showlogin", method={RequestMethod.GET,RequestMethod.POST})
+	@Transactional(readOnly = true)
+	public ModelAndView  showlogin(ModelAndView mv) throws Exception {
+
+		mv.setViewName("/login");
+		return mv;
+	}
+
 	@RequestMapping(value = "/login", method={RequestMethod.GET,RequestMethod.POST})
 	@Transactional(readOnly = true)
 	public ModelAndView  login(@ModelAttribute @Validated LoginForm form, BindingResult result, ModelAndView mv) throws Exception {
@@ -49,7 +58,7 @@ public class TopControll {
 			mv.addObject("errorMessage", "用户名或者密码有误");
 		}
 
-		mv.setViewName("/login");
+		mv.setViewName("/video");
 		return mv;
 	}
 
@@ -65,18 +74,25 @@ public class TopControll {
 		UserDetails userDetails = SecurityUtil.getUserDetails();
 		SessionContext.setAttribute(request, sessionId,SecurityUtil.getUserDetails());
 
-		email = userDetails.getUsername();
+		if(userDetails!=null){
+			email = userDetails.getUsername();
+			model.addAttribute("topbutton","1");
+		}else{
+			email= MicroServiceConstants.NO_NAME_USER_EMAIL;
+			model.addAttribute("topbutton","2");
+		}
+
 		if(videoNm==null || videoNm.isEmpty()){
 			topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode,email);
 		}else{
 			topPageService.getIndexInfoUseLike(model,videoNm,email);
 		}
 
-		UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));
+//		UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));
 
-		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
+		SessionContext.setAttribute(request, "profileImage", "profile.png");
 
-		model.addAttribute("profileImage",userBaseInfo.profile_image);
+		model.addAttribute("profileImage","profile.png");
 		model.addAttribute("videoType","全部视频");
 
 		return "/video";
@@ -117,7 +133,7 @@ public class TopControll {
 	@Transactional(readOnly = true)
 	public String index2(Model model) throws Exception {
 
-		return "/login";
+		return "redirect:/video";
 	}
 
 

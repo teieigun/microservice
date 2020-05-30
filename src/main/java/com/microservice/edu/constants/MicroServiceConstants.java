@@ -38,6 +38,8 @@ public final class MicroServiceConstants {
 	//开发环境
 	public static final String HTTP_URL ="http://localhost:8080";
 
+	public static final String NO_NAME_USER_EMAIL="zhengyingqun7523@gmail.com";
+
 
 	//真实环境
 	//public static final String IMAGE_PATH="file:/var/www/html/img/";

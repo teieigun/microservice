@@ -3,6 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
+
 	</head>
 
 	<body>
@@ -51,7 +52,7 @@
 											<span>
 												<i class="icon-logout"></i>
 											</span>
-											<a href="javascript:OnLinkClick();">注销</a><br />
+											<a href="javascript:OnLinkClick();"><p th:text="${topbutton}"></p></a><br />
 										</li>
 									</ul>
 								</div><!--sd_menu end-->
@@ -74,7 +75,7 @@
 							</div>
 						</li>
 						<li>
-							<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
+							<a href="javascript:OnLinkClick();" class="btn-default" ><p style="padding-top: 5px;" th:text="${topbutton=='1'?'注销':'登录'}"></p></a><br />
 						</li>
 					</ul><!--controls-lv end-->
 					<!-- ログアウト -->
@@ -83,5 +84,6 @@
 				</div><!--top_header_content end-->
 			</div>
 		</div>
+
 	</body>
 </html>
