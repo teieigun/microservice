@@ -27,6 +27,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers("/watch").hasAnyAuthority("1","2","3")
             .antMatchers("/watch/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/showlist").hasAnyAuthority("1","2","3")
+            .antMatchers("/showlist/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/changeChapter").hasAnyAuthority("1","2","3")
+            .antMatchers("/changeChapter/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/vip").hasAnyAuthority("2","3")
             .antMatchers("/vip/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/admin").hasAnyAuthority("3")

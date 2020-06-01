@@ -6,10 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.dao.LessonChapterDao;
 import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.util.SecurityUtil;
+import com.microservice.edu.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,8 @@ public class WatchVideoControll {
     @Autowired
     ProfileService profileService;
 
+    @Autowired
+    com.microservice.edu.dao.LessonChapterDao LessonChapterDao;
 
     private String email;
 
@@ -45,18 +49,17 @@ public class WatchVideoControll {
     public String goToVideoPage(Model model, String lessonId, String chapterNo, String tagFlg, String questionId,
                                 HttpServletRequest request) throws Exception {
 
-        UserDetails userDetails = SecurityUtil.getUserDetails();
+        //パラメータチェック
+        if(lessonId==null || lessonId.isEmpty()){
+            return "redirect:/showlogin";
+        }
 
-        if(userDetails!=null){
-            email = userDetails.getUsername();
+        if(!MicroServiceConstants.EMPTY_STRING.equals(UserUtil.getUserAccunt())){
+            email = UserUtil.getUserAccunt();
             model.addAttribute("topbutton","1");
         }else{
             email= MicroServiceConstants.NO_NAME_USER_EMAIL;
             model.addAttribute("topbutton","2");
-        }
-
-        if(lessonId==null || lessonId.isEmpty()){
-            return "/video";
         }
 
         //课程ID大于90000的情况属于套餐，套餐内容显示处理
@@ -66,11 +69,21 @@ public class WatchVideoControll {
             return "redirect:/showCourse?lessonId=" + lessonId;
         }
 
-        //未购买的情况下，视频再检索
-        List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
-        if (listLessonChapterPojo == null || listLessonChapterPojo.size() == 0) {
-            return "redirect:/video/callme";
+        //未登録の場合、登録に行きます。
+        if( UserUtil.isNoAccountUser(email)){
+            return "redirect:/showlogin";
         }
+
+
+        List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
+        if ((listLessonChapterPojo == null || listLessonChapterPojo.size() == 0)) {
+            if(LessonChapterDao.isTestAble(lessonId)<=0){
+                return "/callme";
+            }else{
+                listLessonChapterPojo=LessonChapterDao.getChapterListForTest(lessonId);
+            }
+        }
+
 
         //已购买的情况下，进入播放页面
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
@@ -96,20 +109,23 @@ public class WatchVideoControll {
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
 
-        return "/watchlistVideo";
+        return "/watchVideo";
     }
 
-    @RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
+    @RequestMapping(value = "/changeChapter", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String changeChapter(Model model, String lessonId, String chapterNo, HttpServletRequest request) throws Exception {
 
+        String email = SecurityUtil.getUserDetails().getUsername();
+
         System.out.println("LessonId:" + lessonId);
-        List<LessonChapterPojo> listLessonChapterPojo1 = watchVideoService.changeChapter(lessonId, chapterNo);
+        List<LessonChapterPojo> listLessonChapterPojo1 = watchVideoService.changeChapter(lessonId, chapterNo,email);
         if (listLessonChapterPojo1 != null && listLessonChapterPojo1.size() > 0) {
             model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
         }
-        String email = SecurityUtil.getUserDetails().getUsername();
+
         List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(email, lessonId);
+
         model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
         if (listLessonChapterPojo2 != null && listLessonChapterPojo2.size() > 0) {
             model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
@@ -122,10 +138,10 @@ public class WatchVideoControll {
         model.addAttribute("profileImage", SessionContext.getAttribute(request, "profileImage"));
         model.addAttribute("checkFlg", 1);
         model.addAttribute("questions", watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
-        return "/watchlistVideo";
+        return "/watchVideo";
     }
 
-    @RequestMapping(value = "/video/callme", method = RequestMethod.GET)
+    @RequestMapping(value = "/callme", method = RequestMethod.GET)
     @Transactional(readOnly = true)
     public String callme(Model model, String lessonId, String chapterNo, HttpServletRequest request) throws Exception {
         UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));

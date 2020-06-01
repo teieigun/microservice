@@ -25,7 +25,7 @@ public final class MicroServiceConstants {
 	//执行失败
 	public static final String ERROR_MESSAGE = "errorMessage";
 
-
+    public static final String EMPTY_STRING ="";
 
 
 	//--------------------------------环境切换------------------------------------/
