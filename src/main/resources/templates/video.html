@@ -146,7 +146,7 @@
 									<div th:each="lessonTblPojo:${listLessonTblPojo}" class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
 										<div class="video">
 											<div class="vid_thumbainl">
-												<a th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title="">
+												<a th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title="">
 													<img th:src="${lessonTblPojo.lessonImg}" alt="">
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
@@ -154,7 +154,7 @@
 												</a>
 											</div>
 											<div class="video_info">
-												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title=""></a></h3>
+												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title=""></a></h3>
 												<h4><a th:utext="${lessonTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
 											</div>
 										</div>

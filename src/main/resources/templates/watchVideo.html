@@ -33,7 +33,7 @@
 
 			$(document).ready(function () {
 				$(".video_list_num").mouseenter(function () {
-					this.style.backgroundColor = "#F0F8FF";
+					this.style.backgroundColor = "#D0D8DF";
 					$(this).find("Button").css('display', 'block');
 				});
 				$(".video_list_num").mouseleave(function () {
@@ -44,7 +44,8 @@
 				$("#all").click(function () {
 					const lessonId = document.getElementById('lessonId').value;
 					const chapterNo = document.getElementById('chapterNo').value;
-					const url = '/video/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo+"&tagFlg=1";
+					const sectionNo = document.getElementById('sectionNo').value;
+					const url = '/video/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&sectionNo=' + sectionNo +"&tagFlg=1";
 					window.location.href = url;
 
 				});
@@ -64,6 +65,7 @@
 			<input type="hidden" id="pageName" value="question"/>
 			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}"/>
 			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}"/>
+			<input type="hidden" id="sectionNo" th:value="${LessonChapterPojoOne.sectionNo}"/>
 		</form>
 		<div id="testVue" class="wrapper">
 			<header>
@@ -220,7 +222,8 @@
 				var result = para.split(',');
 				document.getElementById('lessonId').value = result[0];
 				document.getElementById('chapterNo').value = result[1];
-				window.location.href = '/video/changeChapter?lessonId=' + result[0] + '&chapterNo=' + result[1];
+				document.getElementById('sectionNo').value = result[2];
+				window.location.href = '/video/changeChapter?lessonId=' + result[0] + '&chapterNo=' + result[1]+ '&sectionNo=' + result[2];
 			}
 
 			function OnLinkClick() {
