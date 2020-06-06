@@ -10,6 +10,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 
 
+import com.microservice.edu.service.WatchVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ import com.microservice.edu.form.comments.CommentsRoot;
 import com.microservice.edu.form.comments.Liked;
 import com.microservice.edu.form.comments.ResultDT;
 import com.microservice.edu.service.CommentService;
-import com.microservice.edu.service.WatchVideoService;
+
 import com.microservice.edu.util.LogUtil;
 import com.microservice.edu.util.ResultDTUtils;
 

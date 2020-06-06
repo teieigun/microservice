@@ -1392,6 +1392,14 @@ body.vjs-full-window {
 	width: 850px;
 }
 
+.dlinfo2 .chaptername {
+	font-weight: bolder;
+}
+
+.dlinfo2 .video-list-item{
+	margin-top: 5px;
+}
+
 .dlinfo2 .video_list_num {
     display: block;
     width: 800px;

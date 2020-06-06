@@ -7,82 +7,74 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="icon" href="img/Favicon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="css/animate.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/fontello.css">
-	<link rel="stylesheet" type="text/css" href="css/fontello-codes.css">
-	<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
-	<link rel="stylesheet" type="text/css" href="css/video-js.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/responsive.css">
-	<link rel="stylesheet" type="text/css" href="css/color.css">
-	<link rel="stylesheet" type="text/css" href="css/layui.css">
-	<link rel="stylesheet" type="text/css" href="css/mse.css">
+		<link rel="stylesheet" type="text/css" href="css/animate.css">
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/fontello.css">
+		<link rel="stylesheet" type="text/css" href="css/fontello-codes.css">
+		<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
+		<link rel="stylesheet" type="text/css" href="css/video-js.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/responsive.css">
+		<link rel="stylesheet" type="text/css" href="css/color.css">
+		<link rel="stylesheet" type="text/css" href="css/layui.css">
+		<link rel="stylesheet" type="text/css" href="css/mse.css">
 
-	<style type="text/css">
-		/*タブ切り替え全体のスタイル*/
-		.tabs {
-			margin-top: 50px;
-			padding-bottom: 5px;
-			background-color: #fff;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-			width: 850px;
-			margin: 0 auto;}
+		<style type="text/css">
+			/*タブ切り替え全体のスタイル*/
+			.tabs {
+				margin-top: 50px;
+				padding-bottom: 5px;
+				background-color: #fff;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+				width: 850px;
+				margin: 0 auto;}
 
-		/*タブのスタイル*/
-		.tab_item {
-			width: calc(100%/3);
-			height: 50px;
-			border-bottom: 3px solid #5ab4bd;
-			background-color: #d9d9d9;
-			line-height: 50px;
-			font-size: 16px;
-			text-align: center;
-			color: #565656;
-			display: block;
-			float: left;
-			text-align: center;
-			font-weight: bold;
-			transition: all 0.2s ease;
-		}
-		.tab_item:hover {
-			opacity: 0.75;
-		}
+			/*タブのスタイル*/
+			.tab_item {
+				width: calc(100%/3);
+				height: 50px;
+				border-bottom: 3px solid #5ab4bd;
+				background-color: #d9d9d9;
+				line-height: 50px;
+				font-size: 16px;
+				text-align: center;
+				color: #565656;
+				display: block;
+				float: left;
+				text-align: center;
+				font-weight: bold;
+				transition: all 0.2s ease;
+			}
+			.tab_item:hover {
+				opacity: 0.75;
+			}
 
-		/*ラジオボタンを全て消す*/
-		input[name="tab_item"] {
-			display: none;
-		}
+			/*ラジオボタンを全て消す*/
+			input[name="tab_item"] {
+				display: none;
+			}
 
-		/*タブ切り替えの中身のスタイル*/
-		.tab_content {
-			display: none;
-			padding: 25px 25px 0;
-			clear: both;
-			overflow: hidden;
-		}
+			/*タブ切り替えの中身のスタイル*/
+			.tab_content {
+				display: none;
+				padding: 25px 25px 0;
+				clear: both;
+				overflow: hidden;
+			}
 
-		/*選択されているタブのコンテンツのみを表示*/
-		#all:checked ~ #all_content,
-		#programming:checked ~ #programming_content,
-		#design:checked ~ #design_content {
-			display: block;
-		}
+			/*選択されているタブのコンテンツのみを表示*/
+			#all:checked ~ #all_content,
+			#programming:checked ~ #programming_content,
+			#design:checked ~ #design_content {
+				display: block;
+			}
 
-		/*選択されているタブのスタイルを変える*/
-		.tabs input:checked + .tab_item {
-			background-color: #5ab4bd;
-			color: #fff;
-		}
-	</style>
-	<script th:inline="javascript">
-		var lessonId = 0;
-		var chapterNo = 0;
-		var tagFlg = /*[[${tagFlg}]]*/ null;
-		var questionId = /*[[${questionId}]]*/ null;
-		var questions = /*[[${questions}]]*/ null;
-		var topbutton = /*[[${topbutton}]]*/ null;
-	</script>
+			/*選択されているタブのスタイルを変える*/
+			.tabs input:checked + .tab_item {
+				background-color: #5ab4bd;
+				color: #fff;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -154,7 +146,7 @@
 									<div th:each="lessonTblPojo:${listLessonTblPojo}" class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
 										<div class="video">
 											<div class="vid_thumbainl">
-												<a th:href="@{/showlist(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title="">
+												<a th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title="">
 													<img th:src="${lessonTblPojo.lessonImg}" alt="">
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
@@ -162,7 +154,7 @@
 												</a>
 											</div>
 											<div class="video_info">
-												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/showlist(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title=""></a></h3>
+												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title=""></a></h3>
 												<h4><a th:utext="${lessonTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
 											</div>
 										</div>
@@ -186,14 +178,9 @@
 
 		<script>
 	        function OnLinkClick() {
-	        	if(topbutton=='2'){
-	        		window.location.href="/showlogin";
-				}else{
-					target = document.getElementById("logoutForm");
-					target.submit();
-					return false;
-				}
-
+	            target = document.getElementById("logoutForm");
+	            target.submit();
+	            return false;
 		    }
 		</script>
 	</body>
