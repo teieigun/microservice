@@ -44,8 +44,8 @@ public class RegisterController {
         ModelAndView mav=new ModelAndView();
         //发邮箱激活
         service.processregister(email);
-        model.addAttribute("msg","注册成功");
-        return "/login";
+        model.addAttribute("msg","注册链接已经发送到您的邮箱，请确认！");
+        return "/regist";
 
     }
 

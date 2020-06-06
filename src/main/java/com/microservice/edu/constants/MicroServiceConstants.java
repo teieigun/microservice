@@ -42,7 +42,7 @@ public final class MicroServiceConstants {
 	//真实环境
 	public static final String IMAGE_PATH="file:/var/www/html/img/";
 	//真实环境
-	public static final String HTTP_URL ="http://www.microserviceedu.tokyo";
+	public static final String HTTP_URL ="http://www.microserviceedu.com";
 	//真实环境
 	public static final String UPLOAD_PATH="file:/var/www/html/upload/";
 

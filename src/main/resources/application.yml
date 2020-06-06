@@ -21,6 +21,7 @@ spring:
     password: P@ssW0rd!
     driverClassName: com.mysql.jdbc.Driver
 
+# VPS-teieigun passwd:P@ssW0rd!
 # thinkPad passwd:1qaz2wsx
 # desktop passwd:1qaz2wsx
 
