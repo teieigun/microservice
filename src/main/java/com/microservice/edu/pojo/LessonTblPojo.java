@@ -17,6 +17,7 @@ public class LessonTblPojo {
     public String del;
     public String lessonType;
     public String videoFlg;
+    public String statusFlg;
 
 
 }

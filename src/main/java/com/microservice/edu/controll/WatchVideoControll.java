@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,11 +38,35 @@ public class WatchVideoControll {
 	@Autowired
 	ProfileService profileService;
 
+	private String email;
+
 	@RequestMapping(value = "/video/watch", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String goToVideoPage(Model model, String lessonId, String chapterNo, String sectionNo, String tagFlg,
 			String questionId,
 			HttpServletRequest request) throws Exception {
+
+		//パラメータチェック
+		if(lessonId==null || lessonId.isEmpty()){
+			return "redirect:/showlogin";
+		}
+
+		//用户不为空
+		if(!MicroServiceConstants.EMPTY_STRING.equals(UserUtil.getUserAccunt())){
+			email = UserUtil.getUserAccunt();
+			//画面右上角的按钮显示 【注销】
+			model.addAttribute("topbutton","1");
+		}else{
+			//画面右上角的按钮显示 【登录】
+			email= MicroServiceConstants.NO_NAME_USER_EMAIL;
+			model.addAttribute("topbutton","2");
+		}
+
+		//未登録の場合、登録に行きます。
+		if( UserUtil.isNoAccountUser(email)){
+			return "redirect:/showlogin";
+		}
+
 
 		//课程ID大于90000的情况属于套餐，套餐内容显示处理
 		if (Integer.valueOf(lessonId) >= MicroServiceConstants.COURSE_ID_FROM &&
@@ -141,5 +166,8 @@ public class WatchVideoControll {
 		model.addAttribute("profileImage", userBaseInfo.profile_image);
 		return "/callme";
 	}
+
+
+
 
 }

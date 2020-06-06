@@ -75,6 +75,21 @@
 				color: #fff;
 			}
 		</style>
+		<script th:inline="javascript">
+			//topbutton  1：登录中 2：未登录
+			var topbutton = /*[[${topbutton}]]*/ null;
+
+
+			function OnLinkClick() {
+				if(topbutton=='2'){
+					window.location.href="/showlogin";
+				}else{
+					target = document.getElementById("logoutForm");
+					target.submit();
+					return false;
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div class="wrapper">
@@ -176,12 +191,5 @@
 		<script src="js/script.js"></script>
 		<script src="js/script2.js"></script>
 
-		<script>
-	        function OnLinkClick() {
-	            target = document.getElementById("logoutForm");
-	            target.submit();
-	            return false;
-		    }
-		</script>
 	</body>
 </html>

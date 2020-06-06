@@ -414,7 +414,7 @@ header .container {
 	background-color: #272626;
 	height: 38px;
 	line-height: 38px;
-	padding: 0 30px;
+	padding: 0 10px;
 	border-radius: 30px;
 }
 .controls-lv li a.btn-default {
