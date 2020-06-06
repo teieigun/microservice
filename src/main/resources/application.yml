@@ -17,12 +17,12 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/teieigun?useUnicode=true&characterEncoding=utf8&serverTimezone=JST
-    username: root
-    password: password
+    username: teieigun
+    password: P@ssW0rd!
     driverClassName: com.mysql.jdbc.Driver
 
 # thinkPad passwd:1qaz2wsx
-# desktop passwd:duezwi4r
+# desktop passwd:1qaz2wsx
 
 server:  
   tomcat:
