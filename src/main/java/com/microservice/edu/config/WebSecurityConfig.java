@@ -37,9 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/account/**").authenticated()//所有/r/**的请求必须认证通过
             .antMatchers("/", "/index","/video/css","/video/img","/video/font","/video/js").permitAll()//除了/r/**，其它的请求可以访问
             .and()
-            .formLogin().loginPage("/")
-            .loginProcessingUrl("/login")
-            .defaultSuccessUrl("/video")
+            .formLogin().loginPage("/login")
+            .loginProcessingUrl("/dologin")
+            .defaultSuccessUrl("/index")
             .failureForwardUrl("/login")
             .usernameParameter("username").passwordParameter("password")
             .permitAll();

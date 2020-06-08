@@ -28,6 +28,12 @@ public final class MicroServiceConstants {
 	//匿名用户
 	public static final String NO_NAME_USER = "microservice@microserviceedu.com";
 
+	//登录状态
+	public static final String LOGIN_STATUS = "loginStatus";
+	//已登录状态
+	public static final String LOGIN_STATUS_ON = "1";
+	//非登录状态
+	public static final String LOGIN_STATUS_OFF = "0";
 
 
 

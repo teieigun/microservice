@@ -60,15 +60,18 @@ public class VideoControll {
 
 		//用户账户取得
 		UserDetails userDetails = SecurityUtil.getUserDetails();
-		SessionContext.setAttribute(request, sessionId,SecurityUtil.getUserDetails());
 
 		//用户未登录的情况,用匿名用户邮件代替
 		if(userDetails==null || userDetails.getUsername().isEmpty()){
 			email = MicroServiceConstants.NO_NAME_USER;
+			//登录状态设定 未登录
+			model.addAttribute(MicroServiceConstants.LOGIN_STATUS,MicroServiceConstants.LOGIN_STATUS_OFF);
+
 		}else{
 			email = userDetails.getUsername();
+			//登录状态设定 已登录
+			model.addAttribute(MicroServiceConstants.LOGIN_STATUS,MicroServiceConstants.LOGIN_STATUS_ON);
 		}
-
 
 		if(videoNm==null || videoNm.isEmpty()){
 			topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode,email);
