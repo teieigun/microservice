@@ -78,7 +78,7 @@ public class RegisterControll {
             model.addAttribute("validationError", errorList);
             return reString;
         }
-        reString = "redirect:/index";
+        reString = "redirect:/login";
         service.setNewPasswd(form.passwd,form.validateCode);
 
         return reString;
