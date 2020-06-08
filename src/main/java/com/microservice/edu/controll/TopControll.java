@@ -1,14 +1,10 @@
 package com.microservice.edu.controll;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
-import com.microservice.edu.form.LoginForm;
-import com.microservice.edu.pojo.CourseMasterPojo;
-import com.microservice.edu.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +15,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.microservice.edu.form.LoginForm;
+import com.microservice.edu.pojo.CourseMasterPojo;
 import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.service.TopPageService;
-
-import com.microservice.edu.web.SessionContext;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Security;
-import java.util.List;
+import com.microservice.edu.util.SecurityUtil;
+import com.microservice.edu.util.SessionContext;
 
 
 @Controller

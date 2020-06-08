@@ -5,10 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.microservice.edu.form.comments.CommentsReply;
 import com.microservice.edu.form.comments.CommentsRoot;
@@ -25,10 +30,9 @@ import com.microservice.edu.service.CommentService;
 import com.microservice.edu.service.WatchVideoService;
 import com.microservice.edu.util.LogUtil;
 import com.microservice.edu.util.ResultDTUtils;
+import com.microservice.edu.util.SessionContext;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.multipart.MultipartFile;
-import com.microservice.edu.web.SessionContext;
 
 /**
  * 点赞问题控制器

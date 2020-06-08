@@ -56,7 +56,7 @@ public class AccountService implements UserDetailsService {
         // 有効なユーザロール情報を取得します。
         List<UserRoleMstPojo> userRoleMstPojoList= null;
         try {
-            userRoleMstPojoList = userRoleMstDao.findByVcd(UserBaseProfilePojo.getEmail());
+            userRoleMstPojoList = userRoleMstDao.findByVcd(UserBaseProfilePojo.email);
         } catch (Exception e) {
             System.out.println("登录认证处理：用户角色信息取得失败。");
         }

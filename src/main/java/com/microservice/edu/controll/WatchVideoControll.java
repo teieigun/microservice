@@ -23,7 +23,8 @@ import com.microservice.edu.service.ProfileService;
 import com.microservice.edu.service.TopPageService;
 import com.microservice.edu.service.WatchVideoService;
 import com.microservice.edu.util.SecurityUtil;
-import com.microservice.edu.web.SessionContext;
+import com.microservice.edu.util.SessionContext;
+
 
 @Controller
 public class WatchVideoControll {
