@@ -3,10 +3,8 @@ package com.microservice.edu.controll;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -80,7 +78,7 @@ public class RegisterControll {
             model.addAttribute("validationError", errorList);
             return reString;
         }
-        reString = "redirect:/video";
+        reString = "redirect:/index";
         service.setNewPasswd(form.passwd,form.validateCode);
 
         return reString;

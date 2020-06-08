@@ -86,7 +86,7 @@ public class VideoControll {
 		model.addAttribute("profileImage",userBaseInfo.profile_image);
 		model.addAttribute("videoType","全部视频");
 
-		return "/video";
+		return "/index";
 	}
 
 
@@ -116,7 +116,7 @@ public class VideoControll {
 
 		model.addAttribute("videoType",listCourseMstPojo.get(0).courseName);
 
-		return "/video";
+		return "/index";
 	}
 
 
