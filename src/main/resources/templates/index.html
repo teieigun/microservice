@@ -98,7 +98,7 @@
 									<div class="title"></div>
 									<div class="sub-row">
 										<span  th:each="smallCategoryTblPojo : ${listSmallCategoryTblPojo}">
-											<a th:href="@{/video(bigCtgCode=${smallCategoryTblPojo.bigCtgCode},smallCtgCode=${smallCategoryTblPojo.smallCtgCode})}" th:text="${smallCategoryTblPojo.smallCtgName}"></a>  &nbsp;&nbsp;|&nbsp;&nbsp;
+											<a th:href="@{/index(bigCtgCode=${smallCategoryTblPojo.bigCtgCode},smallCtgCode=${smallCategoryTblPojo.smallCtgCode})}" th:text="${smallCategoryTblPojo.smallCtgName}"></a>  &nbsp;&nbsp;|&nbsp;&nbsp;
 
 										</span>
 									</div>
