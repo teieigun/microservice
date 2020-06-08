@@ -12,8 +12,9 @@ import java.util.Properties;
  */
 public class SendEmail {
 
-    public static final String FROM = "microservice@ridgestech.co.jp";//发件人的email
-    public static final String PWD = "8jZ&HEYg";//发件人密码
+    //此处不是发信人的地址EMAIL,而是SMTP用户名，用LINUX命令 【#sasldblistusers2】来确认
+    public static final String FROM = "microservice@mail.microserviceedu.com";//发件人的email
+    public static final String PWD = "DuezWi4r";//发件人密码
 
     /**
      * 获取Session
@@ -21,16 +22,11 @@ public class SendEmail {
      */
     private static Session getSession() {
 
-        final String username = "microservice@ridgestech.co.jp";
-        final String password = "8jZ&HEYg";
-
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp18.gmoserver.jp");
+        props.put("mail.smtp.host", "mail.microserviceedu.com");
         props.put("mail.smtp.port", "587");
-
-
 
         Authenticator authenticator = new Authenticator() {
             @Override

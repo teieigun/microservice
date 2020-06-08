@@ -65,6 +65,6 @@ public class Account implements UserDetails {
     /** アカウントが無効の場合、false */
 	@Override
 	public boolean isEnabled() {
-		return Integer.parseInt(this.userPojo.getEnable()) == 0;
+		return Integer.parseInt(this.userPojo.getEnable()) == 1;
 	}
 }

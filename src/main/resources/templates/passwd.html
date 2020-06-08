@@ -2,7 +2,7 @@
 <html lang="cn" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>微服私访</title>
+<title>微服教育</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -15,121 +15,25 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/responsive.css">
 <link rel="stylesheet" type="text/css" href="css/color.css">
+<link rel="stylesheet" type="text/css" href="css/mse.css">
 </head>
 <body>
 
 <div class="wrapper">
-	<header>
-		<div class="top_bar">
-			<div class="container">
-				<div class="top_header_content">
-					<div class="menu_logo">
-						<a href="#" title="" class="menu">
-							<i class="icon-menu"></i>
-						</a>
-						<a href="index.html" title="" class="logo">
-							<img src="images/logo.png" alt="">
-						</a>
-					</div><!--menu_logo end-->
-					<ul class="controls-lv">
-						<li>
-							<a href="#" title=""><i class="icon-message"></i></a>
-						</li>
-						<li>
-							<a href="#" title=""><i class="icon-notification"></i></a>
-						</li>
-						<li class="user-log">
-							<div class="user-ac-img">
-								<img src="images/resources/user-img.png" alt="">
-							</div>
-							<div class="account-menu">
-								<h4>AZYRUSMAX <span class="usr-status">PRO</span></h4>
-								<div class="sd_menu">
-									<ul class="mm_menu">
-										<li>
-											<span>
-												<i class="icon-user"></i>
-											</span>
-											<a href="#" title="">My Channel</a>
-										</li>
-										<li>
-											<span>
-												<i class="icon-paid_sub"></i>
-											</span>
-											<a href="#" title="">Paid subscriptions</a>
-										</li>
-										<li>
-											<span>
-												<i class="icon-settings"></i>
-											</span>
-											<a href="#" title="">Settings</a>
-										</li>
-										<li>
-											<span>
-												<i class="icon-logout"></i>
-											</span>
-											<a href="#" title="">Sign out</a>
-										</li>
-									</ul>
-								</div><!--sd_menu end-->
-								<div class="sd_menu scnd">
-									<ul class="mm_menu">
-										<li>
-											<span>
-												<i class="icon-light"></i>
-											</span>
-											<a href="#" title="">Dark Theme</a>
-											<label class="switch">
-												<input type="checkbox">
-											  	<b class="slider round"></b>
-											</label>
-										</li>
-										<li>
-											<span>
-												<i class="icon-language"></i>
-											</span>
-											<a href="#" title="">Language</a>
-										</li>
-										<li>
-											<span>
-												<i class="icon-feedback"></i>
-											</span>
-											<a href="#" title="">Send feedback</a>
-										</li>
-										<li>
-											<span>
-												<i class="icon-location"></i>
-											</span>
-											<a href="#" title="">India</a>
-											<i class="icon-arrow_below"></i>
-										</li>
-									</ul>
-								</div><!--sd_menu end-->
-								<div class="restricted-mode">
-									<h4>Restricted Mode</h4>
-									<label class="switch">
-										<input type="checkbox" checked>
-									  	<span class="slider round"></span>
-									</label>
-									<div class="clearfix"></div>
-								</div><!--restricted-more end-->
-							</div>
-						</li>
-						<li>
-							<a href="/login" title="" class="btn-default">登录</a>
-						</li>
-					</ul><!--controls-lv end-->
-					<div class="clearfix"></div>
-				</div><!--top_header_content end-->
-			</div>
-		</div><!--header_content end-->
-	</header><!--header end-->
 	<section>
-
 		<div class="login_form" id="login_form">
+
+			<div class="hd-lg">
+				<div style="align-content: center" th:if="${validationError}" th:each="error : ${validationError}">
+					<span style="color:#bf5757;" th:text="${error}"></span>
+					<hr />
+				</div>
+			</div><!--hd-lg end-->
+
 			<div class="hd-lg">
 				<span>输入登录密码</span>
 			</div><!--hd-lg end-->
+
 			<div class="user-account-pr">
 				<form name="PassForm" method="post" th:action="@{/setPass}">
 					<div class="input-sec">
@@ -142,14 +46,13 @@
 						确认密码：<input type="Password" name="confirmPasswd" placeholder="Confirm Password" />
 					</div>
 
-					<span th:text="${validateCode}"></span>
 					<input th:type="hidden" name="validateCode" th:value="${validateCode}" />
 					<div class="input-sec mb-0">
-						<button type="submit">Login</button>
+						<button type="submit">提交</button>
 					</div><!--input-sec end-->
 				</form>
-			</div><!--user-account end--->
-		</div><!--login end--->
+			</div>
+		</div>
 
 
 	</section><!--form_popup end-->
@@ -175,15 +78,10 @@
 
 </div><!--wrapper end-->
 
-
-
-
-
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
-
 
 </body>
 </html>

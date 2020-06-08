@@ -18,6 +18,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login-success",produces = {"text/plain;charset=UTF-8"})
     public String loginSuccess(){
+
         //提示具体用户名称登录成功
         return getUsername()+" 登录成功";
     }
@@ -65,6 +66,7 @@ public class LoginController {
         if(principal instanceof org.springframework.security.core.userdetails.UserDetails){
             UserDetails userDetails = (UserDetails) principal;
             username = userDetails.getUsername();
+
         }else{
             username = principal.toString();
         }

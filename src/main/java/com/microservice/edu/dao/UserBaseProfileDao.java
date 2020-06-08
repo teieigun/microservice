@@ -1,5 +1,6 @@
 package com.microservice.edu.dao;
 
+import com.microservice.edu.form.ChangePwdForm;
 import com.microservice.edu.pojo.MbrBaseTblPojo;
 import com.microservice.edu.pojo.UserBaseProfilePojo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,13 @@ public class UserBaseProfileDao {
      * @查找信息
      */
 
-    /** DAO */
+    /**
+     * DAO
+     */
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public UserBaseProfilePojo findByVcd(String email) throws ParseException{
+    public UserBaseProfilePojo findByVcd(String email) throws ParseException {
 
         List<UserBaseProfilePojo> list = null;
 
@@ -41,12 +44,19 @@ public class UserBaseProfileDao {
         sql = sql + "   email ";
 
 
-        list = jdbcTemplate.query(sql, new Object[] {email}, new BeanPropertyRowMapper(UserBaseProfilePojo.class));
+        list = jdbcTemplate.query(sql, new Object[]{email}, new BeanPropertyRowMapper(UserBaseProfilePojo.class));
 
-        if(list!=null && list.size()>0){
+        if (list != null && list.size() > 0) {
             return list.get(0);
         }
 
         return new UserBaseProfilePojo();
+    }
+
+    public int updatePasswd(ChangePwdForm cpwdForm) {
+
+        String updateSql = "update user_base_profile t1 SET t1.PASSWORD =? WHERE t1.EMAIL=? and t1.PASSWORD =?";
+        int rows = jdbcTemplate.update(updateSql, new Object[]{cpwdForm.new_pwd, cpwdForm.email, cpwdForm.old_pwd});
+        return rows;
     }
 }

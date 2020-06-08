@@ -19,17 +19,15 @@ public class SlackApiConfiguration {
 
 	private String imagePath="";
 
-	private String imageMakeTempPath="";
+	private String userProfilePath="";
 
 
-    public String getImageMakeTempPath() {
-		return imageMakeTempPath;
+	public String getUserProfilePath() {
+		return userProfilePath;
 	}
-
-	public void setImageMakeTempPath(String imageMakeTempPath) {
-		this.imageMakeTempPath = imageMakeTempPath;
+	public void setUserProfilePath(String userProfilePath) {
+		this.userProfilePath = userProfilePath;
 	}
-
 	public String getFastApi() {
 		return fastApi;
 	}

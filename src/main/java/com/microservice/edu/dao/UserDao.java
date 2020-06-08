@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.pojo.UserPojo;
 /**
  *
@@ -34,7 +35,7 @@ public class UserDao {
     private String validateCode;//激活码
     private Date  registerTime;//注册时间
      */
-    public void saveUserInfo(UserPojo user){
+    public void saveProfile(UserPojo user){
 
         String insertSql = " INSERT INTO user_base_profile " +
                 "(EMAIL, STATUS, VALIDATE_CODE, REGISTER_TIME) VALUES(?,?,?,?)";
@@ -42,6 +43,25 @@ public class UserDao {
         jdbcTemplate.update(insertSql,new Object[] {user.getEmail(),user.getStatus(),user.getValidateCode(),user.getRegisterTime() });
 
     }
+
+    public void saveBaseInfo(String email){
+
+        String insertSql = " INSERT INTO user_base_info " +
+                "(EMAIL) VALUES(?)";
+
+        jdbcTemplate.update(insertSql,new Object[] {email });
+
+    }
+
+    public void saveRoleInfo(String email){
+
+        String insertSql = " INSERT INTO user_role_mst " +
+                "(EMAIL) VALUES(?)";
+
+        jdbcTemplate.update(insertSql,new Object[] {email});
+
+    }
+
 
     /**
      * @更新 user
@@ -67,6 +87,12 @@ public class UserDao {
         jdbcTemplate.update(updateSql,new Object[] {status,email});
     }
 
+    public void updateUserProfileImage(String email,String imagePath){
+
+        String updateSql = " update user_base_info set profile_image=? where email=? ";
+
+        jdbcTemplate.update(updateSql,new Object[] {imagePath,email});
+    }
 
 
     /**
@@ -117,5 +143,36 @@ public class UserDao {
             return  list.get(0);
         }
         return new UserPojo();
+    }
+
+    /**
+     * @throws ParseException
+     * @查找信息
+     */
+    public UserBaseInfo findUserInofByPk(String email) throws ParseException{
+
+        List<UserBaseInfo> list = null;
+
+		String sql = "select ";
+		sql = sql + "    email, ";
+		sql = sql + "    mb_name, ";
+		sql = sql + "    mb_sex, ";
+		sql = sql + "    mb_phone, ";
+		sql = sql + "    mb_wechat, ";
+		sql = sql + "    res_list, ";
+		sql = sql + "    profile_image, ";
+		sql = sql + "    create_name, ";
+		sql = sql + "    create_date, ";
+		sql = sql + "    update_name, ";
+		sql = sql + "    update_date, ";
+		sql = sql + "    del ";
+		sql = sql + "from user_base_info where email = ?";
+
+        list = jdbcTemplate.query(sql, new Object[] {email}, new BeanPropertyRowMapper(UserBaseInfo.class));
+
+        if(list !=null && list.size() > 0) {
+            return  list.get(0);
+        }
+        return new UserBaseInfo();
     }
 }

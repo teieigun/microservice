@@ -1,53 +1,40 @@
 package com.microservice.edu.form;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import lombok.Data;
 
+import javax.validation.constraints.*;
+
+@Data
 public class PassForm {
 
+	@NotBlank(message = "用户名不能为空")
+	@Email(message = "请输入邮箱地址")
 	public String email;
 
 	/** 密码 */
-	@NotBlank (message = "用户密码不能为空")
+	@NotBlank(message = "密码:请输入密码")
+	@Pattern(message = "密码:只能输入英数字和记号", regexp = "^[-_@*&!A-Za-z0-9]+$")
+	@Size(message = "密码:密码要8文字以上", min=8)
 	public String passwd;
 
 	/** 确认密码 */
-	@NotBlank (message = "密码不符")
+	@NotBlank(message = "确认密码:请输入确认密码")
+	@Pattern(message = "确认密码:只能输入英数字和记号", regexp = "^[-_@*&!A-Za-z0-9]+$")
+	@Size(message = "确认密码:密码要8文字以上", min=8)
 	public String confirmPasswd;
 
 	/** 验证码 */
-	@NotBlank (message = "请重新注册")
 	public String validateCode;
 
-	public String getEmail() {
-		return email;
-	}
+	/**
+	 * バリデーション：階数の文字数
+	 */
+	@AssertTrue(message = "确认密码:密码不一致")
+	public boolean isValidPasswd() {
 
-	public String getPasswd() {
-		return passwd;
-	}
-
-	public String getConfirmPasswd() {
-		return confirmPasswd;
-	}
-
-	public String getValidateCode() {
-		return validateCode;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
-
-	public void setConfirmPasswd(String confirmPasswd) {
-		this.confirmPasswd = confirmPasswd;
-	}
-
-	public void setValidateCode(String validateCode) {
-		this.validateCode = validateCode;
+		if (!passwd.equals(confirmPasswd)) {
+			return false;
+		}
+		return true;
 	}
 }

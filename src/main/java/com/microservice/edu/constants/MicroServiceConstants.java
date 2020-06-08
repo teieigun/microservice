@@ -13,4 +13,38 @@ public final class MicroServiceConstants {
 
 	//用户状态 2：通过认证状态的用户
 	public static final int USER_STATUS_PASSED =2;
+
+	//套餐ID从 90000 到 99999
+	public static final int COURSE_ID_FROM =90000;
+
+	//套餐ID从 90000 到 99999
+	public static final int COURSE_ID_TO =99999;
+
+	//执行成功
+	public static final String EXECUTE_MESSAGE = "executeMessage";
+	//执行失败
+	public static final String ERROR_MESSAGE = "errorMessage";
+
+
+
+
+	//--------------------------------环境切换------------------------------------/
+	//开发环境
+	//public static final String IMAGE_PATH="file:///C:\\microservice\\profile\\";
+
+	//开发环境
+	//public static final String UPLOAD_PATH="file:///C:\\upload\\";
+
+	//开发环境
+	//public static final String HTTP_URL ="http://localhost:8080";
+
+
+	//真实环境
+	public static final String IMAGE_PATH="file:/var/www/html/img/";
+	//真实环境
+	public static final String HTTP_URL ="http://www.microserviceedu.com";
+	//真实环境
+	public static final String UPLOAD_PATH="file:/var/www/html/upload/";
+
+	//---------------------------------------------------------------------------/
 }

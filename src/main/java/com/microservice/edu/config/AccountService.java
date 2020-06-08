@@ -39,7 +39,7 @@ public class AccountService implements UserDetailsService {
     public UserDetails loadUserByUsername(String mailaddress) throws UsernameNotFoundException {
 
         if (mailaddress == null || "".equals(mailaddress)) {
-            throw new UsernameNotFoundException("メールアドレスを入力してください。");
+            throw new UsernameNotFoundException("请输入邮箱地址");
         }
 
         // 有効なユーザ情報を取得します。
@@ -47,10 +47,10 @@ public class AccountService implements UserDetailsService {
         try {
             UserBaseProfilePojo = userBaseProfileDao.findByVcd(mailaddress);
         } catch (Exception e) {
-            System.out.println("ログイン認証処理：ユーザ情報の取得に失敗しました。");
+            System.out.println("登录认证处理：用户登录失败！");
         }
         if (UserBaseProfilePojo == null) {
-            throw new UsernameNotFoundException("ユーザ情報の取得に失敗しました。");
+            throw new UsernameNotFoundException("用户信息取得失败");
         }
 
         // 有効なユーザロール情報を取得します。
@@ -58,10 +58,10 @@ public class AccountService implements UserDetailsService {
         try {
             userRoleMstPojoList = userRoleMstDao.findByVcd(UserBaseProfilePojo.getEmail());
         } catch (Exception e) {
-            System.out.println("ログイン認証処理：ユーザロール情報の取得に失敗しました。");
+            System.out.println("登录认证处理：用户角色信息取得失败。");
         }
         if (userRoleMstPojoList.isEmpty()) {
-            throw new UsernameNotFoundException("ユーザロール情報の取得に失敗しました。");
+            throw new UsernameNotFoundException("用户角色信息取得失败");
         }
 
         // ユーザロール情報を設定します。

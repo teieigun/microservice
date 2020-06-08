@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div th:fragment="question()" class="cmt-bx">
+			<div id="app" class="container">
+				<div class="layui-container">
+					<div style="width: 755px;" v-if="flg==1">
+						<p><h1>提问:</h1></p>
+						<hr />
+						<div class="detail-about-cmt">
+							<div class="user-ac-img" style="height: 60px">
+								<span class="fly-avatar">
+									<img :src="'/images/'+info[0].commentsRoot.profile_image" width="60px" height="60px"　alt="用户名">
+								</span>
+								<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
+									<h2> <span class="layui-badge">问题</span></h2>
+									<a href="#" link="">
+										<cite>
+											<span v-html="info[0].commentsRoot.mb_name"></span>
+										</cite>
+									</a>
+									<span v-html="info[0].commentsRoot.days"></span>天前
+								</div>
+							</div>
+						</div>
+						<div class="oneEmptyLine"></div>
+						<span class="span-cmt" v-html="info[0].commentsRoot.content"></span>
+						<div class="oneEmptyLine"></div>
+						<p><h1>回答:</h1></p>
+						<hr />
+						<ul class="fly-list-answer">
+							<li v-for="item in info" v-bind:key="item.question_id">
+								<div v-if="item.question_id !=null" class="detail-about-cmt">
+									<span class="fly-avatar">
+										<img :src="'/images/'+item.profile_image" width="60px" height="60px"　alt="用户名">
+									</span>
+									<div class="fly-list-info" style="margin-left:70px;margin-top: 15px;">
+										<h2> <span class="layui-badge">回答</span></h2>
+										<a href="#" link="">
+											<cite>
+												<span v-html="item.mb_name"></span>
+											</cite>
+										</a>
+										<span v-html="item.days"></span>天前
+									</div>
+								</div>
+								<span v-html="item.content"></span>
+							</li>
+						</ul>
+					</div>
+					<div v-if="flg==0" class="layui-row layui-col-space15">
+						<div class="fly-panel">
+							<ul class="fly-list">
+								<li v-for="item in info" v-bind:key="item.id">
+									<a  class="fly-avatar" v-on:click="answer(item.question_id)" >
+										<img :src="'/images/'+item.profile_image"　alt="用户名">
+									</a>
+									<div class="fly-list-info content-item">
+										<span class="layui-badge">问题</span>
+										<a href="#"><span v-html="item.content"></span></a>
+									</div>
+									<div class="fly-list-info">
+										<a href="#"><cite><span v-html="item.mb_name"></span></cite> </a>
+										<span v-html="item.days"></span>天前
+										<span class="fly-list-nums">
+											<i class="iconfont icon-pinglun1" title="回答"></i> <span v-html="item.cnt"></span>人回答
+										</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div id="demo1"></div>
+					<div style="width: 755px;">
+						<div>
+							<form class="layui-form" method="post" th:action="@{/video/question}">
+								<div class="layui-form-item">
+
+									<textarea name="content" id="demo" class="layui-hide"></textarea>
+									<input type="hidden" id="lessonId" name="lesson_id"  th:value="${LessonChapterPojoOne.lessonId}" />
+									<input type="hidden" id="chapterNo" name="chapter_no" th:value="${LessonChapterPojoOne.chapterNo}" />
+									<input type="hidden" id="questionId" name="question_id" value="" />
+								</div>
+								<button class="layui-btn">提交</button>
+								<a class="layui-btn" id="getChoose">获取选中内容</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

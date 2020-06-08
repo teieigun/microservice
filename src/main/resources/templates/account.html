@@ -7,7 +7,6 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<link rel="icon" href="images/Favicon.png">
-
 		<link rel="stylesheet" type="text/css" href="css/animate.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/fontello.css">
@@ -15,17 +14,94 @@
 		<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
 		<link rel="stylesheet" type="text/css" href="css/video-js.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/responsive.css">
 		<link rel="stylesheet" type="text/css" href="css/color.css">
 		<link rel="stylesheet" type="text/css" href="css/layui.css">
-		<link rel="stylesheet" type="text/css" href="css/tei.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="css/mse.css">
 
+		<style>
+			.ycupload-main1 {
+				overflow: hidden;
+				padding-left: 25px
+			}
+			.ycupload-span1 {
+				float: left;
+				color: #ff5a5a;
+				font-size: 14px;
+				line-height: 60px;
+				font-weight: 900;
+				margin-right: 7px
+			}
+			#clipBtn {
+				width: 100px;
+				height: 36px;
+				border-radius: 4px;
+				background-color: #ff8a00;
+				color: #fff;
+				font-size: 14px;
+				text-align: center;
+				line-height: 36px;
+				outline: 0
+			}
+			.clipButton {
+				height: 56px;
+				line-height: 36px;
+				text-align: center;
+				padding-top: 8px
+			}
+			.clipBgn {
+				width: 100%;
+				margin: 10% auto;
+				background-color: #fff;
+				overflow: hidden;
+				border-radius: 4px
+			}
+			.cover-wrap {
+				display: none;
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, .4);
+				z-index: 10000000;
+				text-align: center
+			}
+			.clipRow2 {
+				min-height: 1px;
+				line-height: 100px;
+				text-align: left;
+				position: relative
+			}
+			.clipContent {
+				width: 80px;
+				height: 30px;
+				border-radius: 4px;
+				background-color: #ff8a00;
+				color: #fff;
+				font-size: 13px;
+				text-align: center;
+				line-height: 32px;
+				outline: 0;
+				position: relative
+			}
+			#file {
+				cursor: pointer;
+				opacity: 0;
+				filter: alpha(opacity=0);
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0
+			}
+		</style>
 	</head>
+
 	<body>
 		<div class="wrapper">
-
 			<header>
-				<div th:replace="/common/tob_bar.html::top_bar()"></div><!--header_content end-->
+				<div th:replace="/common/top_bar.html::top_bar()"></div><!--header_content end-->
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
 			</header><!--header end-->
 			<div th:replace="/common/side_menu.html::side_menu()"></div><!--header_content end-->
@@ -37,419 +113,226 @@
 							<div class="sidebar">
 								<div class="widget video_info pr sp">
 									<span class="vc_hd">
-										<img src="images/resources/sn.png" alt="">
+										<img th:src="@{${'/images/'+profileImage}}" />
 									</span>
 									<h4>郑英群</h4>
 								</div><!--video_info pr-->
 								<div class="widget account">
 									<h2 class="hd-uc"> <i class="icon-user">我的信息</i> </h2>
 									<ul>
-										<li><a href="#">变更密码</a></li>
-										<li><a href="#">基本信息</a></li>
-										<li><a href="#">语言</a></li>
-										<li><a href="#">技术简历</a></li>
-										<li><a href="#">职业简历</a></li>
+										<li class="a1"><a href="#">变更密码</a></li>
+										<li class="a1"><a href="#">个人信息</a></li>
+										<li class="a1"><a href="#">开发语言</a></li>
 									</ul>
 								</div><!--account end-->
 							</div><!--sidebar end-->
 						</div>
 						<div class="col-lg-9">
 							<div class="video-details">
-								<div class="latest_vidz">
-									<div class="latest-vid-option">
-										<h2 class="hd-op"> 最近观看过的课程</h2>
-										<a href="#" title="" class="op-1">Video Details</a>
-										<a href="#" title="" class="op-2"> Options</a>
-										<div class="clearfix"></div>
-									</div><!--latest-vid-option end-->
-									<div class="vidz_list">
-										<div class="tb-pr">
-											<div class="row">
-												<div class="col-xl-8 col-lg-9 col-md-9 col-sm-12">
-													<div class="tab-history acct_page">
-														<div class="videoo">
-															<div class="vid_thumbainl ms br">
-																<a href="single_video_page.html" title="">
-																	<img src="images/resources/vide1.png" alt="">
-																	<span class="vid-time">30:32</span>
-																	<span class="watch_later">
-																		<i class="icon-watch_later_fill"></i>
-																	</span>
-																</a>
-															</div><!--vid_thumbnail end-->
-															<div class="video_info ms br">
-																<h3><a href="single_video_page.html" title="">HTML基础教程</a></h3>
-															</div>
-															<div class="clearfix"></div>
-														</div><!--videoo end-->
-													</div>
-												</div>
-												<div class="col-xl-4 col-lg-3 col-md-3 col-sm-12">
-													<div class="icon-list">
-														<ul>
-															<li><a href="#" title=""><i class="icon-play"></i></a></li>
-															<li><a href="#" title=""><i class="icon-pencil"></i></a></li>
-															<li><a href="#" title=""><i class="icon-cancel"></i></a></li>
-														</ul>
-													</div><!--icon-list end-->
-												</div>
-											</div>
-										</div><!--tb-pr end-->
-										<div class="tb-pr">
-											<div class="row">
-												<div class="col-xl-8 col-lg-9 col-md-9 col-sm-12">
-													<div class="tab-history acct_page">
-														<div class="videoo">
-															<div class="vid_thumbainl ms br">
-																<a href="single_video_page.html" title="">
-																	<img src="images/resources/vide2.png" alt="">
-																	<span class="vid-time">30:32</span>
-																	<span class="watch_later">
-																		<i class="icon-watch_later_fill"></i>
-																	</span>
-																</a>
-															</div><!--vid_thumbnail end-->
-															<div class="video_info ms br">
-																<h3><a href="single_video_page.html" title="">CSS基础教程</a></h3>
-															</div>
-															<div class="clearfix"></div>
-														</div><!--videoo end-->
-													</div>
-												</div>
-												<div class="col-xl-4 col-lg-3 col-md-3 col-sm-12">
-													<div class="icon-list">
-														<ul>
-															<li><a href="#" title=""><i class="icon-play"></i></a></li>
-															<li><a href="#" title=""><i class="icon-pencil"></i></a></li>
-															<li><a href="#" title=""><i class="icon-cancel"></i></a></li>
-														</ul>
-													</div><!--icon-list end-->
-												</div>
-											</div>
-										</div><!--tb-pr end-->
-										<div class="tb-pr">
-											<div class="row">
-												<div class="col-xl-8 col-lg-9 col-md-9 col-sm-12">
-													<div class="tab-history acct_page">
-														<div class="videoo">
-															<div class="vid_thumbainl ms br">
-																<a href="single_video_page.html" title="">
-																	<img src="images/resources/vide3.png" alt="">
-																	<span class="vid-time">30:32</span>
-																	<span class="watch_later">
-																		<i class="icon-watch_later_fill"></i>
-																	</span>
-																</a>
-															</div><!--vid_thumbnail end-->
-															<div class="video_info ms br">
-																<h3><a href="single_video_page.html" title="">JAVA基础教程</a></h3>
-															</div>
-															<div class="clearfix"></div>
-														</div><!--videoo end-->
-													</div>
-												</div>
-												<div class="col-xl-4 col-lg-3 col-md-3 col-sm-12">
-													<div class="icon-list">
-														<ul>
-															<li><a href="#" title=""><i class="icon-play"></i></a></li>
-															<li><a href="#" title=""><i class="icon-pencil"></i></a></li>
-															<li><a href="#" title=""><i class="icon-cancel"></i></a></li>
-														</ul>
-													</div><!--icon-list end-->
-												</div>
-											</div>
-										</div><!--tb-pr end-->
-									</div><!--vidz_list end-->
-								</div><!--latest_vidz end-->
-								<div class="change-pswd">
-									<h2 class="hd-op">变更密码</h2>
-									<form>
-										<div class="ch-pswd">
-											<input type="password" name="old_password" placeholder="旧密码">
-										</div><!--ch-pswd end-->
-										<div class="ch-pswd">
-											<input type="password" name="new_password" placeholder="新密码">
-										</div><!--ch-pswd end-->
-										<div class="ch-pswd">
-											<input type="password" name="confirm_password" placeholder="确认新密码">
-										</div><!--ch-pswd end-->
-										<div class="ch-pswd">
-											<button type="submit"> 变更</button>
-										</div><!--ch-pswd end-->
-									</form>
-								</div><!--change-pswd end-->
+								<div class="tb-pr">
+									<h2>更新头像</h2>
+									<div class="hd-op">
+										<div class="clipRow2" style="" ontouchstart="">
+											<div class="cover-wrap" style="display: none;">
+												<div class="clipBgn" style="width: 40%;">
 
-
-								<div class="account-details">
-									<div class="account_details_content">
-										<h2 class="hd-op">个人信息</h2>
-										<h4 class="slct-hd">国家</h4>
-										<div class="slct_optz">
-											<select>
-												<option>中国</option>
-												<option>日本</option>
-												<option>美国</option>
-											</select>
+														<div id="clipArea" style="margin: 3px; height: 520px; user-select: none; overflow: hidden; position: relative;">
+															<div class="photo-clip-view" style="position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -214px; margin-top: -160.5px;">
+																<div class="photo-clip-moveLayer" style="transform-origin: 0px 0px; transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) scale(1) translateZ(0px);">
+																	<div class="photo-clip-rotateLayer"></div>
+																</div>
+															</div>
+															<div class="photo-clip-mask" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; pointer-events: none;">
+																<div class="photo-clip-mask-left" style="position: absolute; left: 0px; right: 50%; top: 50%; bottom: 50%; width: auto; height: 321px; margin-right: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+																<div class="photo-clip-mask-right" style="position: absolute; left: 50%; right: 0px; top: 50%; bottom: 50%; margin-left: 214px; margin-top: -160.5px; margin-bottom: -160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+																<div class="photo-clip-mask-top" style="position: absolute; left: 0px; right: 0px; top: 0px; bottom: 50%; margin-bottom: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+																<div class="photo-clip-mask-bottom" style="position: absolute; left: 0px; right: 0px; top: 50%; bottom: 0px; margin-top: 160.5px; background-color: rgba(0, 0, 0, 0.5);"></div>
+																<div class="photo-clip-area" style="border: 1px dashed rgb(221, 221, 221); position: absolute; left: 50%; top: 50%; width: 428px; height: 321px; margin-left: -215px; margin-top: -161.5px;"></div>
+															</div>
+														</div>
+													<div class="clipButton" style="">
+														<button id="clipBtn" style="">选择照片</button>
+													</div>
+												</div>
+											</div>
+											<div style="display:inline;">
+												<div id="view" class="uploadImage"  ></div>
+												<div class="uploadImage2" ><img th:src="@{${'/images/'+profileImage}}" /></div>
+											</div>
+											<div style="height:10px;"></div>
 										</div>
+										<div class="clipContent" style="">
+											选择照片
+											<input type="file" id="file" name="file" style="" accept="image/*">
+											<form method="post" name="imageForm" th:action="@{/video/upload}" >
+												<input type="hidden" id="imageId" name="imageCode" value=""></input>
+											</form>
+										</div>
+									</div>
+
+									<div class="ch-pswd">
+										<button type="button" onclick="changeImage();"> 变更</button>
+									</div>
+								</div>
+
+								<div class="tb-pr">
+									<h2>变更密码</h2>
+									<div class="error-message-area" th:if="${#fields.hasErrors('${cpwd.*}')}">
+										<div class="error-message" th:each="error : ${#fields.detailedErrors('${cpwd.*}')}" th:text="${error.message}"></div>
+									</div>
+									<div class="error-message-area" th:if="${errorMsg!=null}">
+										<div class="error-message" th:text="${errorMsg}"></div>
+									</div>
+									<div class="execute-message-area" th:if="${executeMsg!=null}">
+										<div class="execute-message" th:text="${executeMsg}"></div>
+									</div>
+									<div class="hd-op">
+										<form method="post" name="changePasswd" th:action="@{/video/cpwd}" >
+											<input type="hidden" name="email" th:value="${username}">
+											<div class="ch-pswd">
+												<input type="password" name="old_pwd" placeholder="旧密码">
+											</div><!--ch-pswd end-->
+											<div class="ch-pswd">
+												<input type="password" name="new_pwd" placeholder="新密码">
+											</div><!--ch-pswd end-->
+											<div class="ch-pswd">
+												<input type="password" name="confirm_pwd" placeholder="确认新密码">
+											</div><!--ch-pswd end-->
+										</form>
+									</div>
+									<div class="ch-pswd">
+										<button type="button" onclick="changePass();"> 变更</button>
+									</div><!--ch-pswd end-->
+								</div>
+
+								<div class="tb-pr">
+									<h2>个人信息(尚未实装)</h2>
+									<div class="hd-op">
+										<h4 class="slct-hd">姓名</h4>
+										<input type="text" value="" placeholder="姓名"></input>
+
+										<div class="oneEmptyLine"></div>
+
+										<h4 class="slct-hd">国籍</h4>
+										<input type="text" value="" placeholder="中国"></input>
+
+										<div class="oneEmptyLine"></div>
 										<h4 class="slct-hd">性别</h4>
-										<ul class="gend">
-											<li>
-												<div class="chekbox-lg">
-													<label>
-														<input type="radio" name="gender" value="man">
-														<b class="checkmark"></b>
-														<span>男</span>
-													</label>
-												</div>
-											</li>
-											<li>
-												<div class="chekbox-lg">
-													<label>
-														<input type="radio" name="gender" value="female">
-														<b class="checkmark"> </b>
-														<span>女</span>
-													</label>
-												</div>
-											</li>
-										</ul>
-										<h4 class="slct-hd">邮件</h4>
-										<div>
-											<select>
-												<option> ABGC</option>
-												<option> ABGC</option>
-												<option> ABGC</option>
-												<option> ABGC</option>
-											</select>
-										</div>
 
+										<input type="radio" name="sex" value="girl" checked="checked">男性
+										<input type="radio" name="sex" value="boy">女性
+
+										<div class="oneEmptyLine"></div>
 										<h4 class="slct-hd">生年月日</h4>
-										<input type="text" class="demo-input" placeholder="请选择日期" id="birthday">
-										<div style="margin: 30px"></div>
-										<h4 class="slct_optz">技术简历</h4>
-										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-											<div class="layui-collapse" lay-filter="test">
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">编程语言</h2>
-													<div class="layui-colla-content">
-														<div id="test7" class="demo-tree"></div>
-													</div>
-												</div>
+										 <input type="date"></input>
 
+									</div>
+									<div class="ch-pswd">
+										<button type="button" onclick="changeProgram();"> 变更</button>
+									</div>
+								</div>
+								<div class="tb-pr">
+									<h4 class="slct_optz">开发语言(尚未实装)</h4>
+									<div class="suojin">
+										<form method="post" name="programForm" th:action="@{/account/program}" >
+										<div class="suojin">
+											<div th:replace="/common/program.html::program()"></div>
+										</div>
+										</form>
+									</div>
+									<div class="ch-pswd">
+										<button type="button" onclick="changeProgram();"> 变更</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
+		</div>
 
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">取得资格</h2>
-													<div class="layui-colla-content">
-														<p>资格1</p>
-													</div>
-												</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/iscroll-zoom.js"></script>
+		<script src="js/hammer.js"></script>
+		<script src="js/lrz.all.bundle.js"></script>
+		<script src="js/jquery.photoClip.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/flatpickr.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/script2.js"></script>
 
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">就职过哪家公司？</h2>
-													<div class="layui-colla-content">
-														<p>微软，IBM</p>
-													</div>
-												</div>
+		<script type="text/javascript">
+			//上传封面
+			var clipArea = new bjj.PhotoClip("#clipArea", {
+				size: [80, 80], // 截取框的宽和高组成的数组。默认值为[260,260]
+				outputSize: [80, 80], // 输出图像的宽和高组成的数组。默认值为[0,0]，表示输出图像原始大小
+				//outputType: "jpg", // 指定输出图片的类型，可选 "jpg" 和 "png" 两种种类型，默认为 "jpg"
+				file: "#file", // 上传图片的<input type="file">控件的选择器或者DOM对象
+				view: "#view", // 显示截取后图像的容器的选择器或者DOM对象
+				ok: "#clipBtn", // 确认截图按钮的选择器或者DOM对象
+				loadStart: function() {
+					// 开始加载的回调函数。this指向 fileReader 对象，并将正在加载的 file 对象作为参数传入
+					$('.cover-wrap').fadeIn();
+					console.log("照片读取中");
+				},
+				loadComplete: function() {
+					// 加载完成的回调函数。this指向图片对象，并将图片地址作为参数传入
+					console.log("照片读取完成");
 
-												<div class="layui-colla-item">
-												<h2 class="layui-colla-title">参加过哪些项目？</h2>
-												<div class="layui-colla-content">
-												  <p>东京都医疗费</p>
-												</div>
-											  </div>
-											</div>
-										</fieldset>
-
-
-										<h4 class="slct_optz">语言</h4>
-										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-											<div class="layui-collapse" lay-filter="test">
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">编程语言</h2>
-													<div class="layui-colla-content">
-														<div id="test7" class="demo-tree"></div>
-													</div>
-												</div>
-
-
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">取得资格</h2>
-													<div class="layui-colla-content">
-														<p>资格1</p>
-													</div>
-												</div>
-
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">就职过哪家公司？</h2>
-													<div class="layui-colla-content">
-														<p>微软，IBM</p>
-													</div>
-												</div>
-
-												<div class="layui-colla-item">
-												<h2 class="layui-colla-title">参加过哪些项目？</h2>
-												<div class="layui-colla-content">
-												  <p>东京都医疗费</p>
-												</div>
-											  </div>
-											</div>
-										</fieldset>
-
-
-										<h4 class="slct_optz">职业简历</h4>
-										<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-											<div class="layui-collapse" lay-filter="test">
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">编程语言</h2>
-													<div class="layui-colla-content">
-														<div id="test7" class="demo-tree"></div>
-													</div>
-												</div>
-
-
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">取得资格</h2>
-													<div class="layui-colla-content">
-														<p>资格1</p>
-													</div>
-												</div>
-
-												<div class="layui-colla-item">
-													<h2 class="layui-colla-title">就职过哪家公司？</h2>
-													<div class="layui-colla-content">
-														<p>微软，IBM</p>
-													</div>
-												</div>
-
-												<div class="layui-colla-item">
-												<h2 class="layui-colla-title">参加过哪些项目？</h2>
-												<div class="layui-colla-content">
-												  <p>东京都医疗费</p>
-												</div>
-											  </div>
-											</div>
-										</fieldset>
-
-	</div><!--Account Details end-->
-</div><!--video-details end-->
-
-
-			</section><!--user-account end-->
-						<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
-
-		</div><!--wrapper end-->
-
-		    <script src="js/laydate.js"></script> <!-- 改成你的路径 -->
-		    <script>
-				lay('#version').html('-v'+ laydate.v);
-
-				//执行一个laydate实例
-				laydate.render({
-				  elem: '#birthday' //指定元素
+				},
+				//loadError: function(event) {}, // 加载失败的回调函数。this指向 fileReader 对象，并将错误事件的 event 对象作为参数传入
+				clipFinish: function(dataURL) {
+					// 裁剪完成的回调函数。this指向图片对象，会将裁剪出的图像数据DataURL作为参数传入
+					$('.cover-wrap').fadeOut();
+					$('.uploadImage').css('display','block');
+					$('.uploadImage2').css('display','none');
+					$('#view').css('background-size', '100% 100%');
+					console.log(dataURL); //输出图像base64
+				}
 			});
-			</script>
-			<script src="js/jquery.min.js"></script>
-			<script src="js/popper.js"></script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/flatpickr.js"></script>
-			<script src="js/script.js"></script>
-			<script src="js/layui.js"></script>
 
+			$(function(){
+			    $('tbody').sortable();
 
-			<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-			<script>
-				layui.use(['element', 'layer'], function(){
-				  var element = layui.element;
-				  var layer = layui.layer;
+			    $('#addRow').click(function(){
+			        var html = '<tr><td><input id="languageInput" type="text" name="name"></td><td><select name="example" style="height: 30px;"><option value="1">1 years</option><option value="2">2 years</option><option value="3">over 3 years</option></select></td><td><button class="removeLanguage">-</button></td></tr>';
+			        $('tbody').append(html);
+			    });
 
-				  //监听折叠
-				  element.on('collapse(test)', function(data){
-				    layer.msg('展开状态：'+ data.show);
-				  });
-				});
+			    $(document).on('click', '.removeLanguage', function() {
+			        $(this).parents('tr').remove();
+			    });
 
-		        function OnLinkClick() {
-		            target = document.getElementById("logoutForm");
-		            target.submit();
-		            return false;
-			        }
+			    $('#getValues').click(function(){
+			        var values = [];
+			        $('input[name="name"]').each(function(i, elem){
+			            values.push($(elem).val());
+			        });
+			        alert(values.join(', '));
+			    });
+			});
 
-		    </script>
+			function changeImage() {
+				if(($('.uploadImage2').css('display')!='inline')){
+					var bgImage = $('#view').css('backgroundImage');
+					document.getElementById("imageId").value = bgImage;
+					document.imageForm.submit();
+				}else{
+					alert("画像を選択してください。");
+				}
 
-		    <script>
-				layui.use(['tree', 'util'], function(){
-				  var tree = layui.tree
-				  ,layer = layui.layer
-				  ,util = layui.util
+			}
+			function OnLinkClick() {
+				target = document.getElementById("logoutForm");
+				target.submit();
+				return false;
+			}
 
-				  //模拟数据2
-				  ,data2 = [{
-				    title: '开发语言'
-				    ,id: 1
-				    ,children: [{
-				      title: 'JAVA'
-				      ,id: 5
-				    },{
-				      title: 'C#'
-				      ,id: 6
-				    },{
-				      title: 'PHP'
-				      ,id: 7
-				    }]
-				  },{
-				    title: '数据库'
-				    ,id: 2
-				    ,checked: true
-				    ,children: [{
-				      title: 'Oracle'
-				      ,id: 8
-				    },{
-				      title: 'Mysql'
-				      ,id: 9
-				    },{
-				      title: 'SqlServer'
-				      ,id: 10
-				    },{
-				      title: 'PostgreSql'
-				      ,id: 11
-				    }]
-				  },{
-				    title: '框架'
-				    ,id: 3
-				    ,children: [{
-				      title: 'Spring boot'
-				      ,id: 12
-				      ,fixed: true
-				    },{
-				      title: 'Struts'
-				      ,id: 13
-				    }]
-				  },{
-				    title: '基盘'
-				    ,id: 4
-				    ,children: [{
-				      title: 'apache'
-				      ,id: 14
-				      ,checked: true
-				    },{
-				      title: 'tomcat'
-				      ,id: 15
-				      ,disabled: true
-				    },{
-				      title: 'nginx'
-				      ,id: 16
-				    }]
-				  }];
-
-				  //开启复选框
-				  tree.render({
-				    elem: '#test7'
-				    ,data: data2
-				    ,showCheckbox: true
-				  });
-
-				});
-			</script>
-
+			function changePass() {
+				document.changePasswd.submit();
+			}
+		</script>
 	</body>
 
 </html>

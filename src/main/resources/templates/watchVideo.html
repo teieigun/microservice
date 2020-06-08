@@ -2,108 +2,77 @@
 <html lang="cn" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>微服私访</title>
+		<title>微服教育</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
+		<meta name="description" content=""/>
+		<meta name="keywords" content=""/>
 		<link rel="icon" href="img/Favicon.png" type="image/x-icon">
 		<link rel="icon" href="images/Favicon.png">
-		<link rel="stylesheet" type="text/css" href="css/animate.css">
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/fontello.css">
-		<link rel="stylesheet" type="text/css" href="css/fontello-codes.css">
-		<link rel="stylesheet" type="text/css" href="css/thumbs-embedded.css">
-		<link rel="stylesheet" type="text/css" href="css/video-js.css">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="css/responsive.css">
-		<link rel="stylesheet" type="text/css" href="css/color.css">
-		<link rel="stylesheet" type="text/css" href="css/layui.css">
-		<link rel="stylesheet" type="text/css" href="css/tei.css">
-		<script src="./js/jquery.min.js"></script>
-		<script>
-		$(document).ready(function(){
-		  $(".video_list_num").mouseenter(function(){
-			this.style.backgroundColor ="#F0F8FF";
-			$(this).find("Button").css('display','block');
-		  });
-		  $(".video_list_num").mouseleave(function(){
-			this.style.backgroundColor = "#F0F8FF";
-			$(this).find("Button").css('display','none');
-		  });
+		<link rel="stylesheet" type="text/css" href="../css/animate.css">
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/fontello.css">
+		<link rel="stylesheet" type="text/css" href="../css/fontello-codes.css">
+		<link rel="stylesheet" type="text/css" href="../css/thumbs-embedded.css">
+		<link rel="stylesheet" type="text/css" href="../css/video-js.css">
+		<link rel="stylesheet" type="text/css" href="../css/style.css">
+		<link rel="stylesheet" type="text/css" href="../css/responsive.css">
+		<link rel="stylesheet" type="text/css" href="../css/color.css">
+		<link rel="stylesheet" type="text/css" href="../css/upload.css">
+		<link rel="stylesheet" type="text/css" href="../css/layui.css">
+		<link rel="stylesheet" type="text/css" href="../css/mse.css">
+		<script src="../js/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-		});
+		<script th:inline="javascript">
+			var lessonId = 0;
+			var chapterNo = 0;
+			var tagFlg = /*[[${tagFlg}]]*/ null;
+			var questionId = /*[[${questionId}]]*/ null;
+			var questions = /*[[${questions}]]*/ null;
+
+
+			$(document).ready(function () {
+				$(".video_list_num").mouseenter(function () {
+					this.style.backgroundColor = "#D0D8DF";
+					$(this).find("Button").css('display', 'block');
+				});
+				$(".video_list_num").mouseleave(function () {
+					this.style.backgroundColor = "#F0F8FF";
+					$(this).find("Button").css('display', 'none');
+				});
+
+				$("#all").click(function () {
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
+					const sectionNo = document.getElementById('sectionNo').value;
+					const url = '/video/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&sectionNo=' + sectionNo +"&tagFlg=1";
+					window.location.href = url;
+
+				});
+
+				$("#design").click(function () {
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
+					const url = 'getListByOwnerId?lessonId=' + lessonId + '&chapterNo=' + chapterNo;
+				});
+
+			});
+
 		</script>
-		<style type="text/css">
-			/*タブ切り替え全体のスタイル*/
-			.tabs {
-				margin-top: 50px;
-				padding-bottom: 5px;
-				background-color: #fff;
-				box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-				width: 850px;
-				margin: 0 auto;}
-
-			/*タブのスタイル*/
-			.tab_item {
-				width: calc(100%/3);
-				height: 50px;
-				border-bottom: 3px solid #5ab4bd;
-				background-color: #d9d9d9;
-				line-height: 50px;
-				font-size: 16px;
-				text-align: center;
-				color: #565656;
-				display: block;
-				float: left;
-				text-align: center;
-				font-weight: bold;
-				transition: all 0.2s ease;
-			}
-			.tab_item:hover {
-				opacity: 0.75;
-			}
-
-			/*ラジオボタンを全て消す*/
-			input[name="tab_item"] {
-				display: none;
-			}
-
-			/*タブ切り替えの中身のスタイル*/
-			.tab_content {
-				display: none;
-				padding: 25px 25px 0;
-				clear: both;
-				overflow: hidden;
-			}
-
-
-			/*選択されているタブのコンテンツのみを表示*/
-			#all:checked ~ #all_content,
-			#programming:checked ~ #programming_content,
-			#design:checked ~ #design_content {
-				display: block;
-			}
-
-			/*選択されているタブのスタイルを変える*/
-			.tabs input:checked + .tab_item {
-				background-color: #5ab4bd;
-				color: #fff;
-			}
-		</style>
-
-
 	</head>
 	<body>
-		<div class="wrapper">
-
+		<form name="videoListForm" method="post">
+			<input type="hidden" id="pageName" value="question"/>
+			<input type="hidden" id="lessonId" th:value="${LessonChapterPojoOne.lessonId}"/>
+			<input type="hidden" id="chapterNo" th:value="${LessonChapterPojoOne.chapterNo}"/>
+			<input type="hidden" id="sectionNo" th:value="${LessonChapterPojoOne.sectionNo}"/>
+		</form>
+		<div id="testVue" class="wrapper">
 			<header>
-				<div th:replace="/common/tob_bar.html::top_bar()"></div><!--header_content end-->
+				<div th:replace="/common/top_bar.html::top_bar()"></div><!--header_content end-->
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
 			</header><!--header end-->
 			<div th:replace="/common/side_menu.html::side_menu()"></div><!--header_content end-->
-
-
-
 			<div th:fragment="videoList()">
 				<section class="mn-sec">
 					<div class="container">
@@ -111,36 +80,49 @@
 							<div class="col-lg-9">
 								<div class="mn-vid-sc single_video">
 									<div class="tabs">
-										<iframe id="videoWindow" width="850" height="722" th:src="${LessonChapterPojoOne.url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										<iframe th:src="${LessonChapterPojoOne.url}" width="850" height="500" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+										</iframe>
 									</div><!--vid-1 end-->
-
 									<div class="tabs">
-										<input id="all" type="radio" name="tab_item" checked>
+										<input id="all" type="radio" name="tab_item" th:checked="${checkFlg}==1">
 										<label class="tab_item" for="all">章节播放</label>
-										<input id="programming" type="radio" name="tab_item">
-										<label class="tab_item" for="programming">学习笔记</label>
-										<input id="design" type="radio" name="tab_item">
-										<label class="tab_item" for="design">留言</label>
+
+										<input id="programming" type="radio" name="tab_item"  v-on:click="download()"
+											   th:checked="${checkFlg}==2">
+										<label class="tab_item" for="programming">辅助文档</label>
+
+										<input id="design" type="radio" name="tab_item" v-on:click="question()"
+											   th:checked="${checkFlg} == 3">
+										<label class="tab_item" for="design">我有问题</label>
+
+										<input id="testing" type="radio" name="tab_item" th:checked="${checkFlg} == 4">
+										<label class="tab_item" for="testing">演习问题</label>
 
 										<div class="tab_content" id="all_content">
 											<div>
-												<div th:replace="/common/videoList.html::videoList()"></div><!--header_content end-->
+												<div th:replace="/common/videoList.html::videoList()"></div>
+												<!--header_content end-->
 											</div>
 										</div>
 										<div class="tab_content" id="programming_content">
 											<div class="tab_content_description">
-												<p class="c-txtsp">プログラミングの内容がここに入ります</p>
+												<div th:replace="/common/downloadFile.html::downloadFile()"></div>
 											</div>
 										</div>
 										<div class="tab_content" id="design_content">
 											<div class="tab_content_description">
-												<p class="c-txtsp">デザインの内容がここに入ります</p>
+												<div>
+													<div th:replace="/common/question.html::question()"></div>
+													<!--header_content end-->
+												</div>
 											</div>
 										</div>
-
+										<div class="tab_content" id="testing_content">
+											<div class="tab_content_description">
+												<p class="c-txtsp">此功能尚未实装、将在2期开发。</p>
+											</div>
+										</div>
 									</div>
-
-
 								</div><!--mn-vid-sc end--->
 							</div><!---col-lg-9 end-->
 							<div th:replace="/common/recomend.html::recomend()"></div><!--header_content end-->
@@ -149,29 +131,139 @@
 				</section><!--mn-sec end-->
 			</div>
 		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: '#testVue',
+				data() {
+					return {
+						info: null,
+						error: null,
+						dlFile:null,
+						flg: 0,
+						msg: 'hello'
+					}
+				},
+				mounted() {
+					window.questionPage = this.questionPage
+					if (tagFlg == 3) {
+						$("#design").prop('checked', true);
+					}
+					const lessonId = document.getElementById('lessonId').value;
+					const chapterNo = document.getElementById('chapterNo').value;
 
+					if (questionId == 0 || questionId == null) {
+						axios.get('showQuestion?lessonId=' + lessonId + '&chapterNo=' + chapterNo)
+							.then(response => (this.info = response.data, this.flg = 0))
+							.catch(error => (this.error = error));
+					} else {
+						document.getElementById("demo1").style.display = "none";
+						document.getElementById("pageName").value = "answer";
+						document.getElementById("questionId").value = questionId;
+						axios
+							.get('showAnwser?questionId=' + questionId)
+							.then(response => (this.info = response.data, this.flg = 1))
+							.catch(error => (this.error = error));
+					}
+				},
+				methods: {
+					question: function () {
+						document.getElementById("pageName").value = "question";
+						document.getElementById("demo1").style.display = "block";
+						document.getElementById("questionId").value = "";
+						const lessonId = document.getElementById('lessonId').value;
+						const chapterNo = document.getElementById('chapterNo').value;
+						axios
+							.get('showQuestionPage?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&offset=1')
+							.then(response => (this.info = response.data, this.flg = 0))
+							.catch(error => (this.error = error));
+					},
+					answer: function (questionId) {
 
+						document.getElementById("demo1").style.display = "none";
+						document.getElementById("questionId").value = questionId;
+						axios
+							.get('showAnwser?questionId=' + questionId)
+							.then(response => (this.info = response.data, this.flg = 1))
+							.catch(error => (this.error = error));
+					},
+					questionPage: function (current) {
+						document.getElementById("demo1").style.display = "block";
+						document.getElementById("questionId").value = "";
+						const lessonId = document.getElementById('lessonId').value;
+						const chapterNo = document.getElementById('chapterNo').value;
+						axios
+							.get('showQuestionPage?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&offset=' + current)
+							.then(response => (this.info = response.data, this.flg = 0))
+							.catch(error => (this.error = error));
+					},
+					download:function () {
+						var lessonId =document.getElementById("lessonId").value;
+						axios
+								.get('/video/download?lessonId=' + lessonId )
+								.then(response => (this.dlFile = response.data, this.flg = 0))
+								.catch(error => (this.error = error));
+					}
+				}
+			});
 
-		</div><!--wrapper end-->
+			function test() {
+				alert("tagFlg:" + tagFlg);
+			}
+		</script>
 		<div th:replace="/common/bottom.html::bottom()"></div><!--header_content end-->
-
-		<script src="js/jquery.min.js"></script>
-		<script src="js/popper.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/flatpickr.js"></script>
-		<script src="js/script.js"></script>
-		<script src="js/script2.js"></script>
+		<script src="../js/popper.js"></script>
+		<script src="../js/bootstrap.min.js"></script>
+		<script src="../js/flatpickr.js"></script>
+		<script src="../js/script.js"></script>
+		<script src="../js/script2.js"></script>
 		<script>
-			function player(para){
-                var result = para.split(',');
-                window.location.href = '/changeChapter?lessonId='+result[0]+'&chapterNo='+result[1];
+			function player(para) {
+				var result = para.split(',');
+				document.getElementById('lessonId').value = result[0];
+				document.getElementById('chapterNo').value = result[1];
+				document.getElementById('sectionNo').value = result[2];
+				window.location.href = '/video/changeChapter?lessonId=' + result[0] + '&chapterNo=' + result[1]+ '&sectionNo=' + result[2];
 			}
 
-	        function OnLinkClick() {
-	            target = document.getElementById("logoutForm");
-	            target.submit();
-	            return false;
-		        }
-		  </script>
+			function OnLinkClick() {
+				target = document.getElementById("logoutForm");
+				target.submit();
+				return false;
+			}
+		</script>
+
+		<script src="../js/layui.js"></script>
+		<script>
+			layui.use('layedit', function () {
+				var layedit = layui.layedit;
+				var index = layedit.build('demo', {
+					uploadImage: {
+						url: '/video/uploadImage'
+						, type: 'POST'
+					}
+				});
+				getChoose.onclick = function () {
+					alert(layedit.getSelection(index));
+				};
+			});
+		</script>
+		<script>
+			layui.use(['laypage', 'layer'], function () {
+				var laypage = layui.laypage
+					, layer = layui.layer;
+				//总页数大于页码总数
+				laypage.render({
+					elem: 'demo1'
+					, count: questions //数据总数
+					, jump: function (obj) {
+						if (document.getElementById("pageName").value != "answer") {
+							window.questionPage(obj.curr);
+						}
+						console.log(obj)
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
