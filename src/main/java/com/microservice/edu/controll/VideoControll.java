@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.constants.MicroServiceConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,7 @@ import com.microservice.edu.util.SessionContext;
 
 
 @Controller
-public class TopControll {
+public class VideoControll {
 
 
 	@Autowired
@@ -36,21 +37,22 @@ public class TopControll {
 	@Autowired
 	ProfileService profileService;
 
-	@RequestMapping(value = "/login", method={RequestMethod.GET,RequestMethod.POST})
-	@Transactional(readOnly = true)
-	public ModelAndView  login(@ModelAttribute @Validated LoginForm form, BindingResult result, ModelAndView mv) throws Exception {
-
-		if(result.hasErrors()) {
-			mv.addObject("errorMessage", "用户名或者密码有误");
-		}
-
-		mv.setViewName("/login");
-		return mv;
-	}
-
 	private String email;
 
-	@RequestMapping(value = "/video", method={RequestMethod.GET,RequestMethod.POST})
+	/**
+	 * 输入【域名】，直接显示video画面
+	 * */
+	@RequestMapping(value = "/", method={RequestMethod.GET,RequestMethod.POST})
+	@Transactional(readOnly = true)
+	public String domain(@ModelAttribute @Validated LoginForm form, BindingResult result, ModelAndView mv) throws Exception {
+
+		return "redirect:/index";
+	}
+
+	/**
+	 * 输入【域名/index】，直接显示video画面
+	 * */
+	@RequestMapping(value = "/index", method={RequestMethod.GET,RequestMethod.POST})
 	@Transactional(readOnly = true)
 	public String index(Model model, String bigCtgCode, String smallCtgCode, String videoNm,HttpServletRequest request) throws Exception {
 
@@ -60,7 +62,14 @@ public class TopControll {
 		UserDetails userDetails = SecurityUtil.getUserDetails();
 		SessionContext.setAttribute(request, sessionId,SecurityUtil.getUserDetails());
 
-		email = userDetails.getUsername();
+		//用户未登录的情况,用匿名用户邮件代替
+		if(userDetails==null || userDetails.getUsername().isEmpty()){
+			email = MicroServiceConstants.NO_NAME_USER;
+		}else{
+			email = userDetails.getUsername();
+		}
+
+
 		if(videoNm==null || videoNm.isEmpty()){
 			topPageService.getIndexInfo(model,bigCtgCode,smallCtgCode,email);
 		}else{
@@ -105,14 +114,6 @@ public class TopControll {
 		model.addAttribute("videoType",listCourseMstPojo.get(0).courseName);
 
 		return "/video";
-	}
-
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	@Transactional(readOnly = true)
-	public String index2(Model model) throws Exception {
-
-		return "/login";
 	}
 
 

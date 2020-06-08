@@ -45,7 +45,7 @@
 					const lessonId = document.getElementById('lessonId').value;
 					const chapterNo = document.getElementById('chapterNo').value;
 					const sectionNo = document.getElementById('sectionNo').value;
-					const url = '/video/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&sectionNo=' + sectionNo +"&tagFlg=1";
+					const url = '/watch?lessonId=' + lessonId + '&chapterNo=' + chapterNo + '&sectionNo=' + sectionNo +"&tagFlg=1";
 					window.location.href = url;
 
 				});
@@ -223,7 +223,7 @@
 				document.getElementById('lessonId').value = result[0];
 				document.getElementById('chapterNo').value = result[1];
 				document.getElementById('sectionNo').value = result[2];
-				window.location.href = '/video/changeChapter?lessonId=' + result[0] + '&chapterNo=' + result[1]+ '&sectionNo=' + result[2];
+				window.location.href = '/watch/changeChapter?lessonId=' + result[0] + '&chapterNo=' + result[1]+ '&sectionNo=' + result[2];
 			}
 
 			function OnLinkClick() {
@@ -239,7 +239,7 @@
 				var layedit = layui.layedit;
 				var index = layedit.build('demo', {
 					uploadImage: {
-						url: '/video/uploadImage'
+						url: '/account/uploadImage'
 						, type: 'POST'
 					}
 				});

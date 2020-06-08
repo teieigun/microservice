@@ -96,7 +96,7 @@ public class AccountControll {
         return null;
     }
 
-    @RequestMapping(path = "/video/upload", method = RequestMethod.POST)
+    @RequestMapping(path = "/account/upload", method = RequestMethod.POST)
     String upload(Model model, UploadForm uploadForm, HttpServletRequest request) {
         UserPojo userPojo = null;
         try {
@@ -127,7 +127,7 @@ public class AccountControll {
     /**
      *  变更密码
      * **/
-    @RequestMapping(path = "/video/cpwd", method = RequestMethod.POST)
+    @RequestMapping(path = "/account/resetPass", method = RequestMethod.POST)
     @Transactional
     String cpwd(Model model, @ModelAttribute("form") @Valid ChangePwdForm chpwdForm, BindingResult result, RedirectAttributes attributes) {
         UserPojo userPojo = null;

@@ -25,8 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	try {
             http
             .authorizeRequests()
-            .antMatchers("/video").hasAnyAuthority("1","2","3")
-            .antMatchers("/video/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/watch").hasAnyAuthority("1","2","3")
+            .antMatchers("/watch/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/account").hasAnyAuthority("1","2","3")
+            .antMatchers("/account/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/vip").hasAnyAuthority("2","3")
             .antMatchers("/vip/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/admin").hasAnyAuthority("3")
@@ -37,7 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .formLogin().loginPage("/")
             .loginProcessingUrl("/login")
-//            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
             .defaultSuccessUrl("/video")
             .failureForwardUrl("/login")
             .usernameParameter("username").passwordParameter("password")
@@ -50,7 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	}catch(Exception e) {
     		System.out.println(e.toString());
     	}
-
 
     }
 

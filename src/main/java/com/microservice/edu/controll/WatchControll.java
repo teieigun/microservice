@@ -27,7 +27,7 @@ import com.microservice.edu.util.SessionContext;
 
 
 @Controller
-public class WatchVideoControll {
+public class WatchControll {
 
 	@Autowired
 	TopPageService topPageService;
@@ -38,7 +38,7 @@ public class WatchVideoControll {
 	@Autowired
 	ProfileService profileService;
 
-	@RequestMapping(value = "/video/watch", method = RequestMethod.GET)
+	@RequestMapping(value = "/watch", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String goToVideoPage(Model model, String lessonId, String chapterNo, String sectionNo, String tagFlg,
 			String questionId,
@@ -55,7 +55,7 @@ public class WatchVideoControll {
 		//未购买的情况下，视频再检索
 		List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
 		if (listLessonChapterPojo == null || listLessonChapterPojo.size() == 0) {
-			return "redirect:/video/callme";
+			return "redirect:/watch/callme";
 		}
 
 		//已购买的情况下，进入播放页面
@@ -97,7 +97,7 @@ public class WatchVideoControll {
 		return "/watchVideo";
 	}
 
-	@RequestMapping(value = "/video/changeChapter", method = RequestMethod.GET)
+	@RequestMapping(value = "/watch/changeChapter", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String changeChapter(Model model, String lessonId, String chapterNo, String sectionNo,
 			HttpServletRequest request)
@@ -135,7 +135,7 @@ public class WatchVideoControll {
 		return "/watchVideo";
 	}
 
-	@RequestMapping(value = "/video/callme", method = RequestMethod.GET)
+	@RequestMapping(value = "/watch/callme", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String callme(Model model, String lessonId, String chapterNo, HttpServletRequest request) throws Exception {
 		UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));

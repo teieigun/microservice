@@ -28,7 +28,7 @@
 			<div class="user-account-pr">
 				<div class="input-sec">
 
-					<form name="rgtForm" method="post" th:action="@{/emailRegist}">
+					<form name="rgtForm" method="post" th:action="@{/doRegist}">
 						<div th:text="${msg}?: ''" class="col-sm-offset-2 text-danger"></div>
 						<input type="text" name="email"  placeholder="Email address">
 						<input type="hidden" name="action" th:value="register" />

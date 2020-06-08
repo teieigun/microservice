@@ -58,7 +58,7 @@ public class CommentsControll {
     public String addRootComments(CommentsRoot commentsRoot,HttpServletRequest request) {
 
 
-        String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId=0";
+        String url = "redirect:/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId=0";
 
         System.out.println("-------------:"+commentsRoot.getQuestion_id());
         //提问
@@ -80,7 +80,7 @@ public class CommentsControll {
             commentsReply.setAnwser_id(SessionContext.getUserName(request));
             commentsReply.setContent(commentsRoot.getContent());
             boolean b = commentService.addSonCommentsService(commentsReply); //调用service方法来完成问题的存储
-            url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId="+commentsRoot.question_id;
+            url = "redirect:/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId="+commentsRoot.question_id;
         }
         //问题内容为空 返回错误信息
         return url;
@@ -213,7 +213,7 @@ public class CommentsControll {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/video/uploadImage", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/uploadImage", method = RequestMethod.GET)
     public Map upload(MultipartFile file, HttpServletRequest request){
 
         String prefix="";
