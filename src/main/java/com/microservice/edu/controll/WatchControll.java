@@ -94,7 +94,7 @@ public class WatchControll {
 		model.addAttribute("questions",
 				watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
 
-		return "/watchVideo";
+		return "/watch";
 	}
 
 	@RequestMapping(value = "/watch/changeChapter", method = RequestMethod.GET)
@@ -132,7 +132,7 @@ public class WatchControll {
 		model.addAttribute("checkFlg", 1);
 		model.addAttribute("questions",
 				watchVideoService.getCommentsRootCount(Integer.valueOf(lessonId), Integer.valueOf(chapterNo)));
-		return "/watchVideo";
+		return "/watch";
 	}
 
 	@RequestMapping(value = "/watch/callme", method = RequestMethod.GET)
