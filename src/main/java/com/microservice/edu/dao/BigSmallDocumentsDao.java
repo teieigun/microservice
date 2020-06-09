@@ -1,15 +1,13 @@
 package com.microservice.edu.dao;
 
-import com.microservice.edu.pojo.BigCategoryTblPojo;
-import com.microservice.edu.pojo.BigSmallDocumentsPojo;
-import com.microservice.edu.pojo.UserPojo;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
-import java.util.List;
+import com.microservice.edu.pojo.BigSmallDocumentsPojo;
 
 @Repository
 public class BigSmallDocumentsDao {

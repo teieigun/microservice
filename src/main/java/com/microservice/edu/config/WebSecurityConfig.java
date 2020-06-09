@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+
 
 /**
  * @author Administrator
@@ -25,8 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	try {
             http
             .authorizeRequests()
-            .antMatchers("/video").hasAnyAuthority("1","2","3")
-            .antMatchers("/video/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/watch").hasAnyAuthority("1","2","3")
+            .antMatchers("/watch/**").authenticated()//所有/video/**的请求必须认证通过
+            .antMatchers("/account").hasAnyAuthority("1","2","3")
+            .antMatchers("/account/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/vip").hasAnyAuthority("2","3")
             .antMatchers("/vip/**").authenticated()//所有/video/**的请求必须认证通过
             .antMatchers("/admin").hasAnyAuthority("3")
@@ -35,22 +37,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/account/**").authenticated()//所有/r/**的请求必须认证通过
             .antMatchers("/", "/index","/video/css","/video/img","/video/font","/video/js").permitAll()//除了/r/**，其它的请求可以访问
             .and()
-            .formLogin().loginPage("/")
-            .loginProcessingUrl("/login")
-//            .failureHandler(new SimpleUrlAuthenticationFailureHandler())       // 認証失敗時に呼ばれるハンドラクラス
-            .defaultSuccessUrl("/video")
+            .formLogin().loginPage("/login")
+            .loginProcessingUrl("/dologin")
+            .defaultSuccessUrl("/index")
             .failureForwardUrl("/login")
             .usernameParameter("username").passwordParameter("password")
             .permitAll();
-            
+
             http.logout()
             .logoutSuccessUrl("/") // ログアウト成功時の遷移先URL
             .permitAll();          // すべてのユーザに対して、ログアウトページへのアクセスを許す
-            
+
     	}catch(Exception e) {
     		System.out.println(e.toString());
     	}
-
 
     }
 

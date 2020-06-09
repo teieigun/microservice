@@ -3,10 +3,8 @@ package com.microservice.edu.controll;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -23,7 +21,7 @@ import com.microservice.edu.service.RegisterValidateService;
 
 
 @Controller
-public class RegisterController {
+public class RegisterControll {
 
     @Resource
     private RegisterValidateService service;
@@ -33,12 +31,13 @@ public class RegisterController {
     @Transactional(readOnly = true)
     public String regist(Model model) throws Exception {
 
-        //getIndexInfo(model);
-
         return "/regist";
     }
 
-    @RequestMapping(value="/emailRegist",method={RequestMethod.GET,RequestMethod.POST})
+    /**
+     * 用户注册
+     * */
+    @RequestMapping(value="/doRegist",method={RequestMethod.GET,RequestMethod.POST})
     public String load(Model model , String email,String validateCode,String action) throws ParseException{
         System.out.println("-----r----"+action);
         ModelAndView mav=new ModelAndView();
@@ -49,6 +48,9 @@ public class RegisterController {
 
     }
 
+    /**
+     * 密码输入画面
+     * */
     @RequestMapping(value = "/passwd", method = RequestMethod.GET)
     @Transactional
     public String passwd(Model model, String validateCode) throws Exception {
@@ -58,10 +60,12 @@ public class RegisterController {
         return "/passwd";
     }
 
-    @RequestMapping(value = "/setPass", method = RequestMethod.POST)
+
+    /**
+     * 密码设定
+     * */
+    @RequestMapping(value = "/doPasswd", method = RequestMethod.POST)
     @Transactional
-
-
     public String setPass(Model model, @ModelAttribute("form") @Valid PassForm form, BindingResult result) throws Exception {
 
         String reString = "/passwd";
@@ -72,10 +76,9 @@ public class RegisterController {
                 errorList.add(error.getDefaultMessage());
             }
             model.addAttribute("validationError", errorList);
-
             return reString;
         }
-        reString = "redirect:/video";
+        reString = "redirect:/login";
         service.setNewPasswd(form.passwd,form.validateCode);
 
         return reString;

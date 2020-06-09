@@ -93,7 +93,7 @@ public class TopPageService {
 			List<BigCategoryTblPojo> bigCtgList = getPageInfoLunBoBigCtg();
 		if (bigCtgList != null && bigCtgList.size() > 0) {
 			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
-				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
+				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.ctgCode));
 			}
 		}        //获取首页视频地址，图片
         List<LessonTblPojo> listLessonTblPojo = searchAllEnableVideo(email,bigCtgCode,smallCtgCode);
@@ -111,7 +111,7 @@ public class TopPageService {
 		List<BigCategoryTblPojo> bigCtgList = getPageInfoLunBoBigCtg();
 		if (bigCtgList != null && bigCtgList.size() > 0) {
 			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
-				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
+				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.ctgCode));
 			}
 		}        //获取首页视频地址，图片
 		List<LessonTblPojo> listLessonTblPojo = searchAllEnableVideoUseLike(email,videoNm);
@@ -130,7 +130,7 @@ public class TopPageService {
 		List<BigCategoryTblPojo> bigCtgList = getPageInfoLunBoBigCtg();
 		if (bigCtgList != null && bigCtgList.size() > 0) {
 			for (BigCategoryTblPojo bigCategoryTblPojo : bigCtgList) {
-				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.getCtgCode()));
+				listListSmallCategoryTblPojo.add(getPageInfoLunBoSmallCtg(bigCategoryTblPojo.ctgCode));
 			}
 		}        //获取首页视频地址，图片
 		List<LessonTblPojo> listLessonTblPojo = searchBuyCourseVideo(email,courseId);

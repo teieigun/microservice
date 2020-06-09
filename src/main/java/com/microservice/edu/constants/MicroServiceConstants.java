@@ -25,26 +25,35 @@ public final class MicroServiceConstants {
 	//执行失败
 	public static final String ERROR_MESSAGE = "errorMessage";
 
+	//匿名用户
+	public static final String NO_NAME_USER = "microservice@microserviceedu.com";
+
+	//登录状态
+	public static final String LOGIN_STATUS = "loginStatus";
+	//已登录状态
+	public static final String LOGIN_STATUS_ON = "1";
+	//非登录状态
+	public static final String LOGIN_STATUS_OFF = "0";
 
 
 
 	//--------------------------------环境切换------------------------------------/
 	//开发环境
-	//public static final String IMAGE_PATH="file:///C:\\microservice\\profile\\";
+	public static final String IMAGE_PATH="file:///C:\\microservice\\profile\\";
 
 	//开发环境
-	//public static final String UPLOAD_PATH="file:///C:\\upload\\";
+	public static final String UPLOAD_PATH="file:///C:\\upload\\";
 
 	//开发环境
-	//public static final String HTTP_URL ="http://localhost:8080";
+	public static final String HTTP_URL ="http://localhost:8080";
 
 
 	//真实环境
-	public static final String IMAGE_PATH="file:/var/www/html/img/";
+	//public static final String IMAGE_PATH="file:/var/www/html/img/";
 	//真实环境
-	public static final String HTTP_URL ="http://www.microserviceedu.com";
+	//public static final String HTTP_URL ="http://www.microserviceedu.com";
 	//真实环境
-	public static final String UPLOAD_PATH="file:/var/www/html/upload/";
+	//public static final String UPLOAD_PATH="file:/var/www/html/upload/";
 
 	//---------------------------------------------------------------------------/
 }

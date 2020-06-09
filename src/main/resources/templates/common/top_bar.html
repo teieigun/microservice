@@ -18,7 +18,7 @@
 						</a>
 					</div><!--menu_logo end-->
 					<div class="search_form">
-						<form th:action="@{/video}" method="post">
+						<form th:action="@{/index}" method="post">
 							<input type="text" name="videoNm" placeholder="Search Videos">
 							<button type="submit">
 								<i class="icon-search"></i>
@@ -74,7 +74,7 @@
 							</div>
 						</li>
 						<li>
-							<a href="javascript:OnLinkClick();" class="btn-default" >注销</a><br />
+							<a href="javascript:OnLinkClick();" class="btn-default" > <span th:text="${loginStatus=='0' ? '登录': '注销'}"></span></a>
 						</li>
 					</ul><!--controls-lv end-->
 					<!-- ログアウト -->

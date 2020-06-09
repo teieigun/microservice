@@ -26,7 +26,7 @@
 				 		<span>用户登录</span>
 				 	</div><!--hd-lg end-->
 					<div class="user-account-pr">
-						<form name="LoginForm" method="post" th:action="@{/login}">
+						<form name="LoginForm" method="post" th:action="@{/dologin}">
 							<div th:text="${errorMessage}?: ''" class="col-sm-offset-2 text-danger"></div>
 							<div class="input-sec">
 								<input type="text" name="username" placeholder="Username">

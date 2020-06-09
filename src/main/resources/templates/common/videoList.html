@@ -12,14 +12,23 @@
 						<!--课程目录-->
 						<div class="dlinfo dlinfo2" style="display: block;">
 							<div class="div_xlbtn">
-								<div th:each="lessonChapter:${listLessonChapterPojo}">
+								<div th:each="lessonChapter:${lessonChapterPojo}">
 									<span class="chaptername" th:text="${lessonChapter.chapterName}"></span>
 									<div class="video-list-item" th:each="section:${chapterSectionMap.get(lessonChapter.chapterNo)}">
-										<a id="1qaz" href="#" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);" th:attr="onclick='player(\'' + ${section.lessonId}+ ','+${section.chapterNo}+ ','+${section.sectionNo} + '\');'">
-											<span>▶</span>
-											<span th:text="${section.sectionName}"></span>
-											<button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" th:attr="onclick='player(\'' + ${section.lessonId}+ ','+${section.chapterNo}+ ','+${section.sectionNo} + '\');'">开始学习</button>
-										</a>
+										<div th:if="${section.testFlg=='1'}">
+											<a id="1qaz" href="#" class="video_list_num" style="background-color:#F0F8FF; color: rgb(120, 125, 130);" th:attr="onclick='player(\'' + ${section.lessonId}+ ','+${section.chapterNo}+ ','+${section.sectionNo} + '\');'">
+												<span>▶</span>
+												<span th:text="${section.sectionName}"></span>
+												<button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" th:attr="onclick='player(\'' + ${section.lessonId}+ ','+${section.chapterNo}+ ','+${section.sectionNo} + '\');'">开始学习</button>
+											</a>
+										</div>
+										<div th:if="${section.testFlg=='0'}">
+											<a id="1qaz" href="#" class="video_list_num2" style="background-color:#C0C0C0; color: rgb(120, 125, 130);" >
+												<span>▶</span>
+												<span th:text="${section.sectionName}"></span>
+												<button type="button" class="layui-btn-hidden layui-btn-danger layui-btn-radius fr" >试听不可</button>
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>

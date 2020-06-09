@@ -5,10 +5,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.microservice.edu.form.comments.CommentsReply;
 import com.microservice.edu.form.comments.CommentsRoot;
@@ -25,10 +30,9 @@ import com.microservice.edu.service.CommentService;
 import com.microservice.edu.service.WatchVideoService;
 import com.microservice.edu.util.LogUtil;
 import com.microservice.edu.util.ResultDTUtils;
+import com.microservice.edu.util.SessionContext;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.multipart.MultipartFile;
-import com.microservice.edu.web.SessionContext;
 
 /**
  * 点赞问题控制器
@@ -54,7 +58,7 @@ public class CommentsControll {
     public String addRootComments(CommentsRoot commentsRoot,HttpServletRequest request) {
 
 
-        String url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId=0";
+        String url = "redirect:/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId=0";
 
         System.out.println("-------------:"+commentsRoot.getQuestion_id());
         //提问
@@ -76,7 +80,7 @@ public class CommentsControll {
             commentsReply.setAnwser_id(SessionContext.getUserName(request));
             commentsReply.setContent(commentsRoot.getContent());
             boolean b = commentService.addSonCommentsService(commentsReply); //调用service方法来完成问题的存储
-            url = "redirect:/video/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId="+commentsRoot.question_id;
+            url = "redirect:/watch?lessonId=" + commentsRoot.lesson_id+"&chapterNo=" + commentsRoot.chapter_no+"&tagFlg=3&questionId="+commentsRoot.question_id;
         }
         //问题内容为空 返回错误信息
         return url;
@@ -209,7 +213,7 @@ public class CommentsControll {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/video/uploadImage", method = RequestMethod.GET)
+    @RequestMapping(value = "/account/uploadImage", method = RequestMethod.GET)
     public Map upload(MultipartFile file, HttpServletRequest request){
 
         String prefix="";

@@ -16,18 +16,18 @@
 				</div><!--vidz-prt end-->
 				<div th:each="lessonTblPojo:${listRecommend}" class="videoo-list-ab">
 					<div class="videoo">
-						<div class="video_info">
-							<h3>
-								<a th:utext="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title=""></a>
-							</h3>
-						</div>
 						<div class="vid_thumbainl">
-							<a th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title="">
+							<a th:href="@{/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title="">
 								<img th:src="${'../'+lessonTblPojo.lessonImg}" alt="">
-								<span class="vid-time">10:21</span>
+								<span class="vid-time"></span>
 								<span class="watch_later"><i class="icon-watch_later_fill"></i></span>
 							</a>
 						</div><!--vid_thumbnail end-->
+						<div class="video_info">
+							<h3>
+								<a th:utext="${lessonTblPojo.lessonName}" th:href="@{/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title=""></a>
+							</h3>
+						</div>
 					</div><!--videoo end-->
 				</div><!--videoo-list-ab end-->
 			</div><!--side-bar end-->

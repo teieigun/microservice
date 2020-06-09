@@ -11,7 +11,7 @@ import com.microservice.edu.dao.LessonChapterDao;
 import com.microservice.edu.dao.LessonTblDao;
 import com.microservice.edu.pojo.BigCategoryTblPojo;
 import com.microservice.edu.pojo.LessonChapterPojo;
-import com.microservice.edu.pojo.LessonChapterSectionPojo;
+import com.microservice.edu.pojo.LessonChapterPojo;
 
 @Service
 public class WatchVideoService {
@@ -45,28 +45,50 @@ public class WatchVideoService {
 		return resultList;
 
 	}
+	public List<LessonChapterPojo> getChapterListNotBuy(String LessonId) throws Exception {
 
-	public List<LessonChapterSectionPojo> getSectionList(String email, String LessonId) throws Exception {
-
-		List<LessonChapterSectionPojo> resultList = LessonChapterDao.getSectionList(email, LessonId);
-
-		return resultList;
-
-	}
-
-	public List<LessonChapterSectionPojo> getOneSection(String LessonId, String chapterNo, String sectionNo)
-			throws Exception {
-
-		List<LessonChapterSectionPojo> resultList = LessonChapterDao.getOneSection(LessonId, chapterNo, sectionNo);
+		List<LessonChapterPojo> resultList = LessonChapterDao.getChapterListNotBuy(LessonId);
 
 		return resultList;
 
 	}
 
-	public List<LessonChapterSectionPojo> changeChapter(String LessonId, String chapterNo, String sectionNo)
+	public List<LessonChapterPojo> getSectionList(String email, String LessonId) throws Exception {
+
+		List<LessonChapterPojo> resultList = LessonChapterDao.getSectionList(email, LessonId);
+
+		return resultList;
+
+	}
+	public List<LessonChapterPojo> getSectionListNotBuy(String LessonId) throws Exception {
+
+		List<LessonChapterPojo> resultList = LessonChapterDao.getSectionListByNotBuy(LessonId);
+
+		return resultList;
+
+	}
+
+	public List<LessonChapterPojo> getSectionListByLessonId(String lessonId) throws Exception {
+
+		List<LessonChapterPojo> resultList = LessonChapterDao.getSectionListByNotBuy(lessonId);
+
+		return resultList;
+
+	}
+
+	public List<LessonChapterPojo> getOneSection(String LessonId, String chapterNo, String sectionNo)
 			throws Exception {
 
-		List<LessonChapterSectionPojo> resultList = LessonChapterDao.getOneSection(LessonId, chapterNo, sectionNo);
+		List<LessonChapterPojo> resultList = LessonChapterDao.getOneSection(LessonId, chapterNo, sectionNo);
+
+		return resultList;
+
+	}
+
+	public List<LessonChapterPojo> changeChapter(String LessonId, String chapterNo, String sectionNo,String email)
+			throws Exception {
+
+		List<LessonChapterPojo> resultList = LessonChapterDao.getOneSection(LessonId, chapterNo, sectionNo,email);
 
 		return resultList;
 

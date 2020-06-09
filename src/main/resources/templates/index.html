@@ -75,10 +75,12 @@
 				color: #fff;
 			}
 		</style>
+		<script th:inline="javascript">
+			var loginStatus = /*[[${loginStatus}]]*/ null;
+		</script>
 	</head>
 	<body>
 		<div class="wrapper">
-
 			<header>
 				<div th:replace="/common/top_bar.html::top_bar()"></div><!--header_content end-->
 				<div th:replace="/common/btm_bar.html::btm_bar()"></div><!--header_content end-->
@@ -96,7 +98,7 @@
 									<div class="title"></div>
 									<div class="sub-row">
 										<span  th:each="smallCategoryTblPojo : ${listSmallCategoryTblPojo}">
-											<a th:href="@{/video(bigCtgCode=${smallCategoryTblPojo.bigCtgCode},smallCtgCode=${smallCategoryTblPojo.smallCtgCode})}" th:text="${smallCategoryTblPojo.smallCtgName}"></a>  &nbsp;&nbsp;|&nbsp;&nbsp;
+											<a th:href="@{/index(bigCtgCode=${smallCategoryTblPojo.bigCtgCode},smallCtgCode=${smallCategoryTblPojo.smallCtgCode})}" th:text="${smallCategoryTblPojo.smallCtgName}"></a>  &nbsp;&nbsp;|&nbsp;&nbsp;
 
 										</span>
 									</div>
@@ -146,7 +148,7 @@
 									<div th:each="lessonTblPojo:${listLessonTblPojo}" class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth">
 										<div class="video">
 											<div class="vid_thumbainl">
-												<a th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title="">
+												<a th:href="@{/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title="">
 													<img th:src="${lessonTblPojo.lessonImg}" alt="">
 													<span class="watch_later">
 														<i class="icon-watch_later_fill"></i>
@@ -154,7 +156,7 @@
 												</a>
 											</div>
 											<div class="video_info">
-												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/video/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,tagFlg=1)}" title=""></a></h3>
+												<h3><a th:utext="${lessonTblPojo.lessonName}" th:href="@{/watch(lessonId=${lessonTblPojo.lessonId},chapterNo=0,sectionNo=0,tagFlg=1)}" title=""></a></h3>
 												<h4><a th:utext="${lessonTblPojo.bitCtgName}" href="Single_Channel_Home.html" title=""></a> <span class="verify_ic"><i class="icon-tick"></i></span></h4>
 											</div>
 										</div>
@@ -178,9 +180,13 @@
 
 		<script>
 	        function OnLinkClick() {
-	            target = document.getElementById("logoutForm");
-	            target.submit();
-	            return false;
+	        	if(loginStatus=='0'){
+	        		window.location.href="/login";
+				}else{
+					target = document.getElementById("logoutForm");
+					target.submit();
+					return false;
+				}
 		    }
 		</script>
 	</body>

@@ -1,4 +1,4 @@
-package com.microservice.edu.web;
+package com.microservice.edu.util;
 
 import javax.servlet.http.HttpServletRequest;
 
