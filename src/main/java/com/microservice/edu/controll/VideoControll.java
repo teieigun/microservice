@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.microservice.edu.constants.MicroServiceConstants;
-import com.microservice.edu.dao.CourseMasterDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.dao.CourseMasterDao;
 import com.microservice.edu.form.LoginForm;
 import com.microservice.edu.pojo.CourseMasterPojo;
 import com.microservice.edu.pojo.UserBaseInfo;
@@ -63,6 +63,8 @@ public class VideoControll {
 
 		String sessionId = request.getSession().getId();
 
+		UserBaseInfo userBaseInfo =null;
+
 		//用户账户取得
 		UserDetails userDetails = SecurityUtil.getUserDetails();
 
@@ -74,6 +76,7 @@ public class VideoControll {
 
 		}else{
 			email = userDetails.getUsername();
+			userBaseInfo = profileService.getUserInfoInfo(email);
 			//登录状态设定 已登录
 			model.addAttribute(MicroServiceConstants.LOGIN_STATUS,MicroServiceConstants.LOGIN_STATUS_ON);
 		}
@@ -84,11 +87,14 @@ public class VideoControll {
 			topPageService.getIndexInfoUseLike(model,videoNm,email);
 		}
 
-		UserBaseInfo userBaseInfo = profileService.getUserInfoInfo(SessionContext.getUserName(request));
+		if(	userBaseInfo!=null) {
+			SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
+			model.addAttribute("profileImage",userBaseInfo.profile_image);
+		}else {
+			SessionContext.setAttribute(request, "profileImage", "profile.png");
+			model.addAttribute("profileImage","profile.png");
+		}
 
-		SessionContext.setAttribute(request, "profileImage", userBaseInfo.profile_image);
-
-		model.addAttribute("profileImage",userBaseInfo.profile_image);
 		model.addAttribute("videoType","全部视频");
 
 		return "/index";
