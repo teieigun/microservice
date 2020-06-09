@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+
 
 /**
  * @author Administrator
@@ -43,11 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .failureForwardUrl("/login")
             .usernameParameter("username").passwordParameter("password")
             .permitAll();
-            
+
             http.logout()
             .logoutSuccessUrl("/") // ログアウト成功時の遷移先URL
             .permitAll();          // すべてのユーザに対して、ログアウトページへのアクセスを許す
-            
+
     	}catch(Exception e) {
     		System.out.println(e.toString());
     	}

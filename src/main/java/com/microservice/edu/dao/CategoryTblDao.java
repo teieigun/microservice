@@ -1,14 +1,14 @@
 package com.microservice.edu.dao;
 
-import com.microservice.edu.pojo.BigCategoryTblPojo;
-import com.microservice.edu.pojo.BookPojo;
-import com.microservice.edu.pojo.SmallCategoryTblPojo;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.microservice.edu.pojo.BigCategoryTblPojo;
+import com.microservice.edu.pojo.SmallCategoryTblPojo;
 
 @Repository
 public class CategoryTblDao {

@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.microservice.edu.pojo.LessonChapterPojo;
-import com.microservice.edu.pojo.LessonChapterPojo;
+
 
 @Repository
 public class LessonChapterDao {
