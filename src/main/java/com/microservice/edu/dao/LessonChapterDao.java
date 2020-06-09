@@ -39,12 +39,12 @@ public class LessonChapterDao {
 		sql = sql + " WHERE t1.email =? ";
 		sql = sql + " UNION ";
 		sql = sql + "    SELECT t3.lesson_id ";
-		sql = sql + "      FROM user_lession_mapping t3)";
+		sql = sql + "      FROM user_lession_mapping t3 )";
 		sql = sql + " order by ";
 		sql = sql + "     lesson_id ";
 		sql = sql + "   , chapter_no ";
 
-		List<LessonChapterPojo> list = jdbcTemplate.query(sql, new Object[] { lesson_id, email },
+		List<LessonChapterPojo> list = jdbcTemplate.query(sql, new Object[] { lesson_id, email},
 				new BeanPropertyRowMapper(LessonChapterPojo.class));
 		return list;
 	}
@@ -91,14 +91,14 @@ public class LessonChapterDao {
 		sql = sql + " WHERE t1.email =? ";
 		sql = sql + " UNION ";
 		sql = sql + "    SELECT t3.lesson_id ";
-		sql = sql + "      FROM user_lession_mapping t3)";
+		sql = sql + "      FROM user_lession_mapping t3 where t3.email=?)";
 		sql = sql + " order by ";
 		sql = sql + "     lesson_id ";
 		sql = sql + "   , chapter_no ";
 		sql = sql + "   , section_no ";
 		;
 
-		List<LessonChapterPojo> list = jdbcTemplate.query(sql, new Object[] { lesson_id, email },
+		List<LessonChapterPojo> list = jdbcTemplate.query(sql, new Object[] { lesson_id, email, email},
 				new BeanPropertyRowMapper(LessonChapterPojo.class));
 		return list;
 	}
