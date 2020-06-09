@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .formLogin().loginPage("/login")
             .loginProcessingUrl("/dologin")
             .defaultSuccessUrl("/index")
-            .failureForwardUrl("/login")
+            .failureForwardUrl("/dologin")
             .usernameParameter("username").passwordParameter("password")
             .permitAll();
 
