@@ -11,8 +11,6 @@ import java.text.ParseException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import com.microservice.edu.constants.MicroServiceConstants;
-import com.microservice.edu.form.ChangePwdForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -25,14 +23,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.dao.UserDao;
+import com.microservice.edu.form.ChangePwdForm;
 import com.microservice.edu.form.UploadForm;
 import com.microservice.edu.pojo.UserPojo;
 import com.microservice.edu.service.ProfileService;
-
+import com.microservice.edu.util.SecurityUtil;
 import com.microservice.edu.util.SessionContext;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -100,7 +100,11 @@ public class AccountControll {
     String upload(Model model, UploadForm uploadForm, HttpServletRequest request) {
         UserPojo userPojo = null;
         try {
-            userPojo = userDao.findbyPk(SessionContext.getUserName(request));
+        	UserDetails userDetails = SecurityUtil.getUserDetails();
+        	if(userDetails !=null) {
+        		userPojo = userDao.findbyPk(userDetails.getUsername());
+        	}
+
             Path path = Paths.get(userProfilePath);
             if (!Files.exists(path)) {
                 try {
@@ -112,8 +116,10 @@ public class AccountControll {
                 }
             }
 
-            String imageName = userPojo.getValidateCode() + ".png";
-
+            String imageName = "profile.png";
+            if(userPojo !=null) {
+            	imageName = userPojo.getValidateCode() + ".png";
+            }
             profileService.imgUpload(uploadForm, userProfilePath + imageName);
 
             userDao.updateUserProfileImage(SessionContext.getUserName(request), imageName);
