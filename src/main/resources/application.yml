@@ -18,7 +18,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/teieigun?useUnicode=true&characterEncoding=utf8&serverTimezone=JST
     username: teieigun
-    password: 1qaz2wsx
+    password: P@ssW0rd!
     driverClassName: com.mysql.jdbc.Driver
 
 # VPS-teieigun passwd:P@ssW0rd!
