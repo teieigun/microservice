@@ -41,6 +41,15 @@
 					$(this).find("Button").css('display', 'none');
 				});
 
+				$(".video_list_num2").mouseenter(function () {
+					this.style.backgroundColor = "#C0C0C0";
+					$(this).find("Button").css('display', 'block');
+				});
+				$(".video_list_num2").mouseleave(function () {
+					this.style.backgroundColor = "##C0C0C0";
+					$(this).find("Button").css('display', 'none');
+				});
+
 				$("#all").click(function () {
 					const lessonId = document.getElementById('lessonId').value;
 					const chapterNo = document.getElementById('chapterNo').value;

@@ -223,7 +223,7 @@ public class LessonTblDao {
 
 
 	/**
-	 * 现实所以视频，同时显示购买情况
+	 * 推荐视频一览取得
 	 * */
 	public List<LessonTblPojo> getAllEnableVideoIsRcommend(String email) {
 
@@ -234,7 +234,11 @@ public class LessonTblDao {
 		String sql = "SELECT ";
 		sql = sql + "  t3.lessonId";
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
-		sql = sql + "  ,CONCAT(t3.lessonName,case when email IS NULL then '　未购买' ELSE '　<span style=\"color:#ff0000;font-weight:bold;\">已购买</span>' END) AS lessonName ";
+		sql = sql + "    ,CONCAT(t3.lessonName,case ";
+		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
+		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;\"><br/>未购买（有试听）</span>'";
+		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;\"><br/>未购买（无试听）</span>'";
+		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;\"><br/>已购买</span>' END) AS lessonName";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
 		sql = sql + "  ,t3.smallCtgCode";
@@ -305,7 +309,7 @@ public class LessonTblDao {
 
 		String sql = " SELECT ";
 		sql = sql + "   t1.LESSON_ID AS lessonId";
-		sql = sql + "  ,CONCAT(t1.LESSON_NAME,'　<span style=\"color:#ff0000;font-weight:bold;\">已购买</span>') AS lessonName";
+		sql = sql + "  ,CONCAT(t1.LESSON_NAME,'　<span style=\"color:#008000;font-weight:bold;\"><br/>已购买</span>') AS lessonName";
 		sql = sql + "  ,t1.BIG_CTG_CODE AS bigCtgCode";
 		sql = sql + "  ,t1.SMALL_CTG_CODE AS smallCtgCode";
 		sql = sql + "  ,t1.LESSON_IMG AS lessonImg";
@@ -380,6 +384,31 @@ public class LessonTblDao {
 		List<LessonTblPojo> list = jdbcTemplate.query(sql, new Object[] {bigCtgCode, smallCtgCode },
 				new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
+	}
+
+	/**
+	 * 根据大分类和小分类，取得课程一览
+	 * */
+	public Integer isBuyLesson(String email,String lessonId) {
+
+		String sql = "select ";
+		sql = sql + "  count(1) as cnt FROM ";
+		sql = sql + " (SELECT t2.lesson_id ";
+		sql = sql + "  FROM user_course_mapping t1 ";
+		sql = sql + "  INNER JOIN course_lesson_mapping t2 ";
+		sql = sql + "  ON t1.course_id = t2.course_id ";
+		sql = sql + "  WHERE t1.email =?";
+		sql = sql + " UNION ";
+		sql = sql + " SELECT t3.lesson_id FROM user_lession_mapping t3 WHERE t3.email = ?";
+		sql = sql + " ) t4 where t4.lesson_id = ?";
+
+
+		Integer count = jdbcTemplate.queryForObject(sql, new Object[] {email,email,lessonId},Integer.class);
+
+		if(count==null){
+			count=0;
+		}
+		return count;
 	}
 
 }

@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.microservice.edu.dao.LessonChapterDao;
+import com.microservice.edu.dao.LessonTblDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.microservice.edu.constants.MicroServiceConstants;
 import com.microservice.edu.pojo.LessonChapterPojo;
-import com.microservice.edu.pojo.LessonChapterSectionPojo;
+import com.microservice.edu.pojo.LessonChapterPojo;
 import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.UserBaseInfo;
 import com.microservice.edu.service.ProfileService;
@@ -38,6 +40,13 @@ public class WatchControll {
 	@Autowired
 	ProfileService profileService;
 
+	@Autowired
+	LessonChapterDao lessonChapterDao;
+
+	@Autowired
+	LessonTblDao lessonTblDao;
+
+
 	@RequestMapping(value = "/watch", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String goToVideoPage(Model model, String lessonId, String chapterNo, String sectionNo, String tagFlg,
@@ -53,29 +62,39 @@ public class WatchControll {
 
 		String email = SecurityUtil.getUserDetails().getUsername();
 		//未购买的情况下，视频再检索
-		List<LessonChapterPojo> listLessonChapterPojo = watchVideoService.getChapterList(email, lessonId);
-		if (listLessonChapterPojo == null || listLessonChapterPojo.size() == 0) {
-			return "redirect:/watch/callme";
-		}
+		List<LessonChapterPojo> lessonChapterPojo = watchVideoService.getSectionList(email, lessonId);
 
-		//已购买的情况下，进入播放页面
-		//所有章信息存放入model
-		model.addAttribute("listLessonChapterPojo", listLessonChapterPojo);
+		//章情報取得
+		List<LessonChapterPojo> lessonChapterPojo1 =watchVideoService.getChapterList(email, lessonId);
+
+		if (lessonChapterPojo == null || lessonChapterPojo.size() == 0) {
+			//判断是否有试听
+			if(lessonChapterDao.getTestChapter(lessonId)>0){
+				lessonChapterPojo =watchVideoService.getSectionListByLessonId(lessonId);
+				lessonChapterPojo1 = watchVideoService.getChapterListNotBuy(lessonId);
+			}else{
+				return "redirect:/watch/callme";
+			}
+		}
 		//所有节信息存放入model
-		Map<String, List<LessonChapterSectionPojo>> chapterSectionMap = new HashMap<String, List<LessonChapterSectionPojo>>();
-		List<LessonChapterSectionPojo> listLessonChapterSectionPojo = watchVideoService.getSectionList(email, lessonId);
-		listLessonChapterPojo.forEach(chapter -> chapterSectionMap.put(chapter.chapterNo, listLessonChapterSectionPojo
+		Map<String, List<LessonChapterPojo>> chapterSectionMap = new HashMap<String, List<LessonChapterPojo>>();
+
+		List<LessonChapterPojo> finalLessonChapterPojo = lessonChapterPojo;
+		lessonChapterPojo1.forEach(chapter -> chapterSectionMap.put(chapter.chapterNo, finalLessonChapterPojo
 				.stream().filter(section -> section.chapterNo.equals(chapter.chapterNo)).collect(Collectors.toList())));
-		//所有节信息存放入model
+
+		model.addAttribute("lessonChapterPojo", lessonChapterPojo1);
 		model.addAttribute("chapterSectionMap", chapterSectionMap);
-		if (listLessonChapterPojo != null && listLessonChapterPojo.size() > 0) {
+
+
+		if (lessonChapterPojo != null && lessonChapterPojo.size() > 0) {
 			if ("0".equals(chapterNo)) {
 				chapterNo = "1";
 			}
 			if ("0".equals(sectionNo)) {
 				sectionNo = "1";
 			}
-			List<LessonChapterSectionPojo> LessonChapterPojoOne = watchVideoService.getOneSection(lessonId, chapterNo,
+			List<LessonChapterPojo> LessonChapterPojoOne = watchVideoService.getOneSection(lessonId, chapterNo,
 					sectionNo);
 			model.addAttribute("LessonChapterPojoOne", LessonChapterPojoOne.get(0));
 		}
@@ -97,32 +116,56 @@ public class WatchControll {
 		return "/watch";
 	}
 
+	/**
+	 * 点击开始学习按钮开始播放
+	 * **/
 	@RequestMapping(value = "/watch/changeChapter", method = RequestMethod.GET)
 	@Transactional(readOnly = true)
 	public String changeChapter(Model model, String lessonId, String chapterNo, String sectionNo,
 			HttpServletRequest request)
 			throws Exception {
 
-		System.out.println("LessonId:" + lessonId);
-		List<LessonChapterSectionPojo> listLessonChapterPojo1 = watchVideoService.changeChapter(lessonId, chapterNo,
-				sectionNo);
-		if (listLessonChapterPojo1 != null && listLessonChapterPojo1.size() > 0) {
-			model.addAttribute("LessonChapterPojoOne", listLessonChapterPojo1.get(0));
-		}
+
 		String email = SecurityUtil.getUserDetails().getUsername();
-		List<LessonChapterPojo> listLessonChapterPojo2 = watchVideoService.getChapterList(email, lessonId);
-		model.addAttribute("listLessonChapterPojo", listLessonChapterPojo2);
+
+		//★★★★★★获取URL★★★★★★★★★★★★★★
+		List<LessonChapterPojo> lessonChapterPojo1 = watchVideoService.changeChapter(lessonId, chapterNo,
+				sectionNo,email);
+
+		if (lessonChapterPojo1 != null && lessonChapterPojo1.size() > 0) {
+			model.addAttribute("LessonChapterPojoOne", lessonChapterPojo1.get(0));
+		}
+
 		//所有节信息存放入model
-		Map<String, List<LessonChapterSectionPojo>> chapterSectionMap = new HashMap<String, List<LessonChapterSectionPojo>>();
-		List<LessonChapterSectionPojo> listLessonChapterSectionPojo = watchVideoService.getSectionList(email, lessonId);
-		listLessonChapterPojo2.forEach(chapter -> chapterSectionMap.put(chapter.chapterNo, listLessonChapterSectionPojo
+		Map<String, List<LessonChapterPojo>> chapterSectionMap = new HashMap<String, List<LessonChapterPojo>>();
+
+		//★★★★★★获取URL★★★★★★★★★★★★★★
+		//判断是否有试听
+		List<LessonChapterPojo> lessonChapterPojo = null;
+		List<LessonChapterPojo> lessonChapterPojo2 = null;
+		Integer buyCnt = lessonTblDao.isBuyLesson(email,lessonId);
+		if(buyCnt <=0 && lessonChapterDao.getTestChapter(lessonId)>0){
+			lessonChapterPojo = watchVideoService.getSectionListNotBuy(lessonId);
+			lessonChapterPojo2 = watchVideoService.getChapterListNotBuy(lessonId);
+		}
+		if(buyCnt>0){
+			lessonChapterPojo = watchVideoService.getSectionList(email, lessonId);
+			//不会获取播放URL
+			lessonChapterPojo2 = watchVideoService.getChapterList(email, lessonId);
+		}
+
+		model.addAttribute("lessonChapterPojo", lessonChapterPojo2);
+
+		List<LessonChapterPojo> finalLessonChapterPojo = lessonChapterPojo;
+
+		lessonChapterPojo2.forEach(chapter -> chapterSectionMap.put(chapter.chapterNo, finalLessonChapterPojo
 				.stream().filter(section -> section.chapterNo.equals(chapter.chapterNo)).collect(Collectors.toList())));
 		//所有节信息存放入model
 		model.addAttribute("chapterSectionMap", chapterSectionMap);
 
-		if (listLessonChapterPojo2 != null && listLessonChapterPojo2.size() > 0) {
-			model.addAttribute("defautLessonId", listLessonChapterPojo2.get(0).lessonId);
-			model.addAttribute("defautChapterNo", listLessonChapterPojo2.get(0).chapterNo);
+		if (lessonChapterPojo2 != null && lessonChapterPojo2.size() > 0) {
+			model.addAttribute("defautLessonId", lessonChapterPojo2.get(0).lessonId);
+			model.addAttribute("defautChapterNo", lessonChapterPojo2.get(0).chapterNo);
 		}
 
 		List<LessonTblPojo> listRecommend = topPageService.searchAllEnableVideoIsRcommend(email);

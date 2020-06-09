@@ -1410,6 +1410,16 @@ body.vjs-full-window {
 	border-radius: 12px;
 
 }
+.dlinfo2 .video_list_num2 {
+  display: block;
+  width: 800px;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 35px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+
+}
 
 .dlconL {
     width: 850px;
