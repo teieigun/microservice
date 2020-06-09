@@ -56,7 +56,7 @@ public class UserDao {
     public void saveRoleInfo(String email){
 
         String insertSql = " INSERT INTO user_role_mst " +
-                "(EMAIL) VALUES(?)";
+                "(EMAIL,role_id,del) VALUES(?,1,0)";
 
         jdbcTemplate.update(insertSql,new Object[] {email});
 
