@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.microservice.edu.constants.MicroServiceConstants;
+import com.microservice.edu.dao.CourseMasterDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,10 @@ public class VideoControll {
 
 	@Autowired
 	ProfileService profileService;
+
+	@Autowired
+	CourseMasterDao courseMasterDao;
+
 
 	private String email;
 
@@ -95,6 +100,13 @@ public class VideoControll {
 	public String showCourse(Model model, String lessonId, HttpServletRequest request) throws Exception {
 
 		String sessionId = request.getSession().getId();
+
+		String email = SecurityUtil.getUserDetails().getUsername();
+
+		Integer cnt = courseMasterDao.isBuyCourse(email,lessonId);
+		if(cnt ==null || cnt<=0){
+			return "redirect:/watch/callme";
+		}
 
 		//用户账户取得
 		UserDetails userDetails = SecurityUtil.getUserDetails();

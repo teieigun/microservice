@@ -32,4 +32,16 @@ public class CourseMasterDao {
         return list;
     }
 
+    public Integer isBuyCourse(String email,String lessonId){
+
+        String sql = "SELECT COUNT(1) FROM user_course_mapping T1 WHERE T1.email=? AND T1.course_id =?";
+
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[] {email,lessonId},Integer.class);
+
+        if(count==null){
+            count=0;
+        }
+        return count;
+    }
+
 }
