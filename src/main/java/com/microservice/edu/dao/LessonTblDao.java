@@ -68,8 +68,8 @@ public class LessonTblDao {
 		sql = sql + "    ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg";
 		sql = sql + "    ,CONCAT(t3.lessonName,case ";
 		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
-		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（有试听）</span>'";
-		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买（无试听）</span>'";
+		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
+		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
 		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
 		sql = sql + "    ,case  when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
 		sql = sql + "     then 1 ELSE 0 END) ELSE 2 END AS statusFlg";
@@ -155,8 +155,8 @@ public class LessonTblDao {
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
 		sql = sql + "    ,CONCAT(t3.lessonName,case ";
 		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
-		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（有试听）</span>'";
-		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买（无试听）</span>'";
+		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
+		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
 		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
@@ -236,8 +236,8 @@ public class LessonTblDao {
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
 		sql = sql + "    ,CONCAT(t3.lessonName,case ";
 		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
-		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（有试听）</span>'";
-		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买（无试听）</span>'";
+		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
+		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
 		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
