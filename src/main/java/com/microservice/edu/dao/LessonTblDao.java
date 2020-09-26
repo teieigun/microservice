@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.microservice.edu.pojo.BigCategoryTblPojo;
+import com.microservice.edu.pojo.CoursePojo;
 import com.microservice.edu.pojo.LessonTblPojo;
 import com.microservice.edu.pojo.SmallCategoryTblPojo;
 
@@ -67,11 +68,16 @@ public class LessonTblDao {
 		sql = sql + "    t3.lessonId";
 		sql = sql + "    ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg";
 		sql = sql + "    ,CONCAT(t3.lessonName,case ";
-		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
-		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
-		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
-		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
-		sql = sql + "    ,case  when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
+		sql = sql
+				+ "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
+		sql = sql
+				+ "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
+		sql = sql
+				+ "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
+		sql = sql
+				+ "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
+		sql = sql
+				+ "    ,case  when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
 		sql = sql + "     then 1 ELSE 0 END) ELSE 2 END AS statusFlg";
 		sql = sql + "    ,t3.bitCtgName";
 		sql = sql + "    ,t3.bigCtgCode";
@@ -126,7 +132,6 @@ public class LessonTblDao {
 		sql = sql + "   t3.lessonType =t6.lessonType";
 		sql = sql + "   WHERE 1=1";
 
-
 		if (bigCtgCode != null && smallCtgCode != null) {
 			paralist.add(bigCtgCode);
 			paralist.add(smallCtgCode);
@@ -139,7 +144,6 @@ public class LessonTblDao {
 				new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
-
 
 	/**
 	 * 现实所以视频，同时显示购买情况
@@ -154,10 +158,14 @@ public class LessonTblDao {
 		sql = sql + "  t3.lessonId";
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
 		sql = sql + "    ,CONCAT(t3.lessonName,case ";
-		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
-		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
-		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
-		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
+		sql = sql
+				+ "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
+		sql = sql
+				+ "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
+		sql = sql
+				+ "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
+		sql = sql
+				+ "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
 		sql = sql + "  ,t3.smallCtgCode";
@@ -211,7 +219,7 @@ public class LessonTblDao {
 		sql = sql + " WHERE 1=1 ";
 
 		if (videoNm != null) {
-			paralist.add( "%"+videoNm + "%");
+			paralist.add("%" + videoNm + "%");
 			sql = sql + " and  t3.lessonName like ?  ";
 		}
 		sql = sql + "  and t3.del = 0 ";
@@ -220,7 +228,6 @@ public class LessonTblDao {
 				new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
-
 
 	/**
 	 * 推荐视频一览取得
@@ -235,10 +242,14 @@ public class LessonTblDao {
 		sql = sql + "  t3.lessonId";
 		sql = sql + "  ,(case when email IS NULL then '0' ELSE '1' END) AS buyFlg ";
 		sql = sql + "    ,CONCAT(t3.lessonName,case ";
-		sql = sql + "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
-		sql = sql + "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
-		sql = sql + "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
-		sql = sql + "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
+		sql = sql
+				+ "                              when email IS NULL then (case when (SELECT sum(S.TEST_FLG) AS cnt FROM lesson_chapter S WHERE t3.lessonId = S.LESSON_ID)>0 ";
+		sql = sql
+				+ "                     then '　<span style=\"color:#00bfff;font-weight:bold;font-size: 13px;\"><br/>未购买（可试听）</span>'";
+		sql = sql
+				+ "                     ELSE '　<span style=\"color:#f08080;font-weight:bold;font-size: 13px;\"><br/>未购买</span>'";
+		sql = sql
+				+ "    END) ELSE '　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>' END) AS lessonName";
 		sql = sql + "  ,t3.bitCtgName";
 		sql = sql + "  ,t3.bigCtgCode";
 		sql = sql + "  ,t3.smallCtgCode";
@@ -309,7 +320,8 @@ public class LessonTblDao {
 
 		String sql = " SELECT ";
 		sql = sql + "   t1.LESSON_ID AS lessonId";
-		sql = sql + "  ,CONCAT(t1.LESSON_NAME,'　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>') AS lessonName";
+		sql = sql
+				+ "  ,CONCAT(t1.LESSON_NAME,'　<span style=\"color:#008000;font-weight:bold;font-size: 13px;\"><br/>已购买</span>') AS lessonName";
 		sql = sql + "  ,t1.BIG_CTG_CODE AS bigCtgCode";
 		sql = sql + "  ,t1.SMALL_CTG_CODE AS smallCtgCode";
 		sql = sql + "  ,t1.LESSON_IMG AS lessonImg";
@@ -325,12 +337,10 @@ public class LessonTblDao {
 		sql = sql + "     WHERE t1.email =? ";
 		sql = sql + "       and t1.course_id = ?) ";
 
-
 		List<LessonTblPojo> list = jdbcTemplate.query(sql, paralist.toArray(),
 				new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
-
 
 	/**
 	 * 可以免费观看的视频
@@ -360,7 +370,6 @@ public class LessonTblDao {
 		return list;
 	}
 
-
 	/**
 	 * 根据大分类和小分类，取得课程一览
 	 * */
@@ -381,7 +390,7 @@ public class LessonTblDao {
 		sql = sql + "   and t1.small_ctg_code= ? ";
 		sql = sql + "   and t1.del = '0' order by t1.big_ctg_code,t1.small_ctg_code";
 
-		List<LessonTblPojo> list = jdbcTemplate.query(sql, new Object[] {bigCtgCode, smallCtgCode },
+		List<LessonTblPojo> list = jdbcTemplate.query(sql, new Object[] { bigCtgCode, smallCtgCode },
 				new BeanPropertyRowMapper(LessonTblPojo.class));
 		return list;
 	}
@@ -389,7 +398,7 @@ public class LessonTblDao {
 	/**
 	 * 根据大分类和小分类，取得课程一览
 	 * */
-	public Integer isBuyLesson(String email,String lessonId) {
+	public Integer isBuyLesson(String email, String lessonId) {
 
 		String sql = "select ";
 		sql = sql + "  count(1) as cnt FROM ";
@@ -402,13 +411,59 @@ public class LessonTblDao {
 		sql = sql + " SELECT t3.lesson_id FROM user_lession_mapping t3 WHERE t3.email = ?";
 		sql = sql + " ) t4 where t4.lesson_id = ?";
 
+		Integer count = jdbcTemplate.queryForObject(sql, new Object[] { email, email, lessonId }, Integer.class);
 
-		Integer count = jdbcTemplate.queryForObject(sql, new Object[] {email,email,lessonId},Integer.class);
-
-		if(count==null){
-			count=0;
+		if (count == null) {
+			count = 0;
 		}
 		return count;
+	}
+
+	/**
+	 * 获取所有基础篇课程信息
+	 * */
+	public List<CoursePojo> getBaseCourses() {
+
+		String sql = "select ";
+		sql = sql + "     t1.lesson_id   as lessionId";
+		sql = sql + "   , t1.lesson_name   as lessonName";
+		sql = sql + "   , t1.img_url   as imgUrl";
+		sql = sql + "   , t1.title   as title";
+		sql = sql + "   , t1.description   as description";
+		sql = sql + "   , t2.number   as number ";
+		sql = sql + " from ";
+		sql = sql + "   lesson_tbl t1 , access_user_tbl t2 ";
+		sql = sql + " where ";
+		sql = sql + "  t1.lesson_id =  t2.course_id ";
+		sql = sql + " and t1.category = '基础' ";
+		sql = sql + " order by t1.lesson_id";
+
+		List<CoursePojo> list = jdbcTemplate.query(sql,
+				new BeanPropertyRowMapper(CoursePojo.class));
+		return list;
+	}
+
+	/**
+	 * 获取所有课程信息
+	 * */
+	public List<CoursePojo> getAllCourses() {
+
+		String sql = "select ";
+		sql = sql + "     t1.lesson_id   as lessionId";
+		sql = sql + "   , t1.lesson_name   as lessonName";
+		sql = sql + "   , t1.img_url   as imgUrl";
+		sql = sql + "   , t1.title   as title";
+		sql = sql + "   , t1.description   as description";
+		sql = sql + "   , t2.number   as number ";
+		sql = sql + " from ";
+		sql = sql + "   lesson_tbl t1 , access_user_tbl t2 ";
+		sql = sql + " where ";
+		sql = sql + "  t1.lesson_id =  t2.course_id ";
+		sql = sql + " order by t1.lesson_id";
+
+		List<CoursePojo> list = jdbcTemplate.query(sql,
+				new BeanPropertyRowMapper(CoursePojo.class));
+		return list;
 	}
 
 }
